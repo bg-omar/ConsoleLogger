@@ -8,10 +8,21 @@
     <depends>com.intellij.modules.lang</depends>
     <depends>JavaScript</depends>
 
+    <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
+
     <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings"/>
         <applicationConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
                                  id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable" displayName="ConsoleLogger"/>
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings"/>
+
+
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.services.GivServiceSettings"/>
+        <projectConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ProjectSettingsConfigurable"
+                             id="com.github.bgomar.consolelogger.settings.ProjectSettingsConfigurable"   displayName="ConsoleBrowser" />
+
+        <toolWindow id="ConsoleLogger" icon="/icons/ConsoleBrowser.svg" anchor="right"
+                    factoryClass="com.github.bgomar.consolelogger.GivToolWindowFactory"/>
+
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>

@@ -23,13 +23,10 @@ class UpdateNotify : StartupActivity {
   private val updateContent: String by lazy {
     //language=HTML
     """
-    🐛 Bugfix for (ctrl + alt + 1/2 ) <br/>
-    🤏 Small changes to defaults: <br> 
-    4 = Arduino Serial.print() <br> 
-    5 = C++ cout << "" << endl;<br> 
-    6 = Python print("{:>30}".format()) 😁👌<br><br>
+     New in ConsoleLogger v0.0.20: <br/>
+    💻🌐 || Added Browser ToolWindow || 😁👌<br><br>
 
-    You can always <b>change defaults<b> in settings (ctrl + alt + S)<br>
+    🦄 You can always <b>change defaults<b> in settings (ctrl + alt + S)<br>
     <b>Settings | Tools | ConsoleLogger</b> 
     """
   }
