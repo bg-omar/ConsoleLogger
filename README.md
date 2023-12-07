@@ -6,12 +6,12 @@ May need personal adjustments in settings.
 This project is heavily based on LogIt by Laurent Soulet
 
 Defaults for CTRL + ALT + (1-9)  
-(1) = `console.log("%c ---> $$: ","color:#F0F;", $$);`   
-(2) = `console.debug("%c ---> $$: ","color:#0F0;", $$);`   
-(3) = `console.warn("%c ---> $$: ","color:#F00;", $$);`   
-(4) = `Serial.print(" ---> $$: ", $$);`   
-(5) = `cout << "      ---> $$: " << $$ << endl;`    
-(6) = `print("{:>30}".format(" ---> $$: " + $$))`  
+(1) = `console.log("$$: ", $$);"""` 
+(2) = `console.log("%c ---> $$: ","color:#F0F;", $$);`   
+(3) = `console.log("%c ---> $$: ","color:#0F0;", $$);`  
+(4) = `console.log("%c ---> $$: ","color:#F00;", $$);`
+(5) = `console.warn("%c ---> $$: ","color:#0FF;", $$);`
+(6) = `console.debug("%c ---> $$: ","color:#FF0;", $$);`
 (7) = `console.error("%c ({FP}:{LN}) $$: ", "color:#FF0;", $$);`  
 (8) = `console.groupCollapsed("group $$");'\n' console.groupEnd("end of group $$");`  
 (9) = `console.table($$);`  

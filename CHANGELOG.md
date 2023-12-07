@@ -1,9 +1,11 @@
 # Changelog
 
-## [0.0.20] - 2023-11-15
+## [0.0.20] - 7-12-2023
 - 🐛 Small Bugfix: FIX: Handle cases where the editor might be missing. 
+- Make ConsoleLogger work with IntelliJ 2023.3
+- Change defaults to better suite IntelliJ
 
-## [0.0.19] - 2023-10-23
+## [0.0.19] - 23-10-2023
 
 - 🐛 Bugfix for (ctrl + alt + 1/2 ) 
 - 🤏 Small changes to Loggers defaults:

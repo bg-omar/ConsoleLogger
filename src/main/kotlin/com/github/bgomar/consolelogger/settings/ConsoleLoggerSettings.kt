@@ -8,30 +8,22 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 import org.jetbrains.annotations.Nullable
 
 
+internal const val DEFAULT_PATTERN_1 =  """console.log("$$: ", $$);"""
+internal const val DEFAULT_PATTERN_2 =  """console.log("%c ---> $$: ","color:#F0F;", $$);"""
+internal const val DEFAULT_PATTERN_3 =  """console.log("%c ---> $$: ","color:#0F0;", $$);"""
+internal const val DEFAULT_PATTERN_4 =  """console.log("%c ---> $$: ","color:#F00;", $$);"""
 
-internal const val DEFAULT_PATTERN_1 =  """console.log("%c ---> $$: ","color:#F0F;", $$);"""
-internal const val DEFAULT_PATTERN_2 =  """console.debug("%c ---> $$: ","color:#0F0;", $$);"""
-internal const val DEFAULT_PATTERN_3 =  """console.warn("%c ---> $$: ","color:#F00;", $$);"""
-
-internal const val DEFAULT_PATTERN_4 =  """Serial.print(" ---> $$: ", $$);"""
-internal const val DEFAULT_PATTERN_5 =  """cout << "      ---> $$: " << $$ << endl;"""
-internal const val DEFAULT_PATTERN_6 =  """print("{:>30}".format(" ---> $$: " + $$))"""
+internal const val DEFAULT_PATTERN_5 =  """console.warn("%c ---> $$: ","color:#0FF;", $$);"""
+internal const val DEFAULT_PATTERN_6 =  """console.debug("%c ---> $$: ","color:#FF0;", $$);"""
 
 internal const val DEFAULT_PATTERN_7 =  """console.error("%c ({FP}:{LN}) $$: ", "color:#FF0;", $$);"""
 internal const val DEFAULT_PATTERN_8 =  """${'\n'}console.groupCollapsed("group $$");""" +
                                         """${'\n'}console.groupEnd("end of group $$");"""
 internal const val DEFAULT_PATTERN_9 =  """console.table($$);"""
 
-fun properties(key: String) {
-  findProperty(key).toString()}
-
-private fun findProperty(key: String) {
-
-}
 
 @State(name = "ConsoleLoggerSettings", storages = [(Storage("consolelogger.xml"))])
 class ConsoleLoggerSettings : PersistentStateComponent<ConsoleLoggerSettings> {
-
 
   var pattern1: String = DEFAULT_PATTERN_1
   var pattern2: String = DEFAULT_PATTERN_2
@@ -43,7 +35,7 @@ class ConsoleLoggerSettings : PersistentStateComponent<ConsoleLoggerSettings> {
   var pattern8: String = DEFAULT_PATTERN_8
   var pattern9: String = DEFAULT_PATTERN_9
 
-  var version = properties("pluginVersion")
+  var version = "0.0.20"
 
   companion object {
     val instance: ConsoleLoggerSettings

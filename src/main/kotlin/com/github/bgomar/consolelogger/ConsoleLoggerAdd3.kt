@@ -112,7 +112,7 @@ class ConsoleLoggerAdd3 : AnAction("INSERT_LOG3") {
     val psiFile =
       PsiFileFactory.getInstance(editor.project).createFileFromText(
         "dummy.js", JavascriptLanguage.INSTANCE, editor.document.text
-      )
+      )  ?: return null
 
     val valueToLog: String
     val element: PsiElement?
@@ -123,15 +123,16 @@ class ConsoleLoggerAdd3 : AnAction("INSERT_LOG3") {
 
       offset = editor.selectionModel.selectionStart
 
-      element = psiFile.findElementAt(offset)
+      element = psiFile.findElementAt(offset)  ?: return null
 
       valueToLog = value ?: "<CR>"
     } else {
       offset = editor.caretModel.currentCaret.offset
 
       val elementAtCursor = psiFile.findElementAt(offset)
-
-      if (elementAtCursor?.text?.replace(" ", "")?.endsWith("\n\n") == true) return ""
+      if (elementAtCursor == null || elementAtCursor.text.replace(" ", "").endsWith("\n\n")) {
+        return ""
+      }
 
       element = findElementToLogForSelection(elementAtCursor!!)
 
@@ -143,15 +144,16 @@ class ConsoleLoggerAdd3 : AnAction("INSERT_LOG3") {
     }
 
     val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
+    if (block != null) {
+      editor.caretModel.moveToOffset(block.textRange.endOffset)
+    }
 
     when {
       block is JSIfStatement -> {
         // for "if" statements insert line above
         editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
       }
-      block != null -> editor.caretModel.moveToOffset(block.textRange.endOffset)
     }
-
     return valueToLog
   }
 

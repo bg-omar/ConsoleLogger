@@ -7,22 +7,15 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
 import com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings
 
-fun properties(key: String) {
-  findProperty(key).toString()}
-
-private fun findProperty(key: String) {
-
-}
-
 class UpdateNotify : StartupActivity {
   private val plugin = PluginManagerCore.getPlugin(PluginId.getId("com.github.bgomar.consolelogger"))!!
 
   override fun runActivity(project: Project) {
     val settings = ConsoleLoggerSettings.instance
-    if (settings.version.toString() == "Unknown") {
-      settings.version = com.github.bgomar.consolelogger.settings.properties("pluginVersion")
-    } else if (plugin.version.toString() != settings.version.toString()) {
-      settings.version = com.github.bgomar.consolelogger.settings.properties("pluginVersion")
+    if (settings.version == "Unknown") {
+      settings.version = plugin.version
+    } else if (plugin.version != settings.version) {
+      settings.version = plugin.version
       showUpdate(project)
     }
   }
@@ -32,7 +25,8 @@ class UpdateNotify : StartupActivity {
     """
      🤏 🐛 Small Bugfix:  <br/>
     FIX: Handle cases where the editor might be missing. <br>
-
+    Make ConsoleLogger work with IntelliJ 2023.3 <br>
+    Change defaults to better suite IntelliJ <br><br>
     🦄 You can always <b>change defaults<b> in settings (ctrl + alt + S)<br>
     <b>Settings || Tools || ConsoleLogger</b>
     """

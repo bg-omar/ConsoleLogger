@@ -111,9 +111,8 @@ class ConsoleLoggerAddGroup : AnAction("INSERT_GROUP") {
     // parse the file as a simple JavaScript file
     val psiFile =
       PsiFileFactory.getInstance(editor.project).createFileFromText(
-        "dummy.js", JavascriptLanguage.INSTANCE, editor.document.text
-      )
-
+         "dummy.js", JavascriptLanguage.INSTANCE, editor.document.text
+      ) ?: return null
     val valueToLog: String
     val element: PsiElement?
     val offset: Int
@@ -123,17 +122,17 @@ class ConsoleLoggerAddGroup : AnAction("INSERT_GROUP") {
 
       offset = editor.selectionModel.selectionStart
 
-      element = psiFile.findElementAt(offset)
+      element = psiFile.findElementAt(offset)  ?: return null
 
       valueToLog = value ?: "<CR>"
     } else {
       offset = editor.caretModel.currentCaret.offset
 
       val elementAtCursor = psiFile.findElementAt(offset)
-
-      if (elementAtCursor?.text?.replace(" ", "")?.endsWith("\n\n") == true) return ""
-
-      element = findElementToLogForSelection(elementAtCursor!!)
+      if (elementAtCursor == null || elementAtCursor.text.replace(" ", "").endsWith("\n\n")) {
+        return ""
+      }
+     element = findElementToLogForSelection(elementAtCursor!!)
 
       valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
     }
@@ -143,13 +142,15 @@ class ConsoleLoggerAddGroup : AnAction("INSERT_GROUP") {
     }
 
     val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
-
-    when {
+    if (block != null) {
+      editor.caretModel.moveToOffset(block.textRange.endOffset)
+    }
+   when {
       block is JSIfStatement -> {
         // for "if" statements insert line above
         editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
       }
-      block != null -> editor.caretModel.moveToOffset(block.textRange.endOffset)
+ 
     }
 
     return valueToLog
