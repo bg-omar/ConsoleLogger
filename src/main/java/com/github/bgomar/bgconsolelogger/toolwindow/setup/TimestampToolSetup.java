@@ -148,14 +148,14 @@ public class TimestampToolSetup extends AbstractToolSetup {
                 }
             }
         });
-        /*timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(false));
+        timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate());
         timestampYearSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMonthSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampDaySpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampHourSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMinuteSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampSecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
-        timestampMillisecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());*/
+        timestampMillisecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
 
         timestampNowButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", DevToysToolWindow.class));
         timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", DevToysToolWindow.class));

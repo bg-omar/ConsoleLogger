@@ -18,7 +18,10 @@
                                  displayName="ConsoleLogger"/>
 
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
-
+        <applicationConfigurable parentId="tools"
+            instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
+            id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
+            displayName="BgConsoleLogger"/>
 
 
         <!--suppress  PluginXmlValidity -->

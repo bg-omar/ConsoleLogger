@@ -4,16 +4,17 @@ import com.github.bgomar.bgconsolelogger.toolwindow.setup.PropertiesConsoleLogge
 import com.intellij.openapi.ui.DialogPanel;
 import com.intellij.ui.components.JBTextField;
 import org.jetbrains.annotations.NotNull;
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerConfigurableUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ConsoleLoggerTools extends PropertiesConsoleLoggerToolSetup {
-    public ConsoleLoggerTools(JTextField propertiesConsoleLoggerTextField1, JTextField propertiesConsoleLoggerTextField2,
-                              JTextField propertiesConsoleLoggerTextField3, JTextField propertiesConsoleLoggerTextField4,
-                              JTextField propertiesConsoleLoggerTextField5, JTextField propertiesConsoleLoggerTextField6,
-                              JTextField propertiesConsoleLoggerTextField7, JTextField propertiesConsoleLoggerTextField8,
-                              JTextField propertiesConsoleLoggerTextField9, JButton propertiesConsoleLoggerbutton1) {
+public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetup {
+    public ConsoleLoggerConfigurableUI(JTextField propertiesConsoleLoggerTextField1, JTextField propertiesConsoleLoggerTextField2,
+                                       JTextField propertiesConsoleLoggerTextField3, JTextField propertiesConsoleLoggerTextField4,
+                                       JTextField propertiesConsoleLoggerTextField5, JTextField propertiesConsoleLoggerTextField6,
+                                       JTextField propertiesConsoleLoggerTextField7, JTextField propertiesConsoleLoggerTextField8,
+                                       JTextField propertiesConsoleLoggerTextField9, JButton propertiesConsoleLoggerbutton1) {
         super( propertiesConsoleLoggerTextField1, propertiesConsoleLoggerTextField2, propertiesConsoleLoggerTextField3,
                 propertiesConsoleLoggerTextField4, propertiesConsoleLoggerTextField5, propertiesConsoleLoggerTextField6,
                 propertiesConsoleLoggerTextField7, propertiesConsoleLoggerTextField8, propertiesConsoleLoggerTextField9,
@@ -23,6 +24,7 @@ public class ConsoleLoggerTools extends PropertiesConsoleLoggerToolSetup {
     public static class ConsoleLoggerConfig extends PropertiesConsoleLoggerToolSetup {
         public ConsoleLoggerConfig(@NotNull ConsoleLoggerSettings setting) {
             super();
+
 
             ui = new DialogPanel();
             ui.setLayout(new GridBagLayout());
@@ -51,7 +53,18 @@ public class ConsoleLoggerTools extends PropertiesConsoleLoggerToolSetup {
                 gbc.gridy++;
             }
         }
-
-
     }
+    @Override
+    public void reset(@NotNull ConsoleLoggerSettings settings) {
+        ui.reset(); }
+
+    @Override
+    public boolean isModified(@NotNull ConsoleLoggerSettings settings) { return ui.isModified(); }
+
+    @Override
+    public void apply(@NotNull ConsoleLoggerSettings settings) { ui.apply(); }
+
+    @Override
+    public @NotNull JComponent getComponent() { return ui; }
 }
+

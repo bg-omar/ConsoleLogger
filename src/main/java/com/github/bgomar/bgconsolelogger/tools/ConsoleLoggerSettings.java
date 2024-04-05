@@ -7,6 +7,7 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerConfigurableUI;
 
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
 public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
@@ -56,6 +57,12 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
             return patterns[index];
         } else {
             return patterns[index-1];
+        }
+    }
+
+    public static void setPattern(int index, String pattern) {
+        if (index >= 0 && index < patterns.length) {
+            patterns[index] = pattern;
         }
     }
 }

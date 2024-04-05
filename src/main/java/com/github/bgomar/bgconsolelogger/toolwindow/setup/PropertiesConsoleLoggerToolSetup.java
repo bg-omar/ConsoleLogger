@@ -5,20 +5,20 @@ import com.intellij.openapi.options.ConfigurableUi;
 import com.intellij.openapi.ui.DialogPanel;
 import org.jetbrains.annotations.NotNull;
 
-
 import javax.swing.*;
 
+
 public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup implements ConfigurableUi<ConsoleLoggerSettings> {
-    private static JTextField propertiesConsoleLoggerTextField1 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField2 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField3 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField4 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField5 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField6 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField7 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField8 = new JTextField();
-    private static JTextField propertiesConsoleLoggerTextField9 = new JTextField();
-    private static JButton propertiesConsoleLoggerbutton1 = new JButton();
+    private JTextField propertiesConsoleLoggerTextField1;
+    private JTextField propertiesConsoleLoggerTextField2;
+    private JTextField propertiesConsoleLoggerTextField3;
+    private JTextField propertiesConsoleLoggerTextField4;
+    private JTextField propertiesConsoleLoggerTextField5;
+    private JTextField propertiesConsoleLoggerTextField6;
+    private JTextField propertiesConsoleLoggerTextField7;
+    private JTextField propertiesConsoleLoggerTextField8;
+    private JTextField propertiesConsoleLoggerTextField9;
+    private JButton propertiesConsoleLoggerbutton1;
     public static DialogPanel ui;
 
     public PropertiesConsoleLoggerToolSetup(
@@ -31,36 +31,57 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             JTextField propertiesConsoleLoggerTextField7,
             JTextField propertiesConsoleLoggerTextField8,
             JTextField propertiesConsoleLoggerTextField9,
-            JButton propertiesConsoleLoggerbutton1
-    ) {
-        super();
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1 = propertiesConsoleLoggerTextField1;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2 = propertiesConsoleLoggerTextField2;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3 = propertiesConsoleLoggerTextField3;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4 = propertiesConsoleLoggerTextField4;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5 = propertiesConsoleLoggerTextField5;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6 = propertiesConsoleLoggerTextField6;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7 = propertiesConsoleLoggerTextField7;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8 = propertiesConsoleLoggerTextField8;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9 = propertiesConsoleLoggerTextField9;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerbutton1 = propertiesConsoleLoggerbutton1;
+                JButton propertiesConsoleLoggerbutton1) {
+        this.propertiesConsoleLoggerTextField1 = propertiesConsoleLoggerTextField1;
+        this.propertiesConsoleLoggerTextField2 = propertiesConsoleLoggerTextField2;
+        this.propertiesConsoleLoggerTextField3 = propertiesConsoleLoggerTextField3;
+        this.propertiesConsoleLoggerTextField4 = propertiesConsoleLoggerTextField4;
+        this.propertiesConsoleLoggerTextField5 = propertiesConsoleLoggerTextField5;
+        this.propertiesConsoleLoggerTextField6 = propertiesConsoleLoggerTextField6;
+        this.propertiesConsoleLoggerTextField7 = propertiesConsoleLoggerTextField7;
+        this.propertiesConsoleLoggerTextField8 = propertiesConsoleLoggerTextField8;
+        this.propertiesConsoleLoggerTextField9 = propertiesConsoleLoggerTextField9;
+        this.propertiesConsoleLoggerbutton1 = propertiesConsoleLoggerbutton1;
+        setup();
     }
 
     public PropertiesConsoleLoggerToolSetup() {
-        setup();
+
     }
 
 
     public void setup() {
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.getPattern(0));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(2));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(3));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(ConsoleLoggerSettings.getPattern(4));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(ConsoleLoggerSettings.getPattern(5));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(ConsoleLoggerSettings.getPattern(6));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(ConsoleLoggerSettings.getPattern(7));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.getPattern(8));
+        this.propertiesConsoleLoggerTextField1  = new JTextField();
+        this.propertiesConsoleLoggerTextField2  = new JTextField();
+        this.propertiesConsoleLoggerTextField3  = new JTextField();
+        this.propertiesConsoleLoggerTextField4  = new JTextField();
+        this.propertiesConsoleLoggerTextField5  = new JTextField();
+        this.propertiesConsoleLoggerTextField6  = new JTextField();
+        this.propertiesConsoleLoggerTextField7  = new JTextField();
+        this.propertiesConsoleLoggerTextField8  = new JTextField();
+        this.propertiesConsoleLoggerTextField9  = new JTextField();
+        this.propertiesConsoleLoggerbutton1     = new JButton();
+        this.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.getPattern(0));
+        this.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(1));
+        this.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(2));
+        this.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(3));
+        this.propertiesConsoleLoggerTextField4.setText(ConsoleLoggerSettings.getPattern(4));
+        this.propertiesConsoleLoggerTextField5.setText(ConsoleLoggerSettings.getPattern(5));
+        this.propertiesConsoleLoggerTextField6.setText(ConsoleLoggerSettings.getPattern(6));
+        this.propertiesConsoleLoggerTextField7.setText(ConsoleLoggerSettings.getPattern(7));
+        this.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.getPattern(8));
+
+        this.propertiesConsoleLoggerbutton1.addActionListener(e -> {
+            ConsoleLoggerSettings.setPattern(1, propertiesConsoleLoggerTextField1.getText());
+            ConsoleLoggerSettings.setPattern(2, propertiesConsoleLoggerTextField2.getText());
+            ConsoleLoggerSettings.setPattern(3, propertiesConsoleLoggerTextField3.getText());
+            ConsoleLoggerSettings.setPattern(4, propertiesConsoleLoggerTextField4.getText());
+            ConsoleLoggerSettings.setPattern(5, propertiesConsoleLoggerTextField5.getText());
+            ConsoleLoggerSettings.setPattern(6, propertiesConsoleLoggerTextField6.getText());
+            ConsoleLoggerSettings.setPattern(7, propertiesConsoleLoggerTextField7.getText());
+            ConsoleLoggerSettings.setPattern(8, propertiesConsoleLoggerTextField8.getText());
+            ConsoleLoggerSettings.setPattern(0, propertiesConsoleLoggerTextField9.getText());
+        });
     }
 
     @Override
