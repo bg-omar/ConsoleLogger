@@ -18,7 +18,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     public static final String DEFAULT_PATTERN_5 = "console.warn(\"%c ---> $$: \",\"color:#F00;\", $$);";
     public static final String DEFAULT_PATTERN_6 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
     public static final String DEFAULT_PATTERN_7 = "Serial.println($$);";
-    public static final String DEFAULT_PATTERN_8 =  "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
+    public static final String DEFAULT_PATTERN_8 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
     public static final String DEFAULT_PATTERN_9 = "${'\n'}console.groupCollapsed(\"group $$\");${'\n'}console.groupEnd(\"end of group $$\");";
 
 
@@ -63,17 +63,5 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
         if (index >= 0 && index < patterns.length) {
             patterns[index] = pattern;
         }
-    }
-
-    public static void resetPattern() {
-        patterns[0] = DEFAULT_PATTERN_1;
-        patterns[1] = DEFAULT_PATTERN_2;
-        patterns[2] = DEFAULT_PATTERN_3;
-        patterns[3] = DEFAULT_PATTERN_4;
-        patterns[4] = DEFAULT_PATTERN_5;
-        patterns[5] = DEFAULT_PATTERN_6;
-        patterns[6] = DEFAULT_PATTERN_7;
-        patterns[7] = DEFAULT_PATTERN_8;
-        patterns[8] = DEFAULT_PATTERN_9;
     }
 }

@@ -79,15 +79,15 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     }
 
     public void setup() {
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(1-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(2-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(3-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(ConsoleLoggerSettings.getPattern(4-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(ConsoleLoggerSettings.getPattern(5-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(ConsoleLoggerSettings.getPattern(6-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(ConsoleLoggerSettings.getPattern(7-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.getPattern(8-1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.getPattern(9-1));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(0));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(1));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(2));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(ConsoleLoggerSettings.getPattern(3));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(ConsoleLoggerSettings.getPattern(4));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(ConsoleLoggerSettings.getPattern(5));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(ConsoleLoggerSettings.getPattern(6));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.getPattern(7));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.getPattern(8));
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_1));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton2.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_2));
@@ -100,15 +100,15 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_9));
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
-            ConsoleLoggerSettings.setPattern(1, propertiesConsoleLoggerTextField1.getText());
-            ConsoleLoggerSettings.setPattern(2, propertiesConsoleLoggerTextField2.getText());
-            ConsoleLoggerSettings.setPattern(3, propertiesConsoleLoggerTextField3.getText());
-            ConsoleLoggerSettings.setPattern(4, propertiesConsoleLoggerTextField4.getText());
-            ConsoleLoggerSettings.setPattern(5, propertiesConsoleLoggerTextField5.getText());
-            ConsoleLoggerSettings.setPattern(6, propertiesConsoleLoggerTextField6.getText());
-            ConsoleLoggerSettings.setPattern(7, propertiesConsoleLoggerTextField7.getText());
-            ConsoleLoggerSettings.setPattern(8, propertiesConsoleLoggerTextField8.getText());
-            ConsoleLoggerSettings.setPattern(0, propertiesConsoleLoggerTextField9.getText());
+            ConsoleLoggerSettings.setPattern(0, propertiesConsoleLoggerTextField1.getText());
+            ConsoleLoggerSettings.setPattern(1, propertiesConsoleLoggerTextField2.getText());
+            ConsoleLoggerSettings.setPattern(2, propertiesConsoleLoggerTextField3.getText());
+            ConsoleLoggerSettings.setPattern(3, propertiesConsoleLoggerTextField4.getText());
+            ConsoleLoggerSettings.setPattern(4, propertiesConsoleLoggerTextField5.getText());
+            ConsoleLoggerSettings.setPattern(5, propertiesConsoleLoggerTextField6.getText());
+            ConsoleLoggerSettings.setPattern(6, propertiesConsoleLoggerTextField7.getText());
+            ConsoleLoggerSettings.setPattern(7, propertiesConsoleLoggerTextField8.getText());
+            ConsoleLoggerSettings.setPattern(8, propertiesConsoleLoggerTextField9.getText());
         });
     }
 
