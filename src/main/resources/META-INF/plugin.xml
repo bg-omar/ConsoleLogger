@@ -11,17 +11,11 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings"/>
-        <applicationConfigurable parentId="tools"
-                                 instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
-                                 id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
-                                 displayName="ConsoleLogger"/>
-
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
         <applicationConfigurable parentId="tools"
             instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
             id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-            displayName="BgConsoleLogger"/>
+            displayName="ConsoleLogger"/>
 
 
         <!--suppress  PluginXmlValidity -->

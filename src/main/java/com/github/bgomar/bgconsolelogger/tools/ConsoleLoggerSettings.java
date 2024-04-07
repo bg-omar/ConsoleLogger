@@ -7,21 +7,20 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerConfigurableUI;
 
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
 public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
 
-    public static final String DEFAULT_PATTERN_1 = "console.log(\"%c ---> $$: \",\"color:#F0F;\", $$);";
-    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c ---> $$: \",\"color:#0F0;\", $$);";
-    public static final String DEFAULT_PATTERN_3 = "console.warn(\"%c ---> $$: \",\"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_4 = "Serial.println($$);";
-    public static final String DEFAULT_PATTERN_5 = "cout << \"      ---> $$: \" << $$ << endl;";
-    public static final String DEFAULT_PATTERN_6 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
-    public static final String DEFAULT_PATTERN_7 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#FF0;\", $$);";
-    public static final String DEFAULT_PATTERN_8 = "${'\n'}console.groupCollapsed(\"group $$\");" +
-            "${'\n'}console.groupEnd(\"end of group $$\");";
-    public static final String DEFAULT_PATTERN_9 = "console.table($$);";
+    public static final String DEFAULT_PATTERN_1 = "console.log(\"$$: \", $$);";
+    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c ---> $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c ---> $$: \",\"color:#ff0;\", $$);";
+    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c ---> $$: \",\"color:#0F0;\", $$);";
+    public static final String DEFAULT_PATTERN_5 = "console.warn(\"%c ---> $$: \",\"color:#F00;\", $$);";
+    public static final String DEFAULT_PATTERN_6 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
+    public static final String DEFAULT_PATTERN_7 = "Serial.println($$);";
+    public static final String DEFAULT_PATTERN_8 =  "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
+    public static final String DEFAULT_PATTERN_9 = "${'\n'}console.groupCollapsed(\"group $$\");${'\n'}console.groupEnd(\"end of group $$\");";
+
 
     private static final String[] patterns = {
             DEFAULT_PATTERN_1,
@@ -64,5 +63,17 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
         if (index >= 0 && index < patterns.length) {
             patterns[index] = pattern;
         }
+    }
+
+    public static void resetPattern() {
+        patterns[0] = DEFAULT_PATTERN_1;
+        patterns[1] = DEFAULT_PATTERN_2;
+        patterns[2] = DEFAULT_PATTERN_3;
+        patterns[3] = DEFAULT_PATTERN_4;
+        patterns[4] = DEFAULT_PATTERN_5;
+        patterns[5] = DEFAULT_PATTERN_6;
+        patterns[6] = DEFAULT_PATTERN_7;
+        patterns[7] = DEFAULT_PATTERN_8;
+        patterns[8] = DEFAULT_PATTERN_9;
     }
 }

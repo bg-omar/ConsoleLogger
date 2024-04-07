@@ -82,7 +82,18 @@ public class DevToysToolWindow {
     private JTextField propertiesConsoleLoggerTextField7;
     private JTextField propertiesConsoleLoggerTextField8;
     private JTextField propertiesConsoleLoggerTextField9;
-    private JButton propertiesConsoleLoggerbutton1;
+    private JButton propertiesConsoleLoggerSaveButton;
+    private JButton propertiesConsoleLoggerDefaultButton1;
+    private JButton propertiesConsoleLoggerDefaultButton2;
+    private JButton propertiesConsoleLoggerDefaultButton3;
+    private JButton propertiesConsoleLoggerDefaultButton4;
+    private JButton propertiesConsoleLoggerDefaultButton5;
+    private JButton propertiesConsoleLoggerDefaultButton6;
+    private JButton propertiesConsoleLoggerDefaultButton7;
+    private JButton propertiesConsoleLoggerDefaultButton8;
+    private JButton propertiesConsoleLoggerDefaultButton9;
+
+
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -92,8 +103,8 @@ public class DevToysToolWindow {
 
     public DevToysToolWindow() {
         String iconsPath = "icons/";
-        toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cat1.svg"));
+        toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "pika.svg"));
@@ -102,16 +113,25 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
-            propertiesConsoleLoggerTextField1,
-            propertiesConsoleLoggerTextField2,
-            propertiesConsoleLoggerTextField3,
-            propertiesConsoleLoggerTextField4,
-            propertiesConsoleLoggerTextField5,
-            propertiesConsoleLoggerTextField6,
-            propertiesConsoleLoggerTextField7,
-            propertiesConsoleLoggerTextField8,
-            propertiesConsoleLoggerTextField9,
-            propertiesConsoleLoggerbutton1).setup();
+                propertiesConsoleLoggerTextField1,
+                propertiesConsoleLoggerTextField2,
+                propertiesConsoleLoggerTextField3,
+                propertiesConsoleLoggerTextField4,
+                propertiesConsoleLoggerTextField5,
+                propertiesConsoleLoggerTextField6,
+                propertiesConsoleLoggerTextField7,
+                propertiesConsoleLoggerTextField8,
+                propertiesConsoleLoggerTextField9,
+                propertiesConsoleLoggerSaveButton,
+                propertiesConsoleLoggerDefaultButton1,
+                propertiesConsoleLoggerDefaultButton2,
+                propertiesConsoleLoggerDefaultButton3,
+                propertiesConsoleLoggerDefaultButton4,
+                propertiesConsoleLoggerDefaultButton5,
+                propertiesConsoleLoggerDefaultButton6,
+                propertiesConsoleLoggerDefaultButton7,
+                propertiesConsoleLoggerDefaultButton8,
+                propertiesConsoleLoggerDefaultButton9).setup();
         new Base64ToolSetup(
             base64RadioButtonUTF8,
             base64RadioButtonASCII,
