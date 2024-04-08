@@ -12,12 +12,6 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
-        <applicationConfigurable parentId="tools"
-            instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-            id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-            displayName="ConsoleLogger"/>
-
-
         <!--suppress  PluginXmlValidity -->
         <toolWindow id="Tools"
                     icon="/icons/cryingcatt.svg"
@@ -25,15 +19,8 @@
                     factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.DevToysToolWindowFactory"/>
 
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
-
-
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
-
-
-
-        <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
-             on how to target different products -->
 
     </extensions>
 

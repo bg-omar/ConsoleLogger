@@ -40,37 +40,11 @@ public class DevToysToolWindow {
     private JBTextField hashBCrypt2BTextField;
     private JBTextField hashBCrypt2YTextField;
 
-    private JPanel timestampPanel;
-    private JComboBox<ComboBoxWithImageItem> timestampTimezoneComboBox;
-    private JTextArea timestampTextArea;
-    private JSpinner timestampSpinner;
-    private JButton timestampNowButton;
-    private JButton timestampUpdateFromTimestampButton;
-    private JButton timestampUpdateFromFieldsButton;
-    private JLabel timestampWarningNoZoneIdLabel;
-    private JSpinner timestampYearSpinner;
-    private JSpinner timestampDaySpinner;
-    private JSpinner timestampMonthSpinner;
-    private JSpinner timestampHourSpinner;
-    private JSpinner timestampMinuteSpinner;
-    private JSpinner timestampSecondSpinner;
-    private JSpinner timestampMillisecondSpinner;
-    private JComboBox<String> timestampResolutionComboBox;
-    private JLabel timestampMillisecondLabel;
-
     private JPanel dataFakerPanel;
     private JComboBox<String> dataFakerGeneratorComboBox;
     private JButton dataFakerGenerateButton;
     private JComboBox<String> dataFakerLocaleComboBox;
     private JTextArea dataFakerTextArea;
-
-    private JPanel cronPanel;
-    private JTextField cronExpressionTextField;
-    private JSpinner cronExpressionHowManyDaysSpinner;
-    private JComboBox<String> cronTypeComboBox;
-    private JTextArea cronTextArea;
-    private JButton explainButton;
-
 
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
@@ -108,8 +82,6 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "pika.svg"));
-        toolPanelsByTitle.put("Timestamp converter", new PanelAndIcon(timestampPanel, iconsPath + "BG.svg"));
-        toolPanelsByTitle.put("Cron parser", new PanelAndIcon(cronPanel, iconsPath + "BG2.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
@@ -148,29 +120,6 @@ public class DevToysToolWindow {
             dataFakerGenerateButton,
             dataFakerLocaleComboBox,
             dataFakerTextArea).setup();
-        new TimestampToolSetup(
-            timestampTimezoneComboBox,
-            timestampTextArea,
-            timestampSpinner,
-            timestampNowButton,
-            timestampUpdateFromTimestampButton,
-            timestampUpdateFromFieldsButton,
-            timestampWarningNoZoneIdLabel,
-            timestampYearSpinner,
-            timestampDaySpinner,
-            timestampMonthSpinner,
-            timestampHourSpinner,
-            timestampMinuteSpinner,
-            timestampSecondSpinner,
-            timestampMillisecondSpinner,
-            timestampResolutionComboBox,
-            timestampMillisecondLabel).setup();
-        new CronToolSetup(
-            cronExpressionTextField,
-            cronExpressionHowManyDaysSpinner,
-            cronTypeComboBox,
-            cronTextArea,
-            explainButton).setup();
         var hashToolSetup = new HashToolSetup(
             hashInputTextArea,
             hashMD5TextField,

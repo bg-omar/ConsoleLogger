@@ -11,7 +11,7 @@
 - 💥 Big Changes to the visuals
 - 💻 Added a toolwindow ➡️ 
 - Base64 & url En/Decoder, Fake data Generator, Cron Parser, Text -> Hash
-- 😸 Used cat memes for icos
+- 😸 Used cat memes for icons
 - 🧼 Cleanup of code and bugs - 🐛
 
 
