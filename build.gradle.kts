@@ -189,8 +189,11 @@ java {
 tasks {
     register("clearSandboxedIDESystemLogs") {
         doFirst {
-            if (pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean()) {
-                val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
+            if (project.properties["pluginClearSandboxedIDESystemLogsBeforeRun"]?.toString()?.toBoolean() == true) {
+                val rootProjectDir = project.rootProject.projectDir
+                val pluginIdeaVersion = project.properties["pluginIdeaVersion"].toString()
+                val sandboxLogDir = File(rootProjectDir, ".idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
+
                 if (sandboxLogDir.exists() && sandboxLogDir.isDirectory) {
                     FileUtils.deleteDirectory(sandboxLogDir)
                     logger.quiet("Deleted sandboxed IDE's log folder $sandboxLogDir")
