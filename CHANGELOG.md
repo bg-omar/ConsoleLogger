@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.23] - 08-04-2024
+- 💥 Big Changes to the visuals
+
+## [0.0.22] - 04-04-2024
+- 💻 Released to work with IntelliJ 2024.1
+- Added a lot of extras for toolwindow ➡️
+
 ## [0.0.21] - 19-03-2024
 - 💥 Big Changes to the visuals
 - 💻 Added a toolwindow ➡️ 
