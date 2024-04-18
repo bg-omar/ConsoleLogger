@@ -32,7 +32,7 @@ class ConsoleLoggerAdd4 : AnAction("INSERT_LOG4") {
     val variableName = moveCursorToInsertionPoint(editor)
     val logVar = variableName?.trim()
 
-    val pattern = ConsoleLoggerSettings.getPattern(4).run {
+    val pattern = ConsoleLoggerSettings.getPattern(3).run {
       replace("{FN}", vFile?.name ?: "filename").replace("{FP}", vFile?.path ?: "file_path")
         .replace("{LN}", (editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
     }
