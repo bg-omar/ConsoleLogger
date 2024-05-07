@@ -23,7 +23,7 @@ class UpdateNotify : StartupActivity {
   private val updateContent: String by lazy {
     //language=HTML
     """
-     v0.0.25 Code Refactored, side window design upgraded.<br/>
+     v0.0.24 Code Refactored, side window design upgraded.<br/>
 
     """
   }

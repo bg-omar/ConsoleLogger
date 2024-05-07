@@ -22,7 +22,7 @@
         <toolWindow id="Tools"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
-                    factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.DevToysToolWindowFactory"/>
+                    factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
 

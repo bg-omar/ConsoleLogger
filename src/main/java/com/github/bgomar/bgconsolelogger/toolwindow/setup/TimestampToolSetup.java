@@ -5,7 +5,7 @@ import com.intellij.ui.ComboboxSpeedSearch;
 import com.github.bgomar.bgconsolelogger.tools.TimestampTools;
 import com.github.bgomar.bgconsolelogger.toolwindow.ComboBoxWithImageItem;
 import com.github.bgomar.bgconsolelogger.toolwindow.ComboBoxWithImageRenderer;
-import com.github.bgomar.bgconsolelogger.toolwindow.DevToysToolWindow;
+import com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindow;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -157,9 +157,9 @@ public class TimestampToolSetup extends AbstractToolSetup {
         timestampSecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMillisecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
 
-        timestampNowButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", DevToysToolWindow.class));
-        timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", DevToysToolWindow.class));
-        timestampUpdateFromFieldsButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", DevToysToolWindow.class));
+        timestampNowButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", ConsoleLoggerToolWindow.class));
+        timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", ConsoleLoggerToolWindow.class));
+        timestampUpdateFromFieldsButton.setIcon(IconLoader.getIcon("bgconsolelogger/toolicons/refresh.svg", ConsoleLoggerToolWindow.class));
         timestampUpdateFromTimestampButton.addActionListener(e -> updateTimestampToolOnTimestampSpinnerUpdate());
         timestampUpdateFromFieldsButton.addActionListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
     }
