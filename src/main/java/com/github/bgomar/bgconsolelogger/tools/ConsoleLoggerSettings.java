@@ -11,11 +11,11 @@ import org.jetbrains.annotations.Nullable;
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
 public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
 
-    public static final String DEFAULT_PATTERN_1 = "console.log(\"$$: \", $$);";
-    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c ---> $$: \",\"color:#f0f;\", $$);";
-    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c ---> $$: \",\"color:#ff0;\", $$);";
-    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c ---> $$: \",\"color:#0F0;\", $$);";
-    public static final String DEFAULT_PATTERN_5 = "console.warn(\"%c ---> $$: \",\"color:#F00;\", $$);";
+    public static final String DEFAULT_PATTERN_1 = "console.log(\"1 ---> $$: \", $$);";
+    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c 3 ---> $$: \",\"color:#ff0;\", $$);";
+    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c 4 ---> $$: \",\"color:#0F0;\", $$);";
+    public static final String DEFAULT_PATTERN_5 = "console.warn(\"%c 5 ---> $$: \",\"color:#F00;\", $$);";
     public static final String DEFAULT_PATTERN_6 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
     public static final String DEFAULT_PATTERN_7 = "Serial.println($$);";
     public static final String DEFAULT_PATTERN_8 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
@@ -34,7 +34,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
             DEFAULT_PATTERN_9
     };
 
-    public String version = "0.0.23";
+    public String version = "0.0.25";
 
     public static ConsoleLoggerSettings getInstance() {
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
