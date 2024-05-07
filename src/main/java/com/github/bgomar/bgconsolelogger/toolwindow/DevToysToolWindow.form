@@ -1580,8 +1580,9 @@
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <maximumSize width="2147483647" height="77"/>
+                      <maximumSize width="2147483647" height="200"/>
                       <minimumSize width="221" height="55"/>
+                      <opaque value="true"/>
                       <preferredSize width="177" height="60"/>
                     </properties>
                     <border type="etched">
