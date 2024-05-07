@@ -23,15 +23,8 @@ class UpdateNotify : StartupActivity {
   private val updateContent: String by lazy {
     //language=HTML
     """
-     v0.0.22 added the Tools Window, and introduced different logo.<br/>
-     In the Tools window you cannot yet adjust the settings of the loggers.<br/>
-     Please keep in mind that this is a project I do to educate myself.<br/>
-     <br/>
-     v0.0.23 🤏 🐛 Couple of Bugfixes:  <br/>
-     Fixed the issue with auto remove loggers (Ctrl + Alt + 0) <br/>
-     Completed the ConsoleLogger Tool Window<br/>
-     <br/>
-    🦄 From now on you can <b>change Loggers<b> in Toolwindow<br>
+     v0.0.25 Code Refactored, side window design upgraded.<br/>
+
     """
   }
 

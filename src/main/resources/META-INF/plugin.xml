@@ -12,6 +12,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
+        <applicationConfigurable parentId="tools"
+                                 instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
+                                 id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
+                                 displayName="ConsoleLogger"/>
+
+
         <!--suppress  PluginXmlValidity -->
         <toolWindow id="Tools"
                     icon="/icons/cryingcatt.svg"
@@ -19,8 +25,15 @@
                     factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.DevToysToolWindowFactory"/>
 
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
+
+
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
+
+
+
+        <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
+             on how to target different products -->
 
     </extensions>
 
@@ -31,79 +44,74 @@
             <add-to-group group-id="CodeMenu" anchor="last"/>
              <!-- Include actions XML -->
 
-           <action id="com.github.bgomar.consolelogger.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd1"
-                    text="Insert ConsoleLogger 1"
+           <action id="com.github.bgomar.consolelogger.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="0"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 1"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 1"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add2" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd2"
-                    text="Insert ConsoleLogger 2"
+           <action id="com.github.bgomar.consolelogger.add2" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="1"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 2"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 2"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add3" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd3"
-                    text="Insert ConsoleLogger 3"
+           <action id="com.github.bgomar.consolelogger.add3" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="2"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 3"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 3"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add4" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd4"
-                    text="Insert ConsoleLogger 4"
+           <action id="com.github.bgomar.consolelogger.add4" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="3"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 4"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 4"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add5" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd5"
-                    text="Insert ConsoleLogger 5"
+           <action id="com.github.bgomar.consolelogger.add5" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="4"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 5"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 5"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add6" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd6"
-                    text="Insert ConsoleLogger 6"
+           <action id="com.github.bgomar.consolelogger.add6" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="5"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 6"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 6"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add7" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd7"
-                    text="Insert ConsoleLogger 7"
+           <action id="com.github.bgomar.consolelogger.add7" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="6"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 7"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 7"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add8" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd8"
-                    text="Insert ConsoleLogger 8"
+           <action id="com.github.bgomar.consolelogger.add8" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="7"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 8"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 8"/>
              </action>
 
-           <action id="com.github.bgomar.consolelogger.add9" class="com.github.bgomar.consolelogger.ConsoleLoggerAdd9"
-                    text="Insert ConsoleLogger 9"
+           <action id="com.github.bgomar.consolelogger.add9" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="8"
                     description="Generate a console.log() for that variable">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 9"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 9"/>
              </action>
-            <action id="com.github.bgomar.consolelogger.removeLogs" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove" text="Remove ConsoleLogger's Console.Log"
+            <action id="com.github.bgomar.consolelogger.removeLogs" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove" text="0"
                     description="Remove console.log() generate by ConsoleLogger plugin">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 0"/>
             </action>
             <!-- Include actions end -->
         </group>
-<!--        <action id="com.github.bgomar.consolelogger.ConsoleLoggerAction" class="com.github.bgomar.consolelogger.ConsoleLoggerAction" text="Logger"-->
-<!--                description="allin1">-->
-<!--            <parameter name="patternIndex" type="java.lang.Integer" />-->
-<!--            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt Q"/>-->
-<!--        </action>-->
     </actions>
 </idea-plugin>

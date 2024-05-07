@@ -455,7 +455,7 @@ fun generateConsoleLoggerActionsXml(): String {
         actionsXml.append(createActionXml(i))
     }
 
-    actionsXml.append("            <action id=\"com.github.bgomar.consolelogger.removeLogs\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"Remove ConsoleLogger's Console.Log\"\n")
+    actionsXml.append("            <action id=\"com.github.bgomar.consolelogger.removeLogs\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"0\"\n")
     actionsXml.append("                    description=\"Remove console.log() generate by ConsoleLogger plugin\">\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt 0\"/>\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt 0\"/>\n")
@@ -466,8 +466,8 @@ fun generateConsoleLoggerActionsXml(): String {
 
 fun createActionXml(i: Int): String {
     val actionXml: StringBuilder = StringBuilder()
-    actionXml.append("\n           <action id=\"com.github.bgomar.consolelogger.add").append(i).append("\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerAdd").append(i).append("\"\n")
-    actionXml.append("                    text=\"Insert ConsoleLogger ").append(i).append("\"\n")
+    actionXml.append("\n           <action id=\"com.github.bgomar.consolelogger.add").append(i).append("\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerAction").append("\"\n")
+    actionXml.append("                    text=\"").append(i-1).append("\"\n")
     actionXml.append("                    description=\"Generate a console.log() for that variable\">\n")
     actionXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt ").append(i).append("\"/>\n")
     actionXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt ").append(i).append("\"/>\n")
