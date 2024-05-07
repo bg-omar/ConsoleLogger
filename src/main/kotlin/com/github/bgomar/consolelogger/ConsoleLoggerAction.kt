@@ -12,32 +12,8 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
-import com.intellij.database.view.get
-import com.intellij.ide.DataManager
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.actionSystem.DataContext
-import com.intellij.openapi.util.Key
-
-// Define a custom key for storing the integer value in the DataContext
-val MY_INT_PARAM_KEY = Key.create<Int>("myIntParam")
-
-val actionIdToValueMap = mapOf(
-  "com.github.bgomar.consolelogger.add1" to 1,
-  "com.github.bgomar.consolelogger.add2" to 2,
-  "com.github.bgomar.consolelogger.add3" to 3
-)
-fun triggerConsoleLoggerAction(actionId: String) {
-  val actionManager = ActionManager.getInstance()
-  val action = actionManager.getAction(actionId)
-  val intValue = actionIdToValueMap[actionId] ?: 0  // Default value if action ID not found
-  val dataContext = DataManager.getInstance().getDataContext()
-  dataContext.getData(MY_INT_PARAM_KEY.toString())
-  action.actionPerformed(AnActionEvent.createFromDataContext(actionId, null, dataContext))
-}
-
-
 
 
 class ConsoleLoggerAction : AnAction() {
@@ -45,17 +21,12 @@ class ConsoleLoggerAction : AnAction() {
 
     val presentation = e.presentation.text
 
-      val patternText: Int = presentation.toIntOrNull() ?: 0  // Default value if conversion fails
-      val patternIndex: Int = patternText
-        println(presentation);
-      println(patternText);
-      println(patternIndex);
+    val patternText: Int = presentation.toIntOrNull() ?: 0  // Default value if conversion fails
+    val patternIndex: Int = patternText
 
     // Check if the editor is available
     val editor = e.getData(CommonDataKeys.EDITOR)
     if (editor == null) {
-        // Handle the case where the editor is missing, e.g., show an error message
-        // or log a message, and return from the method.
         println("Editor is missing. Cannot perform the action.")
         return
     }

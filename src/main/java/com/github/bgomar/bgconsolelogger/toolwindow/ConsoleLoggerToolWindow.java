@@ -9,7 +9,7 @@ import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
 import javax.swing.*;
 import java.util.LinkedHashMap;
 
-public class DevToysToolWindow {
+public class ConsoleLoggerToolWindow {
 
     private JPanel mainPanel;
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
@@ -75,7 +75,7 @@ public class DevToysToolWindow {
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public DevToysToolWindow() {
+    public ConsoleLoggerToolWindow() {
         String iconsPath = "icons/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "devcat.svg"));
@@ -139,7 +139,7 @@ public class DevToysToolWindow {
         ComboboxSpeedSearch.installSpeedSearch(toolComboBox, ComboBoxWithImageItem::displayName);
 
         helpLabel.setText("");
-        helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", DevToysToolWindow.class));
+        helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", ConsoleLoggerToolWindow.class));
         helpLabel.setToolTipText("");
         helpLabel.setVisible(false);
 

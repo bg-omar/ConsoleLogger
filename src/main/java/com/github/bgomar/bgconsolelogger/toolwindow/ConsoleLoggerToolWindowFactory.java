@@ -8,10 +8,10 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import org.jetbrains.annotations.NotNull;
 
-public class DevToysToolWindowFactory implements ToolWindowFactory, DumbAware {
+public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        DevToysToolWindow myToolWindow = new DevToysToolWindow();
+        ConsoleLoggerToolWindow myToolWindow = new ConsoleLoggerToolWindow();
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);
