@@ -16,11 +16,10 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     public static final String DEFAULT_PATTERN_3 = "console.log(\"%c 3 ---> $$: \",\"color:#ff0;\", $$);";
     public static final String DEFAULT_PATTERN_4 = "console.log(\"%c 4 ---> $$: \",\"color:#0F0;\", $$);";
     public static final String DEFAULT_PATTERN_5 = "console.warn(\"%c 5 ---> $$: \",\"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_6 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_7 = "Serial.println($$);";
-    public static final String DEFAULT_PATTERN_8 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
-    public static final String DEFAULT_PATTERN_9 = "${'\n'}console.groupCollapsed(\"group $$\");${'\n'}console.groupEnd(\"end of group $$\");";
-
+    public static final String DEFAULT_PATTERN_6 = "console.error(\"%c  $$: \", \"color:#F00;\", $$);";
+    public static final String DEFAULT_PATTERN_7 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_8 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_9 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
 
     private static final String[] patterns = {
             DEFAULT_PATTERN_1,
