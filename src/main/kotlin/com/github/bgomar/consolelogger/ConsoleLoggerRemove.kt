@@ -8,6 +8,67 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
 
+/*
+package com.github.bgomar.consolelogger
+
+import com.intellij.find.FindModel
+import com.intellij.find.FindUtil
+import com.intellij.find.replaceInProject.ReplaceInProjectManager
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
+
+class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
+  override fun actionPerformed(e: AnActionEvent) {
+    val dlg = ConsoleLoggerRemoveDlg()
+    if (!dlg.showAndGet()) return
+
+    val project = e.getData(CommonDataKeys.PROJECT) ?: return
+    val editor = e.getRequiredData(CommonDataKeys.EDITOR)
+
+    val findLogModels = (1..9).map { createFindLogModel(it) }
+
+    when (dlg.scope) {
+      Scope.CURRENT_FILE -> findLogModels.forEach { FindUtil.replace(project, editor, 0, it) }
+      Scope.PROJECT -> findLogModels.forEach { ReplaceInProjectManager(project).replaceInPath(it) }
+    }
+  }
+
+  private fun createFindLogModel(index: Int): FindModel {
+    val removeLog = ".*" + ConsoleLoggerSettings.getPattern(index).run {
+      replace("\\", "\\\\")
+        .replace("(", "\\(")
+        .replace(")", "\\)")
+        .replace("[", "\\[")
+        .replace("]", "\\]")
+        .replace("^", "\\^")
+        .replace("+", "\\+")
+        .replace("?", "\\?")
+        .replace("|", "\\|")
+        .replace(".", "\\.")
+        .replace("*", "\\*")
+        .replace("$$", ".*")
+        .replace("{FN}", ".*")
+        .replace("{FP}", ".*")
+        .replace("{LN}", "\\d*")
+        .replace("{", "\\{")
+        .replace("}", "\\}")
+        .replace("$", "\\$")
+    } + "\n"
+
+    return FindModel().apply {
+      stringToFind = removeLog
+      stringToReplace = ""
+      isPromptOnReplace = false
+      isRegularExpressions = true
+      isGlobal = true
+      isPromptOnReplace = false
+    }
+  }
+}
+*/
+
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
   override fun actionPerformed(e: AnActionEvent) {
@@ -18,7 +79,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
     val project = e.getData(CommonDataKeys.PROJECT)!!
     val editor = e.getRequiredData(CommonDataKeys.EDITOR)
 
-    val removeLog1: String = ".*" + ConsoleLoggerSettings.getPattern(1).run {
+    val removeLog1: String = ".*" + ConsoleLoggerSettings.getPattern(0).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -47,7 +108,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog2: String = ".*" + ConsoleLoggerSettings.getPattern(2).run {
+    val removeLog2: String = ".*" + ConsoleLoggerSettings.getPattern(1).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -76,7 +137,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog3: String = ".*" + ConsoleLoggerSettings.getPattern(3).run {
+    val removeLog3: String = ".*" + ConsoleLoggerSettings.getPattern(2).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -105,7 +166,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog4: String = ".*" + ConsoleLoggerSettings.getPattern(4).run {
+    val removeLog4: String = ".*" + ConsoleLoggerSettings.getPattern(3).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -134,7 +195,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog5: String = ".*" + ConsoleLoggerSettings.getPattern(5).run {
+    val removeLog5: String = ".*" + ConsoleLoggerSettings.getPattern(4).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -163,7 +224,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog6: String = ".*" + ConsoleLoggerSettings.getPattern(6).run {
+    val removeLog6: String = ".*" + ConsoleLoggerSettings.getPattern(5).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -192,7 +253,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog7: String = ".*" + ConsoleLoggerSettings.getPattern(7).run {
+    val removeLog7: String = ".*" + ConsoleLoggerSettings.getPattern(6).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -221,7 +282,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog8: String = ".*" + ConsoleLoggerSettings.getPattern(8).run {
+    val removeLog8: String = ".*" + ConsoleLoggerSettings.getPattern(7).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -250,7 +311,7 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
       isPromptOnReplace = false
     }
 
-    val removeLog9: String = ".*" + ConsoleLoggerSettings.getPattern(9).run {
+    val removeLog9: String = ".*" + ConsoleLoggerSettings.getPattern(8).run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
