@@ -70,8 +70,11 @@ class ConsoleLoggerAction : AnAction() {
   }
 
   private fun positionCaret(editor: Editor, insertionPositions: List<Int>, lineToInsert: String, variableName: String) {
+    print("positionCaret.lineToInsert: "); println(lineToInsert)
     val offset = editor.caretModel.currentCaret.offset
     val logicalPosition = editor.offsetToLogicalPosition(offset)
+    print("positionCaret .offset: "); println(offset);
+    print(" positionCaret.logicalPosition: "); println(logicalPosition);
 
     editor.caretModel.caretsAndSelections =
       listOf(
@@ -104,7 +107,7 @@ class ConsoleLoggerAction : AnAction() {
           )
         )
       )
-    //println(editor.caretModel.caretsAndSelections)
+    println(editor.caretModel.caretsAndSelections)
   }
 
   /**
@@ -116,6 +119,7 @@ class ConsoleLoggerAction : AnAction() {
     val psiFile = PsiFileFactory.getInstance(editor.project).createFileFromText("dummy.js", JavascriptLanguage.INSTANCE, editor.document.text)
 
     val valueToLog: String
+    print(" moveCursorToInsertionPoint.psiFile: "); println(psiFile);
     val element: PsiElement?
     val offset: Int
 
@@ -123,10 +127,11 @@ class ConsoleLoggerAction : AnAction() {
       val value = editor.selectionModel.selectedText
 
       offset = editor.selectionModel.selectionStart
-
       element = psiFile.findElementAt(offset)
 
       valueToLog = value ?: "<CR>"
+      print(" moveCursorToInsertionPoint.element: "); println(element);
+      print(" moveCursorToInsertionPoint.valueToLog: "); println(valueToLog);
     } else {
       offset = editor.caretModel.currentCaret.offset
 
@@ -137,6 +142,9 @@ class ConsoleLoggerAction : AnAction() {
       element = findElementToLogForSelection(elementAtCursor!!)
 
       valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
+      print(" moveCursorToInsertionPoint.elementAtCursor: "); println(elementAtCursor);
+      print(" moveCursorToInsertionPoint.element: "); println(element);
+      print(" moveCursorToInsertionPoint.valueToLog: "); println(valueToLog);
     }
 
     if (valueToLog.startsWith("\n") && element?.hasParentOfType("JS:OBJECT_LITERAL", 2) != true) {
@@ -144,6 +152,7 @@ class ConsoleLoggerAction : AnAction() {
     }
 
     val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
+    print("157 .block: "); println(block);
 
     when {
       block is JSIfStatement -> {
@@ -159,14 +168,16 @@ class ConsoleLoggerAction : AnAction() {
   /**
    * when the cursor is on a loggable identifier
    */
-  private fun findElementToLogForSelection(
-    element: PsiElement
-  ): PsiElement? {
+  private fun findElementToLogForSelection(element: PsiElement): PsiElement? {
 
     val elementType = element.node.elementType.toString()
     val parentElementType = element.parent.node.elementType.toString()
+    print("findElementToLogForSelection.element: "); println(element);
+    print("findElementToLogForSelection.elementType: ");  println(elementType);
+    print("findElementToLogForSelection.parentElementType: ");   println(parentElementType);
     when {
       elementType == "WHITE_SPACE" && element.text.replace(" ", "").startsWith("\n\n") -> return null
+
       element.prevSibling != null
         && element.prevSibling.node.elementType.toString() == "JS:DOT"
       -> return findElementToLogForSelection(element.parent)
@@ -204,6 +215,7 @@ class ConsoleLoggerAction : AnAction() {
         && element.prevSibling == null -> return null
     }
 
+    print("219 -------> element: "); println(element);
     return element
   }
 
@@ -214,7 +226,8 @@ class ConsoleLoggerAction : AnAction() {
     element ?: return null
     val elementType = element.node.elementType.toString()
     val parentType = element.parent.node.elementType.toString()
-
+    print("230 findElementToLogForBlock.elementType: "); println(elementType);
+    print("231 findElementToLogForBlock.parentType: "); println(parentType);
     when {
       (elementType == "JS:IDENTIFIER" && parentType != "JS:PROPERTY")
         || elementType == "JS:DEFINITION_EXPRESSION"
@@ -225,11 +238,13 @@ class ConsoleLoggerAction : AnAction() {
     }
 
     if (element.firstChild == null) {
+      print("238 -------> findElementToLogForBlock(element.nextSibling): "); println(findElementToLogForBlock(element.nextSibling));
       return findElementToLogForBlock(element.nextSibling)
     }
+    print("245 -------> findElementToLogForBlock(element.firstChild): "); println(findElementToLogForBlock(element.firstChild));
 
     return findElementToLogForBlock(element.firstChild)
-  }
+   }
 
   /**
    * find the block containing this element
@@ -237,6 +252,7 @@ class ConsoleLoggerAction : AnAction() {
   private fun findBlockForElement(element: PsiElement): PsiElement? {
 
     val elementType = element.node.elementType.toString()
+    print("253 -findBlockForElement.elementType: "); println(elementType);
     val parentElementType = if (element.parent == null) {
       return null
     } else element.parent.node.elementType.toString()
@@ -248,10 +264,12 @@ class ConsoleLoggerAction : AnAction() {
 
       element.text.trim(' ') == "{" -> return element
       element.text.trim(' ') == "\n" -> return findBlockForElement(element.prevSibling)
-    }
+       }
+
+    print("267 .findBlockForElement(element.parent): "); println(findBlockForElement(element.parent));
 
     return findBlockForElement(element.parent)
-  }
+     }
 
   private fun PsiElement.hasParentOfType(type: String, maxRecursion: Int, recursionLevel: Int = 0): Boolean {
     return if (this.parent.node.elementType.toString() == type) {
