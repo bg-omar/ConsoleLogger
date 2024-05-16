@@ -11,13 +11,12 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
-        <applicationConfigurable parentId="tools"
-                                 instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-                                 id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-                                 displayName="ConsoleLogger"/>
-
-
+        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettings" />
+        <applicationConfigurable parentId="tools" instance="com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettingsConfigurable"
+            id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable" displayName="BG-ConsoleLogger"/>
+        <applicationConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
+            id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable" displayName="ConsoleLogger"/>
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings"/>
         <!--suppress  PluginXmlValidity -->
         <toolWindow id="Tools"
                     icon="/icons/cryingcatt.svg"
@@ -29,11 +28,6 @@
 
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
-
-
-
-        <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
-             on how to target different products -->
 
     </extensions>
 

@@ -8,8 +8,8 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
-public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
+@State(name = "bgConsoleLoggerSettings", storages = {@Storage("bgconsolelogger.xml")})
+public class bgConsoleLoggerSettings implements PersistentStateComponent<bgConsoleLoggerSettings> {
 
     public static final String DEFAULT_PATTERN_1 = "console.log(\"1 ---> $$: \", $$);";
     public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
@@ -35,18 +35,18 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
 
     public String version = "0.0.25";
 
-    public static ConsoleLoggerSettings getInstance() {
-        return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
+    public static bgConsoleLoggerSettings getInstance() {
+        return ApplicationManager.getApplication().getService(bgConsoleLoggerSettings.class);
     }
 
     @Nullable
     @Override
-    public ConsoleLoggerSettings getState() {
+    public bgConsoleLoggerSettings getState() {
         return this;
     }
 
     @Override
-    public void loadState(@NotNull ConsoleLoggerSettings state) {
+    public void loadState(@NotNull bgConsoleLoggerSettings state) {
         XmlSerializerUtil.copyBean(state, this);
     }
 
@@ -62,5 +62,9 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
         if (index >= 0 && index < patterns.length) {
             patterns[index] = pattern;
         }
+    }
+
+    public static int getLogPatternsCount() {
+        return patterns.length;
     }
 }

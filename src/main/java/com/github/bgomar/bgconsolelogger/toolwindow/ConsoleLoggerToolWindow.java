@@ -82,7 +82,7 @@ public class ConsoleLoggerToolWindow {
     private JTextField propertiesConsoleLoggerTextField7;
     private JTextField propertiesConsoleLoggerTextField8;
     private JTextField propertiesConsoleLoggerTextField9;
-    private JButton propertiesConsoleLoggerSaveButton;
+    private JButton saveAllButton;
     private JButton propertiesConsoleLoggerDefaultButton1;
     private JButton propertiesConsoleLoggerDefaultButton2;
     private JButton propertiesConsoleLoggerDefaultButton3;
@@ -122,7 +122,7 @@ public class ConsoleLoggerToolWindow {
                 propertiesConsoleLoggerTextField7,
                 propertiesConsoleLoggerTextField8,
                 propertiesConsoleLoggerTextField9,
-                propertiesConsoleLoggerSaveButton,
+                saveAllButton,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,
                 propertiesConsoleLoggerDefaultButton3,

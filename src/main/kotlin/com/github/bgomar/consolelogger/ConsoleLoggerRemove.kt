@@ -6,8 +6,7 @@ import com.intellij.find.replaceInProject.ReplaceInProjectManager
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
-
+import com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettings
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
   override fun actionPerformed(e: AnActionEvent) {
@@ -17,16 +16,25 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
     val project = e.getData(CommonDataKeys.PROJECT) ?: return
     val editor = e.getRequiredData(CommonDataKeys.EDITOR)
 
-    val findLogModels = (0..8).map { createFindLogModel(it) }
+    val findLogModels = (0 until bgConsoleLoggerSettings.getLogPatternsCount()).map { index ->
+      createFindModelForLogPattern(bgConsoleLoggerSettings.getPattern(index))
+    }
 
     when (dlg.scope) {
-      Scope.CURRENT_FILE -> findLogModels.forEach { FindUtil.replace(project, editor, 0, it) }
-      Scope.PROJECT -> findLogModels.forEach { ReplaceInProjectManager(project).replaceInPath(it) }
+      Scope.CURRENT_FILE -> findLogModels.forEach { findModel ->
+        FindUtil.replace(project, editor, 0, findModel)
+      }
+      Scope.PROJECT -> {
+        val replaceInProjectManager = ReplaceInProjectManager(project)
+        findLogModels.forEach { findModel ->
+          replaceInProjectManager.replaceInPath(findModel)
+        }
+      }
     }
   }
 
-  private fun createFindLogModel(index: Int): FindModel {
-    val removeLog = ".*" + ConsoleLoggerSettings.getPattern(index).run {
+  private fun createFindModelForLogPattern(logPattern: String): FindModel {
+    val removeLog = ".*" + logPattern.run {
       replace("\\", "\\\\")
         .replace("(", "\\(")
         .replace(")", "\\)")
@@ -57,4 +65,3 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
     }
   }
 }
-
