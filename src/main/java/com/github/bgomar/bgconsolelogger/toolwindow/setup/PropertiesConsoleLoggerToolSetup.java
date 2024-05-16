@@ -1,6 +1,6 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
+import com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettings;
 import com.intellij.openapi.options.ConfigurableUi;
 import com.intellij.openapi.ui.DialogPanel;
 import org.jetbrains.annotations.NotNull;
@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
-public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup implements ConfigurableUi<ConsoleLoggerSettings> {
+public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup implements ConfigurableUi<bgConsoleLoggerSettings> {
     private static JTextField propertiesConsoleLoggerTextField1 = new JTextField();
     private static JTextField propertiesConsoleLoggerTextField2 = new JTextField();
     private static JTextField propertiesConsoleLoggerTextField3 = new JTextField();
@@ -79,51 +79,51 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     }
 
     public void setup() {
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(0));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(2));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(ConsoleLoggerSettings.getPattern(3));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(ConsoleLoggerSettings.getPattern(4));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(ConsoleLoggerSettings.getPattern(5));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(ConsoleLoggerSettings.getPattern(6));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.getPattern(7));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.getPattern(8));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(bgConsoleLoggerSettings.getPattern(0));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(bgConsoleLoggerSettings.getPattern(1));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(bgConsoleLoggerSettings.getPattern(2));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(bgConsoleLoggerSettings.getPattern(3));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(bgConsoleLoggerSettings.getPattern(4));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(bgConsoleLoggerSettings.getPattern(5));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(bgConsoleLoggerSettings.getPattern(6));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(bgConsoleLoggerSettings.getPattern(7));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(bgConsoleLoggerSettings.getPattern(8));
 
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_1));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton2.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_2));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton3.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_3));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton4.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_4));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton5.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_5));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton6.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_6));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_7));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_8));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.DEFAULT_PATTERN_9));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_1));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton2.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_2));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton3.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_3));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton4.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_4));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton5.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_5));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton6.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_6));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_7));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_8));
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(bgConsoleLoggerSettings.DEFAULT_PATTERN_9));
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
-            ConsoleLoggerSettings.setPattern(0, propertiesConsoleLoggerTextField1.getText());
-            ConsoleLoggerSettings.setPattern(1, propertiesConsoleLoggerTextField2.getText());
-            ConsoleLoggerSettings.setPattern(2, propertiesConsoleLoggerTextField3.getText());
-            ConsoleLoggerSettings.setPattern(3, propertiesConsoleLoggerTextField4.getText());
-            ConsoleLoggerSettings.setPattern(4, propertiesConsoleLoggerTextField5.getText());
-            ConsoleLoggerSettings.setPattern(5, propertiesConsoleLoggerTextField6.getText());
-            ConsoleLoggerSettings.setPattern(6, propertiesConsoleLoggerTextField7.getText());
-            ConsoleLoggerSettings.setPattern(7, propertiesConsoleLoggerTextField8.getText());
-            ConsoleLoggerSettings.setPattern(8, propertiesConsoleLoggerTextField9.getText());
+            bgConsoleLoggerSettings.setPattern(0, propertiesConsoleLoggerTextField1.getText());
+            bgConsoleLoggerSettings.setPattern(1, propertiesConsoleLoggerTextField2.getText());
+            bgConsoleLoggerSettings.setPattern(2, propertiesConsoleLoggerTextField3.getText());
+            bgConsoleLoggerSettings.setPattern(3, propertiesConsoleLoggerTextField4.getText());
+            bgConsoleLoggerSettings.setPattern(4, propertiesConsoleLoggerTextField5.getText());
+            bgConsoleLoggerSettings.setPattern(5, propertiesConsoleLoggerTextField6.getText());
+            bgConsoleLoggerSettings.setPattern(6, propertiesConsoleLoggerTextField7.getText());
+            bgConsoleLoggerSettings.setPattern(7, propertiesConsoleLoggerTextField8.getText());
+            bgConsoleLoggerSettings.setPattern(8, propertiesConsoleLoggerTextField9.getText());
         });
     }
 
     @Override
-    public void reset(@NotNull ConsoleLoggerSettings settings) {
+    public void reset(@NotNull bgConsoleLoggerSettings settings) {
         ui.reset();
     }
 
     @Override
-    public boolean isModified(@NotNull ConsoleLoggerSettings settings) {
+    public boolean isModified(@NotNull bgConsoleLoggerSettings settings) {
         return ui.isModified();
     }
 
     @Override
-    public void apply(@NotNull ConsoleLoggerSettings settings) {
+    public void apply(@NotNull bgConsoleLoggerSettings settings) {
         ui.apply();
     }
 

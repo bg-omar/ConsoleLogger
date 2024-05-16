@@ -1,7 +1,10 @@
 package com.github.bgomar.consolelogger
 
 import com.intellij.lang.javascript.JavascriptLanguage
-import com.intellij.lang.javascript.psi.JSIfStatement
+import com.intellij.lang.javascript.psi.*
+import com.intellij.lang.typescript.psi.*
+
+
 import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.CaretState
@@ -11,7 +14,7 @@ import com.intellij.openapi.editor.actionSystem.EditorActionManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
+import com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettings
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 
@@ -38,7 +41,7 @@ class ConsoleLoggerAction : AnAction() {
     val variableName = moveCursorToInsertionPoint(editor)
     val logVar = variableName?.trim()
 
-    val pattern = ConsoleLoggerSettings.getPattern(patternIndex).run {
+    val pattern = bgConsoleLoggerSettings.getPattern(patternIndex).run {
       replace("{FN}", vFile?.name ?: "filename").replace("{FP}", vFile?.path ?: "file_path")
         .replace("{LN}", (editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
     }
@@ -152,12 +155,16 @@ class ConsoleLoggerAction : AnAction() {
     }
 
     val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
-    print("157 .block: "); println(block);
+    print("157 ---------------------------------------------- block: "); println(block);
 
     when {
       block is JSIfStatement -> {
         // for "if" statements insert line above
-        editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
+        editor.caretModel.moveToOffset(block.prevSibling.textRange.endOffset - 1)
+      }
+      block is JSFunction -> {
+        // for "if" statements insert line above
+        editor.caretModel.moveToOffset(block.prevSibling.textRange.endOffset + 1)
       }
       block != null -> editor.caretModel.moveToOffset(block.textRange.endOffset)
     }
@@ -252,21 +259,23 @@ class ConsoleLoggerAction : AnAction() {
   private fun findBlockForElement(element: PsiElement): PsiElement? {
 
     val elementType = element.node.elementType.toString()
-    print("253 -findBlockForElement.elementType: "); println(elementType);
+    print("262 .....elementType: "); println(elementType);
+
     val parentElementType = if (element.parent == null) {
       return null
     } else element.parent.node.elementType.toString()
-
+    print("265 -------> parentElementType: "); println(parentElementType);
     when {
       (elementType == "JS:EXPRESSION_STATEMENT" && parentElementType != "FILE") -> return element
       elementType == "JS:VAR_STATEMENT" -> return element
       elementType == "JS:IF_STATEMENT" -> return element
+      elementType ==  "JS:FUNCTION_DECLARATION" -> return element
 
       element.text.trim(' ') == "{" -> return element
       element.text.trim(' ') == "\n" -> return findBlockForElement(element.prevSibling)
        }
 
-    print("267 .findBlockForElement(element.parent): "); println(findBlockForElement(element.parent));
+    print("277 (element.parent): "); println(element.parent);
 
     return findBlockForElement(element.parent)
      }

@@ -50,7 +50,7 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
     }
 
     public static class ConsoleLoggerConfig extends PropertiesConsoleLoggerToolSetup {
-        public ConsoleLoggerConfig(@NotNull ConsoleLoggerSettings setting) {
+        public ConsoleLoggerConfig(@NotNull bgConsoleLoggerSettings setting) {
             super();
 
             ui = new DialogPanel();
@@ -67,14 +67,14 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
                 gbc.gridx++;
 
                 textFields[i] = new JBTextField();
-                textFields[i].setText(ConsoleLoggerSettings.getPattern(i));
+                textFields[i].setText(bgConsoleLoggerSettings.getPattern(i));
                 textFields[i].setToolTipText("Tooltip for pattern " + i);
                 ui.add(textFields[i], gbc);
                 gbc.gridx++;
 
                 defaultButton[i] = new JButton("Default");
                 int finalI = i;
-                defaultButton[i].addActionListener(e -> textFields[finalI].setText(ConsoleLoggerSettings.getPattern(finalI)));
+                defaultButton[i].addActionListener(e -> textFields[finalI].setText(bgConsoleLoggerSettings.getPattern(finalI)));
                 defaultButton[i].setToolTipText("Reset to default pattern");
                 ui.add(defaultButton[i], gbc);
                 gbc.gridx = 0; // Reset grid column for the next row

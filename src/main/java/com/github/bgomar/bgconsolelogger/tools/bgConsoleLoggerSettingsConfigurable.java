@@ -4,15 +4,15 @@ import com.github.bgomar.bgconsolelogger.toolwindow.setup.PropertiesConsoleLogge
 import com.intellij.openapi.options.ConfigurableBase;
 import org.jetbrains.annotations.NotNull;
 
-public class ConsoleLoggerSettingsConfigurable extends ConfigurableBase<PropertiesConsoleLoggerToolSetup, ConsoleLoggerSettings> {
+public class bgConsoleLoggerSettingsConfigurable extends ConfigurableBase<PropertiesConsoleLoggerToolSetup, bgConsoleLoggerSettings> {
 
-  public ConsoleLoggerSettingsConfigurable() {
-    super("com.github.bgomar.consolelogger", "ConsoleLogger", "");
+  public bgConsoleLoggerSettingsConfigurable() {
+    super("com.github.bgomar.bgconsolelogger", "BgConsoleLogger", "");
   }
 
   @Override
-  protected @NotNull ConsoleLoggerSettings getSettings() {
-    return ConsoleLoggerSettings.getInstance();
+  protected @NotNull bgConsoleLoggerSettings getSettings() {
+    return bgConsoleLoggerSettings.getInstance();
   }
 
   @Override
