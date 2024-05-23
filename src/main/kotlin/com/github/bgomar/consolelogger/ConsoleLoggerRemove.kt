@@ -6,7 +6,7 @@ import com.intellij.find.replaceInProject.ReplaceInProjectManager
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettings
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
   override fun actionPerformed(e: AnActionEvent) {
@@ -16,8 +16,8 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
     val project = e.getData(CommonDataKeys.PROJECT) ?: return
     val editor = e.getRequiredData(CommonDataKeys.EDITOR)
 
-    val findLogModels = (0 until bgConsoleLoggerSettings.getLogPatternsCount()).map { index ->
-      createFindModelForLogPattern(bgConsoleLoggerSettings.getPattern(index))
+    val findLogModels = (0 until ConsoleLoggerSettings.getLogPatternsCount()).map { index ->
+      createFindModelForLogPattern(ConsoleLoggerSettings.getPattern(index))
     }
 
     when (dlg.scope) {

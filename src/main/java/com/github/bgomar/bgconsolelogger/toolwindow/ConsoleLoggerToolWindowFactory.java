@@ -1,5 +1,6 @@
 package com.github.bgomar.bgconsolelogger.toolwindow;
 
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
@@ -12,6 +13,7 @@ public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAw
 
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         ConsoleLoggerToolWindow myToolWindow = new ConsoleLoggerToolWindow();
+        ConsoleLoggerSettings.loadSettings();
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);
