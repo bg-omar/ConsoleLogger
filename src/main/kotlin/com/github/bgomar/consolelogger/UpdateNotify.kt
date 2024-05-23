@@ -5,7 +5,7 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.extensions.PluginId
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
+import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings
 
 class UpdateNotify : StartupActivity {
   private val plugin = PluginManagerCore.getPlugin(PluginId.getId("com.github.bgomar.consolelogger"))!!
@@ -23,7 +23,7 @@ class UpdateNotify : StartupActivity {
   private val updateContent: String by lazy {
     //language=HTML
     """
-     v0.0.25 <br/>
+     v0.0.25 Some bugfixes that hopefully fixes to keep the saved adjusted Loggers when closing/restarting the IDE<br/>
 
     """
   }

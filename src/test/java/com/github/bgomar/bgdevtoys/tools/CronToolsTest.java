@@ -1,4 +1,4 @@
-package com.github.bgomar.bgconsolelogger.tools;
+package com.github.bgomar.consolelogger.tools;
 
 import com.cronutils.model.CronType;
 import org.junit.jupiter.api.Test;

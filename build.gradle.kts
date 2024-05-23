@@ -247,7 +247,7 @@ tasks {
 
         if (pluginEnableDebugLogs.toBoolean()) {
             systemProperties(
-                "idea.log.debug.categories" to "#com.github.bgomar.bgconsolelogger"
+                "idea.log.debug.categories" to "#com.github.bgomar.consolelogger"
             )
         }
 

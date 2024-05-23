@@ -11,22 +11,17 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
-        <applicationConfigurable parentId="tools" instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-            id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable" displayName="BG-ConsoleLogger"/>
-        <applicationConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
-            id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable" displayName="ConsoleLogger"/>
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings"/>
-        <!--suppress  PluginXmlValidity -->
-        <toolWindow id="Tools"
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings" />
+
+        <toolWindow id="Loggers"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
-                    factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
+                    factoryClass="com.github.bgomar.consolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
 
 
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.Notify" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
 
     </extensions>

@@ -6,7 +6,7 @@ import com.intellij.find.replaceInProject.ReplaceInProjectManager
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
+import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
   override fun actionPerformed(e: AnActionEvent) {

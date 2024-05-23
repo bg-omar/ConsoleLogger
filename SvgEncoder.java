@@ -1,4 +1,4 @@
-package com.github.bgomar.bgconsolelogger.tools;
+package com.github.bgomar.consolelogger.tools;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
