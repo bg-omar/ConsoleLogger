@@ -942,8 +942,8 @@
                       <component id="41ecd" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton1">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1029,8 +1029,8 @@
                       <component id="b96b9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton2">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1115,8 +1115,8 @@
                       <component id="6aed2" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton3">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1200,8 +1200,8 @@
                       <component id="2f9e" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton4">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1285,8 +1285,8 @@
                       <component id="18426" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton5">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1371,8 +1371,8 @@
                       <component id="bab27" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton6">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1455,8 +1455,8 @@
                       <component id="66c6b" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton7">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1539,8 +1539,8 @@
                       <component id="8cdc9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton8">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>
@@ -1624,8 +1624,8 @@
                       <component id="b4ada" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton9">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="50" height="20"/>
-                            <preferred-size width="65" height="20"/>
+                            <minimum-size width="70" height="20"/>
+                            <preferred-size width="70" height="20"/>
                             <maximum-size width="100" height="30"/>
                           </grid>
                         </constraints>

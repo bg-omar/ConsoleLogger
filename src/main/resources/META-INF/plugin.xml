@@ -11,8 +11,8 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettings" />
-        <applicationConfigurable parentId="tools" instance="com.github.bgomar.bgconsolelogger.tools.bgConsoleLoggerSettingsConfigurable"
+        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
+        <applicationConfigurable parentId="tools" instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
             id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable" displayName="BG-ConsoleLogger"/>
         <applicationConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
             id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable" displayName="ConsoleLogger"/>

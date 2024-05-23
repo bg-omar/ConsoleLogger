@@ -4,7 +4,7 @@ import com.github.bgomar.bgconsolelogger.toolwindow.setup.PropertiesConsoleLogge
 import com.intellij.openapi.ui.DialogPanel;
 import com.intellij.ui.components.JBTextField;
 import org.jetbrains.annotations.NotNull;
-
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -50,7 +50,7 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
     }
 
     public static class ConsoleLoggerConfig extends PropertiesConsoleLoggerToolSetup {
-        public ConsoleLoggerConfig(@NotNull bgConsoleLoggerSettings setting) {
+        public ConsoleLoggerConfig(@NotNull ConsoleLoggerSettings setting) {
             super();
 
             ui = new DialogPanel();
@@ -59,27 +59,47 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
             gbc.gridx = 0;
             gbc.gridy = 0;
 
-            JBTextField[] textFields = new JBTextField[8];
-            JButton[] defaultButton = new JButton[8];
+            JBTextField[] textFields = new JBTextField[9];
+            JButton[] defaultButton = new JButton[9];
 
-            for (int i = 0; i < 8; i++) {
-                ui.add(new JTextField("(CTRL + ALT + " + i + ") "), gbc);
+            for (int i = 0; i < 9; i++) {
+                ui.add(new JTextField("(CTRL + ALT + " + i+1 + ") "), gbc);
                 gbc.gridx++;
 
                 textFields[i] = new JBTextField();
-                textFields[i].setText(bgConsoleLoggerSettings.getPattern(i));
-                textFields[i].setToolTipText("Tooltip for pattern " + i);
+                textFields[i].setText(ConsoleLoggerSettings.getPattern(i));
+                textFields[i].setToolTipText("Tooltip for pattern " + i+1);
                 ui.add(textFields[i], gbc);
                 gbc.gridx++;
 
                 defaultButton[i] = new JButton("Default");
                 int finalI = i;
-                defaultButton[i].addActionListener(e -> textFields[finalI].setText(bgConsoleLoggerSettings.getPattern(finalI)));
+                defaultButton[i].addActionListener(e -> textFields[finalI].setText(ConsoleLoggerSettings.getPattern(finalI)));
                 defaultButton[i].setToolTipText("Reset to default pattern");
                 ui.add(defaultButton[i], gbc);
                 gbc.gridx = 0; // Reset grid column for the next row
                 gbc.gridy++;
             }
+        }
+
+        @Override
+        public void reset(@NotNull ConsoleLoggerSettings settings) {
+            ui.reset();
+        }
+
+        @Override
+        public boolean isModified(@NotNull ConsoleLoggerSettings settings) {
+            return ui.isModified();
+        }
+
+        @Override
+        public void apply(@NotNull ConsoleLoggerSettings settings) {
+            ui.apply();
+        }
+
+        @Override
+        public JComponent getComponent() {
+            return ui;
         }
 
 

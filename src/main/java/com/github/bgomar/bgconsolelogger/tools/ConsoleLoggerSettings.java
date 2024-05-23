@@ -8,8 +8,10 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@State(name = "bgConsoleLoggerSettings", storages = {@Storage("bgconsolelogger.xml")})
-public class bgConsoleLoggerSettings implements PersistentStateComponent<bgConsoleLoggerSettings> {
+import java.io.*;
+
+@State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
+public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
 
     public static final String DEFAULT_PATTERN_1 = "console.log(\"1 ---> $$: \", $$);";
     public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
@@ -35,19 +37,42 @@ public class bgConsoleLoggerSettings implements PersistentStateComponent<bgConso
 
     public String version = "0.0.25";
 
-    public static bgConsoleLoggerSettings getInstance() {
-        return ApplicationManager.getApplication().getService(bgConsoleLoggerSettings.class);
+    public static ConsoleLoggerSettings getInstance() {
+        return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
     }
 
     @Nullable
     @Override
-    public bgConsoleLoggerSettings getState() {
+    public ConsoleLoggerSettings getState() {
         return this;
     }
 
     @Override
-    public void loadState(@NotNull bgConsoleLoggerSettings state) {
+    public void loadState(@NotNull ConsoleLoggerSettings state) {
         XmlSerializerUtil.copyBean(state, this);
+    }
+
+    public static void saveSettings() {
+        try (FileWriter writer = new FileWriter("consolelogger.xml")) {
+            for (int i = 0; i < patterns.length; i++) {
+                writer.write(patterns[i] + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadSettings() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("consolelogger.xml"))) {
+            String line;
+            int index = 0;
+            while ((line = reader.readLine()) != null && index < patterns.length) {
+                patterns[index] = line;
+                index++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getPattern(int index) {
