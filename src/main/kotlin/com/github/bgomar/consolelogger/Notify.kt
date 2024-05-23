@@ -14,12 +14,12 @@ import com.intellij.ui.awt.RelativePoint
 import java.awt.Point
 
 
-class ApplicationServicePlaceholder : Disposable {
+class Notify : Disposable {
   override fun dispose() = Unit
 
   companion object {
-    val INSTANCE: ApplicationServicePlaceholder =
-      ApplicationManager.getApplication().getService(ApplicationServicePlaceholder::class.java)
+    val INSTANCE: Notify =
+      ApplicationManager.getApplication().getService(Notify::class.java)
   }
 }
 
@@ -44,7 +44,7 @@ fun showFullNotification(project: Project, notification: Notification) {
       true, // showCallout
       true, // hideOnClickOutside
       BalloonLayoutData.fullContent(),
-        ApplicationServicePlaceholder.INSTANCE
+        Notify.INSTANCE
     )
     balloon.show(target, Balloon.Position.atLeft)
   } catch (e: Exception) {

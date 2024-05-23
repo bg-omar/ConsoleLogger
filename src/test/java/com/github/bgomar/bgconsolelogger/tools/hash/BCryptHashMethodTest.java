@@ -1,4 +1,4 @@
-package com.github.bgomar.bgconsolelogger.tools.hash;
+package com.github.bgomar.consolelogger.tools.hash;
 
 import org.junit.jupiter.api.Test;
 

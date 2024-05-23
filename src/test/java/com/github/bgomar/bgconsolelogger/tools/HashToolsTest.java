@@ -1,7 +1,7 @@
-package com.github.bgomar.bgconsolelogger.tools;
+package com.github.bgomar.consolelogger.tools;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import com.github.bgomar.bgconsolelogger.tools.hash.BCryptVersion;
+import com.github.bgomar.consolelogger.tools.hash.BCryptVersion;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
