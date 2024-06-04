@@ -17,9 +17,8 @@ Download plugin from the JetBrains marketplace or via your IDE: <kbd>File</kbd>,
 # ![Build](./src/main/resources/META-INF/pluginIcon.svg) Console Logger JetBrains Plugin
 
 <!-- Plugin description -->
-####  `CTRL + ALT + (1-9)` for console.logs [<img src="https://github.com/bg-omar/consolelogger/blob/v0.0.22/.github/pics/pluginIcon.svg?raw=true"  width="16px"/>]() 
-
-Defaults:  May need personal adjustments in settings.  
+####  `CTRL + ALT + (1-9)` for console.logs
+Defaults:  May need personal adjustments in toolwindow.  
 ( 1 ) = ```console.log('$$: ', $$);```  
 ( 2 ) = ```console.log('%c ---> $$: ','color:#0F0;', $$);```   
 
