@@ -12,18 +12,19 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings" />
+        <applicationConfigurable parentId="tools"
+                                 instance="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettingsConfigurable"
+                                 id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
+                                 displayName="ConsoleLogger"/>
 
         <toolWindow id="Loggers"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
                     factoryClass="com.github.bgomar.consolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
+        <projectService serviceImplementation="com.github.bgomar.consolelogger.regex.RegexPanelStateService" />
 
-        <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
-
-
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.Notify" id="com.github.bgomar.consolelogger"/>
-        <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
-
+        <regExpLanguageHost forClass="com.github.bgomar.consolelogger.regex.FakeRegexpHost"
+                            implementationClass="com.github.bgomar.consolelogger.regex.MyJavaRegExpHost"/>
     </extensions>
 
     <actions>

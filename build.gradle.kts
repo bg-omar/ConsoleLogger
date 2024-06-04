@@ -69,8 +69,8 @@ repositories {
     mavenCentral()
 }
 
-val junitVersion = "5.10.1"
-val junitPlatformLauncher = "1.10.1"
+val junitVersion = "5.11.0-M2"
+val junitPlatformLauncher = "1.11.0-M2"
 
 
 val service = project.extensions.getByType<JavaToolchainService>()
@@ -80,6 +80,7 @@ val customLauncher = service.launcherFor {
 
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
     maven("https://www.jetbrains.com/intellij-repository/releases")
     maven("https://www.jetbrains.com/intellij-repository/snapshots")
     maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
@@ -91,21 +92,12 @@ dependencies {
 // https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
 
     implementation("commons-httpclient:commons-httpclient:3.1")
-
     implementation("org.jetbrains:marketplace-zip-signer:0.1.24")
     implementation("org.jetbrains:annotations:24.1.0")
     implementation("org.apache.commons:commons-lang3:3.14.0") // because no longer bundled with IDE
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-
-    implementation("commons-codec:commons-codec:1.16.0") // for Hash
-    implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
-
-    implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
-    implementation("net.datafaker:datafaker:2.1.0") // for Data Faker
-
-    implementation("fr.marcwrobel:jbanking:4.2.0") // for IBAN generation
-    implementation("at.favre.lib:bcrypt:0.10.2") // for Bcrypt hash
-
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0-RC")
+    testImplementation("org.assertj:assertj-core:3.26.0")
+    testImplementation("org.mockito:mockito-core:5.11.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
