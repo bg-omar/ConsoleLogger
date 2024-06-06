@@ -169,13 +169,13 @@ public class MatchingProcessor implements Disposable {
     }
 
     private MatchResult match(State state) throws ProcessCanceledException {
-        if (state.getRegexp().isEmpty())
+        if (state.regexp().isEmpty())
             return null;
 
         Pattern pattern;
 
         try {
-            pattern = Pattern.compile(state.getRegexp(), state.getFlags());
+            pattern = Pattern.compile(state.regexp(), state.flags());
         } catch (PatternSyntaxException e) {
             return new MatchResult(e);
         }
@@ -187,15 +187,15 @@ public class MatchingProcessor implements Disposable {
     }
 
     private MatchResult match0(@NotNull State state, Pattern pattern) {
-        Matcher matcher = pattern.matcher(state.getText());
+        Matcher matcher = pattern.matcher(state.text());
 
         List<MatchResult.Occurrence> groups = new ArrayList<>();
         String replaced = null;
 
-        switch (state.getMatchType()) {
+        switch (state.matchType()) {
             case ENTIRE_STRING: {
                 if (matcher.matches()) {
-                    groups.add(new MatchResult.Occurrence(matcher, state.getGroupPositions()));
+                    groups.add(new MatchResult.Occurrence(matcher, state.groupPositions()));
                 }
 
                 break;
@@ -203,7 +203,7 @@ public class MatchingProcessor implements Disposable {
 
             case BEGINNING: {
                 if (matcher.lookingAt()) {
-                    groups.add(new MatchResult.Occurrence(matcher, state.getGroupPositions()));
+                    groups.add(new MatchResult.Occurrence(matcher, state.groupPositions()));
                 }
 
                 break;
@@ -216,14 +216,14 @@ public class MatchingProcessor implements Disposable {
                     int replacedStart = replacedBuff.length() + (matcher.start() - lastAppendPosition);
 
                     try {
-                        matcher.appendReplacement(replacedBuff, state.getReplacement());
+                        matcher.appendReplacement(replacedBuff, state.replacement());
                     } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
                         return new MatchResult(new IllegalArgumentException("Invalid replacement: " + e.getMessage(), e));
                     }
 
                     lastAppendPosition = matcher.end();
 
-                    groups.add(new MatchResult.Occurrence(matcher, state.getGroupPositions(), new TextRange(replacedStart, replacedBuff.length())));
+                    groups.add(new MatchResult.Occurrence(matcher, state.groupPositions(), new TextRange(replacedStart, replacedBuff.length())));
                     if (Thread.currentThread().isInterrupted())
                         return null;
                 }
@@ -234,7 +234,7 @@ public class MatchingProcessor implements Disposable {
             }
             case SUBSTRING: {
                 while (matcher.find()) {
-                    groups.add(new MatchResult.Occurrence(matcher, state.getGroupPositions()));
+                    groups.add(new MatchResult.Occurrence(matcher, state.groupPositions()));
                     if (Thread.currentThread().isInterrupted())
                         return null;
                 }

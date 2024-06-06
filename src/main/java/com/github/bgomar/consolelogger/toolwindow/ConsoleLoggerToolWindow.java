@@ -6,6 +6,7 @@ import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.consolelogger.toolwindow.setup.*;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class ConsoleLoggerToolWindow {
@@ -52,7 +53,7 @@ public class ConsoleLoggerToolWindow {
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindow() {
+    public ConsoleLoggerToolWindow() throws IOException {
         String iconsPath = "icons/";
         toolPanelsByTitle.put("Properties of ConsoleLogger", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "coolcat.svg"));

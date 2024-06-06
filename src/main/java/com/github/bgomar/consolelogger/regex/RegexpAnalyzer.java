@@ -103,7 +103,7 @@ public class RegexpAnalyzer extends Task.Backgroundable {
                 List<TextRange> optionalMatchedRegexStack = new ArrayList<>();
                 Ref<Trinity<List<TextRange>, TextRange, Integer>> maxMatched = new Ref<>();
 
-                analyzeBlocker(state.getRegexp().substring(0, blocker.range.getStartOffset()), 0, blocker, indicator, optionalMatchedRegexStack, maxMatched);
+                analyzeBlocker(state.regexp().substring(0, blocker.range.getStartOffset()), 0, blocker, indicator, optionalMatchedRegexStack, maxMatched);
 
                 if (maxMatched.get() != null) {
                     matchedText = maxMatched.get().second;
@@ -184,7 +184,7 @@ public class RegexpAnalyzer extends Task.Backgroundable {
                     maxMatched.set(Trinity.create(new ArrayList<>(optionalMatchedRegexStack), matchedTextRange, weight));
 
                 if (matchedItemsCount < items.size()) {
-                    String newPrefix = matchedRange.substring(state.getRegexp());
+                    String newPrefix = matchedRange.substring(state.regexp());
                     analyzeBlocker(newPrefix, weight, items.get(matchedItemsCount), indicator, optionalMatchedRegexStack, maxMatched);
                 }
 
@@ -209,7 +209,7 @@ public class RegexpAnalyzer extends Task.Backgroundable {
     }
 
     public boolean matchFromBegin() {
-        return state.getMatchType() == MatchType.ENTIRE_STRING || state.getMatchType() == MatchType.BEGINNING;
+        return state.matchType() == MatchType.ENTIRE_STRING || state.matchType() == MatchType.BEGINNING;
     }
 
     /**
@@ -233,10 +233,10 @@ public class RegexpAnalyzer extends Task.Backgroundable {
                 int middle = (end + begin) / 2;
 
                 regexpBuilder.setLength(prefix.length());
-                regexpBuilder.append(state.getRegexp(), items.get(0).range.getStartOffset(), items.get(middle).range.getEndOffset());
+                regexpBuilder.append(state.regexp(), items.get(0).range.getStartOffset(), items.get(middle).range.getEndOffset());
 
-                Pattern pattern = Pattern.compile(regexpBuilder.toString(), state.getFlags());
-                Matcher matcher = pattern.matcher(state.getText());
+                Pattern pattern = Pattern.compile(regexpBuilder.toString(), state.flags());
+                Matcher matcher = pattern.matcher(state.text());
 
                 if (matchFromBegin() ? matcher.lookingAt() : matcher.find()) {
                     foundText = new TextRange(matcher.start(), matcher.end());
@@ -254,7 +254,7 @@ public class RegexpAnalyzer extends Task.Backgroundable {
         return ReadAction.compute(() -> {
             List<Item> res = new ArrayList<>();
 
-            PsiFile psiFile = PsiFileFactory.getInstance(getProject()).createFileFromText("r", RegExpLanguage.INSTANCE, state.getRegexp());
+            PsiFile psiFile = PsiFileFactory.getInstance(getProject()).createFileFromText("r", RegExpLanguage.INSTANCE, state.regexp());
             parseRegexp(psiFile, res);
 
             return res;

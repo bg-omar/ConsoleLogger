@@ -27,7 +27,7 @@ public class MatchResult {
         this.state = state;
         this.occurrences = occurrences;
         this.replaced = replaced;
-        this.groupPositions = state.getGroupPositions();
+        this.groupPositions = state.groupPositions();
     }
 
     public MatchResult(@NotNull Exception error) {
@@ -52,7 +52,7 @@ public class MatchResult {
     }
 
     public MatchType getMatchType() {
-        return state == null ? null : state.getMatchType();
+        return state == null ? null : state.matchType();
     }
 
     @NotNull
@@ -61,7 +61,7 @@ public class MatchResult {
     }
 
     public String getText() {
-        return state == null ? null : state.getText();
+        return state == null ? null : state.text();
     }
 
     @Override
