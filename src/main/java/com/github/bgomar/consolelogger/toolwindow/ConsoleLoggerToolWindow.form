@@ -34,10 +34,15 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <autoscrolls value="false"/>
+                  <autoscrolls value="true"/>
                   <horizontalAlignment value="2"/>
-                  <text value="&lt;svg&gt;   &lt;circle r=&quot;50&quot; cx=&quot;50&quot; cy=&quot;50&quot; fill=&quot;tomato&quot;/&gt;   &lt;circle r=&quot;41&quot; cx=&quot;47&quot; cy=&quot;50&quot; fill=&quot;orange&quot;/&gt;   &lt;circle r=&quot;33&quot; cx=&quot;48&quot; cy=&quot;53&quot; fill=&quot;gold&quot;/&gt;   &lt;circle r=&quot;25&quot; cx=&quot;49&quot; cy=&quot;51&quot; fill=&quot;yellowgreen&quot;/&gt;   &lt;circle r=&quot;17&quot; cx=&quot;52&quot; cy=&quot;50&quot; fill=&quot;lightseagreen&quot;/&gt;   &lt;circle r=&quot;9&quot; cx=&quot;55&quot; cy=&quot;48&quot; fill=&quot;teal&quot;/&gt; &lt;/svg&gt;"/>
+                  <inheritsPopupMenu value="false"/>
+                  <text value="&lt;svg&gt; &lt;circle r=&quot;50&quot; cx=&quot;50&quot; cy=&quot;50&quot; fill=&quot;hotpink&quot;/&gt; &lt;/svg&gt;"/>
+                  <verifyInputWhenFocusTarget value="true"/>
                 </properties>
+                <clientProperties>
+                  <caretWidth class="java.lang.Integer" value="0"/>
+                </clientProperties>
               </component>
               <component id="822ec" class="com.intellij.ui.components.JBTextField" binding="urlCodecEncodedTextArea">
                 <constraints>
@@ -100,18 +105,16 @@
                 </constraints>
                 <properties>
                   <autoscrolls value="false"/>
-                  <contentType value="text/html" noi18n="true"/>
-                  <editable value="true"/>
+                  <contentType value="text/html"/>
+                  <editable value="false"/>
                   <enabled value="true"/>
                   <focusCycleRoot value="false"/>
                   <focusable value="false"/>
                   <opaque value="false"/>
                   <requestFocusEnabled value="false"/>
-                  <text value="&lt;html&gt;&#13;  &lt;head&gt;&#13;    &lt;title&gt;d&lt;/title&gt;&#13;    &#13;  &lt;/head&gt;&#13;  &lt;body&gt;&#13;  &lt;/body&gt;&#13;&lt;/html&gt;&#13;"/>
                   <verifyInputWhenFocusTarget value="false"/>
                 </properties>
                 <clientProperties>
-                  <JEditorPane.honorDisplayProperties class="java.lang.Boolean" value="false"/>
                   <JEditorPane.w3cLengthUnits class="java.lang.Boolean" value="false"/>
                 </clientProperties>
               </component>

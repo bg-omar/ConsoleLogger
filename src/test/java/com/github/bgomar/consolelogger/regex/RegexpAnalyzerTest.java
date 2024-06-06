@@ -84,7 +84,7 @@ public class RegexpAnalyzerTest extends MyBasePlatformTestCase {
         RegexpAnalyzer analyzer = new RegexpAnalyzer(getProject(), state, null);
 
         analyzer.run(new EmptyProgressIndicator());
-        assertEquals("343", analyzer.getMatchedText().substring(state.getText()));
+        assertEquals("343", analyzer.getMatchedText().substring(state.text()));
     }
 
     public void testMatchFromBegin2() {

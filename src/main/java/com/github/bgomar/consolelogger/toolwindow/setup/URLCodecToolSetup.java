@@ -1,32 +1,53 @@
 package com.github.bgomar.consolelogger.toolwindow.setup;
 
-import com.ibm.icu.impl.CaseMapImpl;
+
 import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.consolelogger.tools.URLTools;
 
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Safelist;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.Stack;
 
 
 public class URLCodecToolSetup extends AbstractToolSetup {
 
-    private final JBTextField decodedTextArea;
-    private final JBTextField encodedTextArea;
-    private final JBTextField svg2CssTextArea;
+    private JBTextField decodedTextArea;
+    private JBTextField encodedTextArea;
+    private JBTextField svg2CssTextArea;
     private final JTextPane preview;
 
     public URLCodecToolSetup(JBTextField decodedTextArea,
                              JBTextField encodedTextArea,
                              JBTextField svg2CssTextArea,
-                             JTextPane preview) {
+                             JTextPane  preview) throws IOException {
         this.decodedTextArea = decodedTextArea;
         this.encodedTextArea = encodedTextArea;
         this.svg2CssTextArea = svg2CssTextArea;
         this.preview = preview;
+
+        preview.setEditable(true);
+        String html = getString();
+        preview.setPreferredSize(new Dimension(250, 145));
+        preview.setMinimumSize(new Dimension(10, 10));
+        new URLCodecToolSetup(html);
+    }
+
+    private static @NotNull String getString() {
+        String data = "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E %3Ccircle r='50' cx='50' cy='50' " +
+                "fill='tomato'/%3E %3Ccircle r='41' cx='47' cy='50' fill='orange'/%3E %3Ccircle r='33' cx='48' cy='53' fill='gold'/%3E %3Ccircle r='25' cx='49' cy='51' fill='yellowgreen'/%3E %3Ccircle r='17' cx='52' cy='50' fill='lightseagreen'/%3E %3Ccircle r='9' cx='55' cy='48' fill='teal'/%3E %3C/svg%3E\");";
+        return "<html>\n<head>\n<title>d</title>\n</head>\n<body>  <div style=\"'" + data + "'); width: 100%; height: 100%;" +
+                "\"></div></body></html>";
+    }
+
+
+    public URLCodecToolSetup(String s) {
+        this.preview = new JTextPane();
+        this.preview.setText(s);
+
     }
 
     public void setup() {
@@ -44,22 +65,6 @@ public class URLCodecToolSetup extends AbstractToolSetup {
 
                 encodedTextArea.setText(URLTools.encodeURL(decodedTextArea.getText()));
                 svg2CssTextArea.setText(URLTools.svg2cssURL(encodedTextArea.getText()));
-                // Create a data URI for the SVG image
-                String data = svg2CssTextArea.getText();
-                String html = "<html>\n<head>\n<title>d</title>\n</head>\n<body>  <div style=\"'" + data + "'); width: 100%; height: 100%;" +
-                        "\"></div></body></html>";
-                // Define a Safelist of allowed HTML tags and attributes
-                Safelist safelist = Safelist.relaxed()
-                        .addTags("svg", "rect", "circle", "path") // Add SVG tags
-                        .addAttributes(":all", "style") // Allow all tags to have a "style" attribute
-                        .addAttributes("circle", "cx", "cy", "r", "fill") // Allow circle attributes
-                        .addAttributes("rect", "x", "y", "width", "height", "fill"); // Allow rect attributes
-
-                // Validate the HTML code using JSoup
-                String cleanHtml = Jsoup.clean(html, safelist);
-
-                // Set the clean HTML code as the text of the preview component
-                preview.setText(cleanHtml);
 
             }
         });
@@ -77,21 +82,8 @@ public class URLCodecToolSetup extends AbstractToolSetup {
 
                 decodedTextArea.setText(URLTools.decodeURL(encodedTextArea.getText()));
                 svg2CssTextArea.setText(URLTools.svg2cssURL(encodedTextArea.getText()));
-                // Create a data URI for the SVG image
-                String data = svg2CssTextArea.getText();
-                String html = "<html><body><div style=\"'" + data + "'); width: 100%; height: 100%;\"></div></body></html>";
-                // Define a Safelist of allowed HTML tags and attributes
-                Safelist safelist = Safelist.relaxed()
-                        .addTags("svg", "rect", "circle", "path") // Add SVG tags
-                        .addAttributes(":all", "style") // Allow all tags to have a "style" attribute
-                        .addAttributes("circle", "cx", "cy", "r", "fill") // Allow circle attributes
-                        .addAttributes("rect", "x", "y", "width", "height", "fill"); // Allow rect attributes
 
-                // Validate the HTML code using JSoup
-                String cleanHtml = Jsoup.clean(html, safelist);
 
-                // Set the clean HTML code as the text of the preview component
-                preview.setText(cleanHtml);
             }
         });
         svg2CssTextArea.addKeyListener(new KeyListener() {
@@ -108,21 +100,8 @@ public class URLCodecToolSetup extends AbstractToolSetup {
 
                 encodedTextArea.setText(URLTools.css2svgURL(svg2CssTextArea.getText()));
                 decodedTextArea.setText(URLTools.decodeURL(encodedTextArea.getText()));
-                // Create a data URI for the SVG image
-                String data = svg2CssTextArea.getText();
-                String html = "<html><body><div style=\"'" + data + "'); width: 100%; height: 100%;\"></div></body></html>";
-                // Define a Safelist of allowed HTML tags and attributes
-                Safelist safelist = Safelist.relaxed()
-                        .addTags("svg", "rect", "circle", "path") // Add SVG tags
-                        .addAttributes(":all", "style") // Allow all tags to have a "style" attribute
-                        .addAttributes("circle", "cx", "cy", "r", "fill") // Allow circle attributes
-                        .addAttributes("rect", "x", "y", "width", "height", "fill"); // Allow rect attributes
 
-                // Validate the HTML code using JSoup
-                String cleanHtml = Jsoup.clean(html, safelist);
 
-                // Set the clean HTML code as the text of the preview component
-                preview.setText(cleanHtml);
 
             }
         });

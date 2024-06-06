@@ -17,12 +17,12 @@ public class RegexpToolWindowFactory implements ToolWindowFactory, DumbAware {
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         toolWindow.setTitle("Regex Tester");
 
+
+
+
         RegexpTesterPanel panel = new RegexpTesterPanel(project);
-
         project.getService(RegexPanelStateService.class).restoreState(panel);
-        
         Content content = ApplicationManager.getApplication().getService(ContentFactory.class).createContent(panel, "", false);
-
         toolWindow.getContentManager().addContent(content);
     }
 }
