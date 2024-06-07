@@ -22,13 +22,6 @@
                     anchor="right"
                     factoryClass="com.github.bgomar.consolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
-        <toolWindow id="RegexTester" anchor="left" 
-                    factoryClass="com.github.bgomar.consolelogger.regex.RegexpToolWindowFactory"
-                    icon="/icons/toolwindow-icon.png"/>
-        <projectService serviceImplementation="com.github.bgomar.consolelogger.regex.RegexPanelStateService" />
-
-        <regExpLanguageHost forClass="com.github.bgomar.consolelogger.regex.FakeRegexpHost"
-                            implementationClass="com.github.bgomar.consolelogger.regex.MyJavaRegExpHost"/>
     </extensions>
 
     <actions>
