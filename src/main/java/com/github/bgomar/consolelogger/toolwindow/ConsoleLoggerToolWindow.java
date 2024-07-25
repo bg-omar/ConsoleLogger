@@ -57,7 +57,7 @@ public class ConsoleLoggerToolWindow {
         String iconsPath = "icons/";
         toolPanelsByTitle.put("Properties of ConsoleLogger", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "coolcat.svg"));
-        toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
+        toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
 
 
         new PropertiesConsoleLoggerToolSetup(
@@ -117,10 +117,10 @@ public class ConsoleLoggerToolWindow {
                         "Change pixels to REM for css and it will<br>" +
                         "automatically converted as you type.</html>");
                 }
-                case "URL encoder/decoder" -> {
+                case "Svg 2 Css" -> {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>" +
-                        "Type decoded or encoded URL and it will be<br>" +
+                        "Create CSS from a svg file and it will<br>" +
                         "automatically converted as you type.</html>");
                 }
             }

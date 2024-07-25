@@ -122,7 +122,7 @@ intellij {
 
     sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
 
-    downloadSources.set(!System.getenv().containsKey("IU"))
+    downloadSources.set(!System.getenv().containsKey("CI"))
     downloadSources.set(pluginDownloadIdeaSources.toBoolean() && !System.getenv().containsKey("IU"))
     instrumentCode.set(true)
 
@@ -166,12 +166,9 @@ java {
 
 tasks {
     register("clearSandboxedIDESystemLogs") {
+        val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
         doFirst {
-            if (project.properties["pluginClearSandboxedIDESystemLogsBeforeRun"]?.toString()?.toBoolean() == true) {
-                val rootProjectDir = project.rootProject.projectDir
-                val pluginIdeaVersion = project.properties["pluginIdeaVersion"].toString()
-                val sandboxLogDir = File(rootProjectDir, ".idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
-
+            if (pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean()) {
                 if (sandboxLogDir.exists() && sandboxLogDir.isDirectory) {
                     FileUtils.deleteDirectory(sandboxLogDir)
                     logger.quiet("Deleted sandboxed IDE's log folder $sandboxLogDir")
@@ -181,10 +178,10 @@ tasks {
     }
 
     register("updatePluginXml") {
+        val generatedActionsXml = generateConsoleLoggerActionsXml()
+        val pluginXmlFile = File("src/main/resources/META-INF/plugin.xml")
+        var pluginXmlContent = pluginXmlFile.readText()
         doFirst {
-            val generatedActionsXml = generateConsoleLoggerActionsXml()
-            val pluginXmlFile = File("src/main/resources/META-INF/plugin.xml")
-            var pluginXmlContent = pluginXmlFile.readText()
             pluginXmlContent = pluginXmlContent.replace("\${generatedActionsXml}", generatedActionsXml)
             pluginXmlFile.writeText(pluginXmlContent)
         }

@@ -35,9 +35,7 @@ Defaults:  May need personal adjustments in toolwindow.
 #### [<img src="https://github.com/bg-omar/consolelogger/blob/master/.github/pics/preview3.png?raw=true" width="500px%"/>]()  
 ## Remove all loggers  
 ### `(CTRL + ALT + 0)`  
-#### [<img src="https://github.com/bg-omar/consolelogger/blob/master/.github/pics/preview6.png?raw=true" width="300px%"/>]()  
-### `Settings` -> `Tools` -> `ConsoleLogger`  
-#### [<img src="https://github.com/bg-omar/consolelogger/blob/master/.github/pics/SettingPreview.png?raw=true" width="500px%"/>]()  
+#### [<img src="https://github.com/bg-omar/consolelogger/blob/master/.github/pics/preview6.png?raw=true" width="300px%"/>]()   
 
 This is an educational project, still usefull for many developers.
 This project is heavily based on LogIt by Laurent Soulet &  I Love DevToys by vshymanskyy

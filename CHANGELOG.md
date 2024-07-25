@@ -1,19 +1,25 @@
 # Changelog
 
-## [0.0.23] - 08-04-2024
-- 💥 Big Changes to the visuals
+## [0.0.27] - 19-03-2024
+- Tried fixing the Saving issues on some IDE
+- Removed the unused settings from Tools
 
-## [0.0.22] - 04-04-2024
-- 💻 Released to work with IntelliJ 2024.1
-- Added a lot of extras for toolwindow ➡️
+## [0.0.26] - 19-03-2024
+
+## [0.0.25] - 19-03-2024
+
+## [0.0.24] - 19-03-2024
+
+## [0.0.23] - 19-03-2024
+
+## [0.0.22] - 19-03-2024
 
 ## [0.0.21] - 19-03-2024
 - 💥 Big Changes to the visuals
 - 💻 Added a toolwindow ➡️ 
 - Base64 & url En/Decoder, Fake data Generator, Cron Parser, Text -> Hash
-- 😸 Used cat memes for icons
+- 😸 Used cat memes for icos
 - 🧼 Cleanup of code and bugs - 🐛
-
 
 ## [0.0.20] - 15-11-2023
 - 🐛 Small Bugfix: FIX: Handle cases where the editor might be missing. 

@@ -13,15 +13,16 @@ import java.io.*;
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
 public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
 
-    public static final String DEFAULT_PATTERN_1 = "console.log(\"%c 1 ---> $$: \",\"color:#fff;\", $$);";
-    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
-    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c 3 ---> $$: \",\"color:#ff0;\", $$);";
-    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c 4 ---> $$: \",\"color:#0f0;\", $$);";
-    public static final String DEFAULT_PATTERN_5 = "console.log(\"%c 5 ---> $$: \",\"color:#0ff;\", $$);";
-    public static final String DEFAULT_PATTERN_6 = "console.log(\"%c 6 ---> $$: \",\"color:#f0f;\", $$);";
-    public static final String DEFAULT_PATTERN_7 = "console.log(\"%c 7 ---> $$: \",\"color:#00f;\", $$);";
-    public static final String DEFAULT_PATTERN_8 = "console.warn(\"%c 8 ---> $$: \",\"color:#0ff;\", $$);";
-    public static final String DEFAULT_PATTERN_9 = "console.error(\"%c 9 ---> $$: \",\"color:#000;\", $$);";
+    // "console.log("%c$$: ","color:#F0F;", $$), where $$ = var, %c for using color:#......;,  {FP} filepath, {FN} filename, {LN} line number "
+    public static final String DEFAULT_PATTERN_1 = "console.log(\"%c 1 --> {LN}||{FP}\\n $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 --> {LN}||{FP}\\n $$: \",\"color:#0f0;\", $$);";
+    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c 3 --> {LN}||{FP}\\n $$: \",\"color:#ff0;\", $$);";
+    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c 4 --> {LN}||{FP}\\n $$: \",\"color:#f00;\", $$);";
+    public static final String DEFAULT_PATTERN_5 = "console.log(\"%c 5 --> {LN}||{FP}\\n $$: \",\"color:#0ff;\", $$);";
+    public static final String DEFAULT_PATTERN_6 = "console.log(\"%c 6 --> {LN}||{FP}\\n $$: \",\"color:#00f;\", $$);";
+    public static final String DEFAULT_PATTERN_7 = "console.log(\"%c 7 --> {LN}||{FP}\\n $$: \",\"color:#acf;\", $$);";
+    public static final String DEFAULT_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FP}\\n $$: \",\"color:#fca;\", $$);";
+    public static final String DEFAULT_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FP}\\n $$: \",\"color:#acf;\", $$);";
 
     private static final String[] patterns = {
             DEFAULT_PATTERN_1,
@@ -35,7 +36,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
             DEFAULT_PATTERN_9
     };
 
-    public String version = "0.0.25";
+    public String version = "0.0.27";
 
     public static ConsoleLoggerSettings getInstance() {
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);

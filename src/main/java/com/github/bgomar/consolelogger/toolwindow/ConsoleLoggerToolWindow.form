@@ -39,10 +39,8 @@
                   <inheritsPopupMenu value="false"/>
                   <text value="&lt;svg&gt; &lt;circle r=&quot;50&quot; cx=&quot;50&quot; cy=&quot;50&quot; fill=&quot;hotpink&quot;/&gt; &lt;/svg&gt;"/>
                   <verifyInputWhenFocusTarget value="true"/>
+                  <visible value="true"/>
                 </properties>
-                <clientProperties>
-                  <caretWidth class="java.lang.Integer" value="0"/>
-                </clientProperties>
               </component>
               <component id="822ec" class="com.intellij.ui.components.JBTextField" binding="urlCodecEncodedTextArea">
                 <constraints>
@@ -76,6 +74,14 @@
                   <text value="Encoded:"/>
                 </properties>
               </component>
+              <component id="f4c4e" class="com.intellij.ui.components.JBLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Svg 2 CSS:"/>
+                </properties>
+              </component>
               <component id="7284e" class="com.intellij.ui.components.JBTextField" binding="urlCodecSvg2CssTextArea">
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
@@ -89,14 +95,6 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="f4c4e" class="com.intellij.ui.components.JBLabel">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Svg 2 CSS:"/>
-                </properties>
-              </component>
               <component id="61da8" class="javax.swing.JTextPane" binding="preview">
                 <constraints>
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -107,12 +105,14 @@
                   <autoscrolls value="false"/>
                   <contentType value="text/html"/>
                   <editable value="false"/>
-                  <enabled value="true"/>
+                  <enabled value="false"/>
                   <focusCycleRoot value="false"/>
                   <focusable value="false"/>
                   <opaque value="false"/>
                   <requestFocusEnabled value="false"/>
+                  <text value="&lt;html&gt;&#13;&#10;  &lt;head&gt;&#13;&#10;&#13;&#10;  &lt;/head&gt;&#13;&#10;  &lt;body&gt;&#13;&#10;    &#13;&#10;  &lt;/body&gt;&#13;&#10;&lt;/html&gt;&#13;&#10;"/>
                   <verifyInputWhenFocusTarget value="false"/>
+                  <visible value="false"/>
                 </properties>
                 <clientProperties>
                   <JEditorPane.w3cLengthUnits class="java.lang.Boolean" value="false"/>
@@ -181,7 +181,7 @@
                               <maximumSize width="2147483647" height="63"/>
                               <selectionEnd value="0"/>
                               <text value=""/>
-                              <toolTipText value="&quot;console.log(&quot;%c$$: &quot;,&quot;color:#F0F;&quot;, $$), where $$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number &quot;" noi18n="true"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -269,6 +269,7 @@
                               <autoscrolls value="false"/>
                               <editable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -355,6 +356,7 @@
                               <autoscrolls value="false"/>
                               <editable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -440,6 +442,7 @@
                               <autoscrolls value="false"/>
                               <editable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -525,6 +528,7 @@
                               <autoscrolls value="false"/>
                               <editable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -611,6 +615,7 @@
                               <editable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                               <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -695,6 +700,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -779,6 +785,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
@@ -864,6 +871,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
                             </properties>
                           </component>
                         </children>
