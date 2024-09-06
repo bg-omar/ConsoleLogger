@@ -13,16 +13,34 @@ import java.io.IOException;
 
 public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAware {
 
+    @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        ConsoleLoggerToolWindow myToolWindow = null;
+
+        ConsoleLoggerSettings settings = ConsoleLoggerSettings.getInstance();
+
+        // Create a custom component or panel based on settings
+        ConsoleLoggerToolWindowPanel toolWindowPanel = null;
         try {
-            myToolWindow = new ConsoleLoggerToolWindow();
+            toolWindowPanel = new ConsoleLoggerToolWindowPanel(settings);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ConsoleLoggerSettings.loadSettings();
+
+        // Use the new method to get ContentFactory instance
         ContentFactory contentFactory = ContentFactory.getInstance();
-        Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
+        Content content = contentFactory.createContent(toolWindowPanel.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);
+
+
+//        ConsoleLoggerToolWindowPanel myToolWindow = null;
+//        try {
+//            myToolWindow = new ConsoleLoggerToolWindowPanel();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        ConsoleLoggerSettings.loadSettings();
+//        ContentFactory contentFactory = ContentFactory.getInstance();
+//        Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
+//        toolWindow.getContentManager().addContent(content);
     }
 }

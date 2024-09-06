@@ -51,12 +51,12 @@ val pluginIdeaVersion = detectBestIdeVersion()
 plugins {
     id("java") // Java support
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta3"     // Kotlin support
-    id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
-    id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
-    id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
-    id("org.jetbrains.kotlinx.kover") version "0.7.4"    // Gradle Kover Plugin
-    kotlin("plugin.serialization") version "1.9.22"
+    id("org.jetbrains.kotlin.jvm") version "2.0.20"     // Kotlin support
+    id("org.jetbrains.intellij") version "1.17.4"    // Gradle IntelliJ Plugin
+    id("org.jetbrains.changelog") version "2.2.1"    // Gradle Changelog Plugin "com.intellij.clion"
+    id("org.jetbrains.qodana") version "2024.1.9"    // Gradle Qodana Plugin
+    id("org.jetbrains.kotlinx.kover") version "0.9.0-RC"    // Gradle Kover Plugin
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.20"
 }
 
 
@@ -87,7 +87,7 @@ repositories {
 dependencies {
 // https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
     implementation("org.jetbrains:marketplace-zip-signer:0.1.24")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0-RC")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
 }
 
 abstract class UpdatePluginXml : DefaultTask() {
@@ -133,23 +133,6 @@ changelog {
     repositoryUrl = properties("pluginRepositoryUrl")
     headerParserRegex.set("(.*)".toRegex())
     itemPrefix.set("*")
-}
-
-// Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
-koverReport {
-    defaults {
-        xml {
-            onCheck = true
-        }
-    }
-}
-
-// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
-qodana {
-    cachePath.set(file(".qodana").canonicalPath)
-    reportPath.set(file("build/reports/inspections").canonicalPath)
-    saveReport.set(true)
-    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
 // Set the JVM language level used to build the project.
@@ -198,9 +181,6 @@ tasks {
     }
     withType<org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain>().configureEach {
         kotlinJavaToolchain.toolchain.use(customLauncher)
-    }
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = sourceCompatibility
     }
     withType<Test> {
         useJUnitPlatform()
@@ -274,13 +254,6 @@ tasks {
 
     buildSearchableOptions {
         enabled = true
-    }
-    compileKotlin {
-        kotlinOptions.jvmTarget = jvmTarget
-    }
-
-    compileTestKotlin {
-        kotlinOptions.jvmTarget  = jvmTarget
     }
 
     signPlugin {
