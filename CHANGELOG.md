@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.28] - 06-09-2024
+- Still Issues,
+- Updated dependencies
+- removed depricated label
+
 ## [0.0.27] - 19-03-2024
 - Tried fixing the Saving issues on some IDE
 - Removed the unused settings from Tools
