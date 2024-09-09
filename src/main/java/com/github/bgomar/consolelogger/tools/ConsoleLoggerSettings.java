@@ -90,27 +90,4 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     public static int getLogPatternsCount() {
         return patterns.length;
     }
-
-    public static void saveSettings() {
-        try (FileWriter writer = new FileWriter("consolelogger.xml")) {
-            for (String pattern : patterns) {
-                writer.write(pattern + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void loadSettings() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("consolelogger.xml"))) {
-            String line;
-            int index = 0;
-            while ((line = reader.readLine()) != null && index < patterns.length) {
-                patterns[index] = line;
-                index++;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

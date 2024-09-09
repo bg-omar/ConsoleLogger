@@ -1,9 +1,10 @@
 # Changelog
 
 ## [0.0.28] - 06-09-2024
-- Still Issues,
+- Saving seems to work better now
 - Updated dependencies
 - removed depricated label
+- Added a cancel button
 
 ## [0.0.27] - 19-03-2024
 - Tried fixing the Saving issues on some IDE

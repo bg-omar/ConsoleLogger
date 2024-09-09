@@ -46,6 +46,7 @@ public class ConsoleLoggerToolWindowPanel {
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
     private JTextPane preview;
+    private JButton cancelAllButton;
 
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
@@ -72,6 +73,7 @@ public class ConsoleLoggerToolWindowPanel {
                 propertiesConsoleLoggerTextField8,
                 propertiesConsoleLoggerTextField9,
                 saveAllButton,
+                cancelAllButton,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,
                 propertiesConsoleLoggerDefaultButton3,
