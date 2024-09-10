@@ -120,22 +120,24 @@
               </component>
             </children>
           </grid>
-          <grid id="8d462" binding="propertiesConsoleLoggerPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="8d462" binding="propertiesConsoleLoggerPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+            </properties>
             <border type="none"/>
             <children>
               <grid id="bac10" layout-manager="GridBagLayout">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="2df74" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="2df74" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -151,25 +153,9 @@
                       <color color="-10789793"/>
                     </border>
                     <children>
-                      <component id="4e2e2" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <alignmentY value="0.0"/>
-                          <horizontalAlignment value="0"/>
-                          <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 1):"/>
-                        </properties>
-                      </component>
-                      <hspacer id="f32bc">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
                       <scrollpane id="53d05">
                         <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                         <border type="none"/>
@@ -191,10 +177,10 @@
                       </scrollpane>
                       <component id="41ecd" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton1">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -213,21 +199,32 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
+                        </properties>
+                      </component>
+                      <component id="4e2e2" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <alignmentY value="0.0"/>
+                          <horizontalAlignment value="0"/>
+                          <iconTextGap value="2"/>
+                          <text value="1:"/>
                         </properties>
                       </component>
                     </children>
                   </grid>
-                  <grid id="e9dc3" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="e9dc3" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -246,46 +243,21 @@
                     <children>
                       <component id="82928" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 2):"/>
+                          <text value="2:"/>
                         </properties>
                       </component>
-                      <hspacer id="6870e">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="3b057">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="ec163" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField2">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <maximumSize width="2147483647" height="63"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="b96b9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton2">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -304,21 +276,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="18c73">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="67dfa" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField2">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="3a30d" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="3a30d" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -336,46 +330,21 @@
                     <children>
                       <component id="83b67" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 3):"/>
+                          <text value="3:"/>
                         </properties>
                       </component>
-                      <hspacer id="a285b">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="3b54">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="5f463" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField3">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <maximumSize width="2147483647" height="63"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="6aed2" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton3">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -393,21 +362,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="c6a80">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="71f59" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField3">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="ac8b8" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="ac8b8" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -425,46 +416,21 @@
                     <children>
                       <component id="392b1" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 4):"/>
+                          <text value="4:"/>
                         </properties>
                       </component>
-                      <hspacer id="a4edc">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="33c2c">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="54637" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField4">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <maximumSize width="2147483647" height="63"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="2f9e" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton4">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -482,21 +448,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="e41e9">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="a1e72" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField4">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="f76d6" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="f76d6" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -514,46 +502,21 @@
                     <children>
                       <component id="6d4cf" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 5):"/>
+                          <text value="5:"/>
                         </properties>
                       </component>
-                      <hspacer id="9a4ef">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="58b26">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="f5e46" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField5">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <maximumSize width="2147483647" height="63"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="18426" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton5">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -571,21 +534,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="d501a">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="e59c0" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField5">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="b15d" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="b15d" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -603,49 +588,21 @@
                     <children>
                       <component id="4964a" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 6):"/>
+                          <text value="6:"/>
                         </properties>
                       </component>
-                      <hspacer id="2427b">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="f35">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <enabled value="true"/>
-                        </properties>
-                        <border type="none"/>
-                        <children>
-                          <component id="b3e48" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField6">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <maximumSize width="2147483647" height="63"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <text value=""/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="bab27" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton6">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -663,21 +620,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="ecc78">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="eb047" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField6">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="892df" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="892df" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -695,45 +674,21 @@
                     <children>
                       <component id="728f4" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 7):"/>
+                          <text value="7:"/>
                         </properties>
                       </component>
-                      <hspacer id="74032">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="866b3">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="594b9" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField7">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="66c6b" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton7">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -751,21 +706,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="66e60">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="c700e" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField7">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="be4e2" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="be4e2" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -783,45 +760,21 @@
                     <children>
                       <component id="a98db" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 8):"/>
+                          <text value="8:"/>
                         </properties>
                       </component>
-                      <hspacer id="1b59e">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="9de49">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="8aaa3" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField8">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="8cdc9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton8">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -839,21 +792,43 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="26e97">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="81821" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField8">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
-                  <grid id="f37ab" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="f37ab" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -872,45 +847,21 @@
                     <children>
                       <component id="39c31" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="(CTRL + ALT + 9):"/>
+                          <text value="9:"/>
                         </properties>
                       </component>
-                      <hspacer id="bda1f">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
-                      <scrollpane id="32506">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children>
-                          <component id="3d921" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField9">
-                            <constraints/>
-                            <properties>
-                              <autoscrolls value="false"/>
-                              <editable value="true"/>
-                              <minimumSize width="49" height="39"/>
-                              <preferredSize width="49" height="39"/>
-                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
-                            </properties>
-                          </component>
-                        </children>
-                      </scrollpane>
                       <component id="b4ada" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton9">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="10" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="70" height="20"/>
-                            <preferred-size width="70" height="20"/>
-                            <maximum-size width="100" height="30"/>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="25" height="25"/>
+                            <preferred-size width="25" height="25"/>
+                            <maximum-size width="30" height="30"/>
                           </grid>
                         </constraints>
                         <properties>
@@ -928,18 +879,40 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="actions/refresh_dark.png"/>
                           <iconTextGap value="1"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
                           <rolloverEnabled value="true"/>
-                          <selected value="true"/>
-                          <text value="Default"/>
-                          <toolTipText value="Set back to initial value" noi18n="true"/>
+                          <selected value="false"/>
+                          <text value=""/>
+                          <toolTipText value="Set back to default value" noi18n="true"/>
                           <verticalAlignment value="0"/>
                         </properties>
                       </component>
+                      <scrollpane id="4dcbb">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="f2241" class="javax.swing.JTextField" binding="propertiesConsoleLoggerTextField9">
+                            <constraints/>
+                            <properties>
+                              <autoscrolls value="false"/>
+                              <editable value="true"/>
+                              <maximumSize width="2147483647" height="63"/>
+                              <minimumSize width="49" height="39"/>
+                              <preferredSize width="49" height="39"/>
+                              <selectionEnd value="0"/>
+                              <text value=""/>
+                              <toolTipText value="$$ = var, %c = color,  {FP} filepath, {FN} filename, {LN} line number"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
                   <grid id="5502c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -983,7 +956,11 @@
                         </constraints>
                         <properties>
                           <label value="Cancel"/>
+                          <rolloverEnabled value="true"/>
+                          <selected value="false"/>
                           <text value="Cancel"/>
+                          <verifyInputWhenFocusTarget value="true"/>
+                          <visible value="true"/>
                         </properties>
                       </component>
                     </children>
@@ -992,18 +969,72 @@
               </grid>
               <component id="a5d05" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Console Loggers || Remove (ctrl + alt + 0)"/>
+                  <text value="(ctrl + alt + 1-9) || Remove (ctrl + alt + 0)"/>
                   <toolTipText value=""/>
                 </properties>
               </component>
               <vspacer id="23854">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
+              <grid id="59e19" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="2147483647" height="200"/>
+                  <minimumSize width="221" height="65"/>
+                  <opaque value="true"/>
+                  <preferredSize width="177" height="70"/>
+                  <requestFocusEnabled value="true"/>
+                </properties>
+                <border type="etched">
+                  <color color="-10789793"/>
+                </border>
+                <children>
+                  <component id="f8a92" class="javax.swing.JButton" binding="preset1Button">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <label value="Preset 1"/>
+                      <text value="Preset 1"/>
+                    </properties>
+                  </component>
+                  <component id="c86ef" class="javax.swing.JButton" binding="preset2Button">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <label value="Preset 2"/>
+                      <text value="Preset 2"/>
+                    </properties>
+                  </component>
+                  <component id="c2178" class="javax.swing.JButton" binding="preset3Button">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <label value="Preset 3"/>
+                      <text value="Preset 3"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="e1153" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Console Loggers"/>
+                  <toolTipText value=""/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="9559c" binding="px2RemPanel" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
