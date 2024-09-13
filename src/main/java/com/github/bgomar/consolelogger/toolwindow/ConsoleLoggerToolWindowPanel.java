@@ -35,24 +35,6 @@ public class ConsoleLoggerToolWindowPanel {
     private JTextField propertiesConsoleLoggerTextField7;
     private JTextField propertiesConsoleLoggerTextField8;
     private JTextField propertiesConsoleLoggerTextField9;
-    private JTextField propertiesConsoleLoggerTextField10;
-    private JTextField propertiesConsoleLoggerTextField11;
-    private JTextField propertiesConsoleLoggerTextField12;
-    private JTextField propertiesConsoleLoggerTextField13;
-    private JTextField propertiesConsoleLoggerTextField14;
-    private JTextField propertiesConsoleLoggerTextField15;
-    private JTextField propertiesConsoleLoggerTextField16;
-    private JTextField propertiesConsoleLoggerTextField17;
-    private JTextField propertiesConsoleLoggerTextField18;
-    private JTextField propertiesConsoleLoggerTextField19;
-    private JTextField propertiesConsoleLoggerTextField20;
-    private JTextField propertiesConsoleLoggerTextField21;
-    private JTextField propertiesConsoleLoggerTextField22;
-    private JTextField propertiesConsoleLoggerTextField23;
-    private JTextField propertiesConsoleLoggerTextField24;
-    private JTextField propertiesConsoleLoggerTextField25;
-    private JTextField propertiesConsoleLoggerTextField26;
-    private JTextField propertiesConsoleLoggerTextField27;
     private JButton saveAllButton;
     private JButton propertiesConsoleLoggerDefaultButton1;
     private JButton propertiesConsoleLoggerDefaultButton2;
@@ -63,29 +45,8 @@ public class ConsoleLoggerToolWindowPanel {
     private JButton propertiesConsoleLoggerDefaultButton7;
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
-    private JButton propertiesConsoleLoggerDefaultButton10;
-    private JButton propertiesConsoleLoggerDefaultButton11;
-    private JButton propertiesConsoleLoggerDefaultButton12;
-    private JButton propertiesConsoleLoggerDefaultButton13;
-    private JButton propertiesConsoleLoggerDefaultButton14;
-    private JButton propertiesConsoleLoggerDefaultButton15;
-    private JButton propertiesConsoleLoggerDefaultButton16;
-    private JButton propertiesConsoleLoggerDefaultButton17;
-    private JButton propertiesConsoleLoggerDefaultButton18;
-    private JButton propertiesConsoleLoggerDefaultButton19;
-    private JButton propertiesConsoleLoggerDefaultButton20;
-    private JButton propertiesConsoleLoggerDefaultButton21;
-    private JButton propertiesConsoleLoggerDefaultButton22;
-    private JButton propertiesConsoleLoggerDefaultButton23;
-    private JButton propertiesConsoleLoggerDefaultButton24;
-    private JButton propertiesConsoleLoggerDefaultButton25;
-    private JButton propertiesConsoleLoggerDefaultButton26;
-    private JButton propertiesConsoleLoggerDefaultButton27;
     private JTextPane preview;
     private JButton cancelAllButton;
-    private JButton preset1Button;
-    private JButton preset2Button;
-    private JButton preset3Button;
 
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
@@ -111,29 +72,8 @@ public class ConsoleLoggerToolWindowPanel {
                 propertiesConsoleLoggerTextField7,
                 propertiesConsoleLoggerTextField8,
                 propertiesConsoleLoggerTextField9,
-                propertiesConsoleLoggerTextField10,
-                propertiesConsoleLoggerTextField11,
-                propertiesConsoleLoggerTextField12,
-                propertiesConsoleLoggerTextField13,
-                propertiesConsoleLoggerTextField14,
-                propertiesConsoleLoggerTextField15,
-                propertiesConsoleLoggerTextField16,
-                propertiesConsoleLoggerTextField17,
-                propertiesConsoleLoggerTextField18,
-                propertiesConsoleLoggerTextField19,
-                propertiesConsoleLoggerTextField20,
-                propertiesConsoleLoggerTextField21,
-                propertiesConsoleLoggerTextField22,
-                propertiesConsoleLoggerTextField23,
-                propertiesConsoleLoggerTextField24,
-                propertiesConsoleLoggerTextField25,
-                propertiesConsoleLoggerTextField26,
-                propertiesConsoleLoggerTextField27,
                 saveAllButton,
                 cancelAllButton,
-                preset1Button,
-                preset2Button,
-                preset3Button,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,
                 propertiesConsoleLoggerDefaultButton3,
@@ -142,25 +82,7 @@ public class ConsoleLoggerToolWindowPanel {
                 propertiesConsoleLoggerDefaultButton6,
                 propertiesConsoleLoggerDefaultButton7,
                 propertiesConsoleLoggerDefaultButton8,
-                propertiesConsoleLoggerDefaultButton9,
-                propertiesConsoleLoggerDefaultButton10,
-                propertiesConsoleLoggerDefaultButton11,
-                propertiesConsoleLoggerDefaultButton12,
-                propertiesConsoleLoggerDefaultButton13,
-                propertiesConsoleLoggerDefaultButton14,
-                propertiesConsoleLoggerDefaultButton15,
-                propertiesConsoleLoggerDefaultButton16,
-                propertiesConsoleLoggerDefaultButton17,
-                propertiesConsoleLoggerDefaultButton18,
-                propertiesConsoleLoggerDefaultButton19,
-                propertiesConsoleLoggerDefaultButton20,
-                propertiesConsoleLoggerDefaultButton21,
-                propertiesConsoleLoggerDefaultButton22,
-                propertiesConsoleLoggerDefaultButton23,
-                propertiesConsoleLoggerDefaultButton24,
-                propertiesConsoleLoggerDefaultButton25,
-                propertiesConsoleLoggerDefaultButton26,
-                propertiesConsoleLoggerDefaultButton27).setup();
+                propertiesConsoleLoggerDefaultButton9).setup();
         new URLCodecToolSetup(
             urlCodecDecodedTextArea,
             urlCodecEncodedTextArea,

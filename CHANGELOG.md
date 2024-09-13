@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.29] - 13-09-2024
+- changed some of the input field sizes
+
 ## [0.0.28] - 06-09-2024
 - Saving seems to work better now
 - Updated dependencies
