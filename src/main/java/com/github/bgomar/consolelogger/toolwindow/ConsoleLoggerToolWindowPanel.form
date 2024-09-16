@@ -120,7 +120,7 @@
               </component>
             </children>
           </grid>
-          <grid id="8d462" binding="propertiesConsoleLoggerPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="8d462" binding="propertiesConsoleLoggerPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -216,10 +216,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="1:"/>
+                          <text value=" (1) "/>
                         </properties>
                       </component>
                     </children>
@@ -246,10 +247,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="2:"/>
+                          <text value=" (2) "/>
                         </properties>
                       </component>
                       <component id="b96b9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton2">
@@ -333,10 +335,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="3:"/>
+                          <text value=" (3) "/>
                         </properties>
                       </component>
                       <component id="6aed2" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton3">
@@ -419,10 +422,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="4:"/>
+                          <text value=" (4) "/>
                         </properties>
                       </component>
                       <component id="2f9e" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton4">
@@ -505,10 +509,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="5:"/>
+                          <text value=" (5) "/>
                         </properties>
                       </component>
                       <component id="18426" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton5">
@@ -591,10 +596,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="6:"/>
+                          <text value=" (6) "/>
                         </properties>
                       </component>
                       <component id="bab27" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton6">
@@ -677,10 +683,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="7:"/>
+                          <text value=" (7) "/>
                         </properties>
                       </component>
                       <component id="66c6b" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton7">
@@ -763,10 +770,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="8:"/>
+                          <text value=" (8) "/>
                         </properties>
                       </component>
                       <component id="8cdc9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton8">
@@ -850,10 +858,11 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <alignmentX value="0.5"/>
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value="9:"/>
+                          <text value=" (9) "/>
                         </properties>
                       </component>
                       <component id="b4ada" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton9">
@@ -927,7 +936,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="71775" class="javax.swing.JButton" binding="saveAllButton">
+                      <component id="de54c" class="javax.swing.JButton" binding="saveButton">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -938,7 +947,7 @@
                       </component>
                     </children>
                   </grid>
-                  <grid id="fdee7" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="fdee7" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -950,15 +959,28 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="93194" class="javax.swing.JButton" binding="cancelAllButton">
+                      <component id="93194" class="javax.swing.JButton" binding="load1Button">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <label value="Cancel"/>
+                          <label value="Preset 1"/>
                           <rolloverEnabled value="true"/>
                           <selected value="false"/>
-                          <text value="Cancel"/>
+                          <text value="Preset 1"/>
+                          <verifyInputWhenFocusTarget value="true"/>
+                          <visible value="true"/>
+                        </properties>
+                      </component>
+                      <component id="8a3f" class="javax.swing.JButton" binding="load2Button">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <label value="Preset 2"/>
+                          <rolloverEnabled value="true"/>
+                          <selected value="false"/>
+                          <text value="Preset 2"/>
                           <verifyInputWhenFocusTarget value="true"/>
                           <visible value="true"/>
                         </properties>
@@ -978,7 +1000,7 @@
               </component>
               <vspacer id="23854">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <component id="e1153" class="javax.swing.JLabel">
@@ -988,6 +1010,19 @@
                 <properties>
                   <text value="Console Loggers"/>
                   <toolTipText value=""/>
+                </properties>
+              </component>
+              <component id="4f4b3" class="javax.swing.JButton" binding="cancelAllButton">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <label value="Cancel"/>
+                  <rolloverEnabled value="true"/>
+                  <selected value="false"/>
+                  <text value="Cancel"/>
+                  <verifyInputWhenFocusTarget value="true"/>
+                  <visible value="true"/>
                 </properties>
               </component>
             </children>

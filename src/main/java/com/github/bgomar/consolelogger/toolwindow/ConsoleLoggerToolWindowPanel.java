@@ -1,6 +1,5 @@
 package com.github.bgomar.consolelogger.toolwindow;
 
-import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBTextField;
@@ -35,7 +34,7 @@ public class ConsoleLoggerToolWindowPanel {
     private JTextField propertiesConsoleLoggerTextField7;
     private JTextField propertiesConsoleLoggerTextField8;
     private JTextField propertiesConsoleLoggerTextField9;
-    private JButton saveAllButton;
+
     private JButton propertiesConsoleLoggerDefaultButton1;
     private JButton propertiesConsoleLoggerDefaultButton2;
     private JButton propertiesConsoleLoggerDefaultButton3;
@@ -47,6 +46,9 @@ public class ConsoleLoggerToolWindowPanel {
     private JButton propertiesConsoleLoggerDefaultButton9;
     private JTextPane preview;
     private JButton cancelAllButton;
+    private JButton saveButton;
+    private JButton load2Button;
+    private JButton load1Button;
 
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
@@ -55,7 +57,7 @@ public class ConsoleLoggerToolWindowPanel {
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindowPanel(ConsoleLoggerSettings settings) throws IOException {
+    public ConsoleLoggerToolWindowPanel() throws IOException {
         String iconsPath = "icons/";
         toolPanelsByTitle.put("Properties of ConsoleLogger", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "coolcat.svg"));
@@ -72,7 +74,9 @@ public class ConsoleLoggerToolWindowPanel {
                 propertiesConsoleLoggerTextField7,
                 propertiesConsoleLoggerTextField8,
                 propertiesConsoleLoggerTextField9,
-                saveAllButton,
+                saveButton,
+                load2Button,
+                load1Button,
                 cancelAllButton,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,

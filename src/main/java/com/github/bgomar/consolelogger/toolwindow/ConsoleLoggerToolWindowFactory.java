@@ -21,7 +21,7 @@ public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAw
         // Create a custom component or panel based on settings
         ConsoleLoggerToolWindowPanel toolWindowPanel = null;
         try {
-            toolWindowPanel = new ConsoleLoggerToolWindowPanel(settings);
+            toolWindowPanel = new ConsoleLoggerToolWindowPanel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -31,16 +31,5 @@ public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAw
         Content content = contentFactory.createContent(toolWindowPanel.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);
 
-
-//        ConsoleLoggerToolWindowPanel myToolWindow = null;
-//        try {
-//            myToolWindow = new ConsoleLoggerToolWindowPanel();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        ConsoleLoggerSettings.loadSettings();
-//        ContentFactory contentFactory = ContentFactory.getInstance();
-//        Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
-//        toolWindow.getContentManager().addContent(content);
     }
 }
