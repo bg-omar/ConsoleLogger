@@ -2,7 +2,7 @@ package com.github.bgomar.consolelogger
 
 import com.intellij.lang.javascript.JavascriptLanguage
 import com.intellij.lang.javascript.psi.*
-
+import com.intellij.lang.typescript.psi.*
 
 
 import com.intellij.openapi.actionSystem.*

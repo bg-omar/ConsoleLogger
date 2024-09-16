@@ -1,4 +1,0 @@
- toto;
- if (evt && evt.ev<caret>ent) {
-        return evt.event.timestamp;
-      }

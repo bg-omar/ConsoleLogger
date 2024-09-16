@@ -50,17 +50,17 @@ val platformVersion: String by project
 
 
 
-val pluginIdeaVersion = pluginUntilBuild
+val pluginIdeaVersion = detectBestIdeVersion()
 
 plugins {
     id("java") // Java support
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "2.0.20"     // Kotlin support
-    id("org.jetbrains.intellij") version "1.17.4"    // Gradle IntelliJ Plugin
-    id("org.jetbrains.changelog") version "2.2.1"    // Gradle Changelog Plugin "com.intellij.clion"
-    id("org.jetbrains.qodana") version "2024.1.9"    // Gradle Qodana Plugin
-    id("org.jetbrains.kotlinx.kover") version "0.9.0-RC"    // Gradle Kover Plugin
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.20"
+    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta3"     // Kotlin support
+    id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
+    id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
+    id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
+    id("org.jetbrains.kotlinx.kover") version "0.7.4"    // Gradle Kover Plugin
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 
@@ -91,7 +91,7 @@ repositories {
 dependencies {
 // https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
     implementation("org.jetbrains:marketplace-zip-signer:0.1.24")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0-RC")
 }
 
 abstract class UpdatePluginXml : DefaultTask() {
@@ -124,7 +124,7 @@ intellij {
 
     updateSinceUntilBuild.set(true)
 
-//    sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
+    sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
 
     downloadSources.set(!System.getenv().containsKey("CI"))
     downloadSources.set(pluginDownloadIdeaSources.toBoolean() && !System.getenv().containsKey("IU"))
@@ -145,23 +145,23 @@ kotlin {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
 tasks {
     register("clearSandboxedIDESystemLogs") {
-//        val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
-//        doFirst {
-//            if (pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean()) {
-//                if (sandboxLogDir.exists() && sandboxLogDir.isDirectory) {
-//                    FileUtils.deleteDirectory(sandboxLogDir)
-//                    logger.quiet("Deleted sandboxed IDE's log folder $sandboxLogDir")
-//                }
-//            }
-//        }
+        val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
+        doFirst {
+            if (pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean()) {
+                if (sandboxLogDir.exists() && sandboxLogDir.isDirectory) {
+                    FileUtils.deleteDirectory(sandboxLogDir)
+                    logger.quiet("Deleted sandboxed IDE's log folder $sandboxLogDir")
+                }
+            }
+        }
     }
 
     register("updatePluginXml") {
@@ -281,113 +281,113 @@ tasks {
     }
 }
 
-//
-//fun isNonStable(version: String): Boolean {
-//    if (listOf("RELEASE", "FINAL", "GA").any { version.uppercase().endsWith(it) }) {
-//        return false
-//    }
-//    return listOf("alpha", "Alpha", "ALPHA", "b", "beta", "Beta", "BETA", "rc", "RC", "M", "EA", "pr", "atlassian").any {
-//        "(?i).*[.-]${it}[.\\d-]*$".toRegex().matches(version)
-//    }
-//}
-//
-///** Return an IDE version string without the optional PATCH number.
-// * In other words, replace IDE-MAJOR-MINOR(-PATCH) by IDE-MAJOR-MINOR. */
-//fun shortenIdeVersion(version: String): String {
-//    if (version.contains("SNAPSHOT", ignoreCase = true)) {
-//        return version
-//    }
-//    val matcher = Regex("[A-Za-z]+[\\-]?[0-9]+[\\.]{1}[0-9]+")
-//    return try {
-//        matcher.findAll(version).map { it.value }.toList()[0]
-//    } catch (e: Exception) {
-//        logger.warn("Failed to shorten IDE version $version: ${e.message}")
-//        version
-//    }
-//}
 
-///** Find latest IntelliJ stable version from JetBrains website. Result is cached locally for 24h. */
-//fun findLatestStableIdeVersion(): String {
-//    val t1 = System.currentTimeMillis()
-//    val definitionsUrl: HttpURLConnection = URI.parseServerAuthority("https://www.jetbrains.com/updates/updates.xml")
-//    val cachedLatestVersionFile = File(System.getProperty("java.io.tmpdir") + "/jle-ij-latest-version.txt")
-//    var latestVersion: String
-//    try {
-//        if (cachedLatestVersionFile.exists()) {
-//
-//            val cacheDurationMs = Integer.parseInt(project.findProperty("pluginIdeaVersionCacheDurationInHours") as String) * 60 * 60_000
-//            if (cachedLatestVersionFile.exists() && cachedLatestVersionFile.lastModified() < (System.currentTimeMillis() - cacheDurationMs)) {
-//                logger.quiet("Cache expired, find latest stable IDE version from $definitionsUrl then update cached file $cachedLatestVersionFile")
-//                latestVersion = getOnlineLatestStableIdeVersion(definitionsUrl)
-//                cachedLatestVersionFile.delete()
-//                Files.writeString(cachedLatestVersionFile.toPath(), latestVersion, Charsets.UTF_8)
-//
-//            } else {
-//                logger.quiet("Find latest stable IDE version from cached file $cachedLatestVersionFile")
-//                latestVersion = Files.readString(cachedLatestVersionFile.toPath())!!
-//            }
-//
-//        } else {
-//            logger.quiet("Find latest stable IDE version from $definitionsUrl")
-//            latestVersion = getOnlineLatestStableIdeVersion(definitionsUrl)
-//            Files.writeString(cachedLatestVersionFile.toPath(), latestVersion, Charsets.UTF_8)
-//        }
-//
-//    } catch (e: Exception) {
-//        if (cachedLatestVersionFile.exists()) {
-//            logger.warn("Error: ${e.message}. Will find latest stable IDE version from cached file $cachedLatestVersionFile")
-//            latestVersion = Files.readString(cachedLatestVersionFile.toPath())!!
-//        } else {
-//            throw RuntimeException(e)
-//        }
-//    }
-//    if (logger.isDebugEnabled) {
-//        val t2 = System.currentTimeMillis()
-//        logger.debug("Operation took ${t2 - t1} ms")
-//    }
-//    return latestVersion
-//}
+fun isNonStable(version: String): Boolean {
+    if (listOf("RELEASE", "FINAL", "GA").any { version.uppercase().endsWith(it) }) {
+        return false
+    }
+    return listOf("alpha", "Alpha", "ALPHA", "b", "beta", "Beta", "BETA", "rc", "RC", "M", "EA", "pr", "atlassian").any {
+        "(?i).*[.-]${it}[.\\d-]*$".toRegex().matches(version)
+    }
+}
 
-///** Find latest IntelliJ stable version from given url. */
-//fun getOnlineLatestStableIdeVersion(definitionsUrl: URL): String {
-//    val definitionsStr = readRemoteContent(definitionsUrl)
-//    val builderFactory = DocumentBuilderFactory.newInstance()
-//    val builder = builderFactory.newDocumentBuilder()
-//    val xmlDocument: Document = builder.parse(ByteArrayInputStream(definitionsStr.toByteArray()))
-//    val xPath = XPathFactory.newInstance().newXPath()
-//    val expression = "/products/product[@name='IntelliJ IDEA']/channel[@id='IC-IU-RELEASE-licensing-RELEASE']/build[1]/@version"
-//    return xPath.compile(expression).evaluate(xmlDocument, XPathConstants.STRING) as String
-//}
-//
-///** Read a remote file as String. */
-//fun readRemoteContent(url: URL): String {
-//    val t1 = System.currentTimeMillis()
-//    val content = StringBuilder()
-//    val conn = url.openConnection() as HttpURLConnection
-//    conn.requestMethod = "GET"
-//    BufferedReader(InputStreamReader(conn.inputStream)).use { rd ->
-//        var line: String? = rd.readLine()
-//        while (line != null) {
-//            content.append(line)
-//            line = rd.readLine()
-//        }
-//    }
-//    val t2 = System.currentTimeMillis()
-//    logger.quiet("Download $url, took ${t2 - t1} ms (${content.length} B)")
-//    return content.toString()
-//}
+/** Return an IDE version string without the optional PATCH number.
+ * In other words, replace IDE-MAJOR-MINOR(-PATCH) by IDE-MAJOR-MINOR. */
+fun shortenIdeVersion(version: String): String {
+    if (version.contains("SNAPSHOT", ignoreCase = true)) {
+        return version
+    }
+    val matcher = Regex("[A-Za-z]+[\\-]?[0-9]+[\\.]{1}[0-9]+")
+    return try {
+        matcher.findAll(version).map { it.value }.toList()[0]
+    } catch (e: Exception) {
+        logger.warn("Failed to shorten IDE version $version: ${e.message}")
+        version
+    }
+}
 
-///** Get IDE version from gradle.properties or, of wanted, find latest stable IDE version from JetBrains website. */
-//fun detectBestIdeVersion(): String {
-//    val pluginIdeaVersionFromProps = project.findProperty("pluginIdeaVersion")
-//    if (pluginIdeaVersionFromProps.toString() == "IC-LATEST-STABLE") {
-//        return "IC-${findLatestStableIdeVersion()}"
-//    }
-//    if (pluginIdeaVersionFromProps.toString() == "IU-LATEST-STABLE") {
-//        return "IU-${findLatestStableIdeVersion()}"
-//    }
-//    return pluginIdeaVersionFromProps.toString()
-//}
+/** Find latest IntelliJ stable version from JetBrains website. Result is cached locally for 24h. */
+fun findLatestStableIdeVersion(): String {
+    val t1 = System.currentTimeMillis()
+    val definitionsUrl = URL("https://www.jetbrains.com/updates/updates.xml").toURI().toURL()
+    val cachedLatestVersionFile = File(System.getProperty("java.io.tmpdir") + "/jle-ij-latest-version.txt")
+    var latestVersion: String
+    try {
+        if (cachedLatestVersionFile.exists()) {
+
+            val cacheDurationMs = Integer.parseInt(project.findProperty("pluginIdeaVersionCacheDurationInHours") as String) * 60 * 60_000
+            if (cachedLatestVersionFile.exists() && cachedLatestVersionFile.lastModified() < (System.currentTimeMillis() - cacheDurationMs)) {
+                logger.quiet("Cache expired, find latest stable IDE version from $definitionsUrl then update cached file $cachedLatestVersionFile")
+                latestVersion = getOnlineLatestStableIdeVersion(definitionsUrl)
+                cachedLatestVersionFile.delete()
+                Files.writeString(cachedLatestVersionFile.toPath(), latestVersion, Charsets.UTF_8)
+
+            } else {
+                logger.quiet("Find latest stable IDE version from cached file $cachedLatestVersionFile")
+                latestVersion = Files.readString(cachedLatestVersionFile.toPath())!!
+            }
+
+        } else {
+            logger.quiet("Find latest stable IDE version from $definitionsUrl")
+            latestVersion = getOnlineLatestStableIdeVersion(definitionsUrl)
+            Files.writeString(cachedLatestVersionFile.toPath(), latestVersion, Charsets.UTF_8)
+        }
+
+    } catch (e: Exception) {
+        if (cachedLatestVersionFile.exists()) {
+            logger.warn("Error: ${e.message}. Will find latest stable IDE version from cached file $cachedLatestVersionFile")
+            latestVersion = Files.readString(cachedLatestVersionFile.toPath())!!
+        } else {
+            throw RuntimeException(e)
+        }
+    }
+    if (logger.isDebugEnabled) {
+        val t2 = System.currentTimeMillis()
+        logger.debug("Operation took ${t2 - t1} ms")
+    }
+    return latestVersion
+}
+
+/** Find latest IntelliJ stable version from given url. */
+fun getOnlineLatestStableIdeVersion(definitionsUrl: URL): String {
+    val definitionsStr = readRemoteContent(definitionsUrl)
+    val builderFactory = DocumentBuilderFactory.newInstance()
+    val builder = builderFactory.newDocumentBuilder()
+    val xmlDocument: Document = builder.parse(ByteArrayInputStream(definitionsStr.toByteArray()))
+    val xPath = XPathFactory.newInstance().newXPath()
+    val expression = "/products/product[@name='IntelliJ IDEA']/channel[@id='IC-IU-RELEASE-licensing-RELEASE']/build[1]/@version"
+    return xPath.compile(expression).evaluate(xmlDocument, XPathConstants.STRING) as String
+}
+
+/** Read a remote file as String. */
+fun readRemoteContent(url: URL): String {
+    val t1 = System.currentTimeMillis()
+    val content = StringBuilder()
+    val conn = url.openConnection() as HttpURLConnection
+    conn.requestMethod = "GET"
+    BufferedReader(InputStreamReader(conn.inputStream)).use { rd ->
+        var line: String? = rd.readLine()
+        while (line != null) {
+            content.append(line)
+            line = rd.readLine()
+        }
+    }
+    val t2 = System.currentTimeMillis()
+    logger.quiet("Download $url, took ${t2 - t1} ms (${content.length} B)")
+    return content.toString()
+}
+
+/** Get IDE version from gradle.properties or, of wanted, find latest stable IDE version from JetBrains website. */
+fun detectBestIdeVersion(): String {
+    val pluginIdeaVersionFromProps = project.findProperty("pluginIdeaVersion")
+    if (pluginIdeaVersionFromProps.toString() == "IC-LATEST-STABLE") {
+        return "IC-${findLatestStableIdeVersion()}"
+    }
+    if (pluginIdeaVersionFromProps.toString() == "IU-LATEST-STABLE") {
+        return "IU-${findLatestStableIdeVersion()}"
+    }
+    return pluginIdeaVersionFromProps.toString()
+}
 
 operator fun Any.get(key: String): Any {
     return key

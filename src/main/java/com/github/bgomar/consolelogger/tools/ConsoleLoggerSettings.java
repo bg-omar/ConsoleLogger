@@ -1,11 +1,16 @@
 package com.github.bgomar.consolelogger.tools;
 
+import com.github.bgomar.consolelogger.toolwindow.setup.PropertiesConsoleLoggerToolSetup;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.diagnostic.Logger;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.*;
 
 
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
@@ -41,7 +46,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     public static final String ACTIVE_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
     public static final String ACTIVE_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
-    private static String[] patterns = {
+    public static String[] patterns = {
             ACTIVE_PATTERN_1,
             ACTIVE_PATTERN_2,
             ACTIVE_PATTERN_3,
@@ -68,7 +73,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
             DEFAULT_PATTERN_15,
             DEFAULT_PATTERN_16,
             DEFAULT_PATTERN_17,
-            DEFAULT_PATTERN_18,
+            DEFAULT_PATTERN_18
     };
 
     public String version = "0.0.29";
@@ -77,6 +82,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
 
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
     }
+
 
     public static class State {
         static String[] patterns = {
@@ -106,7 +112,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
                 DEFAULT_PATTERN_15,
                 DEFAULT_PATTERN_16,
                 DEFAULT_PATTERN_17,
-                DEFAULT_PATTERN_18,
+                DEFAULT_PATTERN_18
         };
     }
 
@@ -119,7 +125,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     }
 
     @Override
-    public void loadState(@NotNull State state) {
+    public void loadState(@NotNull ConsoleLoggerSettings.State state) {
         patterns = State.patterns;
         XmlSerializerUtil.copyBean(state, this);
     }
@@ -138,9 +144,33 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
         } else {
             patterns[index-1] = pattern;
         }
+        saveSettings();
     }
 
     public static int getLogPatternsCount() {
         return patterns.length;
+    }
+
+    public static void saveSettings() {
+        try (FileWriter writer = new FileWriter("consolelogger.xml")) {
+            for (String pattern : patterns) {
+                writer.write(pattern + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadSettings() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("consolelogger.xml"))) {
+            String line;
+            int index = 0;
+            while ((line = reader.readLine()) != null && index < patterns.length) {
+                patterns[index] = line;
+                index++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

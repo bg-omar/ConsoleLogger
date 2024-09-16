@@ -1,5 +1,6 @@
 package com.github.bgomar.consolelogger.toolwindow;
 
+import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBTextField;
@@ -9,7 +10,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
-public class ConsoleLoggerToolWindowPanel {
+public class ConsoleLoggerToolWindow {
 
     private JPanel mainPanel;
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
@@ -57,8 +58,11 @@ public class ConsoleLoggerToolWindowPanel {
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindowPanel() throws IOException {
-        String iconsPath = "icons/";
+    public ConsoleLoggerToolWindow(ConsoleLoggerSettings settings) {
+        String iconsPath = "/icons/";
+        helpLabel.setText("State: " + settings.getState());
+
+
         toolPanelsByTitle.put("Properties of ConsoleLogger", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
@@ -103,7 +107,7 @@ public class ConsoleLoggerToolWindowPanel {
         ComboboxSpeedSearch.installSpeedSearch(toolComboBox, ComboBoxWithImageItem::displayName);
 
         helpLabel.setText("");
-        helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", ConsoleLoggerToolWindowPanel.class));
+        helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", ConsoleLoggerToolWindow.class));
         helpLabel.setToolTipText("");
         helpLabel.setVisible(false);
 
@@ -138,6 +142,10 @@ public class ConsoleLoggerToolWindowPanel {
     private void displayToolPanel(String toolPanelTitle) {
         toolPanelsByTitle.forEach((s, jPanel) -> jPanel.panel().setVisible(false));
         toolPanelsByTitle.get(toolPanelTitle).panel().setVisible(true);
+    }
+
+    public JPanel getComponent() {
+        return mainPanel;
     }
 
     public JPanel getContent() {

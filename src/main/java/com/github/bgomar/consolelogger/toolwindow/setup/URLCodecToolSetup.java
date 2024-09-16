@@ -23,7 +23,7 @@ public class URLCodecToolSetup extends AbstractToolSetup {
     public URLCodecToolSetup(JBTextField decodedTextArea,
                              JBTextField encodedTextArea,
                              JBTextField svg2CssTextArea,
-                             JTextPane  preview) throws IOException {
+                             JTextPane  preview) {
         this.decodedTextArea = decodedTextArea;
         this.encodedTextArea = encodedTextArea;
         this.svg2CssTextArea = svg2CssTextArea;

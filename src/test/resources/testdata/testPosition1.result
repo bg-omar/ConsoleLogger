@@ -1,4 +1,0 @@
-test() {
-    let variable = null;
-    console.log("=>(testPosition1:3) <selection>variable</selection>", <selection>variable</selection>);
-}
