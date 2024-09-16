@@ -120,14 +120,13 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     @Override
     public State getState() {
         State state = new State();
-        State.patterns = patterns;
+        state.patterns = patterns;
         return state;
     }
-
     @Override
     public void loadState(@NotNull ConsoleLoggerSettings.State state) {
-        patterns = State.patterns;
-        XmlSerializerUtil.copyBean(state, this);
+        patterns = state.patterns;
+//        XmlSerializerUtil.copyBean(state, this);
     }
 
     public static String getPattern(int index) {
@@ -162,6 +161,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     }
 
     public static void loadSettings() {
+
         try (BufferedReader reader = new BufferedReader(new FileReader("consolelogger.xml"))) {
             String line;
             int index = 0;

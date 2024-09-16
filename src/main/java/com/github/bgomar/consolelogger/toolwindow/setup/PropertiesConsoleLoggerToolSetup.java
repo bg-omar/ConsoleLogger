@@ -95,6 +95,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
 
     public void setup() {
+        ConsoleLoggerSettings.getInstance();
         ConsoleLoggerSettings.loadSettings();
         loadActiveLoggers();
         load1Loggers();

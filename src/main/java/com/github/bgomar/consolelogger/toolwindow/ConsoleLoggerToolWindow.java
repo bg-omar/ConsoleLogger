@@ -60,8 +60,6 @@ public class ConsoleLoggerToolWindow {
 
     public ConsoleLoggerToolWindow(ConsoleLoggerSettings settings) {
         String iconsPath = "/icons/";
-        helpLabel.setText("State: " + settings.getState());
-
 
         toolPanelsByTitle.put("Properties of ConsoleLogger", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "coolcat.svg"));
@@ -94,8 +92,7 @@ public class ConsoleLoggerToolWindow {
         new URLCodecToolSetup(
             urlCodecDecodedTextArea,
             urlCodecEncodedTextArea,
-            urlCodecSvg2CssTextArea,
-            preview).setup();
+            urlCodecSvg2CssTextArea).setup();
         new Px2RemToolSetup(
             px2RemTextField,
             rem2PxTextField).setup();

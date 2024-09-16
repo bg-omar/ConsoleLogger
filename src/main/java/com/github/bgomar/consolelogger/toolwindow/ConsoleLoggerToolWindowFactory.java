@@ -15,11 +15,12 @@ public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAw
 
     @Override
     public void createToolWindowContent(@NotNull Project project, ToolWindow toolWindow) {
+        ConsoleLoggerToolWindow toolWindowPanel = null;
         // Get settings instance
         ConsoleLoggerSettings settings = ConsoleLoggerSettings.getInstance();
-//        ConsoleLoggerSettings.loadSettings();
+       ConsoleLoggerSettings.loadSettings();
         // Create a custom component or panel based on settings
-        ConsoleLoggerToolWindow toolWindowPanel = new ConsoleLoggerToolWindow(settings);
+        toolWindowPanel = new ConsoleLoggerToolWindow(settings);
 
         // Use the new method to get ContentFactory instance
         ContentFactory contentFactory = ContentFactory.getInstance();

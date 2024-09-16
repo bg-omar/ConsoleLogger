@@ -55,8 +55,8 @@ val pluginIdeaVersion = detectBestIdeVersion()
 plugins {
     id("java") // Java support
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta3"     // Kotlin support
-    id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
+    id("org.jetbrains.kotlin.jvm") version "1.9.21"
+    id("org.jetbrains.intellij") version "1.17.4"    // Gradle IntelliJ Plugin
     id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
     id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
     id("org.jetbrains.kotlinx.kover") version "0.7.4"    // Gradle Kover Plugin
@@ -67,10 +67,6 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
-
-repositories {
-    mavenCentral()
-}
 
 val junitVersion = "5.11.0-M2"
 val junitPlatformLauncher = "1.11.0-M2"

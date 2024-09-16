@@ -12,10 +12,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings" />
-        <applicationConfigurable parentId="tools"
-            instance="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettingsConfigurable"
-            id="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettingsConfigurable"
-            displayName="ConsoleLogger"/>
+
         <toolWindow id="Loggers"
                     icon="/cryingcatt.svg"
                     anchor="right"

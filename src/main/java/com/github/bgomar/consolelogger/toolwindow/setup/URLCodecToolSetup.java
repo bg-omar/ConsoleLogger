@@ -15,25 +15,20 @@ import java.util.Stack;
 
 public class URLCodecToolSetup extends AbstractToolSetup {
 
-    private JBTextField decodedTextArea;
-    private JBTextField encodedTextArea;
-    private JBTextField svg2CssTextArea;
-    private final JTextPane preview;
+    private final JBTextField decodedTextArea;
+    private final JBTextField encodedTextArea;
+    private final JBTextField svg2CssTextArea;
+
 
     public URLCodecToolSetup(JBTextField decodedTextArea,
                              JBTextField encodedTextArea,
-                             JBTextField svg2CssTextArea,
-                             JTextPane  preview) {
+                             JBTextField svg2CssTextArea) {
         this.decodedTextArea = decodedTextArea;
         this.encodedTextArea = encodedTextArea;
         this.svg2CssTextArea = svg2CssTextArea;
-        this.preview = preview;
 
-        preview.setEditable(true);
-        String html = getString();
-        preview.setPreferredSize(new Dimension(250, 145));
-        preview.setMinimumSize(new Dimension(10, 10));
-        new URLCodecToolSetup(html);
+
+
     }
 
     private static @NotNull String getString() {
@@ -42,11 +37,6 @@ public class URLCodecToolSetup extends AbstractToolSetup {
         return "<html><head></head><body>  <div style=\"' + data + '); width: 100%; height: 100%;\"></div></body></html>";
     }
 
-    public URLCodecToolSetup(String s) {
-        this.preview = new JTextPane();
-        this.preview.setText(s);
-
-    }
 
     public void setup() {
         decodedTextArea.addKeyListener(new KeyListener() {
