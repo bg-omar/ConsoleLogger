@@ -2,6 +2,7 @@ package com.github.bgomar.consolelogger.settings
 
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
+import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
@@ -15,6 +16,7 @@ internal const val GROUP_CONSOLELOGGER_PATTERN =  """console.warn("%c ---> $$: "
 internal const val TABLE_CONSOLELOGGER_PATTERN =  """console.warn("%c ---> $$: ","color:#00F;", $$);"""
 
 
+@Service
 @State(name = "ConsoleLoggerSettings", storages = [(Storage("consolelogger.xml"))])
 class ConsoleLoggerSettings : PersistentStateComponent<ConsoleLoggerSettings> {
 

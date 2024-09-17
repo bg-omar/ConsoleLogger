@@ -1,5 +1,0 @@
-toto() {}
-tes<caret>t() {
-    let variable = null;
-}
-toto() {}

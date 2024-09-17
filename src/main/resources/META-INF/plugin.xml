@@ -1,6 +1,7 @@
 <idea-plugin require-restart="false">
     <id>com.github.bgomar.consolelogger</id>
     <name>ConsoleLogger</name>
+    <version>1.0</version>
     <vendor email="info@omariskandarani.com" url="https://github.com/bg-omar/consolelogger">bgOmar</vendor>
     <idea-version since-build="223.7571.182"/>
     <depends>com.intellij.modules.platform</depends>
@@ -10,18 +11,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
                                  id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable" displayName="ConsoleLogger"/>
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings"/>
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings" />
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings"/>
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettings" />
+
         <toolWindow id="Loggers"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
                     factoryClass="com.github.bgomar.consolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
     </extensions>
+    console.log("%c 1 --> 25||plugin.xml\n extensions: ","color:#f0f;", extensions);
 
     <actions>
         <group id="com.github.bgomar.consolelogger.ConsoleLoggerActionsGroup" class="com.github.bgomar.consolelogger.ConsoleLoggerActionsGroup"

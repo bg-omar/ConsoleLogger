@@ -1,6 +1,0 @@
-toto() {}
-test() {
-console.log("=>(testPosition4:3) <selection></selection>", <selection></selection>);
-    let variable = null;
-}
-toto() {}

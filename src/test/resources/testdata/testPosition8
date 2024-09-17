@@ -1,3 +1,0 @@
-if (!group.events || group.events.length === 0) {<caret>
-        return [];
-      }
