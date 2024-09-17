@@ -4,8 +4,6 @@ import org.apache.commons.io.FileUtils
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.com.google.gson.internal.bind.TypeAdapters.URI
-
 import org.w3c.dom.Document
 import java.lang.StringBuilder
 import java.io.File
@@ -13,9 +11,7 @@ import java.io.BufferedReader
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
-import java.net.URI
 import java.net.URL
-import java.net.URLStreamHandler
 import java.nio.file.Files
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPathConstants
@@ -55,8 +51,8 @@ val pluginIdeaVersion = detectBestIdeVersion()
 plugins {
     id("java") // Java support
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "1.9.21"
-    id("org.jetbrains.intellij") version "1.17.4"    // Gradle IntelliJ Plugin
+    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta3"     // Kotlin support
+    id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
     id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
     id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
     id("org.jetbrains.kotlinx.kover") version "0.7.4"    // Gradle Kover Plugin
@@ -67,6 +63,10 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
+
+repositories {
+    mavenCentral()
+}
 
 val junitVersion = "5.11.0-M2"
 val junitPlatformLauncher = "1.11.0-M2"
@@ -135,6 +135,23 @@ changelog {
     itemPrefix.set("*")
 }
 
+// Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
+koverReport {
+    defaults {
+        xml {
+            onCheck = true
+        }
+    }
+}
+
+// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
+qodana {
+    cachePath.set(file(".qodana").canonicalPath)
+    reportPath.set(file("build/reports/inspections").canonicalPath)
+    saveReport.set(true)
+    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
+}
+
 // Set the JVM language level used to build the project.
 kotlin {
     jvmToolchain(17)
@@ -181,6 +198,9 @@ tasks {
     }
     withType<org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain>().configureEach {
         kotlinJavaToolchain.toolchain.use(customLauncher)
+    }
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = sourceCompatibility
     }
     withType<Test> {
         useJUnitPlatform()
@@ -254,6 +274,13 @@ tasks {
 
     buildSearchableOptions {
         enabled = true
+    }
+    compileKotlin {
+        kotlinOptions.jvmTarget = jvmTarget
+    }
+
+    compileTestKotlin {
+        kotlinOptions.jvmTarget  = jvmTarget
     }
 
     signPlugin {

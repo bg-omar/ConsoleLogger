@@ -45,11 +45,12 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerDefaultButton7;
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
-    private JTextPane preview;
+
     private JButton cancelAllButton;
     private JButton saveButton;
     private JButton load2Button;
     private JButton load1Button;
+    private JTextPane preview;
 
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
@@ -92,7 +93,8 @@ public class ConsoleLoggerToolWindow {
         new URLCodecToolSetup(
             urlCodecDecodedTextArea,
             urlCodecEncodedTextArea,
-            urlCodecSvg2CssTextArea).setup();
+            urlCodecSvg2CssTextArea,
+            preview).setup();
         new Px2RemToolSetup(
             px2RemTextField,
             rem2PxTextField).setup();
@@ -112,26 +114,7 @@ public class ConsoleLoggerToolWindow {
             ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
             displayToolPanel(item.title());
 
-            helpLabel.setVisible(false);
-            switch (item.title()) {
-                case "Properties of ConsoleLogger" -> {
-                    helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                            "Quick change the console loggers.</html>");
-                }
-                case "Pixels to REM" -> {
-                    helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Change pixels to REM for css and it will<br>" +
-                        "automatically converted as you type.</html>");
-                }
-                case "Svg 2 Css" -> {
-                    helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Create CSS from a svg file and it will<br>" +
-                        "automatically converted as you type.</html>");
-                }
-            }
+
         });
         toolComboBox.setSelectedIndex(0);
     }

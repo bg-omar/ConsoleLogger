@@ -36,7 +36,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
     public static DialogPanel ui = new DialogPanel();
 
-    public int preset = 1;
+    public int propertiesConsoleLoggerPreset = 1;
 
     public PropertiesConsoleLoggerToolSetup() {
         setup();
@@ -95,17 +95,25 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
 
     public void setup() {
-        ConsoleLoggerSettings.getInstance();
         ConsoleLoggerSettings.loadSettings();
         loadActiveLoggers();
         load1Loggers();
-        loadDefaultButtons();
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_1 : ConsoleLoggerSettings.DEFAULT_PATTERN_10));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton2.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_2 : ConsoleLoggerSettings.DEFAULT_PATTERN_11));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton3.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_3 : ConsoleLoggerSettings.DEFAULT_PATTERN_12));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton4.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_4 : ConsoleLoggerSettings.DEFAULT_PATTERN_13));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton5.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_5 : ConsoleLoggerSettings.DEFAULT_PATTERN_14));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton6.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_6 : ConsoleLoggerSettings.DEFAULT_PATTERN_15));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_7 : ConsoleLoggerSettings.DEFAULT_PATTERN_16));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_8 : ConsoleLoggerSettings.DEFAULT_PATTERN_17));
+            PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((propertiesConsoleLoggerPreset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
+
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton.addActionListener(e -> {
-            if (preset == 1) {
+            if (propertiesConsoleLoggerPreset == 1) {
                 load1Loggers();
                 saveActiveLoggers();
-            } else if (preset == 2) {
+            } else if (propertiesConsoleLoggerPreset == 2) {
                 load2Loggers();
                 saveActiveLoggers();
             }
@@ -123,10 +131,10 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
-            if (preset == 1) {
+            if (propertiesConsoleLoggerPreset == 1) {
                 saveActiveLoggers();
                 save1Loggers();
-            } else if (preset == 2) {
+            } else if (propertiesConsoleLoggerPreset == 2) {
                 saveActiveLoggers();
                 save2Loggers();
             }
@@ -134,17 +142,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
     }
 
-    private void loadDefaultButtons() {
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_1 : ConsoleLoggerSettings.DEFAULT_PATTERN_10));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton2.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_2 : ConsoleLoggerSettings.DEFAULT_PATTERN_11));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton3.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_3 : ConsoleLoggerSettings.DEFAULT_PATTERN_12));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton4.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField4.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_4 : ConsoleLoggerSettings.DEFAULT_PATTERN_13));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton5.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField5.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_5 : ConsoleLoggerSettings.DEFAULT_PATTERN_14));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton6.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField6.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_6 : ConsoleLoggerSettings.DEFAULT_PATTERN_15));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_7 : ConsoleLoggerSettings.DEFAULT_PATTERN_16));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_8 : ConsoleLoggerSettings.DEFAULT_PATTERN_17));
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
-    }
+
 
     private void loadActiveLoggers() {
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(0));
@@ -180,6 +178,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         ConsoleLoggerSettings.setPattern(15, propertiesConsoleLoggerTextField7.getText());
         ConsoleLoggerSettings.setPattern(16, propertiesConsoleLoggerTextField8.getText());
         ConsoleLoggerSettings.setPattern(17, propertiesConsoleLoggerTextField9.getText());
+        ConsoleLoggerSettings.saveSettings();
     }
 
     private void save2Loggers() {
@@ -192,10 +191,11 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         ConsoleLoggerSettings.setPattern(24, propertiesConsoleLoggerTextField7.getText());
         ConsoleLoggerSettings.setPattern(25, propertiesConsoleLoggerTextField8.getText());
         ConsoleLoggerSettings.setPattern(26, propertiesConsoleLoggerTextField9.getText());
+        ConsoleLoggerSettings.saveSettings();
     }
 
     private void load1Loggers() {
-        preset = 1;
+        propertiesConsoleLoggerPreset = 1;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(9));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(10));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(11));
@@ -208,7 +208,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     }
 
     private void load2Loggers() {
-        preset = 2;
+        propertiesConsoleLoggerPreset = 2;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1.setText(ConsoleLoggerSettings.getPattern(18));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField2.setText(ConsoleLoggerSettings.getPattern(19));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField3.setText(ConsoleLoggerSettings.getPattern(20));
@@ -235,7 +235,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         ui.apply();
     }
 
-
+    @Override
     public @NotNull JComponent getComponent() {
         return ui;
     }

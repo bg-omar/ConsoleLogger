@@ -14,7 +14,7 @@ import java.io.*;
 
 
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
-public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings.State> {
+public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
 
     public static final String DEFAULT_PATTERN_1 = "console.log(\"%c 1 --> {LN}||{FN}\\n $$: \",\"color:#f0f;\", $$);";
     public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 --> {LN}||{FN}\\n $$: \",\"color:#0f0;\", $$);";
@@ -79,7 +79,6 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
     public String version = "0.0.29";
 
     public static ConsoleLoggerSettings getInstance() {
-
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
     }
 
@@ -116,17 +115,18 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
         };
     }
 
-
+    @Nullable
     @Override
-    public State getState() {
+    public ConsoleLoggerSettings getState() {
         State state = new State();
         state.patterns = patterns;
-        return state;
+        return this;
     }
+
+
     @Override
-    public void loadState(@NotNull ConsoleLoggerSettings.State state) {
-        patterns = state.patterns;
-//        XmlSerializerUtil.copyBean(state, this);
+    public void loadState(@NotNull ConsoleLoggerSettings state) {
+        XmlSerializerUtil.copyBean(state, this);
     }
 
     public static String getPattern(int index) {
