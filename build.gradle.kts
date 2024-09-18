@@ -1,6 +1,21 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+@file:Suppress("VulnerableLibrariesLocal")
+
+import org.apache.commons.io.FileUtils
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.w3c.dom.Document
+import java.lang.StringBuilder
+import java.io.File
+import java.io.BufferedReader
+import java.io.ByteArrayInputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.file.Files
+import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.xpath.XPathConstants
+import javax.xml.xpath.XPathFactory
 
 interface Injected {
     @get:Inject val fs: FileSystemOperations
@@ -9,6 +24,10 @@ val injected = project.objects.newInstance<Injected>()
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 fun project(key: String) = injected.fs[key].toString()
+
+
+
+
 
 // Import variables from gradle.properties file
 val pluginDownloadIdeaSources: String by project
@@ -42,10 +61,13 @@ plugins {
     id("org.jetbrains.qodana") version "0.1.13"
     // Gradle Kover Plugin
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 group = properties("pluginGroup")
 version = properties("pluginVersion")
+val junitVersion = "5.11.0-M2"
+val junitPlatformLauncher = "1.11.0-M2"
 
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
@@ -61,7 +83,9 @@ val customLauncher = service.launcherFor {
 }
 
 dependencies {
+// https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
     implementation("org.jetbrains:marketplace-zip-signer:0.1.24")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0-RC")
 }
 abstract class UpdatePluginXml : DefaultTask() {
 
@@ -80,15 +104,20 @@ abstract class UpdatePluginXml : DefaultTask() {
     }
 }
 
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     pluginName.set(properties("pluginName"))
     version.set(properties("platformVersion"))
     type.set(properties("platformType"))
-    downloadSources.set(!System.getenv().containsKey("UI"))
-    updateSinceUntilBuild.set(false)
-    plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
+
+    updateSinceUntilBuild.set(true)
+    plugins.set(listOf("JavaScript"))
+
+    sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
+
+    downloadSources.set(!System.getenv().containsKey("CI"))
+    downloadSources.set(pluginDownloadIdeaSources.toBoolean() && !System.getenv().containsKey("IU"))
+    instrumentCode.set(true)
+
 
     sandboxDir.set(project.rootDir.canonicalPath + "/.sandbox")
 }
@@ -124,17 +153,47 @@ kover.xmlReport {
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+        sourceCompatibility = pluginJavaVersion
+        targetCompatibility = pluginJavaVersion
+        options.compilerArgs = listOf("-Xlint:deprecation")
+        options.encoding = "UTF-8"
     }
     withType<org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain>().configureEach {
         kotlinJavaToolchain.toolchain.use(customLauncher)
     }
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = sourceCompatibility
+    }
+    patchPluginXml {
+        sinceBuild.set("233")
+        untilBuild.set("233.*")
+    }
+
+    runIde {
+        dependsOn("clearSandboxedIDESystemLogs")
+
+        maxHeapSize = "1g" // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.JavaExec.html
+
+        // force detection of slow operations in EDT when playing with sandboxed IDE (SlowOperations.assertSlowOperationsAreAllowed)
+        jvmArgs("-Dide.slow.operations.assertion=true")
+
+        if (pluginEnableDebugLogs.toBoolean()) {
+            systemProperties(
+                "idea.log.debug.categories" to "#com.github.bgomar.consolelogger"
+            )
+        }
+
+        autoReloadPlugins.set(false)
+
+        // If any warning or error with missing --add-opens, wait for the next gradle-intellij-plugin's update that should sync
+        // with https://raw.githubusercontent.com/JetBrains/intellij-community/master/plugins/devkit/devkit-core/src/run/OpenedPackages.txt
+        // or do it manually
+    }
+    buildSearchableOptions {
+        enabled = false
     }
     wrapper {
-        gradleVersion= "7.6"
+        gradleVersion = properties("gradleVersion").get()
     }
 
     patchPluginXml {
@@ -167,13 +226,17 @@ tasks {
         })
     }
 
+    buildSearchableOptions {
+        enabled = false
+    }
     compileKotlin {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = jvmTarget
     }
 
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = jvmTarget
     }
+
 
     runIdeForUiTests {
         systemProperty("robot-server.port", "8082")
@@ -185,7 +248,7 @@ tasks {
     signPlugin {
         certificateChainFile.set(file("./secrets/chain.crt"))
         privateKeyFile.set(file("./secrets/private_encrypted.pem"))
-        password = environment("PRIVATE_KEY_PASSWORD")
+        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
     }
 
     publishPlugin {
@@ -193,7 +256,33 @@ tasks {
         token = environment("PUBLISH_TOKEN")
         channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
     }
+
+    patchPluginXml {
+        changeNotes.set(
+            """<br>
+
+        """
+        )
+    }
 }
+
+
+
+/** Return an IDE version string without the optional PATCH number.
+ * In other words, replace IDE-MAJOR-MINOR(-PATCH) by IDE-MAJOR-MINOR. */
+fun shortenIdeVersion(version: String): String {
+    if (version.contains("SNAPSHOT", ignoreCase = true)) {
+        return version
+    }
+    val matcher = Regex("[A-Za-z]+[\\-]?[0-9]+[\\.]{1}[0-9]+")
+    return try {
+        matcher.findAll(version).map { it.value }.toList()[0]
+    } catch (e: Exception) {
+        logger.warn("Failed to shorten IDE version $version: ${e.message}")
+        version
+    }
+}
+
 
 operator fun Any.get(key: String): Any {
     return key
@@ -217,12 +306,16 @@ fun generateConsoleLoggerActionsXml(): String {
 
 fun createActionXml(i: Int): String {
     val actionXml: StringBuilder = StringBuilder()
-    actionXml.append("\n             <action id=\"com.github.bgomar.consolelogger.add").append(i).append("\" class=\"com.github.bgomar.consolelogger" +
-            ".ConsoleLoggerAction").append("\"\n")
-    actionXml.append("                    text=\"").append(i-1).append("\"\n")
+    actionXml.append("\n             <action id=\"com.github.bgomar.consolelogger.add").append(i).append(
+        "\" class=\"com.github.bgomar.consolelogger" +
+                ".ConsoleLoggerAction"
+    ).append("\"\n")
+    actionXml.append("                    text=\"").append(i - 1).append("\"\n")
     actionXml.append("                    description=\"Generate a console.log() for that variable\">\n")
-    actionXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt ").append(i).append("\"/>\n")
-    actionXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt ").append(i).append("\"/>\n")
+    actionXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt ")
+        .append(i).append("\"/>\n")
+    actionXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt ")
+        .append(i).append("\"/>\n")
     actionXml.append("             </action>\n")
 
     return actionXml.toString()
