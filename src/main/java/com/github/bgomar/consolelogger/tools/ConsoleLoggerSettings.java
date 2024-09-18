@@ -14,7 +14,7 @@ import java.io.*;
 
 @Service
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
-public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings.State> {
+public final class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings.State> {
 
     public static final String DEFAULT_PATTERN_1 = "console.log(\"%c 1 --> {LN}||{FN}\\n $$: \",\"color:#f0f;\", $$);";
     public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 --> {LN}||{FN}\\n $$: \",\"color:#0f0;\", $$);";

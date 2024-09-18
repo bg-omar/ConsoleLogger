@@ -7,111 +7,97 @@ import com.intellij.ui.dsl.builder.*
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import javax.swing.JComponent
 
+import com.github.bgomar.consolelogger.toolwindow.setup.PropertiesConsoleLoggerToolSetup
 
-class ConsoleLoggerConfigurableUI(setting: ConsoleLoggerSettings) : ConfigurableUi<ConsoleLoggerSettings> {
-  private val ui: DialogPanel = panel {
-    var logField: Cell<JBTextField>
-    row("(CTRL + ALT + 1) ") {
-      logField = textField()
-        .bindText(setting::logPattern)
-        .horizontalAlign(HorizontalAlign.FILL)
-        .gap(RightGap.SMALL)
-        .resizableColumn().apply {
-          component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number " 
-        }
+import java.awt.GridBagConstraints
+import java.awt.GridBagLayout
+import javax.swing.*
+import org.jetbrains.annotations.NotNull
 
-      button("Default", actionListener = {
-        logField.component.text = LOGG_CONSOLELOGGER_PATTERN
-      }).apply {
-        component.toolTipText = "Reset to default pattern"
-      }
-    }.layout(RowLayout.PARENT_GRID)
+class ConsoleLoggerConfigurableUI(
+  propertiesConsoleLoggerTextField1: JTextField,
+  propertiesConsoleLoggerTextField2: JTextField,
+  propertiesConsoleLoggerTextField3: JTextField,
+  propertiesConsoleLoggerTextField4: JTextField,
+  propertiesConsoleLoggerTextField5: JTextField,
+  propertiesConsoleLoggerTextField6: JTextField,
+  propertiesConsoleLoggerTextField7: JTextField,
+  propertiesConsoleLoggerTextField8: JTextField,
+  propertiesConsoleLoggerTextField9: JTextField,
+  propertiesConsoleLoggerSaveButton: JButton,
+  propertiesConsoleLoggerLoad2Button: JButton,
+  propertiesConsoleLoggerLoad1Button: JButton,
+  propertiesConsoleLoggerCancelButton: JButton,
+  propertiesConsoleLoggerDefaultButton1: JButton,
+  propertiesConsoleLoggerDefaultButton2: JButton,
+  propertiesConsoleLoggerDefaultButton3: JButton,
+  propertiesConsoleLoggerDefaultButton4: JButton,
+  propertiesConsoleLoggerDefaultButton5: JButton,
+  propertiesConsoleLoggerDefaultButton6: JButton,
+  propertiesConsoleLoggerDefaultButton7: JButton,
+  propertiesConsoleLoggerDefaultButton8: JButton,
+  propertiesConsoleLoggerDefaultButton9: JButton
+) : PropertiesConsoleLoggerToolSetup(
+  propertiesConsoleLoggerTextField1,
+  propertiesConsoleLoggerTextField2,
+  propertiesConsoleLoggerTextField3,
+  propertiesConsoleLoggerTextField4,
+  propertiesConsoleLoggerTextField5,
+  propertiesConsoleLoggerTextField6,
+  propertiesConsoleLoggerTextField7,
+  propertiesConsoleLoggerTextField8,
+  propertiesConsoleLoggerTextField9,
+  propertiesConsoleLoggerSaveButton,
+  propertiesConsoleLoggerLoad2Button,
+  propertiesConsoleLoggerLoad1Button,
+  propertiesConsoleLoggerCancelButton,
+  propertiesConsoleLoggerDefaultButton1,
+  propertiesConsoleLoggerDefaultButton2,
+  propertiesConsoleLoggerDefaultButton3,
+  propertiesConsoleLoggerDefaultButton4,
+  propertiesConsoleLoggerDefaultButton5,
+  propertiesConsoleLoggerDefaultButton6,
+  propertiesConsoleLoggerDefaultButton7,
+  propertiesConsoleLoggerDefaultButton8,
+  propertiesConsoleLoggerDefaultButton9
+)
 
-    var debugField: Cell<JBTextField>
-    row("(CTRL + ALT + 2) ") {
-      debugField = textField()
-        .bindText(setting::debugPattern)
-        .horizontalAlign(HorizontalAlign.FILL)
-        .gap(RightGap.SMALL)
-        .resizableColumn().apply {
-         component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number " 
-        }
+class ConsoleLoggerConfig(@NotNull setting: ConsoleLoggerSettings) : PropertiesConsoleLoggerToolSetup() {
 
-      button("Default", actionListener = {
-        debugField.component.text = DBUG_CONSOLELOGGER_PATTERN
-      }).apply {
-        component.toolTipText = "Reset to default pattern"
-      }
-    }.layout(RowLayout.PARENT_GRID)
+  private val ui: DialogPanel = DialogPanel()
 
-    var warnField: Cell<JBTextField>
-    row("(CTRL + ALT + 3) ") {
-      warnField = textField()
-        .bindText(setting::warnPattern)
-        .horizontalAlign(HorizontalAlign.FILL)
-        .gap(RightGap.SMALL)
-        .resizableColumn().apply {
-         component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number " 
-        }
+  init {
+    ui.layout = GridBagLayout()
+    val gbc = GridBagConstraints().apply {
+      gridx = 0
+      gridy = 0
+    }
 
-      button("Default", actionListener = {
-        warnField.component.text = WARN_CONSOLELOGGER_PATTERN
-      }).apply {
-        component.toolTipText = "Reset to default pattern"
-      }
-    }.layout(RowLayout.PARENT_GRID)
+    val textFields = Array(9) { JBTextField() }
+    val defaultButtons = Array(9) { JButton("Default") }
 
-    var errorField: Cell<JBTextField>
-    row("(CTRL + ALT + 4) ") {
-      errorField = textField()
-        .bindText(setting::errorPattern)
-        .horizontalAlign(HorizontalAlign.FILL)
-        .gap(RightGap.SMALL)
-        .resizableColumn().apply {
-         component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number " 
-        }
+    for (i in textFields.indices) {
+      // Adding label with shortcut info
+      ui.add(JTextField("(CTRL + ALT + ${i + 1})"), gbc)
+      gbc.gridx++
 
-      button("Default", actionListener = {
-        errorField.component.text = ERROR_CONSOLELOGGER_PATTERN
-      }).apply {
-        component.toolTipText = "Reset to default pattern"
-      }
-    }.layout(RowLayout.PARENT_GRID)
+      // Creating text fields for patterns
+      textFields[i].text = ConsoleLoggerSettings.getPattern(i)
+      textFields[i].toolTipText = "Tooltip for pattern ${i + 1}"
+      ui.add(textFields[i], gbc)
+      gbc.gridx++
 
-    var groupField: Cell<JBTextField>
-    row("(CTRL + ALT + 5) ") {
-      groupField = textField()
-        .bindText(setting::groupPattern)
-        .horizontalAlign(HorizontalAlign.FILL)
-        .gap(RightGap.SMALL)
-        .resizableColumn().apply {
-         component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number " 
-        }
+      // Adding default button
+      defaultButtons[i].toolTipText = "Reset to default pattern"
+      defaultButtons[i].addActionListener { textFields[i].text = ConsoleLoggerSettings.getPattern(i) }
+      ui.add(defaultButtons[i], gbc)
 
-      button("Default", actionListener = {
-        groupField.component.text = GROUP_CONSOLELOGGER_PATTERN
-      }).apply {
-        component.toolTipText = "Reset to default pattern"
-      }
-    }.layout(RowLayout.PARENT_GRID)
-
-    var tableField: Cell<JBTextField>
-    row("(CTRL + ALT + 6) ") {
-      tableField = textField()
-        .bindText(setting::tablePattern)
-        .horizontalAlign(HorizontalAlign.FILL)
-        .gap(RightGap.SMALL)
-        .resizableColumn().apply {
-          component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number "
-        }
-
-      button("Default", actionListener = {
-        tableField.component.text = TABLE_CONSOLELOGGER_PATTERN
-      }).apply {
-        component.toolTipText = "console.log(\"%c\$\$: \",\"color:#F0F;\", \$\$), where \$\$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number "
-      }
-    }.layout(RowLayout.PARENT_GRID)
+      // Resetting grid column and moving to next row
+      gbc.gridx = 0
+      gbc.gridy++
+    }
   }
+
 
   override fun reset(settings: ConsoleLoggerSettings) {
     ui.reset()
