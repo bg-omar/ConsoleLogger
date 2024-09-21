@@ -3,6 +3,11 @@
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+.idea
+.intellijPlatform
+.qodana
+build
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
