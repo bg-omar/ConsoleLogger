@@ -1,15 +1,15 @@
-package com.github.bgomar.consolelogger.toolwindow.setup;
+package com.github.bgomar.consolelogger.toolwindowJava.setup;
 
-import com.github.bgomar.consolelogger.tools.ConsoleLoggerConfigurableUI;
-import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings;
+import com.github.bgomar.consolelogger.toolsJava.ConsoleLoggerSettings;
+import com.intellij.openapi.components.Service;
 import com.intellij.openapi.options.ConfigurableUi;
 import com.intellij.openapi.ui.DialogPanel;
 import org.jetbrains.annotations.NotNull;
 
 
 import javax.swing.*;
-
-public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup implements ConfigurableUi<ConsoleLoggerSettings> {
+@Service(Service.Level.PROJECT)
+public final class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup implements ConfigurableUi<ConsoleLoggerSettings> {
     private static JTextField propertiesConsoleLoggerTextField1 = new JTextField();
     private static JTextField propertiesConsoleLoggerTextField2 = new JTextField();
     private static JTextField propertiesConsoleLoggerTextField3 = new JTextField();

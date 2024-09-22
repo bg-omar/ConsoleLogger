@@ -1,9 +1,12 @@
 
+import org.gradle.kotlin.dsl.assign
+import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.intellij.platform.gradle.models.ProductRelease
+
 
 
 plugins {
@@ -63,6 +66,7 @@ java {
 kotlin {
     jvmToolchain(17)
 }
+
 
 // Configure IntelliJ Platform Gradle Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
 intellijPlatform {
@@ -156,6 +160,61 @@ tasks {
             pluginXmlFile.writeText(pluginXmlContent)
         }
     }
+    patchPluginXml {
+        version = properties("pluginVersion")
+        sinceBuild = properties("pluginSinceBuild")
+        untilBuild = properties("pluginUntilBuild")
+        updatePluginXml()
+        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+        pluginDescription.set(
+            file("README.md").readText().lines().run {
+                val start = "<!-- Plugin description -->"
+                val end = "<!-- Plugin description end -->"
+
+                if (!containsAll(listOf(start, end))) {
+                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
+                }
+                subList(indexOf(start) + 1, indexOf(end))
+            }.joinToString("\n").let { markdownToHTML(it) }
+        )
+
+        // Get the latest available change notes from the changelog file
+        changeNotes.set(provider {
+            with(changelog) {
+                renderItem(
+                    getOrNull(pluginVersion)
+                        ?: runCatching { getLatest() }.getOrElse { getUnreleased() },
+                    Changelog.OutputType.HTML,
+                )
+            }
+        })
+    }
+
+    buildSearchableOptions {
+        enabled = true
+    }
+
+    signPlugin {
+        certificateChainFile.set(file("./secrets/chain.crt"))
+        privateKeyFile.set(file("./secrets/private_encrypted.pem"))
+        password = environment("PRIVATE_KEY_PASSWORD")
+    }
+
+    publishPlugin {
+        dependsOn("patchChangelog")
+        token = environment("PUBLISH_TOKEN")
+        channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+    }
+
+    patchPluginXml {
+        changeNotes.set(
+            """<br>
+
+            """
+        )
+    }
+
+
     wrapper {
         gradleVersion = providers.gradleProperty("gradleVersion").get()
     }

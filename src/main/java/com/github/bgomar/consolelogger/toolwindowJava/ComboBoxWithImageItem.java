@@ -1,4 +1,4 @@
-package com.github.bgomar.consolelogger.toolwindow;
+package com.github.bgomar.consolelogger.toolwindowJava;
 
 /**
  * {@link ComboBoxWithImageRenderer} item: PNG or SVG image + text.

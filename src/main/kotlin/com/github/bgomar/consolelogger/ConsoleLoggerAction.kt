@@ -1,11 +1,12 @@
 package com.github.bgomar.consolelogger
 
+
+import com.github.bgomar.consolelogger.toolsJava.ConsoleLoggerSettings
 import com.intellij.lang.javascript.JavascriptLanguage
 import com.intellij.lang.javascript.psi.*
-import com.intellij.lang.typescript.psi.*
-
-
 import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.CaretState
 import com.intellij.openapi.editor.Editor
@@ -14,9 +15,6 @@ import com.intellij.openapi.editor.actionSystem.EditorActionManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
-import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
 
 
 class ConsoleLoggerAction : AnAction() {

@@ -1,16 +1,14 @@
-package com.github.bgomar.consolelogger.toolwindow.setup;
+package com.github.bgomar.consolelogger.toolwindowJava.setup;
 
 
 import com.intellij.ui.components.JBTextField;
-import com.github.bgomar.consolelogger.tools.URLTools;
+import com.github.bgomar.consolelogger.toolsJava.URLTools;
 
 import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.util.Stack;
 
 
 public class URLCodecToolSetup extends AbstractToolSetup {

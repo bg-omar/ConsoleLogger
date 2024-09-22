@@ -1,6 +1,4 @@
-package com.github.bgomar.consolelogger.tools;
-
-import kotlin.Function;
+package com.github.bgomar.consolelogger.toolsJava;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;

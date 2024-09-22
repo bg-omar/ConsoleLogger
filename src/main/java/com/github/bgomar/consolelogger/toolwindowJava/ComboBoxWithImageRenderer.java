@@ -1,4 +1,4 @@
-package com.github.bgomar.consolelogger.toolwindow;
+package com.github.bgomar.consolelogger.toolwindowJava;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.IconLoader;

@@ -1,4 +1,4 @@
-package com.github.bgomar.consolelogger.toolwindow.setup;
+package com.github.bgomar.consolelogger.toolwindowJava.setup;
 
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;

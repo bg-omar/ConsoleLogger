@@ -1,6 +1,6 @@
-package com.github.bgomar.consolelogger.tools;
+package com.github.bgomar.consolelogger.toolsJava;
 
-import com.github.bgomar.consolelogger.toolwindow.setup.PropertiesConsoleLoggerToolSetup;
+import com.github.bgomar.consolelogger.toolwindowJava.setup.PropertiesConsoleLoggerToolSetup;
 import com.intellij.openapi.ui.DialogPanel;
 import com.intellij.ui.components.JBTextField;
 import org.jetbrains.annotations.NotNull;

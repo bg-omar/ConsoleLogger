@@ -11,16 +11,16 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings" />
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.toolsJava.ConsoleLoggerSettings" />
         <applicationConfigurable parentId="tools"
-                                 instance="com.github.bgomar.consolelogger.tools.ConsoleLoggerSettingsConfigurable"
+                                 instance="com.github.bgomar.consolelogger.toolsJava.ConsoleLoggerSettingsConfigurable"
                                  id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
                                  displayName="ConsoleLogger"/>
 
         <toolWindow id="Loggers"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
-                    factoryClass="com.github.bgomar.consolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
+                    factoryClass="com.github.bgomar.consolelogger.toolwindowJava.ConsoleLoggerToolWindowFactory"/>
 
     </extensions>
 

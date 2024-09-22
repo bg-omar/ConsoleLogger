@@ -5,16 +5,16 @@
     <vendor>bg-omar</vendor>
 
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>JavaScript</depends>
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.bgomar.consolelogger.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow id="Console Logger" anchor="left" factoryClass="com.github.bgomar.consolelogger.toolWindow.ConsoleLoggerToolWindowFactory" />
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.toolWindow.setup.ConsoleLoggerSettings" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.bgomar.consolelogger.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.bgomar.consolelogger.listeners.ConsoleLoggerActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
 </idea-plugin>

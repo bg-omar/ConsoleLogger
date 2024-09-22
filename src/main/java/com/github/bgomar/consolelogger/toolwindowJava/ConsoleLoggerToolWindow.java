@@ -1,13 +1,12 @@
-package com.github.bgomar.consolelogger.toolwindow;
+package com.github.bgomar.consolelogger.toolwindowJava;
 
-import com.github.bgomar.consolelogger.tools.ConsoleLoggerSettings;
+import com.github.bgomar.consolelogger.toolsJava.ConsoleLoggerSettings;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBTextField;
-import com.github.bgomar.consolelogger.toolwindow.setup.*;
+import com.github.bgomar.consolelogger.toolwindowJava.setup.*;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class ConsoleLoggerToolWindow {
@@ -106,7 +105,7 @@ public class ConsoleLoggerToolWindow {
         ComboboxSpeedSearch.installSpeedSearch(toolComboBox, ComboBoxWithImageItem::displayName);
 
         helpLabel.setText("");
-        helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", ConsoleLoggerToolWindow.class));
+        helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", com.github.bgomar.consolelogger.toolWindow.ConsoleLoggerToolWindow.class));
         helpLabel.setToolTipText("");
         helpLabel.setVisible(false);
 

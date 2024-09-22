@@ -1,13 +1,11 @@
-package com.github.bgomar.consolelogger.tools;
+package com.github.bgomar.consolelogger.toolsJava;
 
-import com.github.bgomar.consolelogger.toolwindow.setup.PropertiesConsoleLoggerToolSetup;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
-import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
