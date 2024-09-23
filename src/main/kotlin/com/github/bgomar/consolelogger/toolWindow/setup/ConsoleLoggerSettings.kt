@@ -33,7 +33,7 @@ class ConsoleLoggerSettings : PersistentStateComponent<ConsoleLoggerSettings.Sta
 
         fun getPattern(index: Int): String {
             val settings = getInstance().state
-            return settings?.patterns?.getOrNull(index) ?: DEFAULT_PATTERNS[index]
+            return settings.patterns?.getOrNull(index) ?: DEFAULT_PATTERNS[index]
         }
 
         fun setPattern(index: Int, pattern: String) {
