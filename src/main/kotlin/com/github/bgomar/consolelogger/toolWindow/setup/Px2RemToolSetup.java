@@ -1,6 +1,6 @@
-package com.github.bgomar.consolelogger.toolwindowJava.setup;
+package com.github.bgomar.consolelogger.toolWindow.setup;
 
-import com.github.bgomar.consolelogger.toolsJava.px2RemTool;
+import com.github.bgomar.consolelogger.tools.px2RemTool;
 import com.intellij.ui.components.JBTextField;
 
 import java.awt.event.KeyEvent;

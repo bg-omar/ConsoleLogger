@@ -79,7 +79,7 @@ open class ConsoleLoggerConfigurableUI(
         ui.add(saveButton)
     }
 
-    open fun getComponent(): JComponent {
+    override fun getComponent(): JComponent {
         return ui // Return the panel containing all UI elements
     }
 

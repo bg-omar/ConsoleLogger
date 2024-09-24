@@ -1,4 +1,4 @@
-package com.github.bgomar.consolelogger.toolsJava;
+package com.github.bgomar.consolelogger.toolWindow;
 
 
 public class px2RemTool {

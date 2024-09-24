@@ -1,12 +1,12 @@
 package com.github.bgomar.consolelogger
 
+import com.github.bgomar.consolelogger.toolWindow.setup.ConsoleLoggerSettings
 import com.intellij.find.FindModel
 import com.intellij.find.FindUtil
 import com.intellij.find.replaceInProject.ReplaceInProjectManager
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.github.bgomar.consolelogger.toolsJava.ConsoleLoggerSettings
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
   override fun actionPerformed(e: AnActionEvent) {

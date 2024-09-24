@@ -1,4 +1,4 @@
-package com.github.bgomar.consolelogger.toolsJava;
+package com.github.bgomar.consolelogger.toolWindow;
 
 import java.util.HashMap;
 import java.util.Map;

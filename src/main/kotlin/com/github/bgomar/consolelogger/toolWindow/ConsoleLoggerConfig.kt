@@ -70,7 +70,7 @@ class ConsoleLoggerConfig(@NotNull setting: ConsoleLoggerSettings) : PropertiesC
         }
     }
 
-    fun getComponent(): JComponent {
+    override fun getComponent(): JComponent {
         return ui
     }
 }

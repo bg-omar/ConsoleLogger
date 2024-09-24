@@ -1,10 +1,10 @@
-package com.github.bgomar.consolelogger.toolwindowJava.setup;
+package com.github.bgomar.consolelogger.toolWindow.setup;
 
 
+import com.github.bgomar.consolelogger.tools.URLTools;
 import com.intellij.ui.components.JBTextField;
-import com.github.bgomar.consolelogger.toolsJava.URLTools;
-
 import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
