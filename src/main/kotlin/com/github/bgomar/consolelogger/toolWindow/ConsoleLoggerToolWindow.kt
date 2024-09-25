@@ -55,7 +55,7 @@ class ConsoleLoggerToolWindow(settings: ToolWindow) {
     private data class PanelAndIcon(val panel: JPanel, val icon: String)
 
     init {
-        val iconsPath = "/icons/"
+        val iconsPath = "icons/"
 
         toolPanelsByTitle["Properties of ConsoleLogger"] =
             PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg")

@@ -1,7 +1,7 @@
 package com.github.bgomar.consolelogger.toolWindow.setup;
 
 
-import com.github.bgomar.consolelogger.tools.URLTools;
+import com.github.bgomar.consolelogger.toolWindow.URLTools;
 import com.intellij.ui.components.JBTextField;
 import org.jetbrains.annotations.NotNull;
 
