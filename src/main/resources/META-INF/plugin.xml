@@ -2,16 +2,53 @@
 <idea-plugin>
     <id>com.github.bgomar.consolelogger</id>
     <name>ConsoleLogger</name>
-    <vendor>bg-omar</vendor>
+    <vendor email="info@omariskandarani.com" url="https://github.com/bg-omar/consolelogger">bgOmar</vendor>
 
+    <idea-version since-build="223.7571.182" />
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>JavaScript</depends>
     <resource-bundle>messages.MyBundle</resource-bundle>
+    <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
+
+    <description><![CDATA[
+      This free plugin is highly inspired from the <a href="https://devtoys.app"><b>DevToys</b></a> software available on Windows. Find useful tools in a Tool Window in the top right corner of your IDE:
+      <ul>
+        💙 Help  💛</a>
+    ]]>
+    </description>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Console Logger" anchor="left" factoryClass="com.github.bgomar.consolelogger.toolWindow.ConsoleLoggerToolWindowFactory" />
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.toolWindow.setup.ConsoleLoggerSettings" />
+
+
+        <applicationConfigurable parentId="tools" instance="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable"
+            id="com.github.bgomar.consolelogger.settings.ConsoleLoggerSettingsConfigurable" displayName="BG-ConsoleLogger"/>
+
+
+        <applicationService serviceImplementation="com.github.bgomar.consolebrowser.services.GivServiceSettings"/>
+        <projectConfigurable parentId="tools" instance="com.github.bgomar.consolebrowser.settings.ProjectSettingsConfigurable"
+            id="com.github.bgomar.consolebrowser.settings.ProjectSettingsConfigurable"   displayName="BG-ConsoleBrowser" />
+
+
+
+        <toolWindow id="ConsoleBrowser" icon="/icons/BG2.svg" anchor="left"
+            factoryClass="com.github.bgomar.consolebrowser.GivToolWindowFactory"/>
+
+        <!--suppress  PluginXmlValidity -->
+        <toolWindow id="Tools" icon="/icons/BG.svg" anchor="right"
+            factoryClass="com.github.bgomar.bgdevtoys.toolwindow.DevToysToolWindowFactory"/>
+
+        <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
+        <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
+
+
+
+        <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
+             on how to target different products -->
+
     </extensions>
 
     <applicationListeners>

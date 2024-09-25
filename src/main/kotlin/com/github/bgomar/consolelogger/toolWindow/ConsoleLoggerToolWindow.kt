@@ -1,12 +1,19 @@
 package com.github.bgomar.consolelogger.toolWindow
 
-import com.github.bgomar.consolelogger.toolWindow.setup.*
+import com.github.bgomar.consolelogger.toolWindow.setup.PropertiesConsoleLoggerToolSetup
+import com.github.bgomar.consolelogger.toolWindow.setup.Px2RemToolSetup
+import com.github.bgomar.consolelogger.toolWindow.setup.URLCodecToolSetup
 import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.ui.ComboboxSpeedSearch
 import com.intellij.ui.components.JBTextField
-import java.util.*
-import javax.swing.*
+import javax.swing.JButton
+import javax.swing.JComboBox
+import javax.swing.JLabel
+import javax.swing.JPanel
+import javax.swing.JTextField
+import javax.swing.JTextPane
+
 
 class ConsoleLoggerToolWindow(settings: ToolWindow) {
 
@@ -50,11 +57,30 @@ class ConsoleLoggerToolWindow(settings: ToolWindow) {
     private lateinit var load1Button: JButton
     private lateinit var preview: JTextPane
 
-    private val toolPanelsByTitle: LinkedHashMap<String, PanelAndIcon> = LinkedHashMap()
+    private val toolPanelsByTitle: java.util.LinkedHashMap<String, PanelAndIcon> = LinkedHashMap()
 
     private data class PanelAndIcon(val panel: JPanel, val icon: String)
 
     init {
+        // Create JTextFields and Buttons for the UI
+
+    }
+    init {
+
+        val textFields = Array(9) { JBTextField() }
+        val buttons = Array(9) { JButton("Default ${it + 1}") }
+
+        // Setup the UI using ConsoleLoggerConfigurableUI
+        val ui = ConsoleLoggerConfigurableUI(
+            textFields[0], textFields[1], textFields[2], textFields[3],
+            textFields[4], textFields[5], textFields[6], textFields[7],
+            textFields[8], JButton("Save"), JButton("Load 2"),
+            JButton("Load 1"), JButton("Cancel"), buttons[0], buttons[1],
+            buttons[2], buttons[3], buttons[4], buttons[5], buttons[6],
+            buttons[7], buttons[8]
+        )
+        mainPanel = ui.getComponent() as JPanel
+
         val iconsPath = "icons/"
 
         toolPanelsByTitle["Properties of ConsoleLogger"] =
@@ -89,6 +115,7 @@ class ConsoleLoggerToolWindow(settings: ToolWindow) {
             propertiesConsoleLoggerDefaultButton9
         ).setup()
 
+
         URLCodecToolSetup(
             urlCodecDecodedTextArea,
             urlCodecEncodedTextArea,
@@ -108,7 +135,6 @@ class ConsoleLoggerToolWindow(settings: ToolWindow) {
         toolComboBox.renderer = ComboBoxWithImageRenderer()
         toolComboBox.maximumRowCount = 11
         ComboboxSpeedSearch.installSpeedSearch(toolComboBox) { item -> item.displayName() }
-
         helpLabel.text = ""
         helpLabel.icon = IconLoader.getIcon(iconsPath + "contextHelp.svg", ConsoleLoggerToolWindow::class.java)
         helpLabel.toolTipText = ""
@@ -121,14 +147,14 @@ class ConsoleLoggerToolWindow(settings: ToolWindow) {
         toolComboBox.selectedIndex = 0
     }
 
-    private fun displayToolPanel(toolPanelTitle: String) {
-        toolPanelsByTitle.forEach { (_, jPanel) -> jPanel.panel.isVisible = false }
-        toolPanelsByTitle[toolPanelTitle]?.panel?.isVisible = true
-    }
+        private fun displayToolPanel(toolPanelTitle: String) {
+            toolPanelsByTitle.forEach { (_, jPanel) -> jPanel.panel.isVisible = false }
+            toolPanelsByTitle[toolPanelTitle]?.panel?.isVisible = true
+        }
 
-    fun getComponent(): JPanel {
-        return mainPanel
-    }
+        fun getComponent(): JPanel {
+            return mainPanel
+        }
 
     fun getContent(): JPanel {
         return mainPanel
