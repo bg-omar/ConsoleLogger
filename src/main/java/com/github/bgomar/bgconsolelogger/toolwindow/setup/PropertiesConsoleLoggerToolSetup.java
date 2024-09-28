@@ -114,11 +114,10 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
+            saveActiveLoggers();
             if (preset == 1) {
-                saveActiveLoggers();
                 save1Loggers();
             } else if (preset == 2) {
-                saveActiveLoggers();
                 save2Loggers();
             }
         });
@@ -136,17 +135,18 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
                 save1Loggers();
             } else if (preset == 2) {
                 save2Loggers();
-                load1Loggers();
             }
+            load1Loggers();
         });
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerLoad2Button.addActionListener(e -> {
             if (preset == 1) {
                 save1Loggers();
-                load2Loggers();
             } else if (preset == 2) {
                 save2Loggers();
             }
+            load2Loggers();
+
         });
     }
 

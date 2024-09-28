@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.0.29] - 29-09-2024
+- changed some of the input field sizes
+- added option for second preset of loggers
+- Finally got save to work as supposed!!!
+
+## [0.0.28] - 06-09-2024
+- Saving seems to work better now
+- Updated dependencies
+- removed depricated label
+- Added a cancel button
+
+## [0.0.27] - 19-03-2024
+- Tried fixing the Saving issues on some IDE
+- Removed the unused settings from Tools
+
+## [0.0.26] - 19-03-2024
+
+## [0.0.25] - 19-03-2024
+
+## [0.0.24] - 19-03-2024
+
+## [0.0.23] - 19-03-2024
+
+## [0.0.22] - 19-03-2024
+
 ## [0.0.21] - 19-03-2024
 - 💥 Big Changes to the visuals
 - 💻 Added a toolwindow ➡️ 

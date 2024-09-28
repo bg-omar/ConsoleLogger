@@ -7,7 +7,6 @@ import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class ConsoleLoggerToolWindow {
@@ -21,10 +20,6 @@ public class ConsoleLoggerToolWindow {
     private JBRadioButton base64RadioButtonASCII;
     private JTextArea base64RawTextArea;
     private JTextArea base64Base64TextArea;
-
-    private JPanel urlCodecPanel;
-    private JBTextField urlCodecDecodedTextField;
-    private JBTextField urlCodecEncodedTextField;
 
     private JPanel px2RemPanel;
     private JBTextField px2RemTextField;
@@ -46,36 +41,11 @@ public class ConsoleLoggerToolWindow {
     private JBTextField hashBCrypt2BTextField;
     private JBTextField hashBCrypt2YTextField;
 
-    private JPanel timestampPanel;
-    private JComboBox<ComboBoxWithImageItem> timestampTimezoneComboBox;
-    private JTextArea timestampTextArea;
-    private JSpinner timestampSpinner;
-    private JButton timestampNowButton;
-    private JButton timestampUpdateFromTimestampButton;
-    private JButton timestampUpdateFromFieldsButton;
-    private JLabel timestampWarningNoZoneIdLabel;
-    private JSpinner timestampYearSpinner;
-    private JSpinner timestampDaySpinner;
-    private JSpinner timestampMonthSpinner;
-    private JSpinner timestampHourSpinner;
-    private JSpinner timestampMinuteSpinner;
-    private JSpinner timestampSecondSpinner;
-    private JSpinner timestampMillisecondSpinner;
-    private JComboBox<String> timestampResolutionComboBox;
-    private JLabel timestampMillisecondLabel;
-
     private JPanel dataFakerPanel;
     private JComboBox<String> dataFakerGeneratorComboBox;
     private JButton dataFakerGenerateButton;
     private JComboBox<String> dataFakerLocaleComboBox;
     private JTextArea dataFakerTextArea;
-
-    private JPanel cronPanel;
-    private JTextField cronExpressionTextField;
-    private JSpinner cronExpressionHowManyDaysSpinner;
-    private JComboBox<String> cronTypeComboBox;
-    private JTextArea cronTextArea;
-    private JButton explainButton;
 
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
@@ -113,10 +83,7 @@ public class ConsoleLoggerToolWindow {
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "devcat.svg"));
-//        toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "pika.svg"));
-//        toolPanelsByTitle.put("Timestamp converter", new PanelAndIcon(timestampPanel, iconsPath + "dude.svg"));
-//        toolPanelsByTitle.put("Cron parser", new PanelAndIcon(cronPanel, iconsPath + "ConsoleBrowser.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
@@ -147,9 +114,6 @@ public class ConsoleLoggerToolWindow {
             base64RadioButtonASCII,
             base64RawTextArea,
             base64Base64TextArea).setup();
-        new URLCodecToolSetup(
-            urlCodecDecodedTextField,
-            urlCodecEncodedTextField).setup();
         new Svg2cssToolSetup(
             svg2cssEncodedTextArea,
             svg2cssDecodedTextArea,
@@ -162,29 +126,6 @@ public class ConsoleLoggerToolWindow {
             dataFakerGenerateButton,
             dataFakerLocaleComboBox,
             dataFakerTextArea).setup();
-        new TimestampToolSetup(
-            timestampTimezoneComboBox,
-            timestampTextArea,
-            timestampSpinner,
-            timestampNowButton,
-            timestampUpdateFromTimestampButton,
-            timestampUpdateFromFieldsButton,
-            timestampWarningNoZoneIdLabel,
-            timestampYearSpinner,
-            timestampDaySpinner,
-            timestampMonthSpinner,
-            timestampHourSpinner,
-            timestampMinuteSpinner,
-            timestampSecondSpinner,
-            timestampMillisecondSpinner,
-            timestampResolutionComboBox,
-            timestampMillisecondLabel).setup();
-        new CronToolSetup(
-            cronExpressionTextField,
-            cronExpressionHowManyDaysSpinner,
-            cronTypeComboBox,
-            cronTextArea,
-            explainButton).setup();
         var hashToolSetup = new HashToolSetup(
             hashInputTextArea,
             hashMD5TextField,
