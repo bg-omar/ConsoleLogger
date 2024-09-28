@@ -8,10 +8,17 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+
 public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        ConsoleLoggerToolWindow myToolWindow = new ConsoleLoggerToolWindow();
+        ConsoleLoggerToolWindow myToolWindow = null;
+        try {
+            myToolWindow = new ConsoleLoggerToolWindow();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);

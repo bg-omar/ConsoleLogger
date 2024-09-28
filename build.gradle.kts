@@ -80,6 +80,7 @@ val customLauncher = service.launcherFor {
 
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
     maven("https://www.jetbrains.com/intellij-repository/releases")
     maven("https://www.jetbrains.com/intellij-repository/snapshots")
     maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
@@ -188,9 +189,9 @@ java {
 
 tasks {
     register("clearSandboxedIDESystemLogs") {
+        val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
         doFirst {
             if (pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean()) {
-                val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
                 if (sandboxLogDir.exists() && sandboxLogDir.isDirectory) {
                     FileUtils.deleteDirectory(sandboxLogDir)
                     logger.quiet("Deleted sandboxed IDE's log folder $sandboxLogDir")
@@ -200,10 +201,10 @@ tasks {
     }
 
     register("updatePluginXml") {
+        val generatedActionsXml = generateConsoleLoggerActionsXml()
+        val pluginXmlFile = File("src/main/resources/META-INF/plugin.xml")
+        var pluginXmlContent = pluginXmlFile.readText()
         doFirst {
-            val generatedActionsXml = generateConsoleLoggerActionsXml()
-            val pluginXmlFile = File("src/main/resources/META-INF/plugin.xml")
-            var pluginXmlContent = pluginXmlFile.readText()
             pluginXmlContent = pluginXmlContent.replace("\${generatedActionsXml}", generatedActionsXml)
             pluginXmlFile.writeText(pluginXmlContent)
         }
@@ -247,7 +248,7 @@ tasks {
 
         if (pluginEnableDebugLogs.toBoolean()) {
             systemProperties(
-                "idea.log.debug.categories" to "#com.github.bgomar.bgconsolelogger"
+                "idea.log.debug.categories" to "#com.github.bgomar.consolelogger"
             )
         }
 
@@ -452,7 +453,7 @@ fun generateConsoleLoggerActionsXml(): String {
         actionsXml.append(createActionXml(i))
     }
 
-    actionsXml.append("            <action id=\"com.github.bgomar.consolelogger.removeLogs\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"0\"\n")
+    actionsXml.append("\n            <action id=\"com.github.bgomar.consolelogger.removeLogs\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"0\"\n")
     actionsXml.append("                    description=\"Remove console.log() generate by ConsoleLogger plugin\">\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt 0\"/>\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt 0\"/>\n")
@@ -463,7 +464,8 @@ fun generateConsoleLoggerActionsXml(): String {
 
 fun createActionXml(i: Int): String {
     val actionXml: StringBuilder = StringBuilder()
-    actionXml.append("\n           <action id=\"com.github.bgomar.consolelogger.add").append(i).append("\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerAction").append("\"\n")
+    actionXml.append("\n             <action id=\"com.github.bgomar.consolelogger.add").append(i).append("\" class=\"com.github.bgomar.consolelogger" +
+            ".ConsoleLoggerAction").append("\"\n")
     actionXml.append("                    text=\"").append(i-1).append("\"\n")
     actionXml.append("                    description=\"Generate a console.log() for that variable\">\n")
     actionXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt ").append(i).append("\"/>\n")

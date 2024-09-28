@@ -7,6 +7,7 @@ import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class ConsoleLoggerToolWindow {
@@ -28,6 +29,11 @@ public class ConsoleLoggerToolWindow {
     private JPanel px2RemPanel;
     private JBTextField px2RemTextField;
     private JBTextField rem2PxTextField;
+
+    private JBTextField svg2cssEncodedTextArea;
+    private JBTextField svg2cssDecodedTextArea;
+    private JBTextField svg2CssTextArea;
+    private JTextPane preview;
 
     private JPanel hashPanel;
     private JTextArea hashInputTextArea;
@@ -71,7 +77,6 @@ public class ConsoleLoggerToolWindow {
     private JTextArea cronTextArea;
     private JButton explainButton;
 
-
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
     private JTextField propertiesConsoleLoggerTextField2;
@@ -83,6 +88,10 @@ public class ConsoleLoggerToolWindow {
     private JTextField propertiesConsoleLoggerTextField8;
     private JTextField propertiesConsoleLoggerTextField9;
     private JButton propertiesConsoleLoggerSaveButton;
+    private JButton propertiesConsoleLoggerLoad2Button;
+    private JButton propertiesConsoleLoggerLoad1Button;
+    private JButton propertiesConsoleLoggerCancelButton;
+
     private JButton propertiesConsoleLoggerDefaultButton1;
     private JButton propertiesConsoleLoggerDefaultButton2;
     private JButton propertiesConsoleLoggerDefaultButton3;
@@ -93,18 +102,16 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
 
-
-
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
-
 
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindow() {
+    public ConsoleLoggerToolWindow() throws IOException {
         String iconsPath = "icons/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cryingcatt.svg"));
+        toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "pika.svg"));
@@ -123,6 +130,9 @@ public class ConsoleLoggerToolWindow {
                 propertiesConsoleLoggerTextField8,
                 propertiesConsoleLoggerTextField9,
                 propertiesConsoleLoggerSaveButton,
+                propertiesConsoleLoggerLoad2Button,
+                propertiesConsoleLoggerLoad1Button,
+                propertiesConsoleLoggerCancelButton,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,
                 propertiesConsoleLoggerDefaultButton3,
@@ -140,6 +150,11 @@ public class ConsoleLoggerToolWindow {
         new URLCodecToolSetup(
             urlCodecDecodedTextField,
             urlCodecEncodedTextField).setup();
+        new Svg2cssToolSetup(
+            svg2cssEncodedTextArea,
+            svg2cssDecodedTextArea,
+            svg2CssTextArea,
+            preview).setup();
         new Px2RemToolSetup(
             px2RemTextField,
             rem2PxTextField).setup();
@@ -225,7 +240,6 @@ public class ConsoleLoggerToolWindow {
                         "then hit the <i>Update from timestamp</i> or<br>" +
                         "<i>Update from fields</i> button.</html>");
                 }
-
             }
         });
         toolComboBox.setSelectedIndex(0);
