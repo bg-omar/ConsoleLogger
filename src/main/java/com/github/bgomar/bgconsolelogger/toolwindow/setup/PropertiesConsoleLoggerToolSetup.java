@@ -138,12 +138,11 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             saveActiveLoggers();
         });
 
-
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
             if (preset == 1) {
                 saveActiveLoggers();
                 save1Loggers();
-            } else      if (preset == 2) {
+            } else if (preset == 2) {
                 saveActiveLoggers();
                 save2Loggers();
             }

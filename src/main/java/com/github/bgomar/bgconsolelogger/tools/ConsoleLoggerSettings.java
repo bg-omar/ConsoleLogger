@@ -2,44 +2,46 @@ package com.github.bgomar.bgconsolelogger.tools;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.Service;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Service
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
-public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
+public final class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLoggerSettings> {
 
-    public static final String ACTIVE_PATTERN_1 = "console.log(\"1 ---> $$: \", $$);";
-    public static final String ACTIVE_PATTERN_2 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
-    public static final String ACTIVE_PATTERN_3 = "console.log(\"%c 3 ---> $$: \",\"color:#ff0;\", $$);";
-    public static final String ACTIVE_PATTERN_4 = "console.log(\"%c 4 ---> $$: \",\"color:#0F0;\", $$);";
-    public static final String ACTIVE_PATTERN_5 = "console.warn(\"%c 5 ---> $$: \",\"color:#F00;\", $$);";
-    public static final String ACTIVE_PATTERN_6 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
-    public static final String ACTIVE_PATTERN_7 = "Serial.println($$);";
-    public static final String ACTIVE_PATTERN_8 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
-    public static final String ACTIVE_PATTERN_9 = "${'\n'}console.groupCollapsed(\"group $$\");${'\n'}console.groupEnd(\"end of group $$\");";
+    public static final String DEFAULT_PATTERN_1 = "console.log(\"%c 1 --> {LN}||{FN}\\n $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 --> {LN}||{FN}\\n $$: \",\"color:#0f0;\", $$);";
+    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c 3 --> {LN}||{FN}\\n $$: \",\"color:#ff0;\", $$);";
+    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c 4 --> {LN}||{FN}\\n $$: \",\"color:#f00;\", $$);";
+    public static final String DEFAULT_PATTERN_5 = "console.log(\"%c 5 --> {LN}||{FN}\\n $$: \",\"color:#0ff;\", $$);";
+    public static final String DEFAULT_PATTERN_6 = "console.log(\"%c 6 --> {LN}||{FN}\\n $$: \",\"color:#00f;\", $$);";
+    public static final String DEFAULT_PATTERN_7 = "console.log(\"%c 7 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
+    public static final String DEFAULT_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
+    public static final String DEFAULT_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
-    public static final String DEFAULT_PATTERN_1 = "console.log(\"1 ---> $$: \", $$);";
-    public static final String DEFAULT_PATTERN_2 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
-    public static final String DEFAULT_PATTERN_3 = "console.log(\"%c 3 ---> $$: \",\"color:#ff0;\", $$);";
-    public static final String DEFAULT_PATTERN_4 = "console.log(\"%c 4 ---> $$: \",\"color:#0F0;\", $$);";
-    public static final String DEFAULT_PATTERN_5 = "console.warn(\"%c 5 ---> $$: \",\"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_6 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_7 = "Serial.println($$);";
-    public static final String DEFAULT_PATTERN_8 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
-    public static final String DEFAULT_PATTERN_9 = "${'\n'}console.groupCollapsed(\"group $$\");${'\n'}console.groupEnd(\"end of group $$\");";
+    public static final String DEFAULT_PATTERN_10 = "console.log(\"%c 10 --> {LN}||{FN}\\n $$: \",\"color:#f0f;\", $$);";
+    public static final String DEFAULT_PATTERN_11 = "console.log(\"%c 11 --> {LN}||{FN}\\n $$: \",\"color:#0f0;\", $$);";
+    public static final String DEFAULT_PATTERN_12 = "console.log(\"%c 12 --> {LN}||{FN}\\n $$: \",\"color:#ff0;\", $$);";
+    public static final String DEFAULT_PATTERN_13 = "console.log(\"%c 13 --> {LN}||{FN}\\n $$: \",\"color:#f00;\", $$);";
+    public static final String DEFAULT_PATTERN_14 = "console.log(\"%c 14 --> {LN}||{FN}\\n $$: \",\"color:#0ff;\", $$);";
+    public static final String DEFAULT_PATTERN_15 = "console.log(\"%c 15 --> {LN}||{FN}\\n $$: \",\"color:#00f;\", $$);";
+    public static final String DEFAULT_PATTERN_16 = "console.log(\"%c 16 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
+    public static final String DEFAULT_PATTERN_17 = "console.log(\"%c 17 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
+    public static final String DEFAULT_PATTERN_18 = "console.log(\"%c 18 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
-    public static final String DEFAULT_PATTERN_10 = "console.log(\"1 ---> $$: \", $$);";
-    public static final String DEFAULT_PATTERN_11 = "console.log(\"%c 2 ---> $$: \",\"color:#f0f;\", $$);";
-    public static final String DEFAULT_PATTERN_12 = "console.log(\"%c 3 ---> $$: \",\"color:#ff0;\", $$);";
-    public static final String DEFAULT_PATTERN_13 = "console.log(\"%c 4 ---> $$: \",\"color:#0F0;\", $$);";
-    public static final String DEFAULT_PATTERN_14 = "console.warn(\"%c 5 ---> $$: \",\"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_15 = "console.error(\"%c ({FP}:{LN}) $$: \", \"color:#F00;\", $$);";
-    public static final String DEFAULT_PATTERN_16 = "Serial.println($$);";
-    public static final String DEFAULT_PATTERN_17 = "print(\"{:>30}\".format(\" ---> $$: \" + $$));";
-    public static final String DEFAULT_PATTERN_18 = "${'\n'}console.groupCollapsed(\"group $$\");${'\n'}console.groupEnd(\"end of group $$\");";
+    public static final String ACTIVE_PATTERN_1 = "console.log(\"%c 1 --> {LN}||{FN}\\n $$: \",\"color:#f0f;\", $$);";
+    public static final String ACTIVE_PATTERN_2 = "console.log(\"%c 2 --> {LN}||{FN}\\n $$: \",\"color:#0f0;\", $$);";
+    public static final String ACTIVE_PATTERN_3 = "console.log(\"%c 3 --> {LN}||{FN}\\n $$: \",\"color:#ff0;\", $$);";
+    public static final String ACTIVE_PATTERN_4 = "console.log(\"%c 4 --> {LN}||{FN}\\n $$: \",\"color:#f00;\", $$);";
+    public static final String ACTIVE_PATTERN_5 = "console.log(\"%c 5 --> {LN}||{FN}\\n $$: \",\"color:#0ff;\", $$);";
+    public static final String ACTIVE_PATTERN_6 = "console.log(\"%c 6 --> {LN}||{FN}\\n $$: \",\"color:#00f;\", $$);";
+    public static final String ACTIVE_PATTERN_7 = "console.log(\"%c 7 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
+    public static final String ACTIVE_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
+    public static final String ACTIVE_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
 
     private static final String[] patterns = {
@@ -72,7 +74,7 @@ public class ConsoleLoggerSettings implements PersistentStateComponent<ConsoleLo
             DEFAULT_PATTERN_18,
     };
 
-    public String version = "0.0.24";
+    public String version = "0.0.29";
 
     public static ConsoleLoggerSettings getInstance() {
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);

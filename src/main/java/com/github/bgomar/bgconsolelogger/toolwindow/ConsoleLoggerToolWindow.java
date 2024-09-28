@@ -30,10 +30,10 @@ public class ConsoleLoggerToolWindow {
     private JBTextField px2RemTextField;
     private JBTextField rem2PxTextField;
 
+    private JPanel svg2cssPanel;
     private JBTextField svg2cssEncodedTextArea;
     private JBTextField svg2cssDecodedTextArea;
     private JBTextField svg2CssTextArea;
-    private JTextPane preview;
 
     private JPanel hashPanel;
     private JTextArea hashInputTextArea;
@@ -107,11 +107,11 @@ public class ConsoleLoggerToolWindow {
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindow() throws IOException {
+    public ConsoleLoggerToolWindow() {
         String iconsPath = "icons/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cryingcatt.svg"));
-        toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
+        toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "devcat.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "devcat.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "pika.svg"));
@@ -153,8 +153,7 @@ public class ConsoleLoggerToolWindow {
         new Svg2cssToolSetup(
             svg2cssEncodedTextArea,
             svg2cssDecodedTextArea,
-            svg2CssTextArea,
-            preview).setup();
+            svg2CssTextArea).setup();
         new Px2RemToolSetup(
             px2RemTextField,
             rem2PxTextField).setup();

@@ -12,14 +12,14 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
-        <applicationConfigurable parentId="tools"
-                                 instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-                                 id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"
-                                 displayName="ConsoleLogger"/>
+<!--        <applicationConfigurable parentId="tools"-->
+<!--                                 instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"-->
+<!--                                 id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"-->
+<!--                                 displayName="ConsoleLogger"/>-->
 
 
         <!--suppress  PluginXmlValidity -->
-        <toolWindow id="Tools"
+        <toolWindow id="Loggers"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
                     factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
