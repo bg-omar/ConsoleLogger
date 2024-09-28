@@ -16,6 +16,7 @@ import java.nio.file.Files
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
+import kotlin.script.experimental.api.ScriptDiagnostic
 
 interface Injected {
     @get:Inject val fs: FileSystemOperations
@@ -51,7 +52,7 @@ val pluginIdeaVersion = detectBestIdeVersion()
 plugins {
     id("java") // Java support
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta3"     // Kotlin support
+    id("org.jetbrains.kotlin.jvm") version "1.9.22"     // Kotlin support
     id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
     id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
     id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
@@ -68,8 +69,8 @@ repositories {
     mavenCentral()
 }
 
-val junitVersion = "5.11.0-M2"
-val junitPlatformLauncher = "1.11.0-M2"
+val junitVersion = "5.10.1"
+val junitPlatformLauncher = "1.10.1"
 
 
 val service = project.extensions.getByType<JavaToolchainService>()
@@ -78,16 +79,38 @@ val customLauncher = service.launcherFor {
 }
 
 repositories {
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
     maven("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
     maven("https://www.jetbrains.com/intellij-repository/releases")
+    maven("https://www.jetbrains.com/intellij-repository/snapshots")
+    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
     gradlePluginPortal()
     mavenCentral()
 }
 
 dependencies {
 // https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
+
+    implementation("commons-httpclient:commons-httpclient:3.1")
+
     implementation("org.jetbrains:marketplace-zip-signer:0.1.24")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0-RC")
+    implementation("org.jetbrains:annotations:24.1.0")
+    implementation("org.apache.commons:commons-lang3:3.14.0") // because no longer bundled with IDE
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+
+    implementation("commons-codec:commons-codec:1.16.0") // for Hash
+    implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
+
+    implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
+    implementation("net.datafaker:datafaker:2.1.0") // for Data Faker
+
+    implementation("fr.marcwrobel:jbanking:4.2.0") // for IBAN generation
+    implementation("at.favre.lib:bcrypt:0.10.2") // for Bcrypt hash
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:$junitPlatformLauncher")
 }
 
 abstract class UpdatePluginXml : DefaultTask() {
@@ -122,7 +145,7 @@ intellij {
 
     sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
 
-    downloadSources.set(!System.getenv().containsKey("CI"))
+    downloadSources.set(!System.getenv().containsKey("IU"))
     downloadSources.set(pluginDownloadIdeaSources.toBoolean() && !System.getenv().containsKey("IU"))
     instrumentCode.set(true)
 
@@ -281,6 +304,13 @@ tasks {
 
     compileTestKotlin {
         kotlinOptions.jvmTarget  = jvmTarget
+    }
+
+    runIdeForUiTests {
+        systemProperty("robot-server.port", "8082")
+        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
+        systemProperty("jb.consents.confirmation.enabled", "false")
     }
 
     signPlugin {

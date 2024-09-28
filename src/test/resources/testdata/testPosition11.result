@@ -1,0 +1,7 @@
+  // if the previous group is a poi, insert an empty group to be the link
+  console.log("=>(testPosition11:2) <selection>groupedEvt.length</selection>", <selection>groupedEvt.length</selection>);
+  if (
+    groupedEvt.length >= 1 &&
+    groupedEvt[groupedEvt.length - 1].poi &&
+    group.poi
+  ) {

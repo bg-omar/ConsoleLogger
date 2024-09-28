@@ -1,8 +1,9 @@
 # Changelog
 
-## [0.0.29] - 13-09-2024
+## [0.0.29] - 29-09-2024
 - changed some of the input field sizes
 - added option for second preset of loggers
+- Finally got save to work as supposed!!!
 
 ## [0.0.28] - 06-09-2024
 - Saving seems to work better now
@@ -30,6 +31,7 @@
 - Base64 & url En/Decoder, Fake data Generator, Cron Parser, Text -> Hash
 - 😸 Used cat memes for icos
 - 🧼 Cleanup of code and bugs - 🐛
+
 
 ## [0.0.20] - 15-11-2023
 - 🐛 Small Bugfix: FIX: Handle cases where the editor might be missing. 
