@@ -7,7 +7,10 @@ import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @State(name = "ConsoleLoggerSettings", storages = {@Storage("consolelogger.xml")})
@@ -43,8 +46,7 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
     public static final String ACTIVE_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
     public static final String ACTIVE_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
-
-    private static final String[] patterns = {
+    public List<String> patterns = new ArrayList<>(Arrays.asList(
             ACTIVE_PATTERN_1,
             ACTIVE_PATTERN_2,
             ACTIVE_PATTERN_3,
@@ -71,8 +73,8 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
             DEFAULT_PATTERN_15,
             DEFAULT_PATTERN_16,
             DEFAULT_PATTERN_17,
-            DEFAULT_PATTERN_18,
-    };
+            DEFAULT_PATTERN_18
+    ));
 
     public String version = "0.0.29";
 
@@ -80,7 +82,6 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
     }
 
-    @Nullable
     @Override
     public ConsoleLoggerSettings getState() {
         return this;
@@ -91,17 +92,23 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         XmlSerializerUtil.copyBean(state, this);
     }
 
+    // Modify getPattern to retrieve from the List
     public static String getPattern(int index) {
-        if (index >= 0 && index < patterns.length) {
-            return patterns[index];
+        ConsoleLoggerSettings settings = getInstance();
+        if (index >= 0 && index < settings.patterns.size()) {
+            return settings.patterns.get(index);
         } else {
-            return patterns[index-1];
+            return settings.patterns.get(settings.patterns.size() - 1);  // Default to last if out of bounds
         }
     }
 
+    // Modify setPattern to update the List
     public static void setPattern(int index, String pattern) {
-        if (index >= 0 && index < patterns.length) {
-            patterns[index] = pattern;
+        ConsoleLoggerSettings settings = getInstance();
+        if (index >= 0 && index < settings.patterns.size()) {
+            settings.patterns.set(index, pattern);
+        } else {
+            settings.patterns.add(pattern);  // Add to the list if index is out of bounds
         }
     }
 }

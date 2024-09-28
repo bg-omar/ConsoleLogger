@@ -71,12 +71,13 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
             JButton[] defaultButton = new JButton[8];
 
             for (int i = 0; i < 8; i++) {
-                ui.add(new JTextField("(CTRL + ALT + " + i + ") "), gbc);
+                int j = i + 1;
+                ui.add(new JTextField("(CTRL + ALT + " + j + ") "), gbc);
                 gbc.gridx++;
 
                 textFields[i] = new JBTextField();
                 textFields[i].setText(ConsoleLoggerSettings.getPattern(i));
-                textFields[i].setToolTipText("Tooltip for pattern " + i);
+                textFields[i].setToolTipText("Tooltip for pattern " + j);
                 ui.add(textFields[i], gbc);
                 gbc.gridx++;
 

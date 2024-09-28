@@ -959,7 +959,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1041,7 +1041,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1121,7 +1121,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1201,7 +1201,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1281,7 +1281,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1362,7 +1362,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1441,7 +1441,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1520,7 +1520,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1600,7 +1600,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="1"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1630,8 +1630,8 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <label value="Save all"/>
-                          <text value="Save all"/>
+                          <label value="Activate Set"/>
+                          <text value="Activate Set"/>
                         </properties>
                       </component>
                       <component id="6c906" class="javax.swing.JButton" binding="propertiesConsoleLoggerCancelButton">
@@ -1639,8 +1639,8 @@
                           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <label value="Cancel"/>
-                          <text value="Cancel"/>
+                          <label value="Undo"/>
+                          <text value="Undo"/>
                         </properties>
                       </component>
                       <grid id="bd816" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -1661,6 +1661,7 @@
                             <properties>
                               <label value="Set 1"/>
                               <text value="Set 1"/>
+                              <toolTipText value="Show &amp; Edit Set 1"/>
                             </properties>
                           </component>
                           <component id="11c9e" class="javax.swing.JButton" binding="propertiesConsoleLoggerLoad2Button">
@@ -1670,6 +1671,7 @@
                             <properties>
                               <label value="Set 2"/>
                               <text value="Set 2"/>
+                              <toolTipText value="Show &amp; Edit Set 1"/>
                             </properties>
                           </component>
                         </children>
