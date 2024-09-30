@@ -47,10 +47,15 @@ Defaults:  May need personal adjustments in toolwindow.
 ( 2 ) = ```console.log('%c ---> $$: ','color:#0F0;', $$);```   
 
  `$$` = pre-selected variable / class / anything printable  
- `%c` = Console text color
-           
+ `%c` = Console text color  
+ `{LN}` = Line number         
+ `{FN}` = File Name   
+
+( ~ ) = `Refresh all Line Numbers in file`  
 ( 0 ) = `remove all loggers (unedited)`      
 
+## Toolwindow of ConsoleLogger
+#### [<img src="https://github.com/bg-omar/consolelogger/blob/master/.github/pics/ConsoleLogger-0.0.29.png?raw=true" width="500px"/>]()
 ## Example of ConsoleLogger  
 #### [<img src="https://github.com/bg-omar/consolelogger/blob/master/.github/pics/preview1.png?raw=true" width="500px"/>]()  
 ## `Ctrl + Alt + 1`  on the `someReturn(theVariable);`  

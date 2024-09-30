@@ -477,7 +477,7 @@ fun generateConsoleLoggerActionsXml(): String {
     actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt 0\"/>\n")
     actionsXml.append("            </action>\n")
 
-    actionsXml.append("\n               <action id=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" class=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" text=\"UpdateLogLinesAction\" description=\"UpdateLogLinesAction\">\n")
+    actionsXml.append("\n            <action id=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" class=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" text=\"UpdateLogLinesAction\" description=\"UpdateLogLinesAction\">\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt BACK_QUOTE\"/>\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt BACK_QUOTE\"/>\n")
     actionsXml.append("            </action>\n")
