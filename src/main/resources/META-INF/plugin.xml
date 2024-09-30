@@ -12,28 +12,16 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
-<!--        <applicationConfigurable parentId="tools"-->
-<!--                                 instance="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"-->
-<!--                                 id="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettingsConfigurable"-->
-<!--                                 displayName="ConsoleLogger"/>-->
-
 
         <!--suppress  PluginXmlValidity -->
-        <toolWindow id="Loggers"
+        <toolWindow id="ConsoleLogger"
                     icon="/icons/cryingcatt.svg"
                     anchor="right"
                     factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
-        <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
-
-
         <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
-
-
-
-        <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
-             on how to target different products -->
+        <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
 
     </extensions>
 
@@ -111,6 +99,11 @@
                     description="Remove console.log() generate by ConsoleLogger plugin">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 0"/>
+            </action>
+
+               <action id="com.github.bgomar.consolelogger.UpdateLogLinesAction" class="com.github.bgomar.consolelogger.UpdateLogLinesAction" text="UpdateLogLinesAction" description="UpdateLogLinesAction">
+                 <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt BACK_QUOTE"/>
+                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt BACK_QUOTE"/>
             </action>
             <!-- Include actions end -->
         </group>

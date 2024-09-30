@@ -4,6 +4,8 @@
 - changed some of the input field sizes
 - added option for second preset of loggers
 - Finally got save to work as supposed!!!
+- Fixed Issue with Code Insertion Position and Log Line Number Updates in Plugin
+- Added the Re-check line numbers function
 
 ## [0.0.28] - 06-09-2024
 - Saving seems to work better now

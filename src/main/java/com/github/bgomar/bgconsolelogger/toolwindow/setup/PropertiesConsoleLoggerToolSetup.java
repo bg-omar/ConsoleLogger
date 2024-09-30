@@ -1,9 +1,26 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
+import com.github.bgomar.consolelogger.UpdateLogLinesAction;
+import com.intellij.ide.DataManager;
 import com.intellij.openapi.options.ConfigurableUi;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.DialogPanel;
+import com.intellij.openapi.wm.ToolWindow;
 import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.DataContext;
+import com.intellij.openapi.actionSystem.Presentation;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.util.Disposer;
 
 
 import javax.swing.*;
@@ -23,6 +40,8 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     private static JButton propertiesConsoleLoggerLoad2Button = new JButton();
     private static JButton propertiesConsoleLoggerLoad1Button = new JButton();
     private static JButton propertiesConsoleLoggerCancelButton = new JButton();
+    private static JButton propertiesConsoleLoggerRecheckButton = new JButton();
+
 
     private static JButton propertiesConsoleLoggerDefaultButton1 = new JButton();
     private static JButton propertiesConsoleLoggerDefaultButton2 = new JButton();
@@ -51,6 +70,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             JButton propertiesConsoleLoggerLoad2Button,
             JButton propertiesConsoleLoggerLoad1Button,
             JButton propertiesConsoleLoggerCancelButton,
+            JButton propertiesConsoleLoggerRecheckButton,
             JButton propertiesConsoleLoggerDefaultButton1,
             JButton propertiesConsoleLoggerDefaultButton2,
             JButton propertiesConsoleLoggerDefaultButton3,
@@ -76,6 +96,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerLoad2Button = propertiesConsoleLoggerLoad2Button;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerLoad1Button = propertiesConsoleLoggerLoad1Button;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton = propertiesConsoleLoggerCancelButton;
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRecheckButton = propertiesConsoleLoggerRecheckButton;
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1 = propertiesConsoleLoggerDefaultButton1;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton2 = propertiesConsoleLoggerDefaultButton2;
@@ -112,6 +133,35 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_7 : ConsoleLoggerSettings.DEFAULT_PATTERN_16));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_8 : ConsoleLoggerSettings.DEFAULT_PATTERN_17));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
+
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
+            // Get the current project from the tool window context via DataContext
+            ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");
+            if (toolWindow == null) {
+                Messages.showMessageDialog("Tool window 'ConsoleLogger' not found.", "Error", Messages.getErrorIcon());
+                return;
+            }
+
+            // Use the DataContext from the ToolWindow content to get the project
+            DataContext dataContext = DataManager.getInstance().getDataContext(toolWindow.getComponent());
+            Project project = CommonDataKeys.PROJECT.getData(dataContext);
+
+            if (project == null) {
+                Messages.showMessageDialog("Project not found.", "Error", Messages.getErrorIcon());
+                return;
+            }
+
+            // Get the UpdateLogLinesAction by ID
+            AnAction updateLogLinesAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UpdateLogLinesAction");
+
+            if (updateLogLinesAction != null) {
+                // Create an AnActionEvent with the project and data context
+                AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
+
+                // Execute the action
+                updateLogLinesAction.actionPerformed(event);
+            }
+        });
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
             saveActiveLoggers();

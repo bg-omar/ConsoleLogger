@@ -61,6 +61,7 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerLoad2Button;
     private JButton propertiesConsoleLoggerLoad1Button;
     private JButton propertiesConsoleLoggerCancelButton;
+    private JButton propertiesConsoleLoggerRecheckButton;
 
     private JButton propertiesConsoleLoggerDefaultButton1;
     private JButton propertiesConsoleLoggerDefaultButton2;
@@ -83,7 +84,7 @@ public class ConsoleLoggerToolWindow {
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "devcat.svg"));
-        toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "pika.svg"));
+        toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "winecat.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
@@ -100,6 +101,7 @@ public class ConsoleLoggerToolWindow {
                 propertiesConsoleLoggerLoad2Button,
                 propertiesConsoleLoggerLoad1Button,
                 propertiesConsoleLoggerCancelButton,
+                propertiesConsoleLoggerRecheckButton,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,
                 propertiesConsoleLoggerDefaultButton3,
