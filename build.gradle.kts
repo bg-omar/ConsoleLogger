@@ -5,18 +5,17 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.w3c.dom.Document
-import java.lang.StringBuilder
-import java.io.File
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
+import java.io.File
 import java.io.InputStreamReader
+import java.lang.StringBuilder
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.file.Files
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
-import kotlin.script.experimental.api.ScriptDiagnostic
 
 interface Injected {
     @get:Inject val fs: FileSystemOperations
@@ -63,7 +62,7 @@ plugins {
 
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
-
+logger.quiet("Will use IDEA $pluginIdeaVersion and Java $pluginJavaVersion. Plugin version set to $version")
 
 repositories {
     mavenCentral()
@@ -111,23 +110,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:$junitPlatformLauncher")
-}
-
-abstract class UpdatePluginXml : DefaultTask() {
-
-    @TaskAction
-    fun action() {
-        val generatedActionsXml = generateConsoleLoggerActionsXml()
-        val pluginXmlFile = File("src/main/resources/META-INF/plugin.xml")
-
-        doFirst {
-            var pluginXmlContent = pluginXmlFile.readText()
-
-            pluginXmlContent = pluginXmlContent.replace("\${generatedActionsXml}", generatedActionsXml)
-
-            pluginXmlFile.writeText(pluginXmlContent)
-        }
-    }
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -187,30 +169,66 @@ java {
     }
 }
 
-tasks {
-    register("clearSandboxedIDESystemLogs") {
-        val sandboxLogDir = File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/")
-        doFirst {
-            if (pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean()) {
-                if (sandboxLogDir.exists() && sandboxLogDir.isDirectory) {
-                    FileUtils.deleteDirectory(sandboxLogDir)
-                    logger.quiet("Deleted sandboxed IDE's log folder $sandboxLogDir")
-                }
+extensions.findByName("buildScan")?.withGroovyBuilder {
+    setProperty("termsOfServiceUrl", "https://gradle.com/terms-of-service")
+    setProperty("termsOfServiceAgree", "yes")
+}
+
+abstract class UpdatePluginXml : DefaultTask() {
+
+    @InputFile
+    val pluginXmlFile = project.objects.fileProperty()
+
+    @Input
+    val generatedActionsXml = project.objects.property(String::class.java)
+
+    @TaskAction
+    fun updateXml() {
+        var pluginXmlContent = pluginXmlFile.get().asFile.readText()
+
+        pluginXmlContent = pluginXmlContent.replace("\${generatedActionsXml}", generatedActionsXml.get())
+
+        pluginXmlFile.get().asFile.writeText(pluginXmlContent)
+    }
+}
+
+abstract class ClearSandboxLogs : DefaultTask() {
+
+    @Optional
+    @InputDirectory
+    val sandboxLogDir = project.objects.directoryProperty()
+
+    @Input
+    val clearLogsBeforeRun = project.objects.property(Boolean::class.java)
+
+    @TaskAction
+    fun clearLogs() {
+        val dir = sandboxLogDir.asFile.get()
+        if (!dir.exists()) {
+            logger.quiet("Directory $dir does not exist. Skipping log clearing.")
+            return  // Skip if the directory doesn't exist
+        }
+
+        if (clearLogsBeforeRun.get()) {
+            if (dir.isDirectory) {
+                FileUtils.deleteDirectory(dir)
+                logger.quiet("Deleted sandboxed IDE's log folder $dir")
             }
         }
     }
+}
 
-    register("updatePluginXml") {
-        val generatedActionsXml = generateConsoleLoggerActionsXml()
-        val pluginXmlFile = File("src/main/resources/META-INF/plugin.xml")
-        var pluginXmlContent = pluginXmlFile.readText()
-        doFirst {
-            pluginXmlContent = pluginXmlContent.replace("\${generatedActionsXml}", generatedActionsXml)
-            pluginXmlFile.writeText(pluginXmlContent)
-        }
+tasks {
+    // Register the task
+    register<UpdatePluginXml>("updatePluginXml") {
+        generatedActionsXml.set(generateConsoleLoggerActionsXml())  // Set the generated XML
+        pluginXmlFile.set(File("src/main/resources/META-INF/plugin.xml"))  // Set the plugin.xml file
     }
 
-
+    register<ClearSandboxLogs>("clearSandboxedIDESystemLogs") {
+        sandboxLogDir.set(File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/"))
+        clearLogsBeforeRun.set(pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean())
+    }
 
     // Set the JVM compatibility versions
     withType<JavaCompile> {
@@ -458,6 +476,12 @@ fun generateConsoleLoggerActionsXml(): String {
     actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt 0\"/>\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt 0\"/>\n")
     actionsXml.append("            </action>\n")
+
+    actionsXml.append("\n               <action id=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" class=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" text=\"UpdateLogLinesAction\" description=\"UpdateLogLinesAction\">\n")
+    actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt BACK_QUOTE\"/>\n")
+    actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt BACK_QUOTE\"/>\n")
+    actionsXml.append("            </action>\n")
+
     actionsXml.append("            <!-- Include actions end -->")
     return actionsXml.toString()
 }

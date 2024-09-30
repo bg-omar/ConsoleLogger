@@ -18,12 +18,11 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
                                        JTextField propertiesConsoleLoggerTextField7,
                                        JTextField propertiesConsoleLoggerTextField8,
                                        JTextField propertiesConsoleLoggerTextField9,
-
                                        JButton propertiesConsoleLoggerSaveButton,
                                        JButton propertiesConsoleLoggerLoad2Button,
                                        JButton propertiesConsoleLoggerLoad1Button,
                                        JButton propertiesConsoleLoggerCancelButton,
-
+                                       JButton propertiesConsoleLoggerRecheckButton,
                                        JButton propertiesConsoleLoggerDefaultButton1,
                                        JButton propertiesConsoleLoggerDefaultButton2,
                                        JButton propertiesConsoleLoggerDefaultButton3,
@@ -46,6 +45,7 @@ public class ConsoleLoggerConfigurableUI extends PropertiesConsoleLoggerToolSetu
                 propertiesConsoleLoggerLoad2Button,
                 propertiesConsoleLoggerLoad1Button,
                 propertiesConsoleLoggerCancelButton,
+                propertiesConsoleLoggerRecheckButton,
                 propertiesConsoleLoggerDefaultButton1,
                 propertiesConsoleLoggerDefaultButton2,
                 propertiesConsoleLoggerDefaultButton3,

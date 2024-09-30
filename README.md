@@ -2,8 +2,8 @@
 # ConsoleLogger
 
 ![Build](https://github.com/bg-omar/ConsoleLogger/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/22967.svg)](https://plugins.jetbrains.com/plugin/22967)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/22967.svg)](https://plugins.jetbrains.com/plugin/22967)
 
 <h1 align="center">
     <a href="">

@@ -1,8 +1,14 @@
 package com.github.bgomar.consolelogger
 
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
 import com.intellij.lang.javascript.JavascriptLanguage
+import com.intellij.lang.javascript.psi.JSBlockStatement
+import com.intellij.lang.javascript.psi.JSElement
+import com.intellij.lang.javascript.psi.JSFunctionExpression
 import com.intellij.lang.javascript.psi.JSIfStatement
 import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.CaretState
 import com.intellij.openapi.editor.Editor
@@ -11,9 +17,8 @@ import com.intellij.openapi.editor.actionSystem.EditorActionManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
+
+
 
 
 class ConsoleLoggerAction : AnAction() {
@@ -40,7 +45,7 @@ class ConsoleLoggerAction : AnAction() {
 
     val pattern = ConsoleLoggerSettings.getPattern(patternIndex).run {
       replace("{FN}", vFile?.name ?: "filename").replace("{FP}", vFile?.path ?: "file_path")
-        .replace("{LN}", (editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
+        .replace("{LN}", "Line: "+(editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
     }
 
     val insertionPositions = "\\$\\$".toRegex().findAll(pattern)
@@ -106,36 +111,32 @@ class ConsoleLoggerAction : AnAction() {
       )
     //println(editor.caretModel.caretsAndSelections)
   }
-
   /**
    * search for the cursor insertion point
    * return the name of the element to log
    */
   private fun moveCursorToInsertionPoint(editor: Editor): String? {
-    // parse the file as a simple JavaScript file
-    val psiFile = PsiFileFactory.getInstance(editor.project).createFileFromText("dummy.js", JavascriptLanguage.INSTANCE, editor.document.text)
+    // Parse the file as a TypeScript file
+    val psiFile = PsiFileFactory.getInstance(editor.project)
+      .createFileFromText("dummy.ts", JavascriptLanguage.INSTANCE, editor.document.text)
 
     val valueToLog: String
     val element: PsiElement?
     val offset: Int
 
+    // If the user has selected text (e.g., a variable)
     if (editor.selectionModel.hasSelection()) {
       val value = editor.selectionModel.selectedText
-
       offset = editor.selectionModel.selectionStart
-
       element = psiFile.findElementAt(offset)
-
       valueToLog = value ?: "<CR>"
     } else {
       offset = editor.caretModel.currentCaret.offset
-
       val elementAtCursor = psiFile.findElementAt(offset)
 
       if (elementAtCursor?.text?.replace(" ", "")?.endsWith("\n\n") == true) return ""
 
       element = findElementToLogForSelection(elementAtCursor!!)
-
       valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
     }
 
@@ -146,15 +147,63 @@ class ConsoleLoggerAction : AnAction() {
     val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
 
     when {
+      // If it's an arrow function, insert inside the function body
+      block is JSFunctionExpression -> {
+        val body = block.childOfType(JSBlockStatement::class.java)
+        if (body != null) {
+          // Move the cursor inside the block, after the opening '{'
+          editor.caretModel.moveToOffset(body.textOffset + 1)
+        } else {
+          // Handle the case where the arrow function has an expression body
+          val expression = block.childOfType(JSElement::class.java)
+          if (expression != null) {
+            // Move the cursor to the end of the expression
+            editor.caretModel.moveToOffset(expression.textRange.endOffset)
+          }
+        }
+      }
       block is JSIfStatement -> {
-        // for "if" statements insert line above
+        // For "if" statements, insert line above
         editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
       }
-      block != null -> editor.caretModel.moveToOffset(block.textRange.endOffset)
+      block != null -> {
+        editor.caretModel.moveToOffset(block.textRange.endOffset)
+      }
     }
 
     return valueToLog
   }
+
+  /**
+   * Finds a child of the specified type in the PSI tree.
+   */
+  fun <T : PsiElement> PsiElement.childOfType(klass: Class<T>): T? {
+    return this.children.filterIsInstance(klass).firstOrNull()
+  }
+
+  /**
+   * find the block containing this element
+   */
+  private fun findBlockForElement(element: PsiElement?): PsiElement? {
+    var currentElement = element
+    while (currentElement != null) {
+      val elementType = currentElement.node.elementType.toString()
+      val parentElementType = currentElement.parent?.node?.elementType?.toString()
+
+      when {
+        elementType == "JS:EXPRESSION_STATEMENT" && parentElementType != "FILE" -> return currentElement
+        elementType == "JS:VAR_STATEMENT" -> return currentElement
+        elementType == "JS:IF_STATEMENT" -> return currentElement
+        elementType == "JS:BLOCK_STATEMENT" || elementType == "JS:FUNCTION" || elementType == "JS:FUNCTION_EXPRESSION" -> return currentElement
+        currentElement.text.trim() == "{" -> return currentElement
+        currentElement.text.trim() == "\n" -> return findBlockForElement(currentElement.prevSibling)
+      }
+      currentElement = currentElement.parent
+    }
+    return null
+  }
+
+
 
   /**
    * when the cursor is on a loggable identifier
@@ -231,27 +280,7 @@ class ConsoleLoggerAction : AnAction() {
     return findElementToLogForBlock(element.firstChild)
   }
 
-  /**
-   * find the block containing this element
-   */
-  private fun findBlockForElement(element: PsiElement): PsiElement? {
 
-    val elementType = element.node.elementType.toString()
-    val parentElementType = if (element.parent == null) {
-      return null
-    } else element.parent.node.elementType.toString()
-
-    when {
-      (elementType == "JS:EXPRESSION_STATEMENT" && parentElementType != "FILE") -> return element
-      elementType == "JS:VAR_STATEMENT" -> return element
-      elementType == "JS:IF_STATEMENT" -> return element
-
-      element.text.trim(' ') == "{" -> return element
-      element.text.trim(' ') == "\n" -> return findBlockForElement(element.prevSibling)
-    }
-
-    return findBlockForElement(element.parent)
-  }
 
   private fun PsiElement.hasParentOfType(type: String, maxRecursion: Int, recursionLevel: Int = 0): Boolean {
     return if (this.parent.node.elementType.toString() == type) {
