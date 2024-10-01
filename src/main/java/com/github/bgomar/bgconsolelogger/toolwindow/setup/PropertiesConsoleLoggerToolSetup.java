@@ -21,6 +21,11 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.Disposer;
+import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.project.Project;
 
 
 import javax.swing.*;
@@ -135,14 +140,12 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
-            // Get the current project from the tool window context via DataContext
             ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");
             if (toolWindow == null) {
                 Messages.showMessageDialog("Tool window 'ConsoleLogger' not found.", "Error", Messages.getErrorIcon());
                 return;
             }
 
-            // Use the DataContext from the ToolWindow content to get the project
             DataContext dataContext = DataManager.getInstance().getDataContext(toolWindow.getComponent());
             Project project = CommonDataKeys.PROJECT.getData(dataContext);
 
@@ -154,49 +157,44 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             AnAction updateLogLinesAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UpdateLogLinesAction");
 
             if (updateLogLinesAction != null) {
-                // Create an AnActionEvent with the project and data context
                 AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
 
-                // Execute the action
                 updateLogLinesAction.actionPerformed(event);
             }
         });
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton.addActionListener(e -> {
-            // Get the current project from the tool window context via DataContext
+            // Get the current project
             Project project = ProjectManager.getInstance().getOpenProjects().length > 0
                     ? ProjectManager.getInstance().getOpenProjects()[0]
                     : null;
 
             if (project == null) {
-                Messages.showMessageDialog("No active project found.", "Error", Messages.getErrorIcon());
+                Messages.showErrorDialog("No active project found.", "Error");
                 return;
             }
 
-            ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("ConsoleLogger");
-            if (toolWindow == null) {
-                Messages.showMessageDialog("Tool window 'ConsoleLogger' not found.", "Error", Messages.getErrorIcon());
-                return;
-            }
+            // Get the last used editor
+            Editor editor = EditorUtil.getLastUsedEditor(project);
 
-            // Get DataContext from the ToolWindow component
-            DataContext dataContext = DataManager.getInstance().getDataContext(toolWindow.getComponent());
-            if (dataContext == null) {
-                Messages.showMessageDialog("Data context not found.", "Error", Messages.getErrorIcon());
-                return;
+            if (editor != null) {
+                // Do something with the editor
+            } else {
+                System.out.println("No editor is currently active.");
             }
 
             // Get the ConsoleLoggerRemove action by its ID
-            AnAction consoleLoggerRemoveAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.removeLogs");
+            AnAction consoleLoggerRemoveAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.ConsoleLoggerRemove");
 
             if (consoleLoggerRemoveAction != null) {
-                // Create a new AnActionEvent using the current project and data context
-                AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
+                // Create a new AnActionEvent with the project, editor, and tool window data context
+                DataContext dataContext = DataManager.getInstance().getDataContext(editor.getComponent());
+                AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
 
                 // Execute the action
-                consoleLoggerRemoveAction.actionPerformed(event);
+                consoleLoggerRemoveAction.actionPerformed(actionEvent);
             } else {
-                Messages.showMessageDialog("ConsoleLoggerRemove action not found.", "Error", Messages.getErrorIcon());
+                Messages.showErrorDialog("ConsoleLoggerRemove action not found.", "Error");
             }
         });
 

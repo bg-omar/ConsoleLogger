@@ -448,7 +448,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                               <selectionEnd value="0"/>
                               <text value=""/>
@@ -486,7 +486,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -538,7 +538,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                             </properties>
                           </component>
@@ -573,7 +573,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -624,7 +624,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                             </properties>
                           </component>
@@ -658,7 +658,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -709,7 +709,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                             </properties>
                           </component>
@@ -743,7 +743,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -794,7 +794,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                             </properties>
                           </component>
@@ -828,7 +828,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -879,7 +879,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                               <maximumSize width="2147483647" height="63"/>
                               <text value=""/>
                             </properties>
@@ -914,7 +914,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -965,7 +965,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                             </properties>
                           </component>
                         </children>
@@ -998,7 +998,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -1049,7 +1049,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                             </properties>
                           </component>
                         </children>
@@ -1082,7 +1082,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>
@@ -1133,7 +1133,7 @@
                             <properties>
                               <autoscrolls value="false"/>
                               <editable value="true"/>
-                              <focusable value="false"/>
+                              <focusable value="true"/>
                             </properties>
                           </component>
                         </children>
@@ -1166,7 +1166,7 @@
                           <doubleBuffered value="false"/>
                           <enabled value="true"/>
                           <focusPainted value="false"/>
-                          <focusable value="false"/>
+                          <focusable value="true"/>
                           <font swing-font="CheckBoxMenuItem.font"/>
                           <foreground color="-1739300"/>
                           <hideActionText value="false"/>

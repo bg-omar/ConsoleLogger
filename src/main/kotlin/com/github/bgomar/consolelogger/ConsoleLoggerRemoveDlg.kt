@@ -19,12 +19,12 @@ class ConsoleLoggerRemoveDlg : DialogWrapper(false) {
 
   override fun createCenterPanel(): JComponent {
     val pan = panel {
-      buttonsGroup("Choose Scope:") {
+      buttonsGroup("Delete Loggers In File? ") {
         row {
-          radioButton("Current file", Scope.CURRENT_FILE)
+          radioButton("Yes, remove all loggers from current file.", Scope.CURRENT_FILE)
         }
         row {
-          radioButton("Project", Scope.PROJECT)
+          radioButton("No, find loggers in Project", Scope.PROJECT)
         }
       }.bind(::scope.toMutableProperty(), Scope::class.java)
     }

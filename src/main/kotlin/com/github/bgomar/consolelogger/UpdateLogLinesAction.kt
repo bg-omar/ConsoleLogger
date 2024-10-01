@@ -28,7 +28,7 @@ class UpdateLogLinesAction : AnAction() {
         val logPattern = Regex("""console\.log\(".*Line: \d+.*"""")
 
         WriteCommandAction.runWriteCommandAction(project) {
-             // Iterate through the document, updating line numbers
+            // Iterate through the document, updating line numbers
             for (line in 0 until document.lineCount) {
                 val lineStart = document.getLineStartOffset(line)
                 val lineEnd = document.getLineEndOffset(line)

@@ -102,7 +102,7 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         }
     }
 
-    public static int getPatternLength() {
+    public static int getLogPatternsCount() {
         ConsoleLoggerSettings settings = getInstance();
         return settings.patterns.size();  // Default to last if out of bounds
 
@@ -118,3 +118,4 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         }
     }
 }
+

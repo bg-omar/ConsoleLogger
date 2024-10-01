@@ -95,7 +95,7 @@
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 9"/>
              </action>
 
-            <action id="com.github.bgomar.consolelogger.removeLogs" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove" text="0"
+            <action id="com.github.bgomar.consolelogger.ConsoleLoggerRemove" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove" text="0"
                     description="Remove console.log() generate by ConsoleLogger plugin">
                  <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 0"/>

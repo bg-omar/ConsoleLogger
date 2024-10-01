@@ -471,7 +471,7 @@ fun generateConsoleLoggerActionsXml(): String {
         actionsXml.append(createActionXml(i))
     }
 
-    actionsXml.append("\n            <action id=\"com.github.bgomar.consolelogger.removeLogs\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"0\"\n")
+    actionsXml.append("\n            <action id=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"0\"\n")
     actionsXml.append("                    description=\"Remove console.log() generate by ConsoleLogger plugin\">\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt 0\"/>\n")
     actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt 0\"/>\n")
