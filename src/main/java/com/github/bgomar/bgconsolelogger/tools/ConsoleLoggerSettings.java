@@ -102,6 +102,12 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         }
     }
 
+    public static int getPatternLength() {
+        ConsoleLoggerSettings settings = getInstance();
+        return settings.patterns.size();  // Default to last if out of bounds
+
+    }
+
     // Modify setPattern to update the List
     public static void setPattern(int index, String pattern) {
         ConsoleLoggerSettings settings = getInstance();

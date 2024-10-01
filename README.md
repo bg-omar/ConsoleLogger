@@ -42,7 +42,6 @@ Find useful tools in a Tool Window in the top right corner of your IDE:
 
 <!-- Plugin description -->
 ####  `CTRL + ALT + (1-9)` for console.logs
-Defaults:  May need personal adjustments in toolwindow.  
 ( 1 ) = ```console.log('$$: ', $$);```  
 ( 2 ) = ```console.log('%c ---> $$: ','color:#0F0;', $$);```   
 
@@ -51,7 +50,7 @@ Defaults:  May need personal adjustments in toolwindow.
  `{LN}` = Line number         
  `{FN}` = File Name   
 
-( ~ ) = `Refresh all Line Numbers in file`  
+( \` ) = `Refresh all Line Numbers in file`  
 ( 0 ) = `remove all loggers (unedited)`      
 
 ## Toolwindow of ConsoleLogger

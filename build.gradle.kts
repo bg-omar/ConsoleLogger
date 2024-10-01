@@ -51,7 +51,7 @@ val pluginIdeaVersion = detectBestIdeVersion()
 plugins {
     id("java") // Java support
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "1.9.22"     // Kotlin support
+    id("org.jetbrains.kotlin.jvm") version "2.0.20"     // Kotlin support
     id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
     id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
     id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin

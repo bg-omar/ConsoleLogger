@@ -151,7 +151,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
                 return;
             }
 
-            // Get the UpdateLogLinesAction by ID
             AnAction updateLogLinesAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UpdateLogLinesAction");
 
             if (updateLogLinesAction != null) {
@@ -163,20 +162,51 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             }
         });
 
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton.addActionListener(e -> {
+            // Get the current project from the tool window context via DataContext
+            Project project = ProjectManager.getInstance().getOpenProjects().length > 0
+                    ? ProjectManager.getInstance().getOpenProjects()[0]
+                    : null;
+
+            if (project == null) {
+                Messages.showMessageDialog("No active project found.", "Error", Messages.getErrorIcon());
+                return;
+            }
+
+            ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("ConsoleLogger");
+            if (toolWindow == null) {
+                Messages.showMessageDialog("Tool window 'ConsoleLogger' not found.", "Error", Messages.getErrorIcon());
+                return;
+            }
+
+            // Get DataContext from the ToolWindow component
+            DataContext dataContext = DataManager.getInstance().getDataContext(toolWindow.getComponent());
+            if (dataContext == null) {
+                Messages.showMessageDialog("Data context not found.", "Error", Messages.getErrorIcon());
+                return;
+            }
+
+            // Get the ConsoleLoggerRemove action by its ID
+            AnAction consoleLoggerRemoveAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.removeLogs");
+
+            if (consoleLoggerRemoveAction != null) {
+                // Create a new AnActionEvent using the current project and data context
+                AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
+
+                // Execute the action
+                consoleLoggerRemoveAction.actionPerformed(event);
+            } else {
+                Messages.showMessageDialog("ConsoleLoggerRemove action not found.", "Error", Messages.getErrorIcon());
+            }
+        });
+
+
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
             saveActiveLoggers();
             if (preset == 1) {
                 save1Loggers();
             } else if (preset == 2) {
                 save2Loggers();
-            }
-        });
-
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton.addActionListener(e -> {
-            if (preset == 1) {
-                load1Loggers();
-            } else if (preset == 2)  {
-                load2Loggers();
             }
         });
 

@@ -1,306 +1,87 @@
 package com.github.bgomar.consolelogger
 
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
 import com.intellij.find.FindModel
 import com.intellij.find.FindUtil
 import com.intellij.find.replaceInProject.ReplaceInProjectManager
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
-
+import kotlin.text.replace
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
-  override fun actionPerformed(e: AnActionEvent) {
-    // display the dialog
-    val dlg = ConsoleLoggerRemoveDlg()
-    if (!dlg.showAndGet()) return
 
+  override fun actionPerformed(e: AnActionEvent) {
     val project = e.getData(CommonDataKeys.PROJECT)!!
     val editor = e.getRequiredData(CommonDataKeys.EDITOR)
 
-    val removeLog1: String = ".*" + ConsoleLoggerSettings.getPattern(1).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog1 = FindModel().apply {
-      stringToFind = removeLog1
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
+    // Proceed with log removal only if an editor is found
+    val dlg = ConsoleLoggerRemoveDlg()
+    if (!dlg.showAndGet()) return
+    // Get the scope of the removal (current file or entire project)
+    val scope = dlg.scope
 
-    val removeLog2: String = ".*" + ConsoleLoggerSettings.getPattern(2).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog2 = FindModel().apply {
-      stringToFind = removeLog2
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
+    for (patternIndex in 1..ConsoleLoggerSettings.getPatternLength()) {
+      // Generate the regex pattern for each console logger pattern
+      val removePattern = generateRemovePattern(ConsoleLoggerSettings.getPattern(patternIndex))
 
-    val removeLog3: String = ".*" + ConsoleLoggerSettings.getPattern(3).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog3 = FindModel().apply {
-      stringToFind = removeLog3
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
+      // Create the find model for each pattern
+      val findModel = createFindModel(removePattern)
 
-    val removeLog4: String = ".*" + ConsoleLoggerSettings.getPattern(4).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog4 = FindModel().apply {
-      stringToFind = removeLog4
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
-
-    val removeLog5: String = ".*" + ConsoleLoggerSettings.getPattern(5).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog5 = FindModel().apply {
-      stringToFind = removeLog5
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
-
-    val removeLog6: String = ".*" + ConsoleLoggerSettings.getPattern(6).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog6 = FindModel().apply {
-      stringToFind = removeLog6
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
-
-    val removeLog7: String = ".*" + ConsoleLoggerSettings.getPattern(7).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog7 = FindModel().apply {
-      stringToFind = removeLog7
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
-
-    val removeLog8: String = ".*" + ConsoleLoggerSettings.getPattern(8).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog8 = FindModel().apply {
-      stringToFind = removeLog8
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
-
-    val removeLog9: String = ".*" + ConsoleLoggerSettings.getPattern(9).run {
-      replace("\\", "\\\\")
-        .replace("(", "\\(")
-        .replace(")", "\\)")
-        .replace("[", "\\[")
-        .replace("]", "\\]")
-        .replace("^", "\\^")
-        .replace("+", "\\+")
-        .replace("?", "\\?")
-        .replace("|", "\\|")
-        .replace(".", "\\.")
-        .replace("*", "\\*")
-        .replace("$$", ".*")
-        .replace("{FN}", ".*")
-        .replace("{FP}", ".*")
-        .replace("{LN}", "\\d*")
-        .replace("{", "\\{")
-        .replace("}", "\\}")
-        .replace("$", "\\$")
-    } + "\n"
-    val findLog9 = FindModel().apply {
-      stringToFind = removeLog9
-      stringToReplace = ""
-      isPromptOnReplace = false
-      isRegularExpressions = true
-      isGlobal = true
-      isPromptOnReplace = false
-    }
-
-    when (dlg.scope) {
-      Scope.CURRENT_FILE ->
-                FindUtil.replace(project, editor, 0, findLog1) &&
-                FindUtil.replace(project, editor, 0, findLog2) &&
-                FindUtil.replace(project, editor, 0, findLog3) &&
-                FindUtil.replace(project, editor, 0, findLog4) &&
-                FindUtil.replace(project, editor, 0, findLog5) &&
-                FindUtil.replace(project, editor, 0, findLog6) &&
-                FindUtil.replace(project, editor, 0, findLog7) &&
-                FindUtil.replace(project, editor, 0, findLog8) &&
-                FindUtil.replace(project, editor, 0, findLog9)
-      Scope.PROJECT -> {
-                ReplaceInProjectManager(project).replaceInPath(findLog1);
-                ReplaceInProjectManager(project).replaceInPath(findLog2);
-                ReplaceInProjectManager(project).replaceInPath(findLog3);
-                ReplaceInProjectManager(project).replaceInPath(findLog4);
-                ReplaceInProjectManager(project).replaceInPath(findLog5);
-                ReplaceInProjectManager(project).replaceInPath(findLog6);
-                ReplaceInProjectManager(project).replaceInPath(findLog7);
-                ReplaceInProjectManager(project).replaceInPath(findLog8);
-                ReplaceInProjectManager(project).replaceInPath(findLog9);
+      // Perform replacement based on the scope (current file or project)
+      when (scope) {
+        Scope.CURRENT_FILE -> FindUtil.replace(project, editor, 0, findModel)
+        Scope.PROJECT -> ReplaceInProjectManager(project).replaceInPath(findModel)
       }
     }
   }
+  /**
+   * Creates a [FindModel] configured for the find-and-replace operation.
+   */
+  private fun createFindModel(pattern: String): FindModel {
+    return FindModel().apply {
+      stringToFind = pattern
+      stringToReplace = ""             // Empty replacement to remove logs
+      isRegularExpressions = true      // Enable regex search
+      isGlobal = true                  // Search across the entire project
+      isPromptOnReplace = false        // Replace without prompting
+    }
+  }
+
+  /**
+   * Generates the regex pattern to remove the log statements
+   * by escaping special characters and replacing placeholders.
+   */
+  private fun generateRemovePattern(pattern: String): String {
+    return ".*" + pattern.run {
+      escapeSpecialCharacters()
+        .replace("\\$\\$", ".*")           // Match any variable text
+        .replace("{FN}", ".*")             // Match any filename
+        .replace("{FP}", ".*")             // Match any file path
+        .replace("{LN}", "\\d+")           // Match line numbers
+    } + "\\n"  // Ensure it matches the entire line
+  }
+
+  /**
+   * Escapes special regex characters in the pattern string.
+   */
+  private fun String.escapeSpecialCharacters(): String {
+    return this.replace("\\", "\\\\")
+      .replace("(", "\\(")
+      .replace(")", "\\)")
+      .replace("[", "\\[")
+      .replace("]", "\\]")
+      .replace("^", "\\^")
+      .replace("+", "\\+")
+      .replace("?", "\\?")
+      .replace("|", "\\|")
+      .replace(".", "\\.")
+      .replace("*", "\\*")
+      .replace("{", "\\{")
+      .replace("}", "\\}")
+      .replace("$", "\\$")
+  }
+
+
+
 }
