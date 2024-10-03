@@ -58,6 +58,9 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     private static JButton propertiesConsoleLoggerDefaultButton8 = new JButton();
     private static JButton propertiesConsoleLoggerDefaultButton9 = new JButton();
 
+
+
+
     public static DialogPanel ui;
     public int preset = 0;
 
@@ -85,6 +88,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             JButton propertiesConsoleLoggerDefaultButton7,
             JButton propertiesConsoleLoggerDefaultButton8,
             JButton propertiesConsoleLoggerDefaultButton9
+
     ) {
         super();
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1 = propertiesConsoleLoggerTextField1;
@@ -138,6 +142,8 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_7 : ConsoleLoggerSettings.DEFAULT_PATTERN_16));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_8 : ConsoleLoggerSettings.DEFAULT_PATTERN_17));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
+
+
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
             ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");

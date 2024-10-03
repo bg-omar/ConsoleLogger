@@ -1,15 +1,22 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.tools.px2RemTool;
+import com.github.bgomar.bgconsolelogger.toolwindow.configfiles.*;
+import com.intellij.ide.DataManager;
+import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.ui.components.JBTextField;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+
 
 public class Px2RemToolSetup extends AbstractToolSetup {
 
     private final JBTextField px2RemTextField;
     private final JBTextField rem2PxTextField;
+
 
     public Px2RemToolSetup(JBTextField px2RemTextField,
                            JBTextField rem2PxTextField) {
@@ -18,6 +25,7 @@ public class Px2RemToolSetup extends AbstractToolSetup {
     }
 
     public void setup() {
+
         px2RemTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -46,5 +54,7 @@ public class Px2RemToolSetup extends AbstractToolSetup {
                 px2RemTextField.setText(String.valueOf(px2RemTool.rem2Px(Double.valueOf(rem2PxTextField.getText()))));
             }
         });
+
+
     }
 }

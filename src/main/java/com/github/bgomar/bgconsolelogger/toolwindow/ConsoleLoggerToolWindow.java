@@ -9,6 +9,7 @@ import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
 import javax.swing.*;
 import java.util.LinkedHashMap;
 
+
 public class ConsoleLoggerToolWindow {
 
     private JPanel mainPanel;
@@ -73,14 +74,24 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
 
+    private JPanel configPresetsPanel;
+    private JButton uploadPresetButton;
+    private JButton deployPresetButton;
+    private JButton readPresetButton;
+    private JButton editPresetButton;
+    private JButton deletePresetButton;
+    private JButton listConfigFilesButton;
+
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
     public ConsoleLoggerToolWindow() {
-        String iconsPath = "icons/";
+        String iconsPath = "icons/cats/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
+        toolPanelsByTitle.put("Config Presets", new PanelAndIcon(configPresetsPanel, iconsPath + "winecat.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "devcat.svg"));
@@ -88,29 +99,36 @@ public class ConsoleLoggerToolWindow {
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
-                propertiesConsoleLoggerTextField1,
-                propertiesConsoleLoggerTextField2,
-                propertiesConsoleLoggerTextField3,
-                propertiesConsoleLoggerTextField4,
-                propertiesConsoleLoggerTextField5,
-                propertiesConsoleLoggerTextField6,
-                propertiesConsoleLoggerTextField7,
-                propertiesConsoleLoggerTextField8,
-                propertiesConsoleLoggerTextField9,
-                propertiesConsoleLoggerSaveButton,
-                propertiesConsoleLoggerLoad2Button,
-                propertiesConsoleLoggerLoad1Button,
-                propertiesConsoleLoggerCancelButton,
-                propertiesConsoleLoggerRecheckButton,
-                propertiesConsoleLoggerDefaultButton1,
-                propertiesConsoleLoggerDefaultButton2,
-                propertiesConsoleLoggerDefaultButton3,
-                propertiesConsoleLoggerDefaultButton4,
-                propertiesConsoleLoggerDefaultButton5,
-                propertiesConsoleLoggerDefaultButton6,
-                propertiesConsoleLoggerDefaultButton7,
-                propertiesConsoleLoggerDefaultButton8,
-                propertiesConsoleLoggerDefaultButton9).setup();
+            propertiesConsoleLoggerTextField1,
+            propertiesConsoleLoggerTextField2,
+            propertiesConsoleLoggerTextField3,
+            propertiesConsoleLoggerTextField4,
+            propertiesConsoleLoggerTextField5,
+            propertiesConsoleLoggerTextField6,
+            propertiesConsoleLoggerTextField7,
+            propertiesConsoleLoggerTextField8,
+            propertiesConsoleLoggerTextField9,
+            propertiesConsoleLoggerSaveButton,
+            propertiesConsoleLoggerLoad2Button,
+            propertiesConsoleLoggerLoad1Button,
+            propertiesConsoleLoggerCancelButton,
+            propertiesConsoleLoggerRecheckButton,
+            propertiesConsoleLoggerDefaultButton1,
+            propertiesConsoleLoggerDefaultButton2,
+            propertiesConsoleLoggerDefaultButton3,
+            propertiesConsoleLoggerDefaultButton4,
+            propertiesConsoleLoggerDefaultButton5,
+            propertiesConsoleLoggerDefaultButton6,
+            propertiesConsoleLoggerDefaultButton7,
+            propertiesConsoleLoggerDefaultButton8,
+            propertiesConsoleLoggerDefaultButton9).setup();
+        new ConfigPresetToolSetup(
+            uploadPresetButton,
+            deployPresetButton,
+            readPresetButton,
+            editPresetButton,
+            deletePresetButton,
+            listConfigFilesButton).setup();
         new Base64ToolSetup(
             base64RadioButtonUTF8,
             base64RadioButtonASCII,
