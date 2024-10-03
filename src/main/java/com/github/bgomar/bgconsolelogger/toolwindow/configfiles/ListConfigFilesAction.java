@@ -2,6 +2,7 @@ package com.github.bgomar.bgconsolelogger.toolwindow.configfiles;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -10,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListConfigFilesAction extends AnAction {
 
@@ -19,20 +21,20 @@ public class ListConfigFilesAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        Project project = e.getProject();
+        Project project = e.getData(CommonDataKeys.PROJECT);
         if (project == null) {
             return;
         }
 
         // Get the root directory of the project
-        VirtualFile rootDir = LocalFileSystem.getInstance().findFileByPath(project.getBasePath());
+        VirtualFile rootDir = LocalFileSystem.getInstance().findFileByPath(Objects.requireNonNull(project.getBasePath()));
         if (rootDir == null) {
             Messages.showMessageDialog(project, "Root directory not found", "Error", Messages.getErrorIcon());
             return;
         }
 
         // Define the directory where the config files are stored
-        VirtualFile configDir = rootDir.findChild("configs");  // Assuming config files are stored in a "configs" folder
+        VirtualFile configDir = rootDir;
         if (configDir == null || !configDir.isDirectory()) {
             Messages.showMessageDialog(project, "Config directory not found", "Error", Messages.getErrorIcon());
             return;

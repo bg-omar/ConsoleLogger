@@ -2,6 +2,7 @@ package com.github.bgomar.bgconsolelogger.toolwindow.configfiles;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 
@@ -15,7 +16,7 @@ public class UploadPresetAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Project project = e.getProject();
+        Project project = e.getData(CommonDataKeys.PROJECT);
         if (project == null) {
             Messages.showErrorDialog("Project not found!", "Error");
             return;
@@ -24,7 +25,7 @@ public class UploadPresetAction extends AnAction {
         // Simulate file upload functionality
         String projectDir = project.getBasePath();
         if (projectDir != null) {
-            Path presetFile = Paths.get(projectDir, "preset-uploaded.txt");
+            Path presetFile = Paths.get(projectDir, "config.txt");
             try {
                 Files.createFile(presetFile);
                 Files.write(presetFile, "This is a sample uploaded preset.".getBytes());

@@ -1,8 +1,10 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.tools.px2RemTool;
+import com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ConfigFileDialog;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBTextField;
 
 import javax.swing.*;
@@ -50,7 +52,7 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
             }
         });
 
-        // Add ActionListener for uploading presets via AnAction
+// Add ActionListener for uploading presets via AnAction
         uploadPresetButton.addActionListener(e -> {
             AnAction uploadAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UploadPresetAction");
             if (uploadAction != null) {
