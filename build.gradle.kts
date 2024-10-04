@@ -68,8 +68,8 @@ repositories {
     mavenCentral()
 }
 
-val junitVersion = "5.10.1"
-val junitPlatformLauncher = "1.10.1"
+val junitVersion = "5.10.3"
+val junitPlatformLauncher = "1.10.3"
 
 
 val service = project.extensions.getByType<JavaToolchainService>()
@@ -91,17 +91,18 @@ dependencies {
 // https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
 
     implementation("commons-httpclient:commons-httpclient:3.1")
-
+    // Add JTS dependency
+    implementation("org.locationtech.jts:jts-core:1.19.0")
     implementation("org.jetbrains:marketplace-zip-signer:0.1.24")
     implementation("org.jetbrains:annotations:24.1.0")
-    implementation("org.apache.commons:commons-lang3:3.14.0") // because no longer bundled with IDE
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    implementation("org.apache.commons:commons-lang3:3.15.0") // because no longer bundled with IDE
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
 
-    implementation("commons-codec:commons-codec:1.16.0") // for Hash
+    implementation("commons-codec:commons-codec:1.17.0") // for Hash
     implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
 
     implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
-    implementation("net.datafaker:datafaker:2.1.0") // for Data Faker
+    implementation("net.datafaker:datafaker:2.3.0") // for Data Faker
 
     implementation("fr.marcwrobel:jbanking:4.2.0") // for IBAN generation
     implementation("at.favre.lib:bcrypt:0.10.2") // for Bcrypt hash
@@ -473,8 +474,8 @@ fun generateConsoleLoggerActionsXml(): String {
 
     actionsXml.append("\n            <action id=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" class=\"com.github.bgomar.consolelogger.ConsoleLoggerRemove\" text=\"0\"\n")
     actionsXml.append("                    description=\"Remove console.log() generate by ConsoleLogger plugin\">\n")
-    actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt 0\"/>\n")
-    actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt 0\"/>\n")
+    actionsXml.append("                 <keyboard-shortcut keymap=\"\$default\" first-keystroke=\"ctrl alt G\"/>\n")
+    actionsXml.append("                 <keyboard-shortcut keymap=\"Mac OS X\" first-keystroke=\"ctrl alt G\"/>\n")
     actionsXml.append("            </action>\n")
 
     actionsXml.append("\n            <action id=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" class=\"com.github.bgomar.consolelogger.UpdateLogLinesAction\" text=\"UpdateLogLinesAction\" description=\"UpdateLogLinesAction\">\n")

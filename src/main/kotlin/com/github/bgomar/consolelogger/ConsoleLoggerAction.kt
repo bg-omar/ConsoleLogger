@@ -181,27 +181,6 @@ class ConsoleLoggerAction : AnAction() {
     return this.children.filterIsInstance(klass).firstOrNull()
   }
 
-  /**
-   * find the block containing this element
-   */
-  private fun findBlockForElement(element: PsiElement?): PsiElement? {
-    var currentElement = element
-    while (currentElement != null) {
-      val elementType = currentElement.node.elementType.toString()
-      val parentElementType = currentElement.parent?.node?.elementType?.toString()
-
-      when {
-        elementType == "JS:EXPRESSION_STATEMENT" && parentElementType != "FILE" -> return currentElement
-        elementType == "JS:VAR_STATEMENT" -> return currentElement
-        elementType == "JS:IF_STATEMENT" -> return currentElement
-        elementType == "JS:BLOCK_STATEMENT" || elementType == "JS:FUNCTION" || elementType == "JS:FUNCTION_EXPRESSION" -> return currentElement
-        currentElement.text.trim() == "{" -> return currentElement
-        currentElement.text.trim() == "\n" -> return findBlockForElement(currentElement.prevSibling)
-      }
-      currentElement = currentElement.parent
-    }
-    return null
-  }
 
 
 
@@ -280,7 +259,27 @@ class ConsoleLoggerAction : AnAction() {
     return findElementToLogForBlock(element.firstChild)
   }
 
+  /**
+   * find the block containing this element
+   */
+  private fun findBlockForElement(element: PsiElement): PsiElement? {
 
+    val elementType = element.node.elementType.toString()
+    val parentElementType = if (element.parent == null) {
+      return null
+    } else element.parent.node.elementType.toString()
+
+    when {
+      (elementType == "JS:EXPRESSION_STATEMENT" && parentElementType != "FILE") -> return element
+      elementType == "JS:VAR_STATEMENT" -> return element
+      elementType == "JS:IF_STATEMENT" -> return element
+
+      element.text.trim(' ') == "{" -> return element
+      element.text.trim(' ') == "\n" -> return findBlockForElement(element.prevSibling)
+    }
+
+    return findBlockForElement(element.parent)
+  }
 
   private fun PsiElement.hasParentOfType(type: String, maxRecursion: Int, recursionLevel: Int = 0): Boolean {
     return if (this.parent.node.elementType.toString() == type) {

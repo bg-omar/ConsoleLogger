@@ -97,8 +97,8 @@
 
             <action id="com.github.bgomar.consolelogger.ConsoleLoggerRemove" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove" text="0"
                     description="Remove console.log() generate by ConsoleLogger plugin">
-                 <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
-                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 0"/>
+                 <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt G"/>
+                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt G"/>
             </action>
 
             <action id="com.github.bgomar.consolelogger.UpdateLogLinesAction" class="com.github.bgomar.consolelogger.UpdateLogLinesAction" text="UpdateLogLinesAction" description="UpdateLogLinesAction">
@@ -107,6 +107,15 @@
             </action>
             <!-- Include actions end -->
 
+            <!-- Action for extracting function and related variables -->
+            <action id="com.github.bgomar.consolelogger.FunctionExtractorAction"
+                    class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorAction"
+                    text="Extract Function Info"
+                    description="Extracts the selected function along with connected variables and functions.">
+                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+                <!-- Optional: Set a keyboard shortcut -->
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
+            </action>
 
             <action id="com.github.bgomar.consolelogger.ListConfigFilesAction"
                 class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ListConfigFilesAction"
