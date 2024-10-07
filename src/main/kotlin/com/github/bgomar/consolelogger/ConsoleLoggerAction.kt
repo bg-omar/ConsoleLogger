@@ -2,38 +2,31 @@ package com.github.bgomar.consolelogger
 
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings
 import com.intellij.lang.javascript.JavascriptLanguage
-import com.intellij.lang.javascript.psi.JSBlockStatement
-import com.intellij.lang.javascript.psi.JSElement
-import com.intellij.lang.javascript.psi.JSFunctionExpression
-import com.intellij.lang.javascript.psi.JSIfStatement
+import com.intellij.lang.javascript.psi.*
 import com.intellij.openapi.actionSystem.*
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.CaretState
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.LogicalPosition
+import com.intellij.openapi.editor.actionSystem.EditorActionHandler
 import com.intellij.openapi.editor.actionSystem.EditorActionManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
 
 
-
-
 class ConsoleLoggerAction : AnAction() {
-    override fun actionPerformed(e: AnActionEvent) {
+  override fun actionPerformed(e: AnActionEvent) {
 
     val presentation = e.presentation.text
-
     val patternText: Int = presentation.toIntOrNull() ?: 0  // Default value if conversion fails
     val patternIndex: Int = patternText
 
     // Check if the editor is available
     val editor = e.getData(CommonDataKeys.EDITOR)
     if (editor == null) {
-        println("Editor is missing. Cannot perform the action.")
-        return
+      println("Editor is missing. Cannot perform the action.")
+      return
     }
     val actionManager = EditorActionManager.getInstance()
     val startNewLineHandler = actionManager.getActionHandler(IdeActions.ACTION_EDITOR_START_NEW_LINE)
@@ -43,9 +36,11 @@ class ConsoleLoggerAction : AnAction() {
     val variableName = moveCursorToInsertionPoint(editor)
     val logVar = variableName?.trim()
 
+    // Generate the console log pattern
     val pattern = ConsoleLoggerSettings.getPattern(patternIndex).run {
-      replace("{FN}", vFile?.name ?: "filename").replace("{FP}", vFile?.path ?: "file_path")
-        .replace("{LN}", "Line: "+(editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
+      replace("{FN}", vFile?.name ?: "filename")
+        .replace("{FP}", vFile?.path ?: "file_path")
+        .replace("{LN}", "Line: " + (editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
     }
 
     val insertionPositions = "\\$\\$".toRegex().findAll(pattern)
@@ -54,8 +49,9 @@ class ConsoleLoggerAction : AnAction() {
 
     val lineToInsert = if (logVar == "\n") {
       "\n${pattern.replace("$$", "")}"
-    } else
+    } else {
       pattern.replace("$$", "$logVar")
+    }
 
     variableName?.let {
       val line2insert = lineToInsert.replace("<CR>", "")
@@ -65,12 +61,38 @@ class ConsoleLoggerAction : AnAction() {
           startNewLineHandler.execute(editor, editor.caretModel.primaryCaret, e.dataContext)
         }
 
+        insertLoggerBeforeReturn(editor, line2insert, startNewLineHandler, e)
+
         val offset = editor.caretModel.currentCaret.offset
         editor.document.insertString(offset, line2insert)
       }
       WriteCommandAction.runWriteCommandAction(editor.project, runnable)
 
       positionCaret(editor, insertionPositions, line2insert, variableName.replace("<CR>", "").trim())
+    }
+  }
+
+  private fun insertLoggerBeforeReturn(
+    editor: Editor,
+    lineToInsert: String,
+    startNewLineHandler: EditorActionHandler,
+    e: AnActionEvent
+  ) {
+    val document = editor.document
+    val psiFile = PsiFileFactory.getInstance(editor.project)
+      .createFileFromText("dummy.ts", JavascriptLanguage.INSTANCE, document.text)
+
+    val offset = editor.caretModel.currentCaret.offset
+    val elementAtCursor = psiFile.findElementAt(offset)
+
+    val returnElement = findReturnStatementInFunction(elementAtCursor)
+    if (returnElement != null) {
+      val offsetBeforeReturn = returnElement.textOffset
+      editor.caretModel.moveToOffset(offsetBeforeReturn)
+      startNewLineHandler.execute(editor, editor.caretModel.primaryCaret, e.dataContext)
+
+      // Insert logger before the return statement
+      editor.document.insertString(offsetBeforeReturn, lineToInsert + "\n")
     }
   }
 
@@ -109,8 +131,8 @@ class ConsoleLoggerAction : AnAction() {
           )
         )
       )
-    //println(editor.caretModel.caretsAndSelections)
   }
+
   /**
    * search for the cursor insertion point
    * return the name of the element to log
@@ -140,37 +162,6 @@ class ConsoleLoggerAction : AnAction() {
       valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
     }
 
-    if (valueToLog.startsWith("\n") && element?.hasParentOfType("JS:OBJECT_LITERAL", 2) != true) {
-      return "\n"
-    }
-
-    val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
-
-    when {
-      // If it's an arrow function, insert inside the function body
-      block is JSFunctionExpression -> {
-        val body = block.childOfType(JSBlockStatement::class.java)
-        if (body != null) {
-          // Move the cursor inside the block, after the opening '{'
-          editor.caretModel.moveToOffset(body.textOffset + 1)
-        } else {
-          // Handle the case where the arrow function has an expression body
-          val expression = block.childOfType(JSElement::class.java)
-          if (expression != null) {
-            // Move the cursor to the end of the expression
-            editor.caretModel.moveToOffset(expression.textRange.endOffset)
-          }
-        }
-      }
-      block is JSIfStatement -> {
-        // For "if" statements, insert line above
-        editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
-      }
-      block != null -> {
-        editor.caretModel.moveToOffset(block.textRange.endOffset)
-      }
-    }
-
     return valueToLog
   }
 
@@ -181,8 +172,21 @@ class ConsoleLoggerAction : AnAction() {
     return this.children.filterIsInstance(klass).firstOrNull()
   }
 
+  private fun findReturnStatementInFunction(element: PsiElement?): PsiElement? {
+    var currentElement = element
+    while (currentElement != null) {
+      if (currentElement is JSFunction || currentElement is JSBlockStatement) {
+        return findReturnInBlock(currentElement)
+      }
+      currentElement = currentElement.parent
+    }
+    return null
+  }
 
-
+  private fun findReturnInBlock(block: PsiElement?): PsiElement? {
+    if (block == null) return null
+    return block.children.find { it is JSReturnStatement }
+  }
 
   /**
    * when the cursor is on a loggable identifier
@@ -196,15 +200,15 @@ class ConsoleLoggerAction : AnAction() {
     when {
       elementType == "WHITE_SPACE" && element.text.replace(" ", "").startsWith("\n\n") -> return null
       element.prevSibling != null
-        && element.prevSibling.node.elementType.toString() == "JS:DOT"
-      -> return findElementToLogForSelection(element.parent)
+              && element.prevSibling.node.elementType.toString() == "JS:DOT"
+        -> return findElementToLogForSelection(element.parent)
 
       (elementType != "JS:IDENTIFIER"
-        && elementType != "JS:REFERENCE_EXPRESSION"
-        && elementType != "JS:BINARY_EXPRESSION")
-        || (parentElementType == "JS:REFERENCE_EXPRESSION" && elementType != "JS:IDENTIFIER")
-        || parentElementType == "JS:PROPERTY"
-      -> {
+              && elementType != "JS:REFERENCE_EXPRESSION"
+              && elementType != "JS:BINARY_EXPRESSION")
+              || (parentElementType == "JS:REFERENCE_EXPRESSION" && elementType != "JS:IDENTIFIER")
+              || parentElementType == "JS:PROPERTY"
+        -> {
         val block = findBlockForElement(element)
         return when {
           element.text.trim(' ') == "\n" && (element.prevSibling?.lastChild?.text == ";") -> null
@@ -222,22 +226,19 @@ class ConsoleLoggerAction : AnAction() {
         element
       )
       elementType == "JS:REFERENCE_EXPRESSION"
-        && parentElementType != "JS:BINARY_EXPRESSION" -> {
+              && parentElementType != "JS:BINARY_EXPRESSION" -> {
         return findElementToLogForSelection(element.parent)
       }
 
       (elementType == "JS:IDENTIFIER"
-        && !element.hasParentOfType("JS:ARGUMENT_LIST", 2)
-        && element.hasParentOfType("JS:CALL_EXPRESSION", 2))
-        && element.prevSibling == null -> return null
+              && !element.hasParentOfType("JS:ARGUMENT_LIST", 2)
+              && element.hasParentOfType("JS:CALL_EXPRESSION", 2))
+              && element.prevSibling == null -> return null
     }
 
     return element
   }
 
-  /**
-   * find the element to log inside a given block
-   */
   private fun findElementToLogForBlock(element: PsiElement?): PsiElement? {
     element ?: return null
     val elementType = element.node.elementType.toString()
@@ -245,9 +246,9 @@ class ConsoleLoggerAction : AnAction() {
 
     when {
       (elementType == "JS:IDENTIFIER" && parentType != "JS:PROPERTY")
-        || elementType == "JS:DEFINITION_EXPRESSION"
-        || (elementType == "JS:REFERENCE_EXPRESSION" && parentType == "JS:REFERENCE_EXPRESSION")
-      -> return element
+              || elementType == "JS:DEFINITION_EXPRESSION"
+              || (elementType == "JS:REFERENCE_EXPRESSION" && parentType == "JS:REFERENCE_EXPRESSION")
+        -> return element
       elementType == "JS:VARIABLE" -> return element.firstChild
       elementType == "JS:CALL_EXPRESSION" -> return null
     }
@@ -259,15 +260,9 @@ class ConsoleLoggerAction : AnAction() {
     return findElementToLogForBlock(element.firstChild)
   }
 
-  /**
-   * find the block containing this element
-   */
   private fun findBlockForElement(element: PsiElement): PsiElement? {
-
     val elementType = element.node.elementType.toString()
-    val parentElementType = if (element.parent == null) {
-      return null
-    } else element.parent.node.elementType.toString()
+    val parentElementType = element.parent?.node?.elementType?.toString() ?: return null
 
     when {
       (elementType == "JS:EXPRESSION_STATEMENT" && parentElementType != "FILE") -> return element

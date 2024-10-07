@@ -81,7 +81,11 @@ public class ConsoleLoggerToolWindow {
     private JButton editPresetButton;
     private JButton deletePresetButton;
     private JButton listConfigFilesButton;
-
+    private JButton Button5;
+    private JButton Button4;
+    private JButton Button3;
+    private JButton Button2;
+    private JButton Button1;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -128,7 +132,12 @@ public class ConsoleLoggerToolWindow {
             readPresetButton,
             editPresetButton,
             deletePresetButton,
-            listConfigFilesButton).setup();
+            listConfigFilesButton,
+            Button5,
+            Button4,
+            Button3,
+            Button2,
+            Button1).setup();
         new Base64ToolSetup(
             base64RadioButtonUTF8,
             base64RadioButtonASCII,

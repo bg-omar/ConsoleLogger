@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain
 import org.w3c.dom.Document
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
@@ -116,14 +117,12 @@ dependencies {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-
     pluginName = properties("pluginName")
     version = properties("platformVersion")
     type = properties("platformType")
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
-
     updateSinceUntilBuild.set(true)
 
     sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
@@ -238,7 +237,7 @@ tasks {
         options.compilerArgs = listOf("-Xlint:deprecation")
         options.encoding = "UTF-8"
     }
-    withType<org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain>().configureEach {
+    withType<UsesKotlinJavaToolchain>().configureEach {
         kotlinJavaToolchain.toolchain.use(customLauncher)
     }
     withType<KotlinCompile> {
