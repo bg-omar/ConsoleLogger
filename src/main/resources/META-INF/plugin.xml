@@ -113,8 +113,6 @@
                     text="Extract Function Info"
                     description="Extracts the selected function along with connected variables and functions.">
                 <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-                <!-- Optional: Set a keyboard shortcut -->
-                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
             </action>
 
             <action id="com.github.bgomar.consolelogger.ListConfigFilesAction"

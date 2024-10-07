@@ -3,6 +3,11 @@ package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.ui.Messages;
+
 import javax.swing.*;
 
 public class ConfigPresetToolSetup extends AbstractToolSetup {
@@ -61,14 +66,15 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
             }
         });
 
-        // Add ActionListener for uploading presets via AnAction
         Button1.addActionListener(e -> {
-            AnAction uploadAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UploadPresetAction");
-            if (uploadAction != null) {
+            Messages.showInfoMessage("Button pressed", "Action Triggered");
+            AnAction listAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorAction");
+            if (listAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
                 AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-                uploadAction.actionPerformed(actionEvent);  // Triggers the AnAction to open the config dialog
+                listAction.actionPerformed(actionEvent);
             }
+
         });
 
         // Add ActionListener for deploying presets

@@ -8,17 +8,21 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
-
+import com.intellij.openapi.diagnostic.Logger;
 import static org.locationtech.jts.util.Debug.print;
 import static org.locationtech.jts.util.Debug.println;
 
 public class FunctionExtractorAction extends AnAction {
 
+    private static final Logger LOG = Logger.getInstance(FunctionExtractorAction.class);
+
     @Override
     public void actionPerformed(AnActionEvent e) {
-        print("----------------------------------------------");
-        print("Line: 17 project: ");
-        print("----------------------------------------------");
+        Messages.showInfoMessage("Function opend", "Action Triggered");
+        LOG.info("----------------------------------------------");
+        LOG.info("Line: 17 project: ");
+        LOG.info("----------------------------------------------");
+
         Project project = e.getProject();
 
         Editor editor = e.getData(CommonDataKeys.EDITOR);
