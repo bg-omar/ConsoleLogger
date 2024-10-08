@@ -6,6 +6,7 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.extensions.PluginId
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.ProjectActivity
+import com.intellij.openapi.ui.Messages;
 
 class UpdateNotify : ProjectActivity {
 
@@ -23,6 +24,17 @@ class UpdateNotify : ProjectActivity {
   }
 
   private fun showUpdate(project: Project) {
+    Messages.showInfoMessage("""
+            🐛 Bugfix for Saving 😁👌<br><br>
+            Sorry it took so long, it was quite a hard task.<br>
+            🤏 Small changes to defaults: <br>
+            - Changed input field sizes<br>
+            - Added second logger preset option<br>
+            - Fixed Issue with Code Insertion Position and <br>
+              Log Line Number Updates in Plugin<br>
+            - Added the Re-check line numbers function<br>
+            """, "ConsoleLogger plugin updated to version ${plugin.version}");
+
     val notification = createNotification(
       "ConsoleLogger plugin updated to version ${plugin.version}",
       """

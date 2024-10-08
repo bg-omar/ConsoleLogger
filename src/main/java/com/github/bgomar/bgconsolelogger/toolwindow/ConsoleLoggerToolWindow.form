@@ -1078,7 +1078,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Button"/>
+                  <text value="Function"/>
                 </properties>
               </component>
               <component id="89410" class="javax.swing.JButton" binding="Button2">
@@ -1087,7 +1087,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Button"/>
+                  <text value="Function KT"/>
                 </properties>
               </component>
               <component id="6df1e" class="javax.swing.JButton" binding="Button3">

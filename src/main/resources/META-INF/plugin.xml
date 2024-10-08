@@ -11,16 +11,16 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" />
+        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" preload="true"/>
 
         <!--suppress  PluginXmlValidity -->
         <toolWindow id="ConsoleLogger"
-                    icon="/icons/cryingcatt.svg"
+                    icon="/icons/cats/cryingcatt.svg"
                     anchor="right"
                     factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger"/>
-        <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify"/>
+        <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger" preload="true"/>
+        <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify" />
         <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
 
     </extensions>
@@ -30,6 +30,64 @@
                text="Console Log"
                description="Generate javascript logs" popup="true">
             <add-to-group group-id="CodeMenu" anchor="last"/>
+
+            <!-- Action for extracting function and related variables -->
+            <action id="com.github.bgomar.consolelogger.FunctionExtractorAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorAction"
+                text="Extract Function Info"
+                description="Extracts the selected function along with connected variables and functions.">
+                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            </action>
+
+
+            <!-- Action for extracting function and related variables -->
+            <action id="com.github.bgomar.consolelogger.FunctionExtractorActionKT"
+                class="com.github.bgomar.consolelogger.FunctionExtractorActionKT"
+                text="Extract Function Info"
+                description="Extracts the selected function along with connected variables and functions.">
+                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            </action>
+
+            <action id="com.github.bgomar.consolelogger.ListConfigFilesAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ListConfigFilesAction"
+                text="List Config Files"
+                description="List all saved config files">
+            </action>
+            <!-- Action for uploading a preset -->
+            <action id="com.github.bgomar.consolelogger.UploadPresetAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.UploadPresetAction"
+                text="Upload Preset"
+                description="Upload and save a preset file">
+            </action>
+
+            <!-- Action for deploying a preset -->
+            <action id="com.github.bgomar.consolelogger.DeployPresetAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.DeployPresetAction"
+                text="Deploy Preset"
+                description="Deploy a saved preset">
+            </action>
+
+            <!-- Action for uploading a preset -->
+            <action id="com.github.bgomar.consolelogger.ReadPresetAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ReadPresetAction"
+                text="Upload Preset"
+                description="Upload and save a preset file">
+            </action>
+
+            <!-- Action for editing a preset -->
+            <action id="com.github.bgomar.consolelogger.EditPresetAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.EditPresetAction"
+                text="Edit Preset"
+                description="Edit a saved preset">
+            </action>
+
+            <!-- Action for deleting a preset -->
+            <action id="com.github.bgomar.consolelogger.DeletePresetAction"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.DeletePresetAction"
+                text="Delete Preset"
+                description="Delete a saved preset">
+            </action>
+
              <!-- Include actions XML -->
 
              <action id="com.github.bgomar.consolelogger.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
@@ -106,54 +164,6 @@
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt BACK_QUOTE"/>
             </action>
             <!-- Include actions end -->
-
-            <!-- Action for extracting function and related variables -->
-            <action id="com.github.bgomar.consolelogger.FunctionExtractorAction"
-                    class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorAction"
-                    text="Extract Function Info"
-                    description="Extracts the selected function along with connected variables and functions.">
-                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            </action>
-
-            <action id="com.github.bgomar.consolelogger.ListConfigFilesAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ListConfigFilesAction"
-                text="List Config Files"
-                description="List all saved config files">
-            </action>
-            <!-- Action for uploading a preset -->
-            <action id="com.github.bgomar.consolelogger.UploadPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.UploadPresetAction"
-                text="Upload Preset"
-                description="Upload and save a preset file">
-            </action>
-
-            <!-- Action for deploying a preset -->
-            <action id="com.github.bgomar.consolelogger.DeployPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.DeployPresetAction"
-                text="Deploy Preset"
-                description="Deploy a saved preset">
-            </action>
-
-            <!-- Action for uploading a preset -->
-            <action id="com.github.bgomar.consolelogger.ReadPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ReadPresetAction"
-                text="Upload Preset"
-                description="Upload and save a preset file">
-            </action>
-
-            <!-- Action for editing a preset -->
-            <action id="com.github.bgomar.consolelogger.EditPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.EditPresetAction"
-                text="Edit Preset"
-                description="Edit a saved preset">
-            </action>
-
-            <!-- Action for deleting a preset -->
-            <action id="com.github.bgomar.consolelogger.DeletePresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.DeletePresetAction"
-                text="Delete Preset"
-                description="Delete a saved preset">
-            </action>
         </group>
 
     </actions>

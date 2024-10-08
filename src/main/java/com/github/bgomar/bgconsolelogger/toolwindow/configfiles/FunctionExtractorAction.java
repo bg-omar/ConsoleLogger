@@ -1,31 +1,23 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.configfiles;
 
+import com.intellij.lang.javascript.psi.JSFunction;
+
+import com.intellij.lang.javascript.psi.ecmal4.JSClass;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.openapi.diagnostic.Logger;
-import static org.locationtech.jts.util.Debug.print;
-import static org.locationtech.jts.util.Debug.println;
 
 public class FunctionExtractorAction extends AnAction {
 
-    private static final Logger LOG = Logger.getInstance(FunctionExtractorAction.class);
-
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Messages.showInfoMessage("Function opend", "Action Triggered");
-        LOG.info("----------------------------------------------");
-        LOG.info("Line: 17 project: ");
-        LOG.info("----------------------------------------------");
-
         Project project = e.getProject();
-
-        Editor editor = e.getData(CommonDataKeys.EDITOR);
+        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
         if (project == null || editor == null) {
             return;
         }
@@ -36,60 +28,58 @@ public class FunctionExtractorAction extends AnAction {
         }
 
         PsiElement selectedElement = psiFile.findElementAt(editor.getCaretModel().getOffset());
-        PsiMethod selectedMethod = PsiTreeUtil.getParentOfType(selectedElement, PsiMethod.class);
 
-        if (selectedMethod != null) {
-            // Start the extraction process
-            String functionInfo = extractFunctionInfo(selectedMethod);
+        // Try to extract a TypeScript function or class
+        JSFunction selectedFunction = PsiTreeUtil.getParentOfType(selectedElement, JSFunction.class);
+        JSClass selectedClass = PsiTreeUtil.getParentOfType(selectedElement, JSClass.class);
+
+        if (selectedFunction != null) {
+            // Function extraction logic
+            String functionInfo = extractFunctionInfo(selectedFunction);
             displayResult(functionInfo, project);
+        } else if (selectedClass != null) {
+            // Class extraction logic
+            String classInfo = extractClassInfo(selectedClass);
+            displayResult(classInfo, project);
+        } else {
+            Messages.showInfoMessage(project, "No function or class selected.", "Error");
         }
     }
 
-    private String extractFunctionInfo(PsiMethod method) {
+    private String extractFunctionInfo(JSFunction function) {
         StringBuilder result = new StringBuilder();
+        result.append("Function: ").append(function.getName()).append("\n");
 
-        // Function signature
-        result.append("Function: ").append(method.getName()).append("\n\n");
-
-        // Variables
-        result.append("Variables:\n");
-        PsiCodeBlock methodBody = method.getBody();
-        if (methodBody != null) {
-            for (PsiStatement statement : methodBody.getStatements()) {
-                if (statement instanceof PsiDeclarationStatement) {
-                    for (PsiElement declaredElement : ((PsiDeclarationStatement) statement).getDeclaredElements()) {
-                        if (declaredElement instanceof PsiVariable) {
-                            PsiVariable variable = (PsiVariable) declaredElement;
-                            result.append(variable.getName())
-                                    .append(" = ")
-                                    .append(variable.getInitializer() != null ? variable.getInitializer().getText() : "unknown")
-                                    .append("\n");
-                        }
-                    }
-                }
-            }
+        // Parameters
+        result.append("Parameters:\n");
+        for (PsiElement param : function.getParameterList().getParameters()) {
+            result.append(param.getText()).append("\n");
         }
 
-        // Connected functions
-        result.append("\nConnected Functions:\n");
-        if (methodBody != null) {
-            for (PsiStatement statement : methodBody.getStatements()) {
-                if (statement instanceof PsiExpressionStatement) {
-                    PsiExpression expression = ((PsiExpressionStatement) statement).getExpression();
-                    if (expression instanceof PsiMethodCallExpression) {
-                        PsiMethod calledMethod = ((PsiMethodCallExpression) expression).resolveMethod();
-                        if (calledMethod != null) {
-                            result.append(calledMethod.getName()).append("\n");
-                        }
-                    }
-                }
-            }
+        // Body
+        result.append("\nFunction Body:\n");
+        PsiElement body = function.getBlock();
+        if (body != null) {
+            result.append(body.getText()).append("\n");
         }
 
         return result.toString();
     }
 
-    private void displayResult(String functionInfo, Project project) {
-        Messages.showInfoMessage(project, functionInfo, "Extracted Function Info");
+    private String extractClassInfo(JSClass jsClass) {
+        StringBuilder result = new StringBuilder();
+        result.append("Class: ").append(jsClass.getName()).append("\n");
+
+        // Class methods
+        result.append("Methods:\n");
+        for (JSFunction method : jsClass.getFunctions()) {
+            result.append(method.getName()).append("\n");
+        }
+
+        return result.toString();
+    }
+
+    private void displayResult(String info, Project project) {
+        Messages.showInfoMessage(project, info, "Extracted Info");
     }
 }

@@ -67,7 +67,6 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
         });
 
         Button1.addActionListener(e -> {
-            Messages.showInfoMessage("Button pressed", "Action Triggered");
             AnAction listAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorAction");
             if (listAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
@@ -79,7 +78,7 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
 
         // Add ActionListener for deploying presets
         Button2.addActionListener(e -> {
-            AnAction deployAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.DeployPresetAction");
+            AnAction deployAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorActionKT");
             if (deployAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
                 AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
