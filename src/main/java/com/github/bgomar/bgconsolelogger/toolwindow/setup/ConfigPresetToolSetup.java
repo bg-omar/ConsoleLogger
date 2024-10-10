@@ -88,7 +88,7 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
 
         // Add ActionListener for reading presets
         Button3.addActionListener(e -> {
-            AnAction readAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.ReadPresetAction");
+            AnAction readAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorClass");
             if (readAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
                 AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);

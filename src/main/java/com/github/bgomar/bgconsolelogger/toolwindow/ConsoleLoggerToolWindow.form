@@ -131,7 +131,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -227,7 +227,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -321,7 +321,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -415,7 +415,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -509,7 +509,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -604,7 +604,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -698,7 +698,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -792,7 +792,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -886,7 +886,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset_mini.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -993,34 +993,34 @@
             <children>
               <component id="b04cc" class="com.intellij.ui.components.JBLabel">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text resource-bundle="messages/ConsoleLoggerBundle" key="pixels"/>
+                  <text value="Listing function"/>
                 </properties>
               </component>
               <component id="a83c0" class="com.intellij.ui.components.JBLabel">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text resource-bundle="messages/ConsoleLoggerBundle" key="rem"/>
+                  <text value="Other functions"/>
                 </properties>
               </component>
               <component id="fbc79" class="com.intellij.ui.components.JBLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text resource-bundle="messages/ConsoleLoggerBundle" key="Emoji"/>
+                  <text value="Create and use standard configs"/>
                 </properties>
               </component>
               <component id="8bab8" class="javax.swing.JButton" binding="uploadPresetButton">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -1029,7 +1029,7 @@
               </component>
               <component id="ce175" class="javax.swing.JButton" binding="deletePresetButton">
                 <constraints>
-                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -1038,7 +1038,7 @@
               </component>
               <component id="83959" class="javax.swing.JButton" binding="readPresetButton">
                 <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -1047,7 +1047,7 @@
               </component>
               <component id="38411" class="javax.swing.JButton" binding="deployPresetButton">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -1056,7 +1056,7 @@
               </component>
               <component id="dcfe5" class="javax.swing.JButton" binding="listConfigFilesButton">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -1065,43 +1065,16 @@
               </component>
               <component id="7e6bf" class="javax.swing.JButton" binding="editPresetButton">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Edit"/>
                 </properties>
               </component>
-              <component id="6d7bd" class="javax.swing.JButton" binding="Button1">
-                <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Function"/>
-                </properties>
-              </component>
-              <component id="89410" class="javax.swing.JButton" binding="Button2">
-                <constraints>
-                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Function KT"/>
-                </properties>
-              </component>
-              <component id="6df1e" class="javax.swing.JButton" binding="Button3">
-                <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Button"/>
-                </properties>
-              </component>
               <component id="3d90" class="javax.swing.JButton" binding="Button4">
                 <constraints>
-                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -1110,11 +1083,38 @@
               </component>
               <component id="20a5b" class="javax.swing.JButton" binding="Button5">
                 <constraints>
-                  <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Button"/>
+                </properties>
+              </component>
+              <component id="6d7bd" class="javax.swing.JButton" binding="Button1">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Function"/>
+                </properties>
+              </component>
+              <component id="89410" class="javax.swing.JButton" binding="Button2">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Function KT"/>
+                </properties>
+              </component>
+              <component id="6df1e" class="javax.swing.JButton" binding="Button3">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Class"/>
                 </properties>
               </component>
             </children>

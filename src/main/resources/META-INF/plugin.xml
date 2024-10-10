@@ -11,7 +11,7 @@
     <resource-bundle>messages.ConsoleLoggerBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings" preload="true"/>
+        <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings"/>
 
         <!--suppress  PluginXmlValidity -->
         <toolWindow id="ConsoleLogger"
@@ -19,9 +19,11 @@
                     anchor="right"
                     factoryClass="com.github.bgomar.bgconsolelogger.toolwindow.ConsoleLoggerToolWindowFactory"/>
 
-        <applicationService serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder" id="com.github.bgomar.consolelogger" preload="true"/>
+        <applicationService id="com.github.bgomar.consolelogger"
+                            serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify" />
-        <notificationGroup id="com.github.bgomar.consolelogger" displayType="STICKY_BALLOON"/>
+        <notificationGroup id="com.github.bgomar.consolelogger"
+                           displayType="STICKY_BALLOON"/>
 
     </extensions>
 
@@ -45,6 +47,14 @@
                 class="com.github.bgomar.consolelogger.FunctionExtractorActionKT"
                 text="Extract Function Info"
                 description="Extracts the selected function along with connected variables and functions.">
+                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            </action>
+
+            <!-- Action for extracting function and related variables -->
+            <action id="com.github.bgomar.consolelogger.FunctionExtractorClass"
+                    class="com.github.bgomar.consolelogger.FunctionExtractorClass"
+                    text="Extract Function Info"
+                    description="Extracts the selected function along with connected variables and functions.">
                 <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             </action>
 

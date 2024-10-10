@@ -2,7 +2,7 @@
 <plugins>
     <plugin id="com.github.bgomar.consolelogger"
             url="https://plugins.jetbrains.com/plugin/download?rel=true&amp;updateId=600751"
-            version="0.0.28">
+            version="0.0.30">
         <idea-version since-build="232.7754.77" until-build="242.*"/>
     </plugin>
 </plugins>
