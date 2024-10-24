@@ -22,8 +22,10 @@
         <applicationService id="com.github.bgomar.consolelogger"
                             serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify" />
-        <notificationGroup id="com.github.bgomar.consolelogger"
-                           displayType="STICKY_BALLOON"/>
+
+
+            <notificationGroup id="ConsoleLogger Notifications" displayType="BALLOON" />
+
 
     </extensions>
 
