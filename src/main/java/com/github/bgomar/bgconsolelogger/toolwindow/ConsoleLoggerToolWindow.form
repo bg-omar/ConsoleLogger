@@ -51,17 +51,17 @@
                   <grid id="2df74" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="219" height="30"/>
-                      <opaque value="true"/>
-                      <preferredSize width="175" height="38"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
+                      <opaque value="false"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -103,7 +103,8 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value=" (1):"/>
+                          <labelFor value="9f15"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="(1):"/>
                         </properties>
                       </component>
                       <component id="41ecd" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton1">
@@ -147,18 +148,18 @@
                   <grid id="e9dc3" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                       <toolTipText value="&quot;console.log(&quot;%c$$: &quot;,&quot;color:#F0F;&quot;, $$), where $$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number &quot;" noi18n="true"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -199,7 +200,8 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
-                          <text value=" (2):"/>
+                          <labelFor value="ec163"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="(2):"/>
                         </properties>
                       </component>
                       <component id="b96b9" class="javax.swing.JButton" binding="propertiesConsoleLoggerDefaultButton2">
@@ -243,17 +245,17 @@
                   <grid id="3a30d" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -282,6 +284,7 @@
                               <minimumSize width="49" height="30"/>
                               <opaque value="true"/>
                               <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="propertiesConsoleLoggerTextField3.label"/>
                             </properties>
                           </component>
                         </children>
@@ -294,6 +297,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="3b54"/>
                           <text value=" (3):"/>
                         </properties>
                       </component>
@@ -337,17 +341,17 @@
                   <grid id="ac8b8" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="222" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -388,6 +392,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="33c2c"/>
                           <text value=" (4):"/>
                         </properties>
                       </component>
@@ -431,17 +436,17 @@
                   <grid id="f76d6" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -482,6 +487,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="58b26"/>
                           <text value=" (5):"/>
                         </properties>
                       </component>
@@ -525,17 +531,17 @@
                   <grid id="b15d" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -577,6 +583,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="f35"/>
                           <text value=" (6):"/>
                         </properties>
                       </component>
@@ -620,17 +627,17 @@
                   <grid id="892df" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -671,6 +678,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="866b3"/>
                           <text value=" (7):"/>
                         </properties>
                       </component>
@@ -714,17 +722,17 @@
                   <grid id="be4e2" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -765,6 +773,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="9de49"/>
                           <text value=" (8):"/>
                         </properties>
                       </component>
@@ -808,17 +817,17 @@
                   <grid id="f37ab" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
                       <focusable value="false"/>
-                      <maximumSize width="2147483647" height="45"/>
-                      <minimumSize width="221" height="30"/>
+                      <maximumSize width="2147483647" height="60"/>
+                      <minimumSize width="220" height="30"/>
                       <opaque value="false"/>
-                      <preferredSize width="177" height="38"/>
+                      <preferredSize width="250" height="50"/>
                     </properties>
-                    <border type="line">
+                    <border type="etched">
                       <color color="-10789793"/>
                     </border>
                     <children>
@@ -859,6 +868,7 @@
                           <alignmentY value="0.0"/>
                           <horizontalAlignment value="0"/>
                           <iconTextGap value="2"/>
+                          <labelFor value="32506"/>
                           <text value=" (9):"/>
                         </properties>
                       </component>
@@ -901,7 +911,7 @@
                   </grid>
                   <component id="e48a" class="javax.swing.JButton" binding="propertiesConsoleLoggerCancelButton">
                     <constraints>
-                      <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="-1" height="30"/>
                       </grid>
                       <gridbag weightx="1.0" weighty="1.0"/>
@@ -911,10 +921,10 @@
                       <text resource-bundle="messages/ConsoleLoggerBundle" key="undoButton"/>
                     </properties>
                   </component>
-                  <grid id="fb0f5" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="fb0f5" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="true">
+                      <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="true">
                         <minimum-size width="-1" height="25"/>
                         <preferred-size width="-1" height="35"/>
                         <maximum-size width="-1" height="35"/>
@@ -923,13 +933,16 @@
                     </constraints>
                     <properties>
                       <maximumSize width="2147483647" height="35"/>
-                      <preferredSize width="221" height="35"/>
+                      <minimumSize width="250" height="55"/>
+                      <preferredSize width="250" height="55"/>
                     </properties>
                     <border type="none"/>
                     <children>
                       <component id="f47c9" class="javax.swing.JButton" binding="propertiesConsoleLoggerLoad1Button">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                            <minimum-size width="95" height="52"/>
+                          </grid>
                         </constraints>
                         <properties>
                           <label resource-bundle="messages/ConsoleLoggerBundle" key="set.1.label"/>
@@ -939,12 +952,23 @@
                       </component>
                       <component id="31239" class="javax.swing.JButton" binding="propertiesConsoleLoggerLoad2Button">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                            <minimum-size width="95" height="52"/>
+                          </grid>
                         </constraints>
                         <properties>
                           <label resource-bundle="messages/ConsoleLoggerBundle" key="set.2.label"/>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="set.2.text"/>
                           <toolTipText resource-bundle="messages/ConsoleLoggerBundle" key="show.edit.set.2.tooltip"/>
+                        </properties>
+                      </component>
+                      <component id="b8ca7" class="javax.swing.JButton" binding="propertiesConsoleLoggerSaveButton">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <label resource-bundle="messages/ConsoleLoggerBundle" key="activate.set1"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="activate.set"/>
                         </properties>
                       </component>
                     </children>
@@ -959,19 +983,9 @@
                       <toolTipText value=""/>
                     </properties>
                   </component>
-                  <component id="b8ca7" class="javax.swing.JButton" binding="propertiesConsoleLoggerSaveButton">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="1.0" weighty="1.0"/>
-                    </constraints>
-                    <properties>
-                      <label resource-bundle="messages/ConsoleLoggerBundle" key="activate.set1"/>
-                      <text resource-bundle="messages/ConsoleLoggerBundle" key="activate.set"/>
-                    </properties>
-                  </component>
                   <component id="6c906" class="javax.swing.JButton" binding="propertiesConsoleLoggerRecheckButton">
                     <constraints>
-                      <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
@@ -991,130 +1005,40 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="b04cc" class="com.intellij.ui.components.JBLabel">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="1.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Listing function"/>
-                </properties>
-              </component>
-              <component id="a83c0" class="com.intellij.ui.components.JBLabel">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="1.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Other functions"/>
-                </properties>
-              </component>
               <component id="fbc79" class="com.intellij.ui.components.JBLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Create and use standard configs"/>
+                  <text resource-bundle="messages/ConsoleLoggerBundle" key="functionGetter"/>
                 </properties>
               </component>
-              <component id="8bab8" class="javax.swing.JButton" binding="uploadPresetButton">
-                <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Upload"/>
-                </properties>
-              </component>
-              <component id="ce175" class="javax.swing.JButton" binding="deletePresetButton">
-                <constraints>
-                  <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Delete"/>
-                </properties>
-              </component>
-              <component id="83959" class="javax.swing.JButton" binding="readPresetButton">
-                <constraints>
-                  <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Read"/>
-                </properties>
-              </component>
-              <component id="38411" class="javax.swing.JButton" binding="deployPresetButton">
-                <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Deploy"/>
-                </properties>
-              </component>
-              <component id="dcfe5" class="javax.swing.JButton" binding="listConfigFilesButton">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="List"/>
-                </properties>
-              </component>
-              <component id="7e6bf" class="javax.swing.JButton" binding="editPresetButton">
-                <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Edit"/>
-                </properties>
-              </component>
-              <component id="3d90" class="javax.swing.JButton" binding="Button4">
-                <constraints>
-                  <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Button"/>
-                </properties>
-              </component>
-              <component id="20a5b" class="javax.swing.JButton" binding="Button5">
-                <constraints>
-                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Button"/>
-                </properties>
-              </component>
-              <component id="6d7bd" class="javax.swing.JButton" binding="Button1">
+              <component id="6df1e" class="javax.swing.JButton" binding="functionExtractorClass">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Function"/>
+                  <text value="Class"/>
                 </properties>
               </component>
-              <component id="89410" class="javax.swing.JButton" binding="Button2">
+              <component id="89410" class="javax.swing.JButton" binding="functionExtractorActionKT">
                 <constraints>
-                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Function KT"/>
                 </properties>
               </component>
-              <component id="6df1e" class="javax.swing.JButton" binding="Button3">
+              <component id="6d7bd" class="javax.swing.JButton" binding="functionExtractorAction">
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Class"/>
+                  <text value="Function"/>
                 </properties>
               </component>
             </children>

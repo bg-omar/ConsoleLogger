@@ -1,18 +1,22 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
+import com.intellij.largeFilesEditor.file.FileChangeListener;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.openapi.wm.ToolWindowFactory;
+import com.intellij.ui.components.JBList;
+import com.intellij.ui.content.ContentFactory;
 
+import javax.swing.*;
+import java.awt.*;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.*;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
-import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
 
 public class ConfigPresetToolSetup extends AbstractToolSetup {
 
-    private static JButton uploadPresetButton = new JButton();
+/*    private static JButton uploadPresetButton = new JButton();
     private static JButton deployPresetButton = new JButton();
     private static JButton readPresetButton = new JButton();
     private static JButton editPresetButton = new JButton();
@@ -21,52 +25,42 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
     private static JButton listConfigFilesButton = new JButton();
 
     private static JButton Button5 = new JButton();
-    private static JButton Button4 = new JButton();
-    private static JButton Button3 = new JButton();
-    private static JButton Button2 = new JButton();
-    private static JButton Button1 = new JButton();
+    private static JButton Button4 = new JButton();*/
+    private static JButton functionExtractorClass = new JButton();
+    private static JButton functionExtractorActionKT = new JButton();
+    private static JButton functionExtractorAction = new JButton();
 
     public ConfigPresetToolSetup(
-                                 JButton uploadPresetButton,
-                                 JButton deployPresetButton,
-                                 JButton readPresetButton,
-                                 JButton editPresetButton,
-                                 JButton deletePresetButton,
-                                 JButton listConfigFilesButton,
-                                 JButton Button5,
-                                 JButton Button4,
-                                 JButton Button3,
-                                 JButton Button2,
-                                 JButton Button1) {
+//                                 JButton uploadPresetButton,
+//                                 JButton deployPresetButton,
+//                                 JButton readPresetButton,
+//                                 JButton editPresetButton,
+//                                 JButton deletePresetButton,
+//                                 JButton listConfigFilesButton,
+//                                 JButton Button5,
+//                                 JButton Button4,
+                                 JButton functionExtractorClass,
+                                 JButton functionExtractorActionKT,
+                                 JButton functionExtractorAction) {
 
-        ConfigPresetToolSetup.uploadPresetButton = uploadPresetButton;
+/*        ConfigPresetToolSetup.uploadPresetButton = uploadPresetButton;
         ConfigPresetToolSetup.deployPresetButton = deployPresetButton;
         ConfigPresetToolSetup.readPresetButton = readPresetButton;
         ConfigPresetToolSetup.editPresetButton = editPresetButton;
         ConfigPresetToolSetup.deletePresetButton = deletePresetButton;
         ConfigPresetToolSetup.listConfigFilesButton = listConfigFilesButton;
         ConfigPresetToolSetup.Button5 = Button5;
-        ConfigPresetToolSetup.Button4 = Button4;
-        ConfigPresetToolSetup.Button3 = Button3;
-        ConfigPresetToolSetup.Button2 = Button2;
-        ConfigPresetToolSetup.Button1 = Button1;
+        ConfigPresetToolSetup.Button4 = Button4;*/
+        ConfigPresetToolSetup.functionExtractorClass = functionExtractorClass;
+        ConfigPresetToolSetup.functionExtractorActionKT = functionExtractorActionKT;
+        ConfigPresetToolSetup.functionExtractorAction = functionExtractorAction;
     }
 
     public void setup() {
         // Use a known AWT component like px2RemTextField or one of the buttons
-        java.awt.Component parentComponent = uploadPresetButton;
+        java.awt.Component parentComponent = functionExtractorActionKT;
 
-
-        listConfigFilesButton.addActionListener(e -> {
-            AnAction listAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.ListConfigFilesAction");
-            if (listAction != null) {
-                DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
-                AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-                listAction.actionPerformed(actionEvent);
-            }
-        });
-
-        Button1.addActionListener(e -> {
+        functionExtractorAction.addActionListener(e -> {
             AnAction listAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorAction");
             if (listAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
@@ -77,7 +71,7 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
         });
 
         // Add ActionListener for deploying presets
-        Button2.addActionListener(e -> {
+        functionExtractorActionKT.addActionListener(e -> {
             AnAction deployAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorActionKT");
             if (deployAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
@@ -87,7 +81,7 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
         });
 
         // Add ActionListener for reading presets
-        Button3.addActionListener(e -> {
+        functionExtractorClass.addActionListener(e -> {
             AnAction readAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.FunctionExtractorClass");
             if (readAction != null) {
                 DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
@@ -96,7 +90,17 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
             }
         });
 
-        // Add ActionListener for editing presets
+      /*
+       listConfigFilesButton.addActionListener(e -> {
+            AnAction listAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.ListConfigFilesAction");
+            if (listAction != null) {
+                DataContext dataContext = DataManager.getInstance().getDataContext(parentComponent);  // Pass the component
+                AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
+                listAction.actionPerformed(actionEvent);
+            }
+        });
+
+      // Add ActionListener for editing presets
         Button4.addActionListener(e -> {
             AnAction editAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.EditPresetAction");
             if (editAction != null) {
@@ -164,7 +168,7 @@ public class ConfigPresetToolSetup extends AbstractToolSetup {
                 AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
                 deleteAction.actionPerformed(actionEvent);
             }
-        });
+        });*/
 
     }
 }
