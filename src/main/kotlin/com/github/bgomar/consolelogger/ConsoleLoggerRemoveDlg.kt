@@ -5,11 +5,15 @@ import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.builder.toMutableProperty
 import java.awt.Dimension
 import javax.swing.JComponent
+import javax.swing.JSpinner
+import javax.swing.SpinnerNumberModel
+
 
 enum class Scope { CURRENT_FILE, PROJECT }
 
 class ConsoleLoggerRemoveDlg : DialogWrapper(false) {
   var scope: Scope
+  var numberInput: String = ""
 
   init {
     title = "Remove ConsoleLogger's Logs"
@@ -18,13 +22,19 @@ class ConsoleLoggerRemoveDlg : DialogWrapper(false) {
   }
 
   override fun createCenterPanel(): JComponent {
+    val numberField = JSpinner(SpinnerNumberModel(1, 1, 9, 1))
+    numberField.addChangeListener {
+      numberInput = (numberField.value as Int).toString()
+    }
+
     val pan = panel {
-      buttonsGroup("Delete Loggers In File? ") {
+      buttonsGroup("Remove ConsoleLoggers In File? ") {
         row {
-          radioButton("Yes, remove all loggers from current file.", Scope.CURRENT_FILE)
+          radioButton("Yes, remove all ConsoleLoggers.", Scope.CURRENT_FILE)
         }
         row {
-          radioButton("No, find loggers in Project", Scope.PROJECT)
+          radioButton("No, Search Project for ConsoleLogger:", Scope.PROJECT)
+          cell(numberField).onApply { scope = Scope.PROJECT }
         }
       }.bind(::scope.toMutableProperty(), Scope::class.java)
     }

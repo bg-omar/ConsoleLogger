@@ -419,10 +419,10 @@ fun findLatestStableIdeVersion(): String {
     return latestVersion
 }
 
-/** Find latest IntelliJ stable version from given url. */
 fun getOnlineLatestStableIdeVersion(definitionsUrl: URL): String {
     val definitionsStr = readRemoteContent(definitionsUrl)
     val builderFactory = DocumentBuilderFactory.newInstance()
+    builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
     val builder = builderFactory.newDocumentBuilder()
     val xmlDocument: Document = builder.parse(ByteArrayInputStream(definitionsStr.toByteArray()))
     val xPath = XPathFactory.newInstance().newXPath()

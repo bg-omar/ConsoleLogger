@@ -11,6 +11,7 @@ import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.Messages
 import kotlin.text.replace
 
 class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
@@ -36,10 +37,15 @@ class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
           }
         }
         Scope.PROJECT -> {
-          logPatterns.forEach { logPattern ->
+          var index: Int? = dlg.numberInput.toIntOrNull()
+          if (index === null ) {   index = 1    }
+          if (index in 1..9) {
+            if(index > 0) { index -= 1 }
             ApplicationManager.getApplication().invokeLater {
-              removeLogsInProject(project, logPattern)
+              removeLogsInProject(project, logPatterns[index])
             }
+          } else {
+            Messages.showErrorDialog(project, "Invalid input. Please enter a number between 1 and 9.", "Error")
           }
         }
       }
