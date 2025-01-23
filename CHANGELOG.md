@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.31] - 23-01-2025
+- tried fixing depricated issues
+
+## [0.0.30] - 16-01-2025
+- Updated the logline number with a button
+
 ## [0.0.29] - 29-09-2024
 - changed some of the input field sizes
 - added option for second preset of loggers

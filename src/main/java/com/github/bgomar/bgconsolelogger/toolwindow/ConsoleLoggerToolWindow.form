@@ -917,7 +917,7 @@
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <label resource-bundle="messages/ConsoleLoggerBundle" key="undo1"/>
+                      <label value="" noi18n="true"/>
                       <text resource-bundle="messages/ConsoleLoggerBundle" key="undoButton"/>
                     </properties>
                   </component>
@@ -945,8 +945,8 @@
                           </grid>
                         </constraints>
                         <properties>
-                          <label resource-bundle="messages/ConsoleLoggerBundle" key="set.1.label"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="set.1.text"/>
+                          <label value="" noi18n="true"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="set.1.label"/>
                           <toolTipText resource-bundle="messages/ConsoleLoggerBundle" key="show.edit.set.1.tooltip"/>
                         </properties>
                       </component>
@@ -957,8 +957,8 @@
                           </grid>
                         </constraints>
                         <properties>
-                          <label resource-bundle="messages/ConsoleLoggerBundle" key="set.2.label"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="set.2.text"/>
+                          <label value="" noi18n="true"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="set.2.label"/>
                           <toolTipText resource-bundle="messages/ConsoleLoggerBundle" key="show.edit.set.2.tooltip"/>
                         </properties>
                       </component>
@@ -967,8 +967,8 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <label resource-bundle="messages/ConsoleLoggerBundle" key="activate.set1"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="activate.set"/>
+                          <label value="" noi18n="true"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="activate.set1"/>
                         </properties>
                       </component>
                     </children>
@@ -989,7 +989,7 @@
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <label resource-bundle="messages/ConsoleLoggerBundle" key="undo1"/>
+                      <label value="" noi18n="true"/>
                       <text resource-bundle="messages/ConsoleLoggerBundle" key="recheckButton"/>
                     </properties>
                   </component>

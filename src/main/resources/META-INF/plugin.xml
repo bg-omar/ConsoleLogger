@@ -1,4 +1,4 @@
-<idea-plugin require-restart="false">
+<idea-plugin require-restart="true">
     <id>com.github.bgomar.consolelogger</id>
     <name>ConsoleLogger</name>
     <vendor email="info@omariskandarani.com" url="https://github.com/bg-omar/consolelogger">bgOmar</vendor>
@@ -24,10 +24,7 @@
                             serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify" />
 
-
-            <notificationGroup id="ConsoleLogger Notifications" displayType="BALLOON" />
-
-
+        <notificationGroup id="ConsoleLogger Notifications" displayType="BALLOON" />
     </extensions>
 
     <actions>
@@ -168,8 +165,8 @@
 
             <action id="com.github.bgomar.consolelogger.ConsoleLoggerRemove" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove" text="0"
                     description="Remove console.log() generate by ConsoleLogger plugin">
-                 <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt G"/>
-                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt G"/>
+                 <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
+                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt 0"/>
             </action>
 
             <action id="com.github.bgomar.consolelogger.UpdateLogLinesAction" class="com.github.bgomar.consolelogger.UpdateLogLinesAction" text="UpdateLogLinesAction" description="UpdateLogLinesAction">
@@ -180,9 +177,4 @@
         </group>
 
     </actions>
-    <application-components>
-        <component>
-            <implementation-class>com.github.bgomar.consolelogger.chapters.NavigatorPlugin</implementation-class>
-        </component>
-    </application-components>
 </idea-plugin>

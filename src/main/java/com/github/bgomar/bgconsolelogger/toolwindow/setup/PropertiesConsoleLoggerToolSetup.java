@@ -145,7 +145,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
 
 
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
+        propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
             ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");
             if (toolWindow == null) {
                 Messages.showMessageDialog("Tool window 'ConsoleLogger' not found.", "Error", Messages.getErrorIcon());
@@ -164,13 +164,11 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
             if (updateLogLinesAction != null) {
                 AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-
-                updateLogLinesAction.actionPerformed(event);
+                ActionManager.getInstance().tryToExecute(updateLogLinesAction, null, toolWindow.getComponent(), null, true);
             }
         });
 
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton.addActionListener(e -> {
-            // Get the current project
+        propertiesConsoleLoggerCancelButton.addActionListener(e -> {
             Project project = ProjectManager.getInstance().getOpenProjects().length > 0
                     ? ProjectManager.getInstance().getOpenProjects()[0]
                     : null;
@@ -180,30 +178,22 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
                 return;
             }
 
-            // Get the last used editor
-            Editor editor = EditorUtil.getLastUsedEditor(project);
+            Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
 
             if (editor != null) {
-                // Do something with the editor
+                AnAction consoleLoggerRemoveAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.ConsoleLoggerRemove");
+
+                if (consoleLoggerRemoveAction != null) {
+                    DataContext dataContext = DataManager.getInstance().getDataContext(editor.getComponent());
+                    AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
+                    ActionManager.getInstance().tryToExecute(consoleLoggerRemoveAction, null, editor.getComponent(), null, true);
+                } else {
+                    Messages.showErrorDialog("ConsoleLoggerRemove action not found.", "Error");
+                }
             } else {
                 System.out.println("No editor is currently active.");
             }
-
-            // Get the ConsoleLoggerRemove action by its ID
-            AnAction consoleLoggerRemoveAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.ConsoleLoggerRemove");
-
-            if (consoleLoggerRemoveAction != null) {
-                // Create a new AnActionEvent with the project, editor, and tool window data context
-                DataContext dataContext = DataManager.getInstance().getDataContext(editor.getComponent());
-                AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-
-                // Execute the action
-                consoleLoggerRemoveAction.actionPerformed(actionEvent);
-            } else {
-                Messages.showErrorDialog("ConsoleLoggerRemove action not found.", "Error");
-            }
         });
-
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton.addActionListener(e -> {
             saveActiveLoggers();
