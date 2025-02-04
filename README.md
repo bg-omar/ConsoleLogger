@@ -7,10 +7,12 @@
 
 <h1 align="center">
     <a href="">
-      <img src="./src/main/resources/META-INF/pluginIcon3.svg" width="84" height="84" alt="logo"/>
+      <img src="https://raw.githubusercontent.com/bg-omar/ConsoleLogger/refs/heads/master/src/main/resources/META-INF/pluginIcon.svg?sanitize=true" width="84" height="84" alt="logo"/>
     </a><br/>
     ConsoleLogger
 </h1>
+
+
 
 An Intellij IDEA plugin.
 Find useful tools in a Tool Window in the top right corner of your IDE:
@@ -38,12 +40,16 @@ Find useful tools in a Tool Window in the top right corner of your IDE:
 
 ---
 
-# ![Build](./src/main/resources/META-INF/pluginIcon.svg) Console Logger JetBrains Plugin
+# Console Logger JetBrains Plugin
 
 <!-- Plugin description -->
-####  `CTRL + ALT + (1-9)` for console.logs
-( 1 ) = ```console.log('$$: ', $$);```  
-( 2 ) = ```console.log('%c ---> $$: ','color:#0F0;', $$);```   
+####  `CTRL + ALT + (1-9)` for editable console.logs
+( 1 ) = ```console.log('$$: ', $$);```  (IntelliJ)  
+( 2 ) = ```Serial.print('$$: '); Serial.println($$);``` (Arduino)  
+( 3 ) = ```print('$$: ', $$);``` (Python)  
+( 4 ) = ```System.out.println("$$: " + $$);``` (Java)  
+( 5 ) = ```cout << "$$: " << $$ << endl;``` (C++)  
+( 6 ) = ```out.println("$$: " + $$);``` (Kotlin)  
 
  `$$` = pre-selected variable / class / anything printable  
  `%c` = Console text color  

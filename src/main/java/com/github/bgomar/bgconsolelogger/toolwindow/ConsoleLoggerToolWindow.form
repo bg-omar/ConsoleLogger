@@ -57,9 +57,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -154,9 +154,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                       <toolTipText value="&quot;console.log(&quot;%c$$: &quot;,&quot;color:#F0F;&quot;, $$), where $$ = selected, %c = color:#......;,  {FP} filepath, {FN} filename, {LN} line number &quot;" noi18n="true"/>
                     </properties>
                     <border type="etched">
@@ -251,9 +251,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -347,9 +347,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -442,9 +442,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -537,9 +537,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -633,9 +633,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -728,9 +728,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -823,9 +823,9 @@
                     <properties>
                       <focusable value="false"/>
                       <maximumSize width="2147483647" height="60"/>
-                      <minimumSize width="220" height="30"/>
+                      <minimumSize width="220" height="40"/>
                       <opaque value="false"/>
-                      <preferredSize width="250" height="50"/>
+                      <preferredSize width="250" height="40"/>
                     </properties>
                     <border type="etched">
                       <color color="-10789793"/>
@@ -964,7 +964,9 @@
                       </component>
                       <component id="b8ca7" class="javax.swing.JButton" binding="propertiesConsoleLoggerSaveButton">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <minimum-size width="95" height="52"/>
+                          </grid>
                         </constraints>
                         <properties>
                           <label value="" noi18n="true"/>

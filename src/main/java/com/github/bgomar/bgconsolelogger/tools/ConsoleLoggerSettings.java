@@ -76,7 +76,7 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
             DEFAULT_PATTERN_18
     ));
 
-    public String version = "0.0.31";
+    public String version = "0.0.32";
 
     public static ConsoleLoggerSettings getInstance() {
         return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
