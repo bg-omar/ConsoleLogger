@@ -58,45 +58,6 @@
                 <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             </action>
 
-<!--            <action id="com.github.bgomar.consolelogger.ListConfigFilesAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ListConfigFilesAction"
-                text="List Config Files"
-                description="List all saved config files">
-            </action>
-            &lt;!&ndash; Action for uploading a preset &ndash;&gt;
-            <action id="com.github.bgomar.consolelogger.UploadPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.UploadPresetAction"
-                text="Upload Preset"
-                description="Upload and save a preset file">
-            </action>
-
-            &lt;!&ndash; Action for deploying a preset &ndash;&gt;
-            <action id="com.github.bgomar.consolelogger.DeployPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.DeployPresetAction"
-                text="Deploy Preset"
-                description="Deploy a saved preset">
-            </action>
-
-            &lt;!&ndash; Action for uploading a preset &ndash;&gt;
-            <action id="com.github.bgomar.consolelogger.ReadPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.ReadPresetAction"
-                text="Upload Preset"
-                description="Upload and save a preset file">
-            </action>
-
-            &lt;!&ndash; Action for editing a preset &ndash;&gt;
-            <action id="com.github.bgomar.consolelogger.EditPresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.EditPresetAction"
-                text="Edit Preset"
-                description="Edit a saved preset">
-            </action>
-
-            &lt;!&ndash; Action for deleting a preset &ndash;&gt;
-            <action id="com.github.bgomar.consolelogger.DeletePresetAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.DeletePresetAction"
-                text="Delete Preset"
-                description="Delete a saved preset">
-            </action>-->
 
              <!-- Include actions XML -->
 
