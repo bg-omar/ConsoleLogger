@@ -1,7 +1,7 @@
-package com.github.bgomar.consolelogger.chapters
-
+package com.github.bgomar.bgconsolelogger.chapters
 
 import com.intellij.openapi.components.Service
+import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
 import org.jetbrains.annotations.NotNull
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull
 /**
  * Main service to manage plugin-wide functionality for the Chapter Script plugin.
  */
-@Service
+@Service(Service.Level.PROJECT)
 class ChapterNavigatorPlugin {
     init {
         println("ChapterNavigatorPlugin initialized")
@@ -20,7 +20,7 @@ class ChapterNavigatorPlugin {
          * Get the instance of the plugin service for the given project.
          */
         fun getInstance(project: Project): ChapterNavigatorPlugin =
-            project.getService(ChapterNavigatorPlugin::class.java)
+            project.service()
     }
 
     /**

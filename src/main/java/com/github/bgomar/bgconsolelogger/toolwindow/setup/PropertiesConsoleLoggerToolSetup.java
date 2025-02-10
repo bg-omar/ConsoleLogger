@@ -145,6 +145,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
 
 
+
         propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
             ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");
             if (toolWindow == null) {
@@ -163,8 +164,8 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             AnAction updateLogLinesAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UpdateLogLinesAction");
 
             if (updateLogLinesAction != null) {
-                AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-                ActionManager.getInstance().tryToExecute(updateLogLinesAction, null, toolWindow.getComponent(), null, true);
+                AnActionEvent event = AnActionEvent.createEvent(dataContext, new Presentation(), ActionPlaces.UNKNOWN, ActionUiKind.NONE, null);
+                ActionManager.getInstance().tryToExecute(updateLogLinesAction, event.getInputEvent(), toolWindow.getComponent(), null, true);
             }
         });
 
@@ -185,8 +186,8 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
                 if (consoleLoggerRemoveAction != null) {
                     DataContext dataContext = DataManager.getInstance().getDataContext(editor.getComponent());
-                    AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-                    ActionManager.getInstance().tryToExecute(consoleLoggerRemoveAction, null, editor.getComponent(), null, true);
+                    AnActionEvent actionEvent = AnActionEvent.createEvent(dataContext, new Presentation(), ActionPlaces.UNKNOWN, ActionUiKind.NONE, null);
+                    ActionManager.getInstance().tryToExecute(consoleLoggerRemoveAction, actionEvent.getInputEvent(), editor.getComponent(), null, true);
                 } else {
                     Messages.showErrorDialog("ConsoleLoggerRemove action not found.", "Error");
                 }

@@ -1,5 +1,6 @@
-package com.github.bgomar.consolelogger
+package com.github.bgomar.bgconsolelogger.toolwindow.configfiles
 
+import com.github.bgomar.bgconsolelogger.toolwindow.setup.ConfigPresetToolSetup
 import com.intellij.lang.javascript.psi.JSFunction
 import com.intellij.lang.javascript.psi.ecmal4.JSClass
 import com.intellij.openapi.actionSystem.AnAction
@@ -18,7 +19,7 @@ class FunctionExtractorClass : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project: Project? = e.project
         val editor: Editor? = FileEditorManager.getInstance(project!!).selectedTextEditor
-        if (project == null || editor == null) {
+        if (editor == null) {
             return
         }
 
@@ -36,12 +37,12 @@ class FunctionExtractorClass : AnAction() {
         when {
             selectedFunction != null -> {
                 val functionInfo = TypeScriptHandler().obfuscateFunction(selectedFunction)
-                displayResult(functionInfo, project)
+                displayResult(functionInfo)
             }
 
             selectedClass != null -> {
                 val classInfo = TypeScriptHandler().obfuscateClass(selectedClass)
-                displayResult(classInfo, project)
+                displayResult(classInfo)
             }
 
             else -> {
@@ -50,8 +51,8 @@ class FunctionExtractorClass : AnAction() {
         }
     }
 
-    private fun displayResult(info: String, project: Project) {
-        Messages.showInfoMessage(project, info, "Obfuscated Info")
+    private fun displayResult(info: String) {
+        ConfigPresetToolSetup.getFunctionExtractorTextArea().text = info
     }
 
 

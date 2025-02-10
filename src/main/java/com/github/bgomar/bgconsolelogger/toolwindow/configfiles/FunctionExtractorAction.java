@@ -1,5 +1,6 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.configfiles;
 
+import com.github.bgomar.bgconsolelogger.toolwindow.setup.ConfigPresetToolSetup;
 import com.intellij.lang.javascript.psi.JSFunction;
 
 import com.intellij.lang.javascript.psi.ecmal4.JSClass;
@@ -36,11 +37,11 @@ public class FunctionExtractorAction extends AnAction {
         if (selectedFunction != null) {
             // Function extraction logic
             String functionInfo = extractFunctionInfo(selectedFunction);
-            displayResult(functionInfo, project);
+            displayResult(functionInfo);
         } else if (selectedClass != null) {
             // Class extraction logic
             String classInfo = extractClassInfo(selectedClass);
-            displayResult(classInfo, project);
+            displayResult(classInfo);
         } else {
             Messages.showInfoMessage(project, "No function or class selected.", "Error");
         }
@@ -79,7 +80,7 @@ public class FunctionExtractorAction extends AnAction {
         return result.toString();
     }
 
-    private void displayResult(String info, Project project) {
-        Messages.showInfoMessage(project, info, "Extracted Info");
+    private void displayResult(String info) {
+        ConfigPresetToolSetup.getFunctionExtractorTextArea().setText(info);
     }
 }

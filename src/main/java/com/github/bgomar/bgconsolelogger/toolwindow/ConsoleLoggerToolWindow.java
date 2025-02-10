@@ -1,9 +1,11 @@
 package com.github.bgomar.bgconsolelogger.toolwindow;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
+import com.intellij.ui.components.JBList;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
 
 import javax.swing.*;
@@ -12,6 +14,7 @@ import java.util.LinkedHashMap;
 
 public class ConsoleLoggerToolWindow {
 
+    private final Project project;
     private JPanel mainPanel;
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
     private JLabel helpLabel;
@@ -48,6 +51,10 @@ public class ConsoleLoggerToolWindow {
     private JComboBox<String> dataFakerLocaleComboBox;
     private JTextArea dataFakerTextArea;
 
+    private JPanel chapterPanel;
+    private DefaultListModel<String> chapterListModel;
+    private JList<String> chapterList;
+
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
     private JTextField propertiesConsoleLoggerTextField2;
@@ -78,20 +85,23 @@ public class ConsoleLoggerToolWindow {
     private JButton functionExtractorClass;
     private JButton functionExtractorActionKT;
     private JButton functionExtractorAction;
+    private JTextArea functionExtractorTextArea;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindow() {
+    public ConsoleLoggerToolWindow(Project project) {
+        this.project = project;
         String iconsPath = "icons/cats/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
-        toolPanelsByTitle.put("Config Presets", new PanelAndIcon(configPresetsPanel, iconsPath + "winecat.svg"));
+        toolPanelsByTitle.put("Obfuscate Classes", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
-        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "devcat.svg"));
+        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "winecat.svg"));
+        toolPanelsByTitle.put("Chapter", new PanelAndIcon(chapterPanel, iconsPath + "HackerPurr.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
@@ -121,7 +131,8 @@ public class ConsoleLoggerToolWindow {
         new ConfigPresetToolSetup(
             functionExtractorClass,
             functionExtractorActionKT,
-            functionExtractorAction).setup();
+            functionExtractorAction,
+            functionExtractorTextArea).setup();
         new Base64ToolSetup(
             base64RadioButtonUTF8,
             base64RadioButtonASCII,
@@ -139,6 +150,10 @@ public class ConsoleLoggerToolWindow {
             dataFakerGenerateButton,
             dataFakerLocaleComboBox,
             dataFakerTextArea).setup();
+        new ChapterToolSetup(
+            project,
+            chapterListModel,
+            chapterList).setup();
         var hashToolSetup = new HashToolSetup(
             hashInputTextArea,
             hashMD5TextField,
@@ -186,12 +201,9 @@ public class ConsoleLoggerToolWindow {
                         "Type text and various hash values will<br>" +
                         "be automatically computed as you type.</html>");
                 }
-                case "Timestamp converter" -> {
+                case "Chapter" -> {
                     helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Type a timestamp or update datetime field(s)<br>" +
-                        "then hit the <i>Update from timestamp</i> or<br>" +
-                        "<i>Update from fields</i> button.</html>");
+                    helpLabel.setToolTipText("<html>Select a chapter to navigate within the editor.</html>");
                 }
             }
         });

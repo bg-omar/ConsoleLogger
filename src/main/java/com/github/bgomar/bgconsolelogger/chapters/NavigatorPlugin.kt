@@ -1,16 +1,14 @@
-package com.github.bgomar.consolelogger.chapters
+package com.github.bgomar.bgconsolelogger.chapters
 
-import com.intellij.openapi.components.ApplicationComponent
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.ProjectActivity
 import com.intellij.openapi.Disposable
 
 @Service
-class NavigatorPlugin : ApplicationComponent, Disposable {
+class NavigatorPlugin : Disposable {
     override fun dispose() {
-        // Clean up resources or listeners when the plugin is disposed
-        println("Chapter Script plugin disposed")
+        println("NavigatorPlugin disposed")
     }
 }
 

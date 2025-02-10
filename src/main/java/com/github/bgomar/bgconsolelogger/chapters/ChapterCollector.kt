@@ -1,12 +1,10 @@
-package com.github.bgomar.consolelogger.chapters
-
+package com.github.bgomar.bgconsolelogger.chapters
 
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiFile
 
-data class Chapter(val title: String, val lineNumber: Int)
-
 object ChapterCollector {
+    @JvmStatic  // ✅ Makes it accessible from Java
     fun collectChapters(file: PsiFile): List<Chapter> {
         val chapters = mutableListOf<Chapter>()
         val document: Document = file.viewProvider.document ?: return chapters

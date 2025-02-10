@@ -12,7 +12,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings"/>
-        <postStartupActivity implementation="com.github.bgomar.consolelogger.chapters.ChapterStartupActivity"/>
+        <postStartupActivity implementation="com.github.bgomar.bgconsolelogger.chapters.ChapterStartupActivity"/>
 
         <!--suppress  PluginXmlValidity -->
         <toolWindow id="ConsoleLogger"
@@ -33,6 +33,14 @@
                description="Generate javascript logs" popup="true">
             <add-to-group group-id="CodeMenu" anchor="last"/>
 
+            <action id="com.github.bgomar.consolelogger.ChapterNavigationAction"
+                    class="com.github.bgomar.bgconsolelogger.chapters.ChapterNavigationAction"
+                    text="Navigate to Chapter"
+                    description="Navigates to the selected chapter in the editor">
+                <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            </action>
+
+
             <!-- Action for extracting function and related variables -->
             <action id="com.github.bgomar.consolelogger.FunctionExtractorAction"
                 class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorAction"
@@ -43,16 +51,16 @@
 
 
             <!-- Action for extracting function and related variables -->
-            <action id="com.github.bgomar.consolelogger.FunctionExtractorActionKT"
-                class="com.github.bgomar.consolelogger.FunctionExtractorActionKT"
+            <action id="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorActionKT"
+                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorActionKT"
                 text="Extract Function Info"
                 description="Extracts the selected function along with connected variables and functions.">
                 <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             </action>
 
             <!-- Action for extracting function and related variables -->
-            <action id="com.github.bgomar.consolelogger.FunctionExtractorClass"
-                    class="com.github.bgomar.consolelogger.FunctionExtractorClass"
+            <action id="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorClass"
+                    class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorClass"
                     text="Extract Function Info"
                     description="Extracts the selected function along with connected variables and functions.">
                 <add-to-group group-id="EditorPopupMenu" anchor="last"/>
