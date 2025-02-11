@@ -34,23 +34,6 @@ public class ConsoleLoggerToolWindow {
     private JBTextField svg2cssDecodedTextArea;
     private JBTextField svg2CssTextArea;
 
-    private JPanel hashPanel;
-    private JTextArea hashInputTextArea;
-    private JBTextField hashMD5TextField;
-    private JBTextField hashSHA1TextField;
-    private JBTextField hashSHA256TextField;
-    private JBTextField hashSHA384TextField;
-    private JBTextField hashSHA512TextField;
-    private JBTextField hashBCrypt2ATextField;
-    private JBTextField hashBCrypt2BTextField;
-    private JBTextField hashBCrypt2YTextField;
-
-    private JPanel dataFakerPanel;
-    private JComboBox<String> dataFakerGeneratorComboBox;
-    private JButton dataFakerGenerateButton;
-    private JComboBox<String> dataFakerLocaleComboBox;
-    private JTextArea dataFakerTextArea;
-
     private JPanel chapterPanel;
     private DefaultListModel<String> chapterListModel;
     private JList<String> chapterList;
@@ -94,15 +77,16 @@ public class ConsoleLoggerToolWindow {
 
     public ConsoleLoggerToolWindow(Project project) {
         this.project = project;
+        this.chapterListModel = new DefaultListModel<>(); // ✅ Initialize list model
+        this.chapterList.setModel(chapterListModel); // ✅ Set the model here
+
         String iconsPath = "icons/cats/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
+        toolPanelsByTitle.put("Chapter", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
         toolPanelsByTitle.put("Obfuscate Classes", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
-        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "cryingcatt.svg"));
-        toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "winecat.svg"));
-        toolPanelsByTitle.put("Chapter", new PanelAndIcon(chapterPanel, iconsPath + "HackerPurr.svg"));
-        toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
+        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
             propertiesConsoleLoggerTextField1,
@@ -145,26 +129,11 @@ public class ConsoleLoggerToolWindow {
         new Px2RemToolSetup(
             px2RemTextField,
             rem2PxTextField).setup();
-        new DataFakerToolSetup(
-            dataFakerGeneratorComboBox,
-            dataFakerGenerateButton,
-            dataFakerLocaleComboBox,
-            dataFakerTextArea).setup();
         new ChapterToolSetup(
             project,
             chapterListModel,
             chapterList).setup();
-        var hashToolSetup = new HashToolSetup(
-            hashInputTextArea,
-            hashMD5TextField,
-            hashSHA1TextField,
-            hashSHA256TextField,
-            hashSHA384TextField,
-            hashSHA512TextField,
-            hashBCrypt2ATextField,
-            hashBCrypt2BTextField,
-            hashBCrypt2YTextField);
-        hashToolSetup.setup();
+
 
 
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));

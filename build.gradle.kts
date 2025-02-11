@@ -124,7 +124,8 @@ intellij {
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
     updateSinceUntilBuild.set(true)
-
+    // ✅ Enable compatibility with multiple IDEs
+    sameSinceUntilBuild.set(false)
     sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
 
     downloadSources.set(!System.getenv().containsKey("IU"))
@@ -240,8 +241,10 @@ tasks {
     withType<UsesKotlinJavaToolchain>().configureEach {
         kotlinJavaToolchain.toolchain.use(customLauncher)
     }
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = sourceCompatibility
+    withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
     withType<Test> {
         useJUnitPlatform()
@@ -317,11 +320,15 @@ tasks {
         enabled = true
     }
     compileKotlin {
-        kotlinOptions.jvmTarget = jvmTarget
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)  // ✅ Correct Syntax
+        }
     }
 
     compileTestKotlin {
-        kotlinOptions.jvmTarget  = jvmTarget
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)  // ✅ Correct Syntax
+        }
     }
 
     runIdeForUiTests {
