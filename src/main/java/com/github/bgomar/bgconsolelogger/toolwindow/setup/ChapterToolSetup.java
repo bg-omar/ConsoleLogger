@@ -2,6 +2,7 @@ package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.chapters.Chapter;
 import com.github.bgomar.bgconsolelogger.chapters.ChapterCollector;
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.LogicalPosition;
@@ -18,6 +19,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.util.List;
 
 public class ChapterToolSetup  implements Disposable {
@@ -25,17 +28,51 @@ public class ChapterToolSetup  implements Disposable {
     private final Project project;
     private final DefaultListModel<String> chapterListModel;
     private final JList<String> chapterList;
+    private static JTextField chapterTextField = new JTextField();
 
-    public ChapterToolSetup(Project project, DefaultListModel<String> chapterListModel, JList<String> chapterList) {
+    public ChapterToolSetup(Project project, DefaultListModel<String> chapterListModel, JList<String> chapterList, JTextField chapterTextField) {
         this.project = project;
         this.chapterListModel = chapterListModel;
         this.chapterList = chapterList;
+        this.chapterTextField = chapterTextField;
     }
+
 
     public void setup() {
         updateChapterList();
 
-        // ✅ Listen for when the user switches or opens a file
+        // Initialize text field with the current CHAPTER_PATTERN value
+        chapterTextField.setText(ConsoleLoggerSettings.getPattern(27));
+        // ✅ Add a DocumentListener to refresh the chapter list on changes
+        chapterTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updatePatternAndRefresh();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updatePatternAndRefresh();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updatePatternAndRefresh();
+            }
+        });
+
+
+        // ✅ Add a Key Listener to detect changes
+        chapterTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String newPattern = chapterTextField.getText();
+                ConsoleLoggerSettings.setPattern(27, newPattern);
+                System.out.println("✍️ Updated CHAPTER_PATTERN: " + newPattern);
+            }
+        });
+
+        // ✅ Handle file selection changes
         project.getMessageBus().connect().subscribe(
                 FileEditorManagerListener.FILE_EDITOR_MANAGER, new FileEditorManagerListener() {
                     @Override
@@ -80,6 +117,16 @@ public class ChapterToolSetup  implements Disposable {
                 }
             }
         });
+    }
+
+    // ✅ Helper method to update CHAPTER_PATTERN and refresh the list
+    private void updatePatternAndRefresh() {
+        String newPattern = chapterTextField.getText();
+        ConsoleLoggerSettings.setPattern(27, newPattern);
+        System.out.println("✍️ CHAPTER_PATTERN updated: " + newPattern);
+
+        // ✅ Refresh chapter list dynamically
+        updateChapterList();
     }
 
     private void navigateToChapter(String selectedTitle) {

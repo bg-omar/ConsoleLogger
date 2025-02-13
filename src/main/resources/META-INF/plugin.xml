@@ -1,9 +1,9 @@
-<idea-plugin require-restart="true">
+<idea-plugin require-restart="false">
     <id>com.github.bgomar.consolelogger</id>
     <name>ConsoleLogger</name>
     <vendor email="info@omariskandarani.com" url="https://github.com/bg-omar/consolelogger">bgOmar</vendor>
 
-    <idea-version since-build="233" />
+    <idea-version since-build="243" />
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>JavaScript</depends>
@@ -24,7 +24,7 @@
                             serviceImplementation="com.github.bgomar.consolelogger.ApplicationServicePlaceholder"/>
         <postStartupActivity implementation="com.github.bgomar.consolelogger.UpdateNotify" />
 
-        <notificationGroup id="ConsoleLogger Notifications" displayType="BALLOON" />
+        <notificationGroup id="com.github.bgomar.consolelogger.notification" displayType="BALLOON" />
     </extensions>
 
     <actions>

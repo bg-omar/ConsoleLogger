@@ -5,7 +5,6 @@ import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
-import com.intellij.ui.components.JBList;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
 
 import javax.swing.*;
@@ -14,7 +13,6 @@ import java.util.LinkedHashMap;
 
 public class ConsoleLoggerToolWindow {
 
-    private final Project project;
     private JPanel mainPanel;
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
     private JLabel helpLabel;
@@ -37,6 +35,7 @@ public class ConsoleLoggerToolWindow {
     private JPanel chapterPanel;
     private DefaultListModel<String> chapterListModel;
     private JList<String> chapterList;
+    private JTextField chapterTextField;
 
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
@@ -76,7 +75,6 @@ public class ConsoleLoggerToolWindow {
     }
 
     public ConsoleLoggerToolWindow(Project project) {
-        this.project = project;
         this.chapterListModel = new DefaultListModel<>(); // ✅ Initialize list model
         this.chapterList.setModel(chapterListModel); // ✅ Set the model here
 
@@ -132,7 +130,8 @@ public class ConsoleLoggerToolWindow {
         new ChapterToolSetup(
             project,
             chapterListModel,
-            chapterList).setup();
+            chapterList,
+            chapterTextField).setup();
 
 
 

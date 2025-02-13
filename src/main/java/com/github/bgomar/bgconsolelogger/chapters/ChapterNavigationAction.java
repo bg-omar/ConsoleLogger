@@ -2,7 +2,7 @@ package com.github.bgomar.bgconsolelogger.chapters;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataKeys;
+import com.intellij.openapi.actionSystem.PlatformCoreDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.LogicalPosition;
 import com.intellij.openapi.fileEditor.FileEditorManager;
@@ -27,9 +27,11 @@ public class ChapterNavigationAction extends AnAction {
         if (project == null) return;
 
         // ✅ Get the selected chapter from the UI
-        JList<String> chapterList = (JList<String>) event.getData(DataKeys.CONTEXT_COMPONENT);
-        if (!(chapterList instanceof JList<?>)) return;
+        Object component = event.getData(PlatformCoreDataKeys.CONTEXT_COMPONENT);
+        @SuppressWarnings("unchecked")
+        JList<String> chapterList = (JList<String>) component;
 
+        assert chapterList != null;
         String selectedTitle = chapterList.getSelectedValue();
         if (selectedTitle == null) return;
 
@@ -57,9 +59,6 @@ public class ChapterNavigationAction extends AnAction {
         if (editor != null) {
             editor.getCaretModel().moveToLogicalPosition(new LogicalPosition(lineNumber - 1, 0));
             editor.getScrollingModel().scrollToCaret(com.intellij.openapi.editor.ScrollType.CENTER);
-            System.out.println("📌 Navigated to line: " + lineNumber);
-        } else {
-            System.out.println("❌ No active editor found.");
         }
     }
 }
