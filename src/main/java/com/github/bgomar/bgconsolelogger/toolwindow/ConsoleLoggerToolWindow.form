@@ -131,7 +131,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -228,7 +228,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -324,7 +324,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -419,7 +419,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -514,7 +514,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -610,7 +610,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -705,7 +705,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -800,7 +800,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
@@ -895,7 +895,7 @@
                           <hideActionText value="false"/>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
-                          <icon value="icons/reset_mini.png"/>
+                          <icon value="icons/reset.png"/>
                           <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
