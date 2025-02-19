@@ -1,8 +1,11 @@
 package com.github.bgomar.bgconsolelogger.tools;
 
 
-public class px2RemTool {
+public class Px2RemTool {
 
+    private Px2RemTool() {
+        throw new IllegalStateException("Utility class");
+    }
     public static double rem2Px (Double px) {
         try {
             if (px.isNaN()) {

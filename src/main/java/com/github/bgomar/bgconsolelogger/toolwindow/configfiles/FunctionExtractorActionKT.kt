@@ -137,7 +137,7 @@ class TypeScriptHandler {
         result.append("class ${generateNewFunctionName()} {\n")
 
         // Obfuscate class methods
-        jsClass.functions.forEach { method ->
+        jsClass.functions.forEach { _ ->
             result.append("  ").append(generateNewFunctionName()).append("() {}\n")
         }
 
@@ -153,7 +153,7 @@ class TypeScriptHandler {
         }
 
         // Obfuscate "this." property references
-        updatedBody = updatedBody.replace(Regex("""this\.(\w+)""")) { matchResult ->
+        updatedBody = updatedBody.replace(Regex("""this\.(\w+)""")) { _ ->
             "this.${generateNewPropertyName()}"
         }
 

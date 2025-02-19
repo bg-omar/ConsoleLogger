@@ -6,6 +6,9 @@ import java.util.Base64;
 
 public class Base64Tools {
 
+    private Base64Tools() {
+        throw new IllegalStateException("Utility class");
+    }
     private static final Base64.Decoder B64_DECODER = Base64.getDecoder();
     private static final Base64.Encoder B64_ENCODER = Base64.getEncoder();
 

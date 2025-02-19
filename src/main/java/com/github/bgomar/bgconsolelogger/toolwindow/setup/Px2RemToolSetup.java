@@ -1,6 +1,6 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
-import com.github.bgomar.bgconsolelogger.tools.px2RemTool;
+import com.github.bgomar.bgconsolelogger.tools.Px2RemTool;
 import com.intellij.ui.components.JBTextField;
 
 import java.awt.event.KeyEvent;
@@ -25,29 +25,33 @@ public class Px2RemToolSetup extends AbstractToolSetup {
         px2RemTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                rem2PxTextField.setText(String.valueOf(px2RemTool.px2Rem(Double.valueOf(px2RemTextField.getText()))));
+                rem2PxTextField.setText(String.valueOf(Px2RemTool.px2Rem(Double.valueOf(px2RemTextField.getText()))));
             }
         });
         rem2PxTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                px2RemTextField.setText(String.valueOf(px2RemTool.rem2Px(Double.valueOf(rem2PxTextField.getText()))));
+                px2RemTextField.setText(String.valueOf(Px2RemTool.rem2Px(Double.valueOf(rem2PxTextField.getText()))));
             }
         });
 

@@ -19,11 +19,9 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.editor.Editor;
 
-
-
 import javax.swing.*;
 
-public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup implements ConfigurableUi<ConsoleLoggerSettings> {
+public class PropertiesConsoleLoggerToolSetup extends AbstractToolSetup implements ConfigurableUi<ConsoleLoggerSettings> {
     private static JTextField propertiesConsoleLoggerTextField1 = new JTextField();
     private static JTextField propertiesConsoleLoggerTextField2 = new JTextField();
     private static JTextField propertiesConsoleLoggerTextField3 = new JTextField();
@@ -40,7 +38,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     private static JButton propertiesConsoleLoggerCancelButton = new JButton();
     private static JButton propertiesConsoleLoggerRecheckButton = new JButton();
 
-
     private static JButton propertiesConsoleLoggerDefaultButton1 = new JButton();
     private static JButton propertiesConsoleLoggerDefaultButton2 = new JButton();
     private static JButton propertiesConsoleLoggerDefaultButton3 = new JButton();
@@ -50,9 +47,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
     private static JButton propertiesConsoleLoggerDefaultButton7 = new JButton();
     private static JButton propertiesConsoleLoggerDefaultButton8 = new JButton();
     private static JButton propertiesConsoleLoggerDefaultButton9 = new JButton();
-
-
-
 
     public static DialogPanel ui;
     public int preset = 0;
@@ -81,7 +75,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             JButton propertiesConsoleLoggerDefaultButton7,
             JButton propertiesConsoleLoggerDefaultButton8,
             JButton propertiesConsoleLoggerDefaultButton9
-
     ) {
         super();
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField1 = propertiesConsoleLoggerTextField1;
@@ -135,9 +128,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton7.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField7.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_7 : ConsoleLoggerSettings.DEFAULT_PATTERN_16));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton8.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_8 : ConsoleLoggerSettings.DEFAULT_PATTERN_17));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton9.addActionListener(e -> PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText((preset == 1) ? ConsoleLoggerSettings.DEFAULT_PATTERN_9 : ConsoleLoggerSettings.DEFAULT_PATTERN_18));
-
-
-
 
         propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
             ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");
@@ -214,7 +204,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
                 save2Loggers();
             }
             load2Loggers();
-
         });
     }
 
@@ -279,7 +268,6 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField8.setText(ConsoleLoggerSettings.getPattern(25));
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerTextField9.setText(ConsoleLoggerSettings.getPattern(26));
     }
-
 
     @Override
     public void reset(@NotNull ConsoleLoggerSettings settings) {

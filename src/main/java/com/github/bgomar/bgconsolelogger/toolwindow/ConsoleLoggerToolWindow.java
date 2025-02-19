@@ -33,7 +33,6 @@ public class ConsoleLoggerToolWindow {
     private JBTextField svg2CssTextArea;
 
     private JPanel chapterPanel;
-    private DefaultListModel<String> chapterListModel;
     private JList<String> chapterList;
     private JTextField chapterTextField;
 
@@ -75,7 +74,7 @@ public class ConsoleLoggerToolWindow {
     }
 
     public ConsoleLoggerToolWindow(Project project) {
-        this.chapterListModel = new DefaultListModel<>(); // ✅ Initialize list model
+        DefaultListModel<String> chapterListModel = new DefaultListModel<>(); // ✅ Initialize list model
         this.chapterList.setModel(chapterListModel); // ✅ Set the model here
 
         String iconsPath = "icons/cats/";
@@ -129,7 +128,7 @@ public class ConsoleLoggerToolWindow {
             rem2PxTextField).setup();
         new ChapterToolSetup(
             project,
-            chapterListModel,
+                chapterListModel,
             chapterList,
             chapterTextField).setup();
 

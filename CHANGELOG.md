@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.32] - 19-02-2025
+  🐛 Bugfix for Saving 😁👌<br><br>
+  Sorry it took so long, it was quite a hard task.<br>
+- ✅Added ChapterTool, to create chapters in your code <br>
+- Double-click on the chapter to jump to the line <br>
+- ✅Function Obfuscator shows in ToolWindow <br>
+- Fixed the issue with the logline numbers <br>
+🤏 Small changes to defaults: <br>
+- Changed input field sizes <br>
+- Fixed Issue with Code Insertion Position  <br>
+- Added the Re-check line numbers function <br>
+- Fixed issue with the removal of ConsoleLogger logs <br>
+
 ## [0.0.31] - 23-01-2025
 - tried fixing depricated issues
 

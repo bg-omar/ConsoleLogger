@@ -28,12 +28,12 @@ class ConsoleLoggerRemoveDlg : DialogWrapper(false) {
     }
 
     val pan = panel {
-      buttonsGroup("Remove ConsoleLoggers In File? ") {
+      buttonsGroup("Remove ConsoleLoggers in file? ") {
         row {
           radioButton("Yes, remove all ConsoleLoggers.", Scope.CURRENT_FILE)
         }
         row {
-          radioButton("No, Search Project for ConsoleLogger:", Scope.PROJECT)
+          radioButton("No, search Project for ConsoleLogger:", Scope.PROJECT)
           cell(numberField).onApply { scope = Scope.PROJECT }
         }
       }.bind(::scope.toMutableProperty(), Scope::class.java)

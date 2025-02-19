@@ -21,12 +21,8 @@ public class RemoveLogPatterns extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         // Get the project and editor from the context
         Project project = e.getData(CommonDataKeys.PROJECT);
+        assert project != null;
         Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
-
-        if (project == null) {
-            System.out.println("No active project found.");
-            return;
-        }
 
         if (editor == null) {
             System.out.println("No active editor found.");

@@ -13,13 +13,16 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
 
+import java.util.Objects;
+
 public class FunctionExtractorAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
         Project project = e.getProject();
+        assert project != null;
         Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
-        if (project == null || editor == null) {
+        if (editor == null) {
             return;
         }
 
@@ -53,7 +56,7 @@ public class FunctionExtractorAction extends AnAction {
 
         // Parameters
         result.append("Parameters:\n");
-        for (PsiElement param : function.getParameterList().getParameters()) {
+        for (PsiElement param : Objects.requireNonNull(function.getParameterList()).getParameters()) {
             result.append(param.getText()).append("\n");
         }
 

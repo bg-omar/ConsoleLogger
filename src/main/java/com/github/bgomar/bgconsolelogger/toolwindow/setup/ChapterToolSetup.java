@@ -14,6 +14,8 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.logging.Logger;
+
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,7 +26,8 @@ import javax.swing.event.DocumentListener;
 import java.util.List;
 
 public class ChapterToolSetup  implements Disposable {
-
+    Logger logger = Logger.getLogger(getClass().getName());
+    
     private final Project project;
     private final DefaultListModel<String> chapterListModel;
     private final JList<String> chapterList;
@@ -34,7 +37,7 @@ public class ChapterToolSetup  implements Disposable {
         this.project = project;
         this.chapterListModel = chapterListModel;
         this.chapterList = chapterList;
-        this.chapterTextField = chapterTextField;
+        ChapterToolSetup.chapterTextField = chapterTextField;
     }
 
 
@@ -68,7 +71,7 @@ public class ChapterToolSetup  implements Disposable {
             public void keyReleased(KeyEvent e) {
                 String newPattern = chapterTextField.getText();
                 ConsoleLoggerSettings.setPattern(27, newPattern);
-                System.out.println("✍️ Updated CHAPTER_PATTERN: " + newPattern);
+                logger.info("✍️ Updated CHAPTER_PATTERN: " + newPattern);
             }
         });
 
@@ -77,7 +80,7 @@ public class ChapterToolSetup  implements Disposable {
                 FileEditorManagerListener.FILE_EDITOR_MANAGER, new FileEditorManagerListener() {
                     @Override
                     public void fileOpened(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
-                        System.out.println("📂 File opened: " + file.getName());
+                        logger.info("📂 File opened: " + file.getName());
                         updateChapterList();
                     }
 
@@ -85,7 +88,7 @@ public class ChapterToolSetup  implements Disposable {
                     public void selectionChanged(@NotNull FileEditorManagerEvent event) {
                         VirtualFile newFile = event.getNewFile();
                         if (newFile != null) {
-                            System.out.println("🔄 Switched to file: " + newFile.getName());
+                            logger.info("🔄 Switched to file: " + newFile.getName());
                             updateChapterList();
                         }
                     }
@@ -123,7 +126,6 @@ public class ChapterToolSetup  implements Disposable {
     private void updatePatternAndRefresh() {
         String newPattern = chapterTextField.getText();
         ConsoleLoggerSettings.setPattern(27, newPattern);
-        System.out.println("✍️ CHAPTER_PATTERN updated: " + newPattern);
 
         // ✅ Refresh chapter list dynamically
         updateChapterList();
@@ -132,7 +134,7 @@ public class ChapterToolSetup  implements Disposable {
     private void navigateToChapter(String selectedTitle) {
         PsiFile file = getCurrentFile();
         if (file == null) {
-            System.out.println("❌ No active file found.");
+            logger.info("❌ No active file found.");
             return;
         }
 
@@ -150,34 +152,31 @@ public class ChapterToolSetup  implements Disposable {
         if (editor != null) {
             editor.getCaretModel().moveToLogicalPosition(new LogicalPosition(lineNumber - 1, 0));
             editor.getScrollingModel().scrollToCaret(com.intellij.openapi.editor.ScrollType.CENTER);
-            System.out.println("📌 Navigated to line: " + lineNumber);
         } else {
-            System.out.println("❌ No active editor found.");
+            logger.info("❌ No active editor found.");
         }
     }
 
     @Override
     public void dispose() {
         // ✅ Cleanup resources when the plugin is disposed
-        System.out.println("ChapterToolSetup disposed.");
+        logger.info("ChapterToolSetup disposed.");
     }
 
     public void updateChapterList() {
-        System.out.println("🔍 Checking for chapters...");
+        logger.info("🔍 Checking for chapters...");
         PsiFile file = getCurrentFile();
-        System.out.print("file: "); System.out.println(file);
 
         if (file == null) {
-            System.out.println("❌ No active file found. Waiting for a file to be opened.");
+            logger.info("❌ No active file found. Waiting for a file to be opened.");
             return;
         }
 
         List<Chapter> chapters = ChapterCollector.collectChapters(file);
-        System.out.print("📜 Chapters found: "); System.out.println(chapters);
 
         chapterListModel.clear();
         if (chapters.isEmpty()) {
-            System.out.println("⚠️ No chapters detected in the current file.");
+            logger.info("⚠️ No chapters detected in the current file.");
         } else {
             for (Chapter chapter : chapters) {
                 chapterListModel.addElement(chapter.getTitle());
@@ -194,27 +193,27 @@ public class ChapterToolSetup  implements Disposable {
 
     private PsiFile getCurrentFile() {
         if (project == null) {
-            System.out.println("❌ Project is null!");
+            logger.info("❌ Project is null!");
             return null;
         }
 
         FileEditorManager fileEditorManager = FileEditorManager.getInstance(project);
         if (fileEditorManager == null) {
-            System.out.println("❌ FileEditorManager is null!");
+            logger.info("❌ FileEditorManager is null!");
             return null;
         }
 
         Editor editor = fileEditorManager.getSelectedTextEditor();
         if (editor == null) {
-            System.out.println("❌ No active editor found!");
+            logger.info("❌ No active editor found!");
             return null;
         }
 
         PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.getDocument());
         if (psiFile == null) {
-            System.out.println("❌ No PSI file found for the current document.");
+            logger.info("❌ No PSI file found for the current document.");
         } else {
-            System.out.println("✅ Current file: " + psiFile.getName());
+            logger.info("✅ Current file: " + psiFile.getName());
         }
         return psiFile;
     }

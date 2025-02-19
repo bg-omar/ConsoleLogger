@@ -23,10 +23,12 @@ public class Svg2cssToolSetup extends AbstractToolSetup {
         svg2cssDecodedTextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
@@ -40,10 +42,12 @@ public class Svg2cssToolSetup extends AbstractToolSetup {
         svg2cssEncodedTextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
@@ -58,10 +62,12 @@ public class Svg2cssToolSetup extends AbstractToolSetup {
         svg2CssTextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override

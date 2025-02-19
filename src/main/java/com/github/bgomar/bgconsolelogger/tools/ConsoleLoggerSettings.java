@@ -48,6 +48,8 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
 
     public static final String CHAPTER_PATTERN = "// CHAPTER:";
 
+    private static final int DEFAULT_PATTERN_COUNT = 28;
+
     public List<String> patterns = new ArrayList<>(Arrays.asList(
             ACTIVE_PATTERN_1,
             ACTIVE_PATTERN_2,
@@ -82,7 +84,11 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
     public String version = "0.0.32";
 
     public static ConsoleLoggerSettings getInstance() {
-        return ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
+        ConsoleLoggerSettings settings = ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);
+        if (settings.patterns.size() > DEFAULT_PATTERN_COUNT) {
+            settings.patterns = settings.patterns.subList(0, DEFAULT_PATTERN_COUNT);
+        }
+        return settings;
     }
 
     @Override
@@ -107,7 +113,7 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
 
     public static int getLogPatternsCount() {
         ConsoleLoggerSettings settings = getInstance();
-        return settings.patterns.size();  // Default to last if out of bounds
+        return settings.patterns.size() -1;  // Default to last if out of bounds
 
     }
 
@@ -116,8 +122,10 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         ConsoleLoggerSettings settings = getInstance();
         if (index >= 0 && index < settings.patterns.size()) {
             settings.patterns.set(index, pattern);
+        } else if (settings.patterns.size() < DEFAULT_PATTERN_COUNT) {
+            settings.patterns.add(pattern);  // Add to the list if index is out of bounds and size is less than default
         } else {
-            settings.patterns.add(pattern);  // Add to the list if index is out of bounds
+            System.out.println("Cannot add more patterns. The list has reached its default limit.");
         }
     }
 }

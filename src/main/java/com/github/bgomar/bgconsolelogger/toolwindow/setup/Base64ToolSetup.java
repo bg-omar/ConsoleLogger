@@ -31,10 +31,12 @@ public class Base64ToolSetup extends AbstractToolSetup {
         base64RawTextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
@@ -50,10 +52,12 @@ public class Base64ToolSetup extends AbstractToolSetup {
         base64Base64TextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                // Class 'Anonymous class derived from KeyListener' must implement abstract method 'keyTyped(KeyEvent)' in 'KeyListener'
             }
 
             @Override
