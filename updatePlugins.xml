@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugins>
     <plugin id="com.github.bgomar.consolelogger"
-            url="https://plugins.jetbrains.com/plugin/download?rel=true&amp;updateId=683838"
+            url="https://plugins.jetbrains.com/plugin/download?rel=true&updateId=683838"
             version="0.0.32">
         <idea-version since-build="243" until-build="251.*"/>
     </plugin>
