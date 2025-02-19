@@ -1,7 +1,6 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
-import com.github.bgomar.consolelogger.UpdateLogLinesAction;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.options.ConfigurableUi;
 import com.intellij.openapi.project.ProjectManager;
@@ -16,16 +15,10 @@ import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.actionSystem.*;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.fileEditor.FileEditorManager;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.fileEditor.FileEditorManager;
-import com.intellij.openapi.project.Project;
+
 
 
 import javax.swing.*;
@@ -145,6 +138,7 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
 
 
+
         propertiesConsoleLoggerRecheckButton.addActionListener(e -> {
             ToolWindow toolWindow = ToolWindowManager.getInstance(ProjectManager.getInstance().getOpenProjects()[0]).getToolWindow("ConsoleLogger");
             if (toolWindow == null) {
@@ -163,8 +157,8 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
             AnAction updateLogLinesAction = ActionManager.getInstance().getAction("com.github.bgomar.consolelogger.UpdateLogLinesAction");
 
             if (updateLogLinesAction != null) {
-                AnActionEvent event = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-                ActionManager.getInstance().tryToExecute(updateLogLinesAction, null, toolWindow.getComponent(), null, true);
+                AnActionEvent event = AnActionEvent.createEvent(dataContext, new Presentation(), ActionPlaces.UNKNOWN, ActionUiKind.NONE, null);
+                ActionManager.getInstance().tryToExecute(updateLogLinesAction, event.getInputEvent(), toolWindow.getComponent(), null, true);
             }
         });
 
@@ -185,8 +179,8 @@ public class PropertiesConsoleLoggerToolSetup  extends AbstractToolSetup impleme
 
                 if (consoleLoggerRemoveAction != null) {
                     DataContext dataContext = DataManager.getInstance().getDataContext(editor.getComponent());
-                    AnActionEvent actionEvent = AnActionEvent.createFromDataContext("", new Presentation(), dataContext);
-                    ActionManager.getInstance().tryToExecute(consoleLoggerRemoveAction, null, editor.getComponent(), null, true);
+                    AnActionEvent actionEvent = AnActionEvent.createEvent(dataContext, new Presentation(), ActionPlaces.UNKNOWN, ActionUiKind.NONE, null);
+                    ActionManager.getInstance().tryToExecute(consoleLoggerRemoveAction, actionEvent.getInputEvent(), editor.getComponent(), null, true);
                 } else {
                     Messages.showErrorDialog("ConsoleLoggerRemove action not found.", "Error");
                 }

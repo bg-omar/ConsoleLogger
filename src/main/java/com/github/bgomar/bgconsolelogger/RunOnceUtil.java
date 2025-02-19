@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class RunOnceUtil {
 
-    private static Set<String> executedTasks = new HashSet<>();
+    private static final Set<String> executedTasks = new HashSet<>();
 
     public static void runOnce(String taskKey, Runnable task) {
         if (!executedTasks.contains(taskKey)) {

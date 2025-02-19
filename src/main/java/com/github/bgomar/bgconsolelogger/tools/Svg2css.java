@@ -5,9 +5,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
-import kotlin.Function;
-
-
 
 public class Svg2css {
 

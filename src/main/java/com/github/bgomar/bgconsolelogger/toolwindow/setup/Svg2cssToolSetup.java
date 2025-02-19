@@ -2,18 +2,14 @@ package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.tools.Svg2css;
 import com.intellij.ui.components.JBTextField;
-import org.jetbrains.annotations.NotNull;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Svg2cssToolSetup extends AbstractToolSetup {
 
-    private JBTextField svg2cssEncodedTextArea;
-    private JBTextField svg2cssDecodedTextArea;
-    private JBTextField svg2CssTextArea;
+    private final JBTextField svg2cssEncodedTextArea;
+    private final JBTextField svg2cssDecodedTextArea;
+    private final JBTextField svg2CssTextArea;
 
     public Svg2cssToolSetup(JBTextField svg2cssDecodedTextArea,
                              JBTextField svg2cssEncodedTextArea,

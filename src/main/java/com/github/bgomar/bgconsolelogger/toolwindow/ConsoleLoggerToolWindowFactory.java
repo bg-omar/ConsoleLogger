@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class ConsoleLoggerToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        ConsoleLoggerToolWindow myToolWindow = new ConsoleLoggerToolWindow();
+        ConsoleLoggerToolWindow myToolWindow = new ConsoleLoggerToolWindow(project);
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);

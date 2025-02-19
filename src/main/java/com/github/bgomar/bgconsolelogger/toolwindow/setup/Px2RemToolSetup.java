@@ -1,12 +1,8 @@
 package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.tools.px2RemTool;
-import com.github.bgomar.bgconsolelogger.toolwindow.configfiles.*;
-import com.intellij.ide.DataManager;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.ui.components.JBTextField;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

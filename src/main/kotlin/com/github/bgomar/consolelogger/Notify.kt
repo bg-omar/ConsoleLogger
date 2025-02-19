@@ -20,7 +20,7 @@ class ApplicationServicePlaceholder : Disposable {
 
 fun createNotification(title: String, content: String, type: NotificationType): Notification {
   return NotificationGroupManager.getInstance()
-    .getNotificationGroup("com.github.bgomar.consolelogger")
+    .getNotificationGroup("com.github.bgomar.consolelogger.notification")
     .createNotification(title, content, type)
 }
 
@@ -28,4 +28,3 @@ fun showFullNotification(project: Project, notification: Notification) {
   // Directly notify the user through the Notification Bus
   Bus.notify(notification, project)
 }
-

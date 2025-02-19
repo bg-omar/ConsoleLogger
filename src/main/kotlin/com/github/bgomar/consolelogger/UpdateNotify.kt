@@ -55,7 +55,7 @@ class UpdateNotify : ProjectActivity {
     }
 
     private fun createNotification(title: String, content: String, type: NotificationType): Notification {
-        val notificationGroup = NotificationGroupManager.getInstance().getNotificationGroup("ConsoleLogger Notifications")
+        val notificationGroup = NotificationGroupManager.getInstance().getNotificationGroup("com.github.bgomar.consolelogger.notification")
         return notificationGroup.createNotification(title, content, type)
     }
 

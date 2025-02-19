@@ -1,5 +1,6 @@
 package com.github.bgomar.bgconsolelogger.toolwindow;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBRadioButton;
@@ -31,22 +32,10 @@ public class ConsoleLoggerToolWindow {
     private JBTextField svg2cssDecodedTextArea;
     private JBTextField svg2CssTextArea;
 
-    private JPanel hashPanel;
-    private JTextArea hashInputTextArea;
-    private JBTextField hashMD5TextField;
-    private JBTextField hashSHA1TextField;
-    private JBTextField hashSHA256TextField;
-    private JBTextField hashSHA384TextField;
-    private JBTextField hashSHA512TextField;
-    private JBTextField hashBCrypt2ATextField;
-    private JBTextField hashBCrypt2BTextField;
-    private JBTextField hashBCrypt2YTextField;
-
-    private JPanel dataFakerPanel;
-    private JComboBox<String> dataFakerGeneratorComboBox;
-    private JButton dataFakerGenerateButton;
-    private JComboBox<String> dataFakerLocaleComboBox;
-    private JTextArea dataFakerTextArea;
+    private JPanel chapterPanel;
+    private DefaultListModel<String> chapterListModel;
+    private JList<String> chapterList;
+    private JTextField chapterTextField;
 
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
@@ -78,21 +67,24 @@ public class ConsoleLoggerToolWindow {
     private JButton functionExtractorClass;
     private JButton functionExtractorActionKT;
     private JButton functionExtractorAction;
+    private JTextArea functionExtractorTextArea;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
     }
 
-    public ConsoleLoggerToolWindow() {
+    public ConsoleLoggerToolWindow(Project project) {
+        this.chapterListModel = new DefaultListModel<>(); // ✅ Initialize list model
+        this.chapterList.setModel(chapterListModel); // ✅ Set the model here
+
         String iconsPath = "icons/cats/";
         toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
-        toolPanelsByTitle.put("Config Presets", new PanelAndIcon(configPresetsPanel, iconsPath + "winecat.svg"));
+        toolPanelsByTitle.put("Chapter", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
+        toolPanelsByTitle.put("Obfuscate Classes", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
-        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "devcat.svg"));
-        toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "winecat.svg"));
-        toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "f03.svg"));
+        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
             propertiesConsoleLoggerTextField1,
@@ -121,7 +113,8 @@ public class ConsoleLoggerToolWindow {
         new ConfigPresetToolSetup(
             functionExtractorClass,
             functionExtractorActionKT,
-            functionExtractorAction).setup();
+            functionExtractorAction,
+            functionExtractorTextArea).setup();
         new Base64ToolSetup(
             base64RadioButtonUTF8,
             base64RadioButtonASCII,
@@ -134,22 +127,12 @@ public class ConsoleLoggerToolWindow {
         new Px2RemToolSetup(
             px2RemTextField,
             rem2PxTextField).setup();
-        new DataFakerToolSetup(
-            dataFakerGeneratorComboBox,
-            dataFakerGenerateButton,
-            dataFakerLocaleComboBox,
-            dataFakerTextArea).setup();
-        var hashToolSetup = new HashToolSetup(
-            hashInputTextArea,
-            hashMD5TextField,
-            hashSHA1TextField,
-            hashSHA256TextField,
-            hashSHA384TextField,
-            hashSHA512TextField,
-            hashBCrypt2ATextField,
-            hashBCrypt2BTextField,
-            hashBCrypt2YTextField);
-        hashToolSetup.setup();
+        new ChapterToolSetup(
+            project,
+            chapterListModel,
+            chapterList,
+            chapterTextField).setup();
+
 
 
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
@@ -186,12 +169,9 @@ public class ConsoleLoggerToolWindow {
                         "Type text and various hash values will<br>" +
                         "be automatically computed as you type.</html>");
                 }
-                case "Timestamp converter" -> {
+                case "Chapter" -> {
                     helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Type a timestamp or update datetime field(s)<br>" +
-                        "then hit the <i>Update from timestamp</i> or<br>" +
-                        "<i>Update from fields</i> button.</html>");
+                    helpLabel.setToolTipText("<html>Select a chapter to navigate within the editor.</html>");
                 }
             }
         });

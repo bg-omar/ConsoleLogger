@@ -46,6 +46,8 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
     public static final String ACTIVE_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
     public static final String ACTIVE_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
+    public static final String CHAPTER_PATTERN = "// CHAPTER:";
+
     public List<String> patterns = new ArrayList<>(Arrays.asList(
             ACTIVE_PATTERN_1,
             ACTIVE_PATTERN_2,
@@ -73,7 +75,8 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
             DEFAULT_PATTERN_15,
             DEFAULT_PATTERN_16,
             DEFAULT_PATTERN_17,
-            DEFAULT_PATTERN_18
+            DEFAULT_PATTERN_18,
+            CHAPTER_PATTERN
     ));
 
     public String version = "0.0.32";
