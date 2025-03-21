@@ -14,12 +14,11 @@ class UpdateNotify : ProjectActivity {
 
     override suspend fun execute(project: Project) {
         val settings = ConsoleLoggerSettings.getInstance()
-        if (plugin.version == "Unknown" || plugin.version != settings.version) {
-            settings.version = plugin.version
-            showUpdate(project)
-        } else if (plugin.version == settings.version) {
-            settings.version = plugin.version
+        if (plugin.version == settings.version) {
+            return  // already up to date, skip
         }
+        settings.version = plugin.version
+        showUpdate(project)
     }
 
     private fun showUpdate(project: Project) {

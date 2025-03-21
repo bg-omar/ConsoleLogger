@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.33] - 20-02-2025
+-
+
 ## [0.0.32] - 19-02-2025
   🐛 Bugfix for Saving 😁👌<br><br>
   Sorry it took so long, it was quite a hard task.<br>
