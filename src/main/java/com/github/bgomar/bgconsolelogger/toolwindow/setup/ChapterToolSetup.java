@@ -2,6 +2,7 @@ package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.chapters.Chapter;
 import com.github.bgomar.bgconsolelogger.chapters.ChapterCollector;
+import com.github.bgomar.bgconsolelogger.chapters.ChapterScrollBarHighlighter;
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.editor.Editor;
@@ -25,53 +26,147 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.util.List;
 
+import com.github.bgomar.bgconsolelogger.chapters.Chapter.Type;
+import com.intellij.ui.JBColor;
+
 public class ChapterToolSetup  implements Disposable {
+
     Logger logger = Logger.getLogger(getClass().getName());
     
     private final Project project;
+    private final JPanel chapterLinesPanel;
     private final DefaultListModel<String> chapterListModel;
     private final JList<String> chapterList;
     private static JTextField chapterTextField = new JTextField();
+    private final JTextField sectionTextField;
+    private final JTextField subsectionTextField;
+    private final JTextField chapterPatternNameTextField;
+    private final JTextField sectionPatternNameTextField;
+    private final JTextField subsectionPatternNameTextField;
+    private ChapterScrollBarHighlighter scrollBarHighlighter = new ChapterScrollBarHighlighter();
 
-    public ChapterToolSetup(Project project, DefaultListModel<String> chapterListModel, JList<String> chapterList, JTextField chapterTextField) {
+    public ChapterToolSetup(Project project, JPanel chapterLinesPanel, DefaultListModel<String> chapterListModel, JList<String> chapterList, JTextField chapterTextField, JTextField sectionTextField, JTextField subsectionTextField, JTextField chapterPatternNameTextField, JTextField sectionPatternNameTextField, JTextField subsectionPatternNameTextField) {
         this.project = project;
+        this.chapterLinesPanel = chapterLinesPanel;
         this.chapterListModel = chapterListModel;
         this.chapterList = chapterList;
         ChapterToolSetup.chapterTextField = chapterTextField;
+        this.sectionTextField = sectionTextField;
+        this.subsectionTextField = subsectionTextField;
+        this.chapterPatternNameTextField = chapterPatternNameTextField;
+        this.sectionPatternNameTextField = sectionPatternNameTextField;
+        this.subsectionPatternNameTextField = subsectionPatternNameTextField;
     }
 
 
     public void setup() {
         updateChapterList();
 
-        // Initialize text field with the current CHAPTER_PATTERN value
+        // Initialize text fields with their current pattern values
         chapterTextField.setText(ConsoleLoggerSettings.getPattern(27));
-        // ✅ Add a DocumentListener to refresh the chapter list on changes
+        sectionTextField.setText(ConsoleLoggerSettings.getPattern(28));
+        subsectionTextField.setText(ConsoleLoggerSettings.getPattern(29));
+        chapterPatternNameTextField.setText(ConsoleLoggerSettings.getPattern(30));
+        sectionPatternNameTextField.setText(ConsoleLoggerSettings.getPattern(31));
+        subsectionPatternNameTextField.setText(ConsoleLoggerSettings.getPattern(32));
+
+        // Add DocumentListeners to refresh the chapter list on changes
         chapterTextField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
-                updatePatternAndRefresh();
-            }
-
+            public void insertUpdate(DocumentEvent e) { updatePatternAndRefresh(27, chapterTextField); }
             @Override
-            public void removeUpdate(DocumentEvent e) {
-                updatePatternAndRefresh();
-            }
-
+            public void removeUpdate(DocumentEvent e) { updatePatternAndRefresh(27, chapterTextField); }
             @Override
-            public void changedUpdate(DocumentEvent e) {
-                updatePatternAndRefresh();
-            }
+            public void changedUpdate(DocumentEvent e) { updatePatternAndRefresh(27, chapterTextField); }
+        });
+        sectionTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) { updatePatternAndRefresh(28, sectionTextField); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { updatePatternAndRefresh(28, sectionTextField); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { updatePatternAndRefresh(28, sectionTextField); }
+        });
+        subsectionTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) { updatePatternAndRefresh(29, subsectionTextField); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { updatePatternAndRefresh(29, subsectionTextField); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { updatePatternAndRefresh(29, subsectionTextField); }
+        });
+        chapterPatternNameTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) { updatePatternAndRefresh(30, chapterPatternNameTextField); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { updatePatternAndRefresh(30, chapterPatternNameTextField); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { updatePatternAndRefresh(30, chapterPatternNameTextField); }
+        });
+        sectionPatternNameTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) { updatePatternAndRefresh(31, sectionPatternNameTextField); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { updatePatternAndRefresh(31, sectionPatternNameTextField); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { updatePatternAndRefresh(31, sectionPatternNameTextField); }
+        });
+        subsectionPatternNameTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) { updatePatternAndRefresh(32, subsectionPatternNameTextField); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { updatePatternAndRefresh(32, subsectionPatternNameTextField); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { updatePatternAndRefresh(32, subsectionPatternNameTextField); }
         });
 
-
-        // ✅ Add a Key Listener to detect changes
+        // Add KeyListeners to detect changes
         chapterTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 String newPattern = chapterTextField.getText();
                 ConsoleLoggerSettings.setPattern(27, newPattern);
                 logger.info("✍️ Updated CHAPTER_PATTERN: " + newPattern);
+            }
+        });
+        sectionTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String newPattern = sectionTextField.getText();
+                ConsoleLoggerSettings.setPattern(28, newPattern);
+                logger.info("✍️ Updated SECTION_PATTERN: " + newPattern);
+            }
+        });
+        subsectionTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String newPattern = subsectionTextField.getText();
+                ConsoleLoggerSettings.setPattern(29, newPattern);
+                logger.info("✍️ Updated SUBSECTION_PATTERN: " + newPattern);
+            }
+        });
+        chapterPatternNameTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String newPattern = chapterPatternNameTextField.getText(); // Ensure the method call matches the expected signature
+                ConsoleLoggerSettings.setPattern(30, newPattern);
+                logger.info("✍️ Updated CHAPTER_PATTERN_NAME: " + newPattern);
+            }
+        });
+        sectionPatternNameTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String newPattern = sectionPatternNameTextField.getText();
+                ConsoleLoggerSettings.setPattern(31, newPattern);
+                logger.info("✍️ Updated SECTION_PATTERN_NAME: " + newPattern);
+            }
+        });
+        subsectionPatternNameTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String newPattern = subsectionPatternNameTextField.getText();
+                ConsoleLoggerSettings.setPattern(32, newPattern);
+                logger.info("✍️ Updated SUBSECTION_PATTERN_NAME: " + newPattern);
             }
         });
 
@@ -91,6 +186,11 @@ public class ChapterToolSetup  implements Disposable {
                             logger.info("🔄 Switched to file: " + newFile.getName());
                             updateChapterList();
                         }
+                    }
+
+                    @Override
+                    public void fileClosed(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
+                        // Handle file closed event if necessary
                     }
                 }
         );
@@ -122,10 +222,10 @@ public class ChapterToolSetup  implements Disposable {
         });
     }
 
-    // ✅ Helper method to update CHAPTER_PATTERN and refresh the list
-    private void updatePatternAndRefresh() {
-        String newPattern = chapterTextField.getText();
-        ConsoleLoggerSettings.setPattern(27, newPattern);
+    // Helper method to update pattern and refresh the list
+    private void updatePatternAndRefresh(int patternKey, JTextField field) {
+        String newPattern = field.getText();
+        ConsoleLoggerSettings.setPattern(patternKey, newPattern);
 
         // ✅ Refresh chapter list dynamically
         updateChapterList();
@@ -188,6 +288,49 @@ public class ChapterToolSetup  implements Disposable {
             chapterList.updateUI();
             chapterList.setSelectedIndex(0); // Optional: Auto-select first chapter
         });
+
+        updateChapterLinesPanel();
+    }
+
+    private void updateChapterLinesPanel() {
+        chapterLinesPanel.removeAll();
+        chapterLinesPanel.revalidate();
+        chapterLinesPanel.repaint();
+        PsiFile file = getCurrentFile();
+        if (file == null) return;
+        List<Chapter> chapters = ChapterCollector.collectChapters(file);
+        // Add scroll bar markers
+        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+        if (editor != null) {
+            scrollBarHighlighter.highlightChapters(editor, chapters);
+        }
+        for (Chapter chapter : chapters) {
+            JPanel linePanel = new JPanel();
+            linePanel.setLayout(new BoxLayout(linePanel, BoxLayout.X_AXIS));
+            JLabel label = new JLabel(chapter.getTitle());
+            label.setForeground(JBColor.WHITE);
+            linePanel.add(label);
+            linePanel.setPreferredSize(new java.awt.Dimension(200, 40));
+            linePanel.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 40));
+            linePanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+            // Color by type
+            switch (chapter.getType()) {
+                case CHAPTER -> linePanel.setBackground(JBColor.BLUE); // blue
+                case SECTION -> linePanel.setBackground(JBColor.GREEN); // green
+                case SUBSECTION -> linePanel.setBackground(JBColor.ORANGE); // orange
+                default -> linePanel.setBackground(JBColor.DARK_GRAY); // fallback
+            }
+            linePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            linePanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    navigateToLine(chapter.getLineNumber());
+                }
+            });
+            chapterLinesPanel.add(linePanel);
+        }
+        chapterLinesPanel.revalidate();
+        chapterLinesPanel.repaint();
     }
 
 
@@ -220,3 +363,4 @@ public class ChapterToolSetup  implements Disposable {
 
 
 }
+

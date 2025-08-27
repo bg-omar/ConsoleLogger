@@ -3,7 +3,7 @@
     <name>ConsoleLogger</name>
     <vendor email="info@omariskandarani.com" url="https://github.com/bg-omar/consolelogger">bgOmar</vendor>
 
-    <idea-version since-build="243" />
+    <idea-version since-build="243.21565.193" />
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>JavaScript</depends>

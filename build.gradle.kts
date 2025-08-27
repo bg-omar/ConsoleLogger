@@ -346,7 +346,7 @@ tasks {
 
     publishPlugin {
         dependsOn("patchChangelog")
-        dependsOn(generateUpdatePluginsXml)
+//        dependsOn(generateUpdatePluginsXml)
         token = environment("PUBLISH_TOKEN")
         channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
     }
@@ -521,31 +521,31 @@ fun updatePluginXml() {
     }
 }
 
-val generateUpdatePluginsXml by tasks.registering {
-    val pluginId = "com.github.bgomar.consolelogger"
-    val updateId = "683838" // Optional: replace if dynamic
-    val downloadUrl = "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=$updateId"
-
-    val outputFile = File(buildDir, "updatePlugins.xml")
-    inputs.property("pluginVersion", pluginVersion)
-    outputs.file(outputFile)
-
-    doLast {
-        val xml = """
-            <?xml version="1.0" encoding="UTF-8"?>
-            <plugins>
-                <plugin id="$pluginId"
-                        url="$downloadUrl"
-                        version="$pluginVersion">
-                    <idea-version since-build="$pluginSinceBuild" until-build="$pluginUntilBuild"/>
-                </plugin>
-            </plugins>
-        """.trimIndent()
-
-        outputFile.writeText(xml)
-        logger.lifecycle("✅ updatePlugins.xml generated at: ${outputFile.absolutePath}")
-    }
-}
+//val generateUpdatePluginsXml by tasks.registering {
+//    val pluginId = "com.github.bgomar.consolelogger"
+//    val updateId = "683838" // Optional: replace if dynamic
+//    val downloadUrl = "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=$updateId"
+//
+//    val outputFile = File(buildDir, "updatePlugins.xml")
+//    inputs.property("pluginVersion", pluginVersion)
+//    outputs.file(outputFile)
+//
+//    doLast {
+//        val xml = """
+//            <?xml version="1.0" encoding="UTF-8"?>
+//            <plugins>
+//                <plugin id="$pluginId"
+//                        url="$downloadUrl"
+//                        version="$pluginVersion">
+//                    <idea-version since-build="$pluginSinceBuild" until-build="$pluginUntilBuild"/>
+//                </plugin>
+//            </plugins>
+//        """.trimIndent()
+//
+//        outputFile.writeText(xml)
+//        logger.lifecycle("✅ updatePlugins.xml generated at: ${outputFile.absolutePath}")
+//    }
+//}
 
 // https://plugins.jetbrains.com/plugin/download?rel=true&updateId=683838
 // https://plugins.jetbrains.com/plugin/download?rel=true&updateId=670136

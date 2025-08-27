@@ -33,9 +33,18 @@ public class ConsoleLoggerToolWindow {
     private JBTextField svg2CssTextArea;
 
     private JPanel chapterPanel;
+    private JPanel chapterLinesPanel;
     private JList<String> chapterList;
     private JTextField chapterTextField;
+    private JTextField  sectionTextField;
+    private JTextField  subsectionTextField;
+    private JTextField  chapterPatternNameTextField;
+    private JTextField  sectionPatternNameTextField;
+    private JTextField  subsectionPatternNameTextField;
+    private JButton chapterSaveButton;
+    private JButton chapterRefreshButton;
 
+    // Properties of ConsoleLogger
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
     private JTextField propertiesConsoleLoggerTextField2;
@@ -67,6 +76,7 @@ public class ConsoleLoggerToolWindow {
     private JButton functionExtractorActionKT;
     private JButton functionExtractorAction;
     private JTextArea functionExtractorTextArea;
+    private JButton saveActivateThisSetButton;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -78,12 +88,14 @@ public class ConsoleLoggerToolWindow {
         this.chapterList.setModel(chapterListModel); // ✅ Set the model here
 
         String iconsPath = "icons/cats/";
-        toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Chapter", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
+        toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
         toolPanelsByTitle.put("Obfuscate Classes", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
         toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "f03.svg"));
+
+
 
         new PropertiesConsoleLoggerToolSetup(
             propertiesConsoleLoggerTextField1,
@@ -128,9 +140,16 @@ public class ConsoleLoggerToolWindow {
             rem2PxTextField).setup();
         new ChapterToolSetup(
             project,
-                chapterListModel,
+            chapterLinesPanel,
+            chapterListModel,
             chapterList,
-            chapterTextField).setup();
+            chapterTextField,
+            sectionTextField,
+            subsectionTextField,
+            chapterPatternNameTextField,
+            sectionPatternNameTextField,
+            subsectionPatternNameTextField
+        ).setup();
 
 
 

@@ -47,8 +47,13 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
     public static final String ACTIVE_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
     public static final String CHAPTER_PATTERN = "// CHAPTER:";
+        public static final String CHAPTER_PATTERN_NAME = "Chapter: ";
+    public static final String SECTION_PATTERN = "\\section";
+        public static final String SECTION_PATTERN_NAME = "Section: ";
+    public static final String SUBSECT_PATTERN = "\\subsection";
+        public static final String SUBSECT_PATTERN_NAME = "Subsection: ";
 
-    private static final int DEFAULT_PATTERN_COUNT = 28;
+    private static final int DEFAULT_PATTERN_COUNT = 33;
 
     public List<String> patterns = new ArrayList<>(Arrays.asList(
             ACTIVE_PATTERN_1,
@@ -78,10 +83,15 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
             DEFAULT_PATTERN_16,
             DEFAULT_PATTERN_17,
             DEFAULT_PATTERN_18,
-            CHAPTER_PATTERN
+            CHAPTER_PATTERN,
+            SECTION_PATTERN,
+            SUBSECT_PATTERN,
+            CHAPTER_PATTERN_NAME,
+            SECTION_PATTERN_NAME,
+            SUBSECT_PATTERN_NAME
     ));
 
-    public String version = "0.0.33";
+    public String version = "0.0.34";
 
     public static ConsoleLoggerSettings getInstance() {
         ConsoleLoggerSettings settings = ApplicationManager.getApplication().getService(ConsoleLoggerSettings.class);

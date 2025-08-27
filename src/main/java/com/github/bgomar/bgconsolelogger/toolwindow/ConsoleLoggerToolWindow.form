@@ -1429,12 +1429,12 @@
               <grid id="a69bf" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="16848" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="16848" layout-manager="GridLayoutManager" row-count="4" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -1442,33 +1442,9 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="12168" class="com.intellij.ui.components.JBLabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="ChapterTitle"/>
-                        </properties>
-                      </component>
-                      <component id="5dc1c" class="com.intellij.ui.components.JBLabel">
-                        <constraints>
-                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="ChapterCommand"/>
-                        </properties>
-                      </component>
-                      <component id="f5f49" class="com.intellij.ui.components.JBLabel">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="ChapterIntroduction"/>
-                        </properties>
-                      </component>
                       <component id="a117a" class="com.intellij.ui.components.JBTextField" binding="chapterTextField">
                         <constraints>
-                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                         </constraints>
@@ -1476,39 +1452,109 @@
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-input"/>
                         </properties>
                       </component>
-                      <hspacer id="d938c">
+                      <component id="62947" class="com.intellij.ui.components.JBTextField" binding="sectionTextField">
                         <constraints>
-                          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
                         </constraints>
-                      </hspacer>
+                        <properties>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input"/>
+                        </properties>
+                      </component>
+                      <component id="3153b" class="com.intellij.ui.components.JBTextField" binding="subsectionTextField">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input"/>
+                        </properties>
+                      </component>
+                      <component id="c4333" class="javax.swing.JButton" binding="saveActivateThisSetButton">
+                        <constraints>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <minimum-size width="95" height="52"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <label value="" noi18n="true"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="Save-Chapters"/>
+                        </properties>
+                      </component>
+                      <component id="2427a" class="javax.swing.JButton">
+                        <constraints>
+                          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <minimum-size width="95" height="52"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <label value="" noi18n="true"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="refresh-chapters"/>
+                        </properties>
+                      </component>
+                      <component id="a5d3b" class="com.intellij.ui.components.JBTextField" binding="sectionPatternNameTextField">
+                        <constraints>
+                          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="125" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input-name"/>
+                        </properties>
+                      </component>
+                      <component id="7fd53" class="com.intellij.ui.components.JBTextField" binding="subsectionPatternNameTextField">
+                        <constraints>
+                          <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="125" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input-name"/>
+                        </properties>
+                      </component>
+                      <component id="cbd0" class="com.intellij.ui.components.JBTextField" binding="chapterPatternNameTextField">
+                        <constraints>
+                          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="125" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-input-name"/>
+                        </properties>
+                      </component>
+                      <component id="12168" class="com.intellij.ui.components.JBLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="ChapterTitle"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                   <scrollpane id="e786d">
                     <constraints>
                       <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <minimum-size width="200" height="400"/>
-                        <preferred-size width="200" height="-1"/>
+                        <minimum-size width="200" height="200"/>
+                        <preferred-size width="200" height="800"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <autoscrolls value="true"/>
+                    </properties>
                     <border type="none"/>
                     <children>
                       <component id="5106" class="javax.swing.JList" binding="chapterList">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <layoutOrientation value="0"/>
+                          <model/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>
-                  <hspacer id="2ad42">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                  <hspacer id="621de">
-                    <constraints>
-                      <grid row="1" column="2" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
                 </children>
               </grid>
             </children>
