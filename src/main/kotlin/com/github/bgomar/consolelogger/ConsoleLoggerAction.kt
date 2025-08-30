@@ -39,9 +39,8 @@ class ConsoleLoggerAction : AnAction() {
 
     val vFile: VirtualFile? = e.getData(PlatformDataKeys.VIRTUAL_FILE)
 
-    val variableName = moveCursorToInsertionPoint(editor)?.trim()
-    if (variableName.isNullOrEmpty()) return
-
+    var variableName = moveCursorToInsertionPoint(editor)?.trim()
+    if (variableName.isNullOrEmpty()) variableName = "" // Default value if nothing is selected
 
     val pattern = ConsoleLoggerSettings.getPattern(patternIndex).run {
       replace("{FN}", vFile?.name ?: "filename")
@@ -69,6 +68,8 @@ class ConsoleLoggerAction : AnAction() {
         }
         WriteCommandAction.runWriteCommandAction(editor.project, runnable)
         positionCaret(editor, insertionPositions, line2insert, variableName.replace("<CR>", "").trim())
+        // Automatically update log line numbers after insertion
+        LogLineUpdater.updateLogLines(editor.document, editor.project)
       }
   }
 

@@ -132,7 +132,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -229,7 +229,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -325,7 +325,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -420,7 +420,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -515,7 +515,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -611,7 +611,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -706,7 +706,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -801,7 +801,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -896,7 +896,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="3"/>
+                          <iconTextGap value="4"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1538,18 +1538,19 @@
                     <constraints>
                       <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <minimum-size width="200" height="200"/>
-                        <preferred-size width="200" height="800"/>
+                        <preferred-size width="200" height="1080"/>
+                        <maximum-size width="-1" height="2160"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <autoscrolls value="true"/>
+                      <autoscrolls value="false"/>
                     </properties>
                     <border type="none"/>
                     <children>
                       <component id="5106" class="javax.swing.JList" binding="chapterList">
                         <constraints/>
                         <properties>
-                          <layoutOrientation value="0"/>
+                          <layoutOrientation value="1"/>
                           <model/>
                         </properties>
                       </component>

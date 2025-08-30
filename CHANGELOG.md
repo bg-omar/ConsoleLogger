@@ -1,7 +1,10 @@
 # Changelog
 
-## [0.0.33] - 20-02-2025
--
+## [0.0.34] - 20-02-2025
+-  Chapter Tool Updated
+- Added option for 3 presets of chapter
+- ConsoleLogger can use empty variables again.
+- Line numbers update in file when adding a logger
 
 ## [0.0.32] - 19-02-2025
   🐛 Bugfix for Saving 😁👌<br><br>

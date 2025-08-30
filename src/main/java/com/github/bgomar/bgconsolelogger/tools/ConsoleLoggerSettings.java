@@ -53,7 +53,11 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
     public static final String SUBSECT_PATTERN = "\\subsection";
         public static final String SUBSECT_PATTERN_NAME = "Subsection: ";
 
-    private static final int DEFAULT_PATTERN_COUNT = 33;
+    public static final String TOOL_WINDOW = "";
+
+    private static final int DEFAULT_PATTERN_COUNT = 34;
+
+    public String toolWindow = "";
 
     public List<String> patterns = new ArrayList<>(Arrays.asList(
             ACTIVE_PATTERN_1,
@@ -88,7 +92,8 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
             SUBSECT_PATTERN,
             CHAPTER_PATTERN_NAME,
             SECTION_PATTERN_NAME,
-            SUBSECT_PATTERN_NAME
+            SUBSECT_PATTERN_NAME,
+            TOOL_WINDOW
     ));
 
     public String version = "0.0.34";
@@ -137,5 +142,13 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         } else {
             System.out.println("Cannot add more patterns. The list has reached its default limit.");
         }
+    }
+
+    public String getToolWindow() {
+        return getPattern(33);
+    }
+
+    public void setToolWindow(String toolWindow) {
+        setPattern(33, toolWindow);
     }
 }

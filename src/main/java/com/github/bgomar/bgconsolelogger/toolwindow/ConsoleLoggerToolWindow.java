@@ -6,6 +6,7 @@ import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
+import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
 
 import javax.swing.*;
 import java.util.LinkedHashMap;
@@ -167,6 +168,9 @@ public class ConsoleLoggerToolWindow {
             ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
             displayToolPanel(item.title());
 
+            // Save selected tool to settings
+            ConsoleLoggerSettings.getInstance().setToolWindow(item.title());
+
             helpLabel.setVisible(false);
             switch (item.title()) {
                 case "Base64 encoder/decoder" -> {
@@ -193,7 +197,20 @@ public class ConsoleLoggerToolWindow {
                 }
             }
         });
-        toolComboBox.setSelectedIndex(0);
+
+        // Restore last selected tool if available
+        String lastTool = ConsoleLoggerSettings.getInstance().getToolWindow();
+        if (lastTool != null && !lastTool.isEmpty()) {
+            for (int i = 0; i < toolComboBox.getItemCount(); i++) {
+                if (toolComboBox.getItemAt(i).title().equals(lastTool)) {
+                    toolComboBox.setSelectedIndex(i);
+                    break;
+                }
+            }
+        } else {
+            toolComboBox.setSelectedIndex(0);
+        }
+
     }
 
     private void displayToolPanel(String toolPanelTitle) {
