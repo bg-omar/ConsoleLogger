@@ -6,7 +6,6 @@ import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
-import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
 
 import javax.swing.*;
 import java.util.LinkedHashMap;
@@ -77,7 +76,6 @@ public class ConsoleLoggerToolWindow {
     private JButton functionExtractorActionKT;
     private JButton functionExtractorAction;
     private JTextArea functionExtractorTextArea;
-    private JButton saveActivateThisSetButton;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -89,14 +87,12 @@ public class ConsoleLoggerToolWindow {
         this.chapterList.setModel(chapterListModel); // ✅ Set the model here
 
         String iconsPath = "icons/cats/";
-        toolPanelsByTitle.put("Chapter", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
-        toolPanelsByTitle.put("Properties of ConsoleLogger ", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
-        toolPanelsByTitle.put("Obfuscate Classes", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
-        toolPanelsByTitle.put("Pixels to REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
+        toolPanelsByTitle.put("Chapters", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
+        toolPanelsByTitle.put("Properties", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
+        toolPanelsByTitle.put("Obfuscate", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
+        toolPanelsByTitle.put("Px 2 REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
         toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
-        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "f03.svg"));
-
-
+        toolPanelsByTitle.put("Base64", new PanelAndIcon(base64Panel, iconsPath + "f03.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
             propertiesConsoleLoggerTextField1,
@@ -141,7 +137,6 @@ public class ConsoleLoggerToolWindow {
             rem2PxTextField).setup();
         new ChapterToolSetup(
             project,
-            chapterLinesPanel,
             chapterListModel,
             chapterList,
             chapterTextField,
@@ -167,9 +162,6 @@ public class ConsoleLoggerToolWindow {
         toolComboBox.addActionListener(e -> {
             ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
             displayToolPanel(item.title());
-
-            // Save selected tool to settings
-            ConsoleLoggerSettings.getInstance().setToolWindow(item.title());
 
             helpLabel.setVisible(false);
             switch (item.title()) {
@@ -197,20 +189,7 @@ public class ConsoleLoggerToolWindow {
                 }
             }
         });
-
-        // Restore last selected tool if available
-        String lastTool = ConsoleLoggerSettings.getInstance().getToolWindow();
-        if (lastTool != null && !lastTool.isEmpty()) {
-            for (int i = 0; i < toolComboBox.getItemCount(); i++) {
-                if (toolComboBox.getItemAt(i).title().equals(lastTool)) {
-                    toolComboBox.setSelectedIndex(i);
-                    break;
-                }
-            }
-        } else {
-            toolComboBox.setSelectedIndex(0);
-        }
-
+        toolComboBox.setSelectedIndex(0);
     }
 
     private void displayToolPanel(String toolPanelTitle) {

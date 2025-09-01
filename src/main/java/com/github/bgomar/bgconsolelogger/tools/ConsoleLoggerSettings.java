@@ -46,18 +46,14 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
     public static final String ACTIVE_PATTERN_8 = "console.log(\"%c 8 --> {LN}||{FN}\\n $$: \",\"color:#fca;\", $$);";
     public static final String ACTIVE_PATTERN_9 = "console.log(\"%c 9 --> {LN}||{FN}\\n $$: \",\"color:#acf;\", $$);";
 
-    public static final String CHAPTER_PATTERN = "// CHAPTER:";
-        public static final String CHAPTER_PATTERN_NAME = "Chapter: ";
+    public static final String CHAPTER_PATTERN = "//";
+    public static final String CHAPTER_PATTERN_NAME = "Comment: ";
     public static final String SECTION_PATTERN = "\\section";
-        public static final String SECTION_PATTERN_NAME = "Section: ";
+    public static final String SECTION_PATTERN_NAME = "Sec: ";
     public static final String SUBSECT_PATTERN = "\\subsection";
-        public static final String SUBSECT_PATTERN_NAME = "Subsection: ";
+    public static final String SUBSECT_PATTERN_NAME = "Sub: ";
 
-    public static final String TOOL_WINDOW = "";
-
-    private static final int DEFAULT_PATTERN_COUNT = 34;
-
-    public String toolWindow = "";
+    private static final int DEFAULT_PATTERN_COUNT = 33;
 
     public List<String> patterns = new ArrayList<>(Arrays.asList(
             ACTIVE_PATTERN_1,
@@ -92,8 +88,7 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
             SUBSECT_PATTERN,
             CHAPTER_PATTERN_NAME,
             SECTION_PATTERN_NAME,
-            SUBSECT_PATTERN_NAME,
-            TOOL_WINDOW
+            SUBSECT_PATTERN_NAME
     ));
 
     public String version = "0.0.34";
@@ -142,13 +137,5 @@ public final class ConsoleLoggerSettings implements PersistentStateComponent<Con
         } else {
             System.out.println("Cannot add more patterns. The list has reached its default limit.");
         }
-    }
-
-    public String getToolWindow() {
-        return getPattern(33);
-    }
-
-    public void setToolWindow(String toolWindow) {
-        setPattern(33, toolWindow);
     }
 }

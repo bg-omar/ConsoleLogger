@@ -34,7 +34,6 @@ public class ChapterToolSetup  implements Disposable {
     Logger logger = Logger.getLogger(getClass().getName());
     
     private final Project project;
-    private final JPanel chapterLinesPanel;
     private final DefaultListModel<String> chapterListModel;
     private final JList<String> chapterList;
     private static JTextField chapterTextField = new JTextField();
@@ -43,11 +42,10 @@ public class ChapterToolSetup  implements Disposable {
     private final JTextField chapterPatternNameTextField;
     private final JTextField sectionPatternNameTextField;
     private final JTextField subsectionPatternNameTextField;
-    private ChapterScrollBarHighlighter scrollBarHighlighter = new ChapterScrollBarHighlighter();
+;
 
-    public ChapterToolSetup(Project project, JPanel chapterLinesPanel, DefaultListModel<String> chapterListModel, JList<String> chapterList, JTextField chapterTextField, JTextField sectionTextField, JTextField subsectionTextField, JTextField chapterPatternNameTextField, JTextField sectionPatternNameTextField, JTextField subsectionPatternNameTextField) {
+    public ChapterToolSetup(Project project, DefaultListModel<String> chapterListModel, JList<String> chapterList, JTextField chapterTextField, JTextField sectionTextField, JTextField subsectionTextField, JTextField chapterPatternNameTextField, JTextField sectionPatternNameTextField, JTextField subsectionPatternNameTextField) {
         this.project = project;
-        this.chapterLinesPanel = chapterLinesPanel;
         this.chapterListModel = chapterListModel;
         this.chapterList = chapterList;
         ChapterToolSetup.chapterTextField = chapterTextField;
@@ -288,50 +286,9 @@ public class ChapterToolSetup  implements Disposable {
             chapterList.updateUI();
             chapterList.setSelectedIndex(0); // Optional: Auto-select first chapter
         });
-
-        updateChapterLinesPanel();
     }
 
-    private void updateChapterLinesPanel() {
-        chapterLinesPanel.removeAll();
-        chapterLinesPanel.revalidate();
-        chapterLinesPanel.repaint();
-        PsiFile file = getCurrentFile();
-        if (file == null) return;
-        List<Chapter> chapters = ChapterCollector.collectChapters(file);
-        // Add scroll bar markers
-        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
-        if (editor != null) {
-            scrollBarHighlighter.highlightChapters(editor, chapters);
-        }
-        for (Chapter chapter : chapters) {
-            JPanel linePanel = new JPanel();
-            linePanel.setLayout(new BoxLayout(linePanel, BoxLayout.X_AXIS));
-            JLabel label = new JLabel(chapter.getTitle());
-            label.setForeground(JBColor.WHITE);
-            linePanel.add(label);
-            linePanel.setPreferredSize(new java.awt.Dimension(200, 40));
-            linePanel.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 40));
-            linePanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-            // Color by type
-            switch (chapter.getType()) {
-                case CHAPTER -> linePanel.setBackground(JBColor.BLUE); // blue
-                case SECTION -> linePanel.setBackground(JBColor.GREEN); // green
-                case SUBSECTION -> linePanel.setBackground(JBColor.ORANGE); // orange
-                default -> linePanel.setBackground(JBColor.DARK_GRAY); // fallback
-            }
-            linePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            linePanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    navigateToLine(chapter.getLineNumber());
-                }
-            });
-            chapterLinesPanel.add(linePanel);
-        }
-        chapterLinesPanel.revalidate();
-        chapterLinesPanel.repaint();
-    }
+
 
 
     private PsiFile getCurrentFile() {

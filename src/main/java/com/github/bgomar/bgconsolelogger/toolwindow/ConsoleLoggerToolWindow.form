@@ -1472,28 +1472,6 @@
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input"/>
                         </properties>
                       </component>
-                      <component id="c4333" class="javax.swing.JButton" binding="saveActivateThisSetButton">
-                        <constraints>
-                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                            <minimum-size width="95" height="52"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <label value="" noi18n="true"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="Save-Chapters"/>
-                        </properties>
-                      </component>
-                      <component id="2427a" class="javax.swing.JButton">
-                        <constraints>
-                          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                            <minimum-size width="95" height="52"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <label value="" noi18n="true"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="refresh-chapters"/>
-                        </properties>
-                      </component>
                       <component id="a5d3b" class="com.intellij.ui.components.JBTextField" binding="sectionPatternNameTextField">
                         <constraints>
                           <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
@@ -1536,21 +1514,20 @@
                   </grid>
                   <scrollpane id="e786d">
                     <constraints>
-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <minimum-size width="200" height="200"/>
-                        <preferred-size width="200" height="1080"/>
                         <maximum-size width="-1" height="2160"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <autoscrolls value="false"/>
+                      <autoscrolls value="true"/>
                     </properties>
                     <border type="none"/>
                     <children>
                       <component id="5106" class="javax.swing.JList" binding="chapterList">
                         <constraints/>
                         <properties>
-                          <layoutOrientation value="1"/>
+                          <layoutOrientation value="0"/>
                           <model/>
                         </properties>
                       </component>
