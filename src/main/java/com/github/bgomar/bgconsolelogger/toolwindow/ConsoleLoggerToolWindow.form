@@ -13,7 +13,7 @@
     <children>
       <grid id="8d5b6" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <inheritsPopupMenu value="true"/>
@@ -1417,7 +1417,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="a9860" binding="chapterPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="a9860" binding="chapterPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
@@ -1515,8 +1515,8 @@
                   <scrollpane id="e786d">
                     <constraints>
                       <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <minimum-size width="200" height="200"/>
-                        <maximum-size width="-1" height="2160"/>
+                        <minimum-size width="200" height="800"/>
+                        <preferred-size width="200" height="800"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -1527,14 +1527,30 @@
                       <component id="5106" class="javax.swing.JList" binding="chapterList">
                         <constraints/>
                         <properties>
+                          <autoscrolls value="false"/>
                           <layoutOrientation value="0"/>
+                          <maximumSize width="800" height="2160"/>
+                          <minimumSize width="100" height="800"/>
                           <model/>
+                          <preferredSize width="100" height="960"/>
+                          <selectionMode value="0"/>
+                          <valueIsAdjusting value="false"/>
                         </properties>
                       </component>
                     </children>
                   </scrollpane>
+                  <vspacer id="f9201">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
                 </children>
               </grid>
+              <vspacer id="3ea7b">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
             </children>
           </grid>
         </children>
