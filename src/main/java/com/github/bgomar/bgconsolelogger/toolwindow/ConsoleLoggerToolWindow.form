@@ -917,7 +917,6 @@
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <label value="" noi18n="true"/>
                       <text resource-bundle="messages/ConsoleLoggerBundle" key="undoButton"/>
                     </properties>
                   </component>
@@ -945,7 +944,6 @@
                           </grid>
                         </constraints>
                         <properties>
-                          <label value="" noi18n="true"/>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="set.1.label"/>
                           <toolTipText resource-bundle="messages/ConsoleLoggerBundle" key="show.edit.set.1.tooltip"/>
                         </properties>
@@ -957,7 +955,6 @@
                           </grid>
                         </constraints>
                         <properties>
-                          <label value="" noi18n="true"/>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="set.2.label"/>
                           <toolTipText resource-bundle="messages/ConsoleLoggerBundle" key="show.edit.set.2.tooltip"/>
                         </properties>
@@ -969,7 +966,6 @@
                           </grid>
                         </constraints>
                         <properties>
-                          <label value="" noi18n="true"/>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="activate.set1"/>
                         </properties>
                       </component>
@@ -991,7 +987,6 @@
                       <gridbag weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <label value="" noi18n="true"/>
                       <text resource-bundle="messages/ConsoleLoggerBundle" key="recheckButton"/>
                     </properties>
                   </component>

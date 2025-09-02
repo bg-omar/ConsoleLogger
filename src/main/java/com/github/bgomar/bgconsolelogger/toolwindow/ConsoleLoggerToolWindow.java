@@ -68,6 +68,7 @@ public class ConsoleLoggerToolWindow {
     private JButton functionExtractorAction;
     private JTextArea functionExtractorTextArea;
 
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
@@ -128,7 +129,7 @@ public class ConsoleLoggerToolWindow {
             rem2PxTextField).setup();
         new ChapterToolSetup(
             project,
-                chapterListModel,
+            chapterListModel,
             chapterList,
             chapterTextField).setup();
 

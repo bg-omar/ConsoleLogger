@@ -14,6 +14,10 @@ class UpdateNotify : ProjectActivity {
 
     override suspend fun execute(project: Project) {
         val settings = ConsoleLoggerSettings.getInstance()
+//        print("Plugin version: ")
+//        print(plugin.version)
+//        print("Settings version: ")
+//        println(settings.version)
         if (plugin.version == settings.version) {
             return  // already up to date, skip
         }
@@ -26,18 +30,8 @@ class UpdateNotify : ProjectActivity {
             val notification = createNotification(
                 "ConsoleLogger plugin updated to version ${plugin.version}",
                 """
-            🐛 Bugfix for Saving 😁👌<br><br>
-            Sorry it took so long, it was quite a hard task.<br>
-            - ✅Added ChapterTool, to create chapters in your code <br>
-            - Double-click on the chapter to jump to the line <br>
-            - ✅Function Obfuscator shows in ToolWindow <br>
-            - Fixed the issue with the logline numbers <br>
-            🤏 Small changes to defaults: <br>
-            - Changed input field sizes <br>
-            - Fixed Issue with Code Insertion Position  <br>
-            - Added the Re-check line numbers function <br>
-            - Fixed issue with the removal of ConsoleLogger logs <br>
-            """,
+                removed depricated features and fixed bugs.
+                """,
                 NotificationType.INFORMATION
             )
             showFullNotification(project, notification)

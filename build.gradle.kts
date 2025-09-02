@@ -53,7 +53,7 @@ plugins {
     id("java") // Java support
     id("groovy")
     id("org.jetbrains.kotlin.jvm") version "2.0.20"     // Kotlin support
-    id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
+    id("org.jetbrains.intellij") version "1.17.3"    // Gradle IntelliJ Plugin
     id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
     id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
     id("org.jetbrains.kotlinx.kover") version "0.7.4"    // Gradle Kover Plugin
@@ -124,15 +124,13 @@ intellij {
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
     updateSinceUntilBuild.set(true)
-    // ✅ Enable compatibility with multiple IDEs
     sameSinceUntilBuild.set(false)
-    sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
+    sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion("2024.3.2")}")
 
     downloadSources.set(!System.getenv().containsKey("IU"))
-    downloadSources.set(pluginDownloadIdeaSources.toBoolean() && !System.getenv().containsKey("IU"))
     instrumentCode.set(true)
-
 }
+
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     groups.empty()
@@ -227,7 +225,7 @@ tasks {
     }
 
     register<ClearSandboxLogs>("clearSandboxedIDESystemLogs") {
-        sandboxLogDir.set(File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}/system/log/"))
+        sandboxLogDir.set(File("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion("2024.3.2")}/system/log/"))
         clearLogsBeforeRun.set(pluginClearSandboxedIDESystemLogsBeforeRun.toBoolean())
     }
 
@@ -245,12 +243,6 @@ tasks {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
-    }
-    withType<Test> {
-        useJUnitPlatform()
-
-        // avoid JBUIScale "Must be precomputed" error, because IDE is not started (LoadingState.APP_STARTED.isOccurred is false)
-        jvmArgs("-Djava.awt.headless=true")
     }
     withType<Test> {
         useJUnitPlatform()
@@ -346,7 +338,6 @@ tasks {
 
     publishPlugin {
         dependsOn("patchChangelog")
-        dependsOn(generateUpdatePluginsXml)
         token = environment("PUBLISH_TOKEN")
         channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
     }
