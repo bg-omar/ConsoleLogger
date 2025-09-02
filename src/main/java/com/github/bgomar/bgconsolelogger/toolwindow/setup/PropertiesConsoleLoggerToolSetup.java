@@ -35,7 +35,7 @@ public class PropertiesConsoleLoggerToolSetup extends AbstractToolSetup implemen
     private static JButton propertiesConsoleLoggerSaveButton = new JButton();
     private static JButton propertiesConsoleLoggerLoad2Button = new JButton();
     private static JButton propertiesConsoleLoggerLoad1Button = new JButton();
-    private static JButton propertiesConsoleLoggerCancelButton = new JButton();
+    private static JButton propertiesConsoleLoggerRemoveButton = new JButton();
     private static JButton propertiesConsoleLoggerRecheckButton = new JButton();
 
     private static JButton propertiesConsoleLoggerDefaultButton1 = new JButton();
@@ -64,7 +64,7 @@ public class PropertiesConsoleLoggerToolSetup extends AbstractToolSetup implemen
             JButton propertiesConsoleLoggerSaveButton,
             JButton propertiesConsoleLoggerLoad2Button,
             JButton propertiesConsoleLoggerLoad1Button,
-            JButton propertiesConsoleLoggerCancelButton,
+            JButton propertiesConsoleLoggerRemoveButton,
             JButton propertiesConsoleLoggerRecheckButton,
             JButton propertiesConsoleLoggerDefaultButton1,
             JButton propertiesConsoleLoggerDefaultButton2,
@@ -90,7 +90,7 @@ public class PropertiesConsoleLoggerToolSetup extends AbstractToolSetup implemen
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerSaveButton = propertiesConsoleLoggerSaveButton;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerLoad2Button = propertiesConsoleLoggerLoad2Button;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerLoad1Button = propertiesConsoleLoggerLoad1Button;
-        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerCancelButton = propertiesConsoleLoggerCancelButton;
+        PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRemoveButton = propertiesConsoleLoggerRemoveButton;
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerRecheckButton = propertiesConsoleLoggerRecheckButton;
 
         PropertiesConsoleLoggerToolSetup.propertiesConsoleLoggerDefaultButton1 = propertiesConsoleLoggerDefaultButton1;
@@ -152,7 +152,7 @@ public class PropertiesConsoleLoggerToolSetup extends AbstractToolSetup implemen
             }
         });
 
-        propertiesConsoleLoggerCancelButton.addActionListener(e -> {
+        propertiesConsoleLoggerRemoveButton.addActionListener(e -> {
             Project project = ProjectManager.getInstance().getOpenProjects().length > 0
                     ? ProjectManager.getInstance().getOpenProjects()[0]
                     : null;

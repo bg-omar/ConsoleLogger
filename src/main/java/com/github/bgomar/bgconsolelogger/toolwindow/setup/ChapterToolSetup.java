@@ -2,8 +2,8 @@ package com.github.bgomar.bgconsolelogger.toolwindow.setup;
 
 import com.github.bgomar.bgconsolelogger.chapters.Chapter;
 import com.github.bgomar.bgconsolelogger.chapters.ChapterCollector;
-import com.github.bgomar.bgconsolelogger.chapters.ChapterScrollBarHighlighter;
 import com.github.bgomar.bgconsolelogger.tools.ConsoleLoggerSettings;
+import com.github.bgomar.consolelogger.ChapterSettingsDialog;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.LogicalPosition;
@@ -26,9 +26,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.util.List;
 
-import com.github.bgomar.bgconsolelogger.chapters.Chapter.Type;
-import com.intellij.ui.JBColor;
-
 public class ChapterToolSetup  implements Disposable {
 
     Logger logger = Logger.getLogger(getClass().getName());
@@ -42,9 +39,10 @@ public class ChapterToolSetup  implements Disposable {
     private final JTextField chapterPatternNameTextField;
     private final JTextField sectionPatternNameTextField;
     private final JTextField subsectionPatternNameTextField;
-;
+    private final JButton chapterSettingsButton;
 
-    public ChapterToolSetup(Project project, DefaultListModel<String> chapterListModel, JList<String> chapterList, JTextField chapterTextField, JTextField sectionTextField, JTextField subsectionTextField, JTextField chapterPatternNameTextField, JTextField sectionPatternNameTextField, JTextField subsectionPatternNameTextField) {
+
+    public ChapterToolSetup(Project project, DefaultListModel<String> chapterListModel, JList<String> chapterList, JButton chapterSettingsButton, JTextField chapterTextField, JTextField sectionTextField, JTextField subsectionTextField, JTextField chapterPatternNameTextField, JTextField sectionPatternNameTextField, JTextField subsectionPatternNameTextField) {
         this.project = project;
         this.chapterListModel = chapterListModel;
         this.chapterList = chapterList;
@@ -54,6 +52,9 @@ public class ChapterToolSetup  implements Disposable {
         this.chapterPatternNameTextField = chapterPatternNameTextField;
         this.sectionPatternNameTextField = sectionPatternNameTextField;
         this.subsectionPatternNameTextField = subsectionPatternNameTextField;
+        this.chapterSettingsButton = new JButton("Settings");
+        // Add the button to the UI panel containing chapterPanel fields
+        // Example: If you have a panel, add: panel.add(chapterSettingsButton);
     }
 
 
@@ -218,6 +219,35 @@ public class ChapterToolSetup  implements Disposable {
                 }
             }
         });
+
+        // Add settings button event listener
+        chapterSettingsButton.addActionListener(e -> {
+            // Show the Kotlin dialog (ChapterSettingsDialog)
+            ChapterSettingsDialog dialog = new ChapterSettingsDialog(
+                chapterTextField.getText(),
+                sectionTextField.getText(),
+                subsectionTextField.getText(),
+                chapterPatternNameTextField.getText(),
+                sectionPatternNameTextField.getText(),
+                subsectionPatternNameTextField.getText()
+            );
+            dialog.show();
+            if (dialog.isOK()) {
+                chapterTextField.setText(dialog.getChapter());
+                sectionTextField.setText(dialog.getSection());
+                subsectionTextField.setText(dialog.getSubsection());
+                chapterPatternNameTextField.setText(dialog.getChapterPatternName());
+                sectionPatternNameTextField.setText(dialog.getSectionPatternName());
+                subsectionPatternNameTextField.setText(dialog.getSubsectionPatternName());
+                ConsoleLoggerSettings.setPattern(27, dialog.getChapter());
+                ConsoleLoggerSettings.setPattern(28, dialog.getSection());
+                ConsoleLoggerSettings.setPattern(29, dialog.getSubsection());
+                ConsoleLoggerSettings.setPattern(30, dialog.getChapterPatternName());
+                ConsoleLoggerSettings.setPattern(31, dialog.getSectionPatternName());
+                ConsoleLoggerSettings.setPattern(32, dialog.getSubsectionPatternName());
+                updateChapterList();
+            }
+        });
     }
 
     // Helper method to update pattern and refresh the list
@@ -320,4 +350,3 @@ public class ChapterToolSetup  implements Disposable {
 
 
 }
-

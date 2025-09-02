@@ -41,8 +41,8 @@ public class ConsoleLoggerToolWindow {
     private JTextField  chapterPatternNameTextField;
     private JTextField  sectionPatternNameTextField;
     private JTextField  subsectionPatternNameTextField;
-    private JButton chapterSaveButton;
-    private JButton chapterRefreshButton;
+    private JButton chapterSettingsButton;
+
 
     // Properties of ConsoleLogger
     private JPanel propertiesConsoleLoggerPanel;
@@ -58,7 +58,7 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerSaveButton;
     private JButton propertiesConsoleLoggerLoad2Button;
     private JButton propertiesConsoleLoggerLoad1Button;
-    private JButton propertiesConsoleLoggerCancelButton;
+    private JButton propertiesConsoleLoggerRemoveButton;
     private JButton propertiesConsoleLoggerRecheckButton;
 
     private JButton propertiesConsoleLoggerDefaultButton1;
@@ -107,7 +107,7 @@ public class ConsoleLoggerToolWindow {
             propertiesConsoleLoggerSaveButton,
             propertiesConsoleLoggerLoad2Button,
             propertiesConsoleLoggerLoad1Button,
-            propertiesConsoleLoggerCancelButton,
+            propertiesConsoleLoggerRemoveButton,
             propertiesConsoleLoggerRecheckButton,
             propertiesConsoleLoggerDefaultButton1,
             propertiesConsoleLoggerDefaultButton2,
@@ -139,6 +139,7 @@ public class ConsoleLoggerToolWindow {
             project,
             chapterListModel,
             chapterList,
+            chapterSettingsButton,
             chapterTextField,
             sectionTextField,
             subsectionTextField,

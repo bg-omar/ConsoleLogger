@@ -60,11 +60,19 @@ class ConsoleLoggerAction : AnAction() {
 
         val runnable = {
           if (variableName != "") {
-            startNewLineHandler.execute(editor, editor.caretModel.primaryCaret, e.dataContext)
+            // Move caret to start of line if not already there
+            val caretOffset = editor.caretModel.currentCaret.offset
+            val lineNumber = editor.document.getLineNumber(caretOffset)
+            val lineStartOffset = editor.document.getLineStartOffset(lineNumber)
+            if (caretOffset != lineStartOffset) {
+              editor.caretModel.moveToOffset(lineStartOffset)
+            }
+            // Insert log line above the statement
+            editor.document.insertString(lineStartOffset, line2insert + "\n")
+          } else {
+            val offset = editor.caretModel.currentCaret.offset
+            editor.document.insertString(offset, line2insert)
           }
-
-          val offset = editor.caretModel.currentCaret.offset
-          editor.document.insertString(offset, line2insert)
         }
         WriteCommandAction.runWriteCommandAction(editor.project, runnable)
         positionCaret(editor, insertionPositions, line2insert, variableName.replace("<CR>", "").trim())
@@ -131,70 +139,99 @@ class ConsoleLoggerAction : AnAction() {
    * return the name of the element to log
    */
   private fun moveCursorToInsertionPoint(editor: Editor): String? {
-    // Parse the file as a TypeScript file
-    val psiFile = PsiFileFactory.getInstance(editor.project)
-      .createFileFromText("dummy.ts", JavascriptLanguage.INSTANCE, editor.document.text)
+      val psiFile = PsiFileFactory.getInstance(editor.project)
+          .createFileFromText("dummy.ts", JavascriptLanguage.INSTANCE, editor.document.text)
 
-    val valueToLog: String
-    val element: PsiElement?
-    val offset: Int
+      val valueToLog: String
+      val element: PsiElement?
+      val offset: Int
 
-    // If the user has selected text (e.g., a variable)
-    if (editor.selectionModel.hasSelection()) {
-      val value = editor.selectionModel.selectedText
-      offset = editor.selectionModel.selectionStart
-      element = psiFile.findElementAt(offset)
-      valueToLog = value ?: "<CR>"
-    } else {
-      offset = editor.caretModel.currentCaret.offset
-      val elementAtCursor = psiFile.findElementAt(offset)
+      if (editor.selectionModel.hasSelection()) {
+          val value = editor.selectionModel.selectedText
+          offset = editor.selectionModel.selectionStart
+          element = psiFile.findElementAt(offset)
+          valueToLog = value ?: "<CR>"
+      } else {
+          offset = editor.caretModel.currentCaret.offset
+          val elementAtCursor = psiFile.findElementAt(offset)
+          if (elementAtCursor?.text?.replace(" ", "")?.endsWith("\n\n") == true) return ""
+          element = findElementToLogForSelection(elementAtCursor!!)
+          valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
+      }
 
-      if (elementAtCursor?.text?.replace(" ", "")?.endsWith("\n\n") == true) return ""
-
-      element = findElementToLogForSelection(elementAtCursor!!)
-      valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
-    }
-
-    if (valueToLog.startsWith("\n") && element?.hasParentOfType("JS:OBJECT_LITERAL", 2) != true) {
-      return "\n"
-    }
-
-    val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
-
-    when {
-      // If it's an arrow function, insert inside the function body
-      block is JSFunctionExpression -> {
-        val body = PsiTreeUtil.findChildOfType(block, JSBlockStatement::class.java)
-        if (body != null) {
-          // Move the cursor inside the block, after the opening '{'
-          editor.caretModel.moveToOffset(body.textOffset + 1)
-        } else {
-          // Handle the case where the arrow function has an expression body
-          val expression = PsiTreeUtil.findChildOfType(block, JSElement::class.java)
-          if (expression != null) {
-            // Move the cursor to the end of the expression
-            editor.caretModel.moveToOffset(expression.textRange.endOffset)
+      // NEW LOGIC: If the element is inside an argument list, insert above the parent statement
+      if (element != null && element.hasParentOfType("JS:ARGUMENT_LIST", 3)) {
+          // Climb up to the parent statement (expression statement or variable assignment)
+          var parent = element.parent
+          var levels = 0
+          while (parent != null && levels < 10) {
+              val type = parent.node.elementType.toString()
+              if (type == "JS:EXPRESSION_STATEMENT" || type == "JS:VAR_STATEMENT") {
+                  editor.caretModel.moveToOffset(parent.textRange.startOffset)
+                  break
+              }
+              parent = parent.parent
+              levels++
           }
-        }
+          return valueToLog
       }
-      block is JSIfStatement -> {
-        // For "if" statements, insert line above
-        editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
-      }
-      block != null -> {
-        // Check if there is a return statement in the block
-        val returnStatement = findReturnStatementInBlock(block)
-        if (returnStatement != null) {
-          // Move the caret just before the return statement
-          editor.caretModel.moveToOffset(returnStatement.textRange.startOffset)
-        } else {
-          // Otherwise, move to the end of the block
-          editor.caretModel.moveToOffset(block.textRange.endOffset)
-        }
-      }
-    }
 
-    return valueToLog
+      if (valueToLog.startsWith("\n") && element?.hasParentOfType("JS:OBJECT_LITERAL", 2) != true) {
+          return "\n"
+      }
+
+      // Insert after loggable statement (variable, assignment, or expression)
+      if (element != null && isLoggableStatement(element)) {
+          val statementEnd = getStatementEndOffset(element)
+          if (statementEnd != null) {
+              editor.caretModel.moveToOffset(statementEnd)
+              return valueToLog
+          }
+      }
+
+      // Fallback to block logic for blocks (functions, if, etc.)
+      val block = findBlockForElement(element ?: psiFile.findElementAt(offset) ?: return null)
+      when {
+          block is JSFunctionExpression -> {
+              val body = PsiTreeUtil.findChildOfType(block, JSBlockStatement::class.java)
+              if (body != null) {
+                  editor.caretModel.moveToOffset(body.textOffset + 1)
+              } else {
+                  val expression = PsiTreeUtil.findChildOfType(block, JSElement::class.java)
+                  if (expression != null) {
+                      editor.caretModel.moveToOffset(expression.textRange.endOffset)
+                  }
+              }
+          }
+          block is JSIfStatement -> {
+              editor.caretModel.moveToOffset(block.prevSibling.textRange.startOffset - 1)
+          }
+          block != null -> {
+              val returnStatement = findReturnStatementInBlock(block)
+              if (returnStatement != null) {
+                  editor.caretModel.moveToOffset(returnStatement.textRange.startOffset)
+              } else {
+                  editor.caretModel.moveToOffset(block.textRange.endOffset)
+              }
+          }
+      }
+      return valueToLog
+  }
+
+  // Helper: Is this element a loggable statement (variable, assignment, or expression)?
+  private fun isLoggableStatement(element: PsiElement): Boolean {
+      val type = element.node.elementType.toString()
+      return type == "JS:IDENTIFIER" || type == "JS:REFERENCE_EXPRESSION" || type == "JS:BINARY_EXPRESSION" || type == "JS:DEFINITION_EXPRESSION" || type == "JS:VAR_STATEMENT" || type == "JS:EXPRESSION_STATEMENT"
+  }
+
+  // Helper: Get the end offset of the statement for the element
+  private fun getStatementEndOffset(element: PsiElement): Int? {
+      var stmt = element
+      // Climb up to the enclosing statement if needed
+      while (stmt.parent != null && stmt.parent.node.elementType.toString().endsWith("STATEMENT")) {
+          stmt = stmt.parent
+      }
+      return stmt.textRange?.endOffset
   }
 
   /**

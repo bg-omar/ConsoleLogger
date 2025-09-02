@@ -909,7 +909,7 @@
                       </component>
                     </children>
                   </grid>
-                  <component id="e48a" class="javax.swing.JButton" binding="propertiesConsoleLoggerCancelButton">
+                  <component id="e48a" class="javax.swing.JButton" binding="propertiesConsoleLoggerRemoveButton">
                     <constraints>
                       <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="-1" height="30"/>
@@ -1434,7 +1434,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="16848" layout-manager="GridLayoutManager" row-count="4" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="16848" layout-manager="GridLayoutManager" row-count="2" column-count="13" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -1444,70 +1444,79 @@
                     <children>
                       <component id="a117a" class="com.intellij.ui.components.JBTextField" binding="chapterTextField">
                         <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
+                          <grid row="1" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <preferred-size width="800" height="-1"/>
                           </grid>
                         </constraints>
                         <properties>
+                          <selectedTextColor color="-1052171"/>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-input"/>
-                        </properties>
-                      </component>
-                      <component id="62947" class="com.intellij.ui.components.JBTextField" binding="sectionTextField">
-                        <constraints>
-                          <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input"/>
-                        </properties>
-                      </component>
-                      <component id="3153b" class="com.intellij.ui.components.JBTextField" binding="subsectionTextField">
-                        <constraints>
-                          <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input"/>
-                        </properties>
-                      </component>
-                      <component id="a5d3b" class="com.intellij.ui.components.JBTextField" binding="sectionPatternNameTextField">
-                        <constraints>
-                          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <preferred-size width="125" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input-name"/>
-                        </properties>
-                      </component>
-                      <component id="7fd53" class="com.intellij.ui.components.JBTextField" binding="subsectionPatternNameTextField">
-                        <constraints>
-                          <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <preferred-size width="125" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input-name"/>
                         </properties>
                       </component>
                       <component id="cbd0" class="com.intellij.ui.components.JBTextField" binding="chapterPatternNameTextField">
                         <constraints>
-                          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <preferred-size width="125" height="-1"/>
+                          <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="75" height="-1"/>
                           </grid>
                         </constraints>
                         <properties>
+                          <foreground color="-6645864"/>
+                          <selectedTextColor color="-5131338"/>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-input-name"/>
                         </properties>
                       </component>
                       <component id="12168" class="com.intellij.ui.components.JBLabel">
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="ChapterTitle"/>
+                        </properties>
+                      </component>
+                      <component id="62947" class="com.intellij.ui.components.JBTextField" binding="sectionTextField">
+                        <constraints>
+                          <grid row="1" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <preferred-size width="800" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <selectedTextColor color="-1052171"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input"/>
+                        </properties>
+                      </component>
+                      <component id="a5d3b" class="com.intellij.ui.components.JBTextField" binding="sectionPatternNameTextField">
+                        <constraints>
+                          <grid row="1" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="75" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <foreground color="-6645864"/>
+                          <selectedTextColor color="-5131338"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input-name"/>
+                        </properties>
+                      </component>
+                      <component id="3153b" class="com.intellij.ui.components.JBTextField" binding="subsectionTextField">
+                        <constraints>
+                          <grid row="1" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <preferred-size width="800" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <selectedTextColor color="-1052171"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input"/>
+                        </properties>
+                      </component>
+                      <component id="7fd53" class="com.intellij.ui.components.JBTextField" binding="subsectionPatternNameTextField">
+                        <constraints>
+                          <grid row="1" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="75" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <foreground color="-6645864"/>
+                          <selectedTextColor color="-5131338"/>
+                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input-name"/>
                         </properties>
                       </component>
                     </children>
@@ -1557,7 +1566,7 @@
       </grid>
       <component id="da906" class="javax.swing.JComboBox" binding="toolComboBox">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
