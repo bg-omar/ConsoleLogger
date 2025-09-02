@@ -6,9 +6,11 @@
 - ConsoleLogger can use empty variables again.
 - Line numbers update in file when adding a logger
 
-## [0.0.32] - 19-02-2025
-  🐛 Bugfix for Saving 😁👌<br><br>
-  Sorry it took so long, it was quite a hard task.<br>
+## [0.0.33]
+-   🐛 Bugfix for Saving 😁👌<br><br>
+    Sorry it took so long, it was quite a hard task.<br>
+
+## [0.0.32]
 - ✅Added ChapterTool, to create chapters in your code <br>
 - Double-click on the chapter to jump to the line <br>
 - ✅Function Obfuscator shows in ToolWindow <br>
