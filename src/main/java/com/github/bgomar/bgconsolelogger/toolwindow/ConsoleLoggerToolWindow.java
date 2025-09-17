@@ -17,20 +17,6 @@ public class ConsoleLoggerToolWindow {
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
     private JLabel helpLabel;
 
-    private JPanel base64Panel;
-    private JBRadioButton base64RadioButtonUTF8;
-    private JBRadioButton base64RadioButtonASCII;
-    private JTextArea base64RawTextArea;
-    private JTextArea base64Base64TextArea;
-
-    private JPanel px2RemPanel;
-    private JBTextField px2RemTextField;
-    private JBTextField rem2PxTextField;
-
-    private JPanel svg2cssPanel;
-    private JBTextField svg2cssEncodedTextArea;
-    private JBTextField svg2cssDecodedTextArea;
-    private JBTextField svg2CssTextArea;
 
     private JPanel chapterPanel;
     private JPanel chapterLinesPanel;
@@ -71,11 +57,6 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
 
-    private JPanel configPresetsPanel;
-    private JButton functionExtractorClass;
-    private JButton functionExtractorActionKT;
-    private JButton functionExtractorAction;
-    private JTextArea functionExtractorTextArea;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -89,10 +70,7 @@ public class ConsoleLoggerToolWindow {
         String iconsPath = "icons/cats/";
         toolPanelsByTitle.put("Chapters", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
         toolPanelsByTitle.put("Properties", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
-        toolPanelsByTitle.put("Obfuscate", new PanelAndIcon(configPresetsPanel, iconsPath + "HackerPurr.svg"));
-        toolPanelsByTitle.put("Px 2 REM", new PanelAndIcon(px2RemPanel, iconsPath + "cat1.svg"));
-        toolPanelsByTitle.put("Svg 2 Css", new PanelAndIcon(svg2cssPanel, iconsPath + "coolcat.svg"));
-        toolPanelsByTitle.put("Base64", new PanelAndIcon(base64Panel, iconsPath + "f03.svg"));
+
 
         new PropertiesConsoleLoggerToolSetup(
             propertiesConsoleLoggerTextField1,
@@ -118,23 +96,6 @@ public class ConsoleLoggerToolWindow {
             propertiesConsoleLoggerDefaultButton7,
             propertiesConsoleLoggerDefaultButton8,
             propertiesConsoleLoggerDefaultButton9).setup();
-        new ConfigPresetToolSetup(
-            functionExtractorClass,
-            functionExtractorActionKT,
-            functionExtractorAction,
-            functionExtractorTextArea).setup();
-        new Base64ToolSetup(
-            base64RadioButtonUTF8,
-            base64RadioButtonASCII,
-            base64RawTextArea,
-            base64Base64TextArea).setup();
-        new Svg2cssToolSetup(
-            svg2cssEncodedTextArea,
-            svg2cssDecodedTextArea,
-            svg2CssTextArea).setup();
-        new Px2RemToolSetup(
-            px2RemTextField,
-            rem2PxTextField).setup();
         new ChapterToolSetup(
             project,
             chapterListModel,
@@ -166,25 +127,12 @@ public class ConsoleLoggerToolWindow {
 
             helpLabel.setVisible(false);
             switch (item.title()) {
-                case "Base64 encoder/decoder" -> {
+                case "Properties" -> {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>" +
-                        "Type some text or Base64 and it will be<br>" +
-                        "automatically converted as you type.</html>");
+                        "Set the ConsoleLoggers</html>");
                 }
-                case "URL encoder/decoder" -> {
-                    helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Type decoded or encoded URL and it will be<br>" +
-                        "automatically converted as you type.</html>");
-                }
-                case "Hash generator" -> {
-                    helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Type text and various hash values will<br>" +
-                        "be automatically computed as you type.</html>");
-                }
-                case "Chapter" -> {
+                case "Chapters" -> {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>Select a chapter to navigate within the editor.</html>");
                 }

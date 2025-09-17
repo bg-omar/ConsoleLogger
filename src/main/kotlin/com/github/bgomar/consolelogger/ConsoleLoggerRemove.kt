@@ -14,7 +14,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
 import kotlin.text.replace
 
-class ConsoleLoggerRemove : AnAction("Remove ConsoleLogger's Logs") {
+class ConsoleLoggerRemove : AnAction("Remove") {
 
   override fun actionPerformed(e: AnActionEvent) {
     val dlg = ConsoleLoggerRemoveDlg()
