@@ -22,64 +22,60 @@ import com.intellij.psi.util.PsiTreeUtil
 
 class ConsoleLoggerAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-
-    val presentation = e.presentation.text
-
-    val patternText: Int = presentation.toIntOrNull() ?: 0  // Default value if conversion fails
-    val patternIndex: Int = patternText
-
-    // Check if the editor is available
-    val editor = e.getData(CommonDataKeys.EDITOR)
-    if (editor == null) {
-        println("Editor is missing. Cannot perform the action.")
-        return
-    }
-    val actionManager = EditorActionManager.getInstance()
-    val startNewLineHandler = actionManager.getActionHandler(IdeActions.ACTION_EDITOR_START_NEW_LINE)
-
-    val vFile: VirtualFile? = e.getData(PlatformDataKeys.VIRTUAL_FILE)
-
-    var variableName = moveCursorToInsertionPoint(editor)?.trim()
-    if (variableName.isNullOrEmpty()) variableName = "" // Default value if nothing is selected
-
-    val pattern = ConsoleLoggerSettings.getPattern(patternIndex).run {
-      replace("{FN}", vFile?.name ?: "filename")
-        .replace("{FP}", vFile?.path ?: "file_path")
-        .replace("{LN}", "Line: "+(editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
-    }
-
-    val insertionPositions = "\\$\\$".toRegex().findAll(pattern).map { it.range.first }.toList()
-
-    val lineToInsert = if (variableName == "\n") {
-      "\n${pattern.replace("$$", "")}"
-    } else
-      pattern.replace("$$", variableName)
-
-      variableName.let {
+        val presentation = e.presentation.text
+        val patternText: Int = presentation.toIntOrNull() ?: 0
+        val patternIndex: Int = patternText
+        val editor = e.getData(CommonDataKeys.EDITOR)
+        if (editor == null) {
+            println("Editor is missing. Cannot perform the action.")
+            return
+        }
+        val vFile: VirtualFile? = e.getData(PlatformDataKeys.VIRTUAL_FILE)
+        var variableName = moveCursorToInsertionPoint(editor)?.trim()
+        if (variableName.isNullOrEmpty()) variableName = ""
+        val pattern = ConsoleLoggerSettings.getPattern(patternIndex).run {
+            replace("{FN}", vFile?.name ?: "filename")
+                .replace("{FP}", vFile?.path ?: "file_path")
+                .replace("{LN}", "Line: "+(editor.caretModel.currentCaret.logicalPosition.line + 2).toString())
+        }
+        val insertionPositions = "\\$\\$".toRegex().findAll(pattern).map { it.range.first }.toList()
+        val lineToInsert = if (variableName == "\n") {
+            "\n${pattern.replace("$$", "")}"
+        } else pattern.replace("$$", variableName)
         val line2insert = lineToInsert.replace("<CR>", "")
 
+        val caretOffset = editor.caretModel.currentCaret.offset
+        val lineNumber = editor.document.getLineNumber(caretOffset)
+        val lineStartOffset = editor.document.getLineStartOffset(lineNumber)
+        val lineEndOffset = editor.document.getLineEndOffset(lineNumber)
+        val currentLineText = editor.document.getText(com.intellij.openapi.util.TextRange(lineStartOffset, lineEndOffset))
+        // Remove indentation for logger insertion
+        // val indentation = currentLineText.takeWhile { it == ' ' || it == '\t' }
+
+        val insertAfter = caretOffset >= lineEndOffset - 1 || currentLineText.trim().endsWith(";") || currentLineText.trim().endsWith("}")
+
         val runnable = {
-          if (variableName != "") {
-            // Move caret to start of line if not already there
-            val caretOffset = editor.caretModel.currentCaret.offset
-            val lineNumber = editor.document.getLineNumber(caretOffset)
-            val lineStartOffset = editor.document.getLineStartOffset(lineNumber)
-            if (caretOffset != lineStartOffset) {
-              editor.caretModel.moveToOffset(lineStartOffset)
+            if (variableName != "") {
+                // Get indentation from the statement line only
+                val statementLine = editor.document.getText(com.intellij.openapi.util.TextRange(lineStartOffset, lineEndOffset))
+                val statementIndentation = statementLine.takeWhile { it == ' ' || it == '\t' }
+                if (insertAfter) {
+                    // Insert logger on a new line after the statement, with the same indentation as the statement
+                    editor.document.insertString(lineEndOffset, "\n" + statementIndentation + line2insert.trimStart())
+                } else {
+                    // Insert before the statement, at the start of the line, with statement's indentation
+                    editor.document.insertString(lineStartOffset, statementIndentation + line2insert.trimStart() + "\n")
+                }
+            } else {
+                val offset = editor.caretModel.currentCaret.offset
+                editor.document.insertString(offset, line2insert)
             }
-            // Insert log line above the statement
-            editor.document.insertString(lineStartOffset, line2insert + "\n")
-          } else {
-            val offset = editor.caretModel.currentCaret.offset
-            editor.document.insertString(offset, line2insert)
-          }
         }
         WriteCommandAction.runWriteCommandAction(editor.project, runnable)
         positionCaret(editor, insertionPositions, line2insert, variableName.replace("<CR>", "").trim())
         // Automatically update log line numbers after insertion
         LogLineUpdater.updateLogLines(editor.document, editor.project)
-      }
-  }
+    }
 
   private fun positionCaret(editor: Editor, insertionPositions: List<Int>, lineToInsert: String, variableName: String) {
     val offset = editor.caretModel.currentCaret.offset
@@ -159,25 +155,37 @@ class ConsoleLoggerAction : AnAction() {
           valueToLog = element?.text?.replace(" ", "") ?: "<CR>"
       }
 
-      // NEW LOGIC: If the element is inside an argument list, insert above the parent statement
-      if (element != null && element.hasParentOfType("JS:ARGUMENT_LIST", 3)) {
-          // Climb up to the parent statement (expression statement or variable assignment)
+      // --- NEW LOGIC FOR VARIABLE DECLARATION ---
+      if (element != null && (element.node.elementType.toString() == "JS:IDENTIFIER" || element.node.elementType.toString() == "JS:REFERENCE_EXPRESSION")) {
+          // Check if parent is a variable declaration
+          val parent = element.parent
+          if (parent != null && (parent.node.elementType.toString() == "JS:DEFINITION_EXPRESSION" || parent.node.elementType.toString() == "JS:VAR_STATEMENT")) {
+              // Move caret to END of declaration statement
+              editor.caretModel.moveToOffset(parent.textRange.endOffset)
+              return valueToLog
+          }
+      }
+
+      // If the element is a variable declaration or assignment, insert after the statement
+      if (element != null && (element.node.elementType.toString() == "JS:VAR_STATEMENT" || element.node.elementType.toString() == "JS:DEFINITION_EXPRESSION" || element.node.elementType.toString() == "JS:EXPRESSION_STATEMENT")) {
+          editor.caretModel.moveToOffset(element.textRange.endOffset)
+          return valueToLog
+      }
+
+      // If the element is inside an object literal, insert after the assignment statement
+      if (element != null && element.hasParentOfType("JS:OBJECT_LITERAL", 2)) {
           var parent = element.parent
           var levels = 0
           while (parent != null && levels < 10) {
               val type = parent.node.elementType.toString()
               if (type == "JS:EXPRESSION_STATEMENT" || type == "JS:VAR_STATEMENT") {
-                  editor.caretModel.moveToOffset(parent.textRange.startOffset)
+                  editor.caretModel.moveToOffset(parent.textRange.endOffset)
                   break
               }
               parent = parent.parent
               levels++
           }
           return valueToLog
-      }
-
-      if (valueToLog.startsWith("\n") && element?.hasParentOfType("JS:OBJECT_LITERAL", 2) != true) {
-          return "\n"
       }
 
       // Insert after loggable statement (variable, assignment, or expression)

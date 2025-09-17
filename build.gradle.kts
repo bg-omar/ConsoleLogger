@@ -53,7 +53,7 @@ plugins {
     id("java") // Java support
     id("groovy")
     id("org.jetbrains.kotlin.jvm") version "2.0.20"     // Kotlin support
-    id("org.jetbrains.intellij") version "1.17.1"    // Gradle IntelliJ Plugin
+    id("org.jetbrains.intellij") version "1.17.3"    // Gradle IntelliJ Plugin
     id("org.jetbrains.changelog") version "2.2.0"    // Gradle Changelog Plugin "com.intellij.clion"
     id("org.jetbrains.qodana") version "0.1.13"    // Gradle Qodana Plugin
     id("org.jetbrains.kotlinx.kover") version "0.7.4"    // Gradle Kover Plugin
@@ -112,6 +112,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:$junitPlatformLauncher")
+    testImplementation("junit:junit:4.13.2") // Added for compatibility with IntelliJ Platform tests
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -521,31 +522,31 @@ fun updatePluginXml() {
     }
 }
 
-//val generateUpdatePluginsXml by tasks.registering {
-//    val pluginId = "com.github.bgomar.consolelogger"
-//    val updateId = "683838" // Optional: replace if dynamic
-//    val downloadUrl = "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=$updateId"
-//
-//    val outputFile = File(buildDir, "updatePlugins.xml")
-//    inputs.property("pluginVersion", pluginVersion)
-//    outputs.file(outputFile)
-//
-//    doLast {
-//        val xml = """
-//            <?xml version="1.0" encoding="UTF-8"?>
-//            <plugins>
-//                <plugin id="$pluginId"
-//                        url="$downloadUrl"
-//                        version="$pluginVersion">
-//                    <idea-version since-build="$pluginSinceBuild" until-build="$pluginUntilBuild"/>
-//                </plugin>
-//            </plugins>
-//        """.trimIndent()
-//
-//        outputFile.writeText(xml)
-//        logger.lifecycle("✅ updatePlugins.xml generated at: ${outputFile.absolutePath}")
-//    }
-//}
+val generateUpdatePluginsXml by tasks.registering {
+    val pluginId = "com.github.bgomar.consolelogger"
+    val updateId = "683838" // Optional: replace if dynamic
+    val downloadUrl = "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=$updateId"
+
+    val outputFile = File(buildDir, "updatePlugins.xml")
+    inputs.property("pluginVersion", pluginVersion)
+    outputs.file(outputFile)
+
+    doLast {
+        val xml = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <plugins>
+                <plugin id="$pluginId"
+                        url="$downloadUrl"
+                        version="$pluginVersion">
+                    <idea-version since-build="$pluginSinceBuild" until-build="$pluginUntilBuild"/>
+                </plugin>
+            </plugins>
+        """.trimIndent()
+
+        outputFile.writeText(xml)
+        logger.lifecycle("✅ updatePlugins.xml generated at: ${outputFile.absolutePath}")
+    }
+}
 
 // https://plugins.jetbrains.com/plugin/download?rel=true&updateId=683838
 // https://plugins.jetbrains.com/plugin/download?rel=true&updateId=670136
