@@ -40,34 +40,28 @@
                 <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             </action>
 
+            <!-- Remove the old Menuadd action from EditorPopupMenu to avoid duplicate menu items -->
 
-            <!-- Action for extracting function and related variables -->
-            <action id="com.github.bgomar.consolelogger.FunctionExtractorAction"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorAction"
-                text="Extract Function Info"
-                description="Extracts the selected function along with connected variables and functions.">
-                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            </action>
+            <group id="com.github.bgomar.consolelogger.ConsoleLoggerMenuGroup"
+               text="Console Logger"
+               description="Console Logger Actions"
+               popup="true">
+            <action id="com.github.bgomar.consolelogger.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="0"
+                    description="Generate a console.log() for that variable"/>
+            <action id="com.github.bgomar.consolelogger.add2" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="1"
+                    description="Generate a console.log() for that variable"/>
+            <action id="com.github.bgomar.consolelogger.add3" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+                    text="2"
+                    description="Generate a console.log() for that variable"/>
+            <action id="com.github.bgomar.consolelogger.ConsoleLoggerRemove" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove"
+                    text="0"
+                    description="Remove console.log() generate by ConsoleLogger plugin"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </group>
 
-
-            <!-- Action for extracting function and related variables -->
-            <action id="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorActionKT"
-                class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorActionKT"
-                text="Extract Function Info"
-                description="Extracts the selected function along with connected variables and functions.">
-                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            </action>
-
-            <!-- Action for extracting function and related variables -->
-            <action id="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorClass"
-                    class="com.github.bgomar.bgconsolelogger.toolwindow.configfiles.FunctionExtractorClass"
-                    text="Extract Function Info"
-                    description="Extracts the selected function along with connected variables and functions.">
-                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            </action>
-
-
-             <!-- Include actions XML -->
+            <!-- Include actions XML -->
 
              <action id="com.github.bgomar.consolelogger.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
                     text="0"
@@ -143,6 +137,7 @@
                  <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl alt BACK_QUOTE"/>
             </action>
             <!-- Include actions end -->
+
         </group>
 
     </actions>
