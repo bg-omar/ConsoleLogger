@@ -18,6 +18,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.logging.Logger;
 
 import javax.swing.*;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -53,6 +55,7 @@ public class ChapterToolSetup  implements Disposable {
         this.sectionPatternNameTextField = sectionPatternNameTextField;
         this.subsectionPatternNameTextField = subsectionPatternNameTextField;
         this.chapterSettingsButton = new JButton("Settings");
+        this.chapterList.setCellRenderer(new ChapterListCellRenderer());
         // Add the button to the UI panel containing chapterPanel fields
         // Example: If you have a panel, add: panel.add(chapterSettingsButton);
     }
@@ -348,5 +351,22 @@ public class ChapterToolSetup  implements Disposable {
         return psiFile;
     }
 
-
+    public class ChapterListCellRenderer extends DefaultListCellRenderer {
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                                                      boolean isSelected, boolean cellHasFocus) {
+            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            String text = value.toString();
+            if (text.startsWith("Chapter")) {
+                label.setForeground(Color.BLUE);
+            } else if (text.startsWith("Section")) {
+                label.setForeground(Color.GREEN);
+            } else if (text.startsWith("Subsection")) {
+                label.setForeground(Color.ORANGE);
+            } else {
+                label.setForeground(Color.BLACK);
+            }
+            return label;
+        }
+    }
 }

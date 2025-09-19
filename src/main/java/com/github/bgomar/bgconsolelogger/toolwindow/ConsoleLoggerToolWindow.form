@@ -132,7 +132,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -229,7 +229,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -325,7 +325,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -420,7 +420,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -515,7 +515,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -611,7 +611,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -706,7 +706,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -801,7 +801,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -896,7 +896,7 @@
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="4"/>
                           <icon value="icons/reset.png"/>
-                          <iconTextGap value="4"/>
+                          <iconTextGap value="3"/>
                           <margin top="0" left="0" bottom="0" right="0"/>
                           <opaque value="false"/>
                           <requestFocusEnabled value="true"/>
@@ -1013,7 +1013,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="a69bf" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="a69bf" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -1021,89 +1021,200 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="16848" layout-manager="GridLayoutManager" row-count="2" column-count="13" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="16848" layout-manager="GridLayoutManager" row-count="2" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="a117a" class="com.intellij.ui.components.JBTextField" binding="chapterTextField">
+                      <scrollpane id="c4020">
                         <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="800" height="-1"/>
-                          </grid>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="5" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <selectedTextColor color="-1052171"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-input"/>
+                          <focusable value="false"/>
+                          <horizontalScrollBarPolicy value="31"/>
+                          <verticalScrollBarPolicy value="21"/>
                         </properties>
-                      </component>
-                      <component id="cbd0" class="com.intellij.ui.components.JBTextField" binding="chapterPatternNameTextField">
+                        <border type="empty"/>
+                        <children>
+                          <component id="dba04" class="javax.swing.JTextField" binding="chapterTextField">
+                            <constraints/>
+                            <properties>
+                              <alignmentX value="0.0"/>
+                              <alignmentY value="0.0"/>
+                              <autoscrolls value="false"/>
+                              <doubleBuffered value="false"/>
+                              <editable value="true"/>
+                              <focusable value="true"/>
+                              <horizontalAlignment value="2"/>
+                              <maximumSize width="2147483647" height="2147483647"/>
+                              <minimumSize width="49" height="30"/>
+                              <opaque value="true"/>
+                              <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-search"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <scrollpane id="b6ecf">
                         <constraints>
-                          <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <preferred-size width="75" height="-1"/>
-                          </grid>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <foreground color="-6645864"/>
-                          <selectedTextColor color="-5131338"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-input-name"/>
+                          <focusable value="false"/>
+                          <horizontalScrollBarPolicy value="31"/>
+                          <verticalScrollBarPolicy value="21"/>
                         </properties>
-                      </component>
-                      <component id="12168" class="com.intellij.ui.components.JBLabel">
+                        <border type="empty"/>
+                        <children>
+                          <component id="2aec2" class="javax.swing.JTextField" binding="chapterPatternNameTextField">
+                            <constraints/>
+                            <properties>
+                              <alignmentX value="0.0"/>
+                              <alignmentY value="0.0"/>
+                              <autoscrolls value="false"/>
+                              <doubleBuffered value="false"/>
+                              <editable value="true"/>
+                              <focusable value="true"/>
+                              <horizontalAlignment value="0"/>
+                              <maximumSize width="2147483647" height="2147483647"/>
+                              <minimumSize width="49" height="30"/>
+                              <opaque value="true"/>
+                              <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-show"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <scrollpane id="29dca">
                         <constraints>
-                          <grid row="0" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <focusable value="false"/>
+                          <horizontalScrollBarPolicy value="31"/>
+                          <verticalScrollBarPolicy value="21"/>
+                        </properties>
+                        <border type="empty"/>
+                        <children>
+                          <component id="ae5fa" class="javax.swing.JTextField" binding="sectionTextField">
+                            <constraints/>
+                            <properties>
+                              <alignmentX value="0.0"/>
+                              <alignmentY value="0.0"/>
+                              <autoscrolls value="false"/>
+                              <doubleBuffered value="false"/>
+                              <editable value="true"/>
+                              <focusable value="true"/>
+                              <horizontalAlignment value="2"/>
+                              <maximumSize width="2147483647" height="2147483647"/>
+                              <minimumSize width="49" height="30"/>
+                              <opaque value="true"/>
+                              <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-search"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <scrollpane id="91d2f">
+                        <constraints>
+                          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <focusable value="false"/>
+                          <horizontalScrollBarPolicy value="31"/>
+                          <verticalScrollBarPolicy value="21"/>
+                        </properties>
+                        <border type="empty"/>
+                        <children>
+                          <component id="43727" class="javax.swing.JTextField" binding="sectionPatternNameTextField">
+                            <constraints/>
+                            <properties>
+                              <alignmentX value="0.0"/>
+                              <alignmentY value="0.0"/>
+                              <autoscrolls value="false"/>
+                              <doubleBuffered value="false"/>
+                              <editable value="true"/>
+                              <focusable value="true"/>
+                              <horizontalAlignment value="0"/>
+                              <maximumSize width="2147483647" height="2147483647"/>
+                              <minimumSize width="49" height="30"/>
+                              <opaque value="true"/>
+                              <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-show"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <scrollpane id="a4a9">
+                        <constraints>
+                          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <focusable value="false"/>
+                          <horizontalScrollBarPolicy value="31"/>
+                          <verticalScrollBarPolicy value="21"/>
+                        </properties>
+                        <border type="empty"/>
+                        <children>
+                          <component id="a813f" class="javax.swing.JTextField" binding="subsectionTextField">
+                            <constraints/>
+                            <properties>
+                              <alignmentX value="0.0"/>
+                              <alignmentY value="0.0"/>
+                              <autoscrolls value="false"/>
+                              <doubleBuffered value="false"/>
+                              <editable value="true"/>
+                              <focusable value="true"/>
+                              <horizontalAlignment value="2"/>
+                              <maximumSize width="2147483647" height="2147483647"/>
+                              <minimumSize width="49" height="30"/>
+                              <opaque value="true"/>
+                              <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-search"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <scrollpane id="48cf">
+                        <constraints>
+                          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <focusable value="false"/>
+                          <horizontalScrollBarPolicy value="31"/>
+                          <verticalScrollBarPolicy value="21"/>
+                        </properties>
+                        <border type="empty"/>
+                        <children>
+                          <component id="fdd4f" class="javax.swing.JTextField" binding="subsectionPatternNameTextField">
+                            <constraints/>
+                            <properties>
+                              <alignmentX value="0.0"/>
+                              <alignmentY value="0.0"/>
+                              <autoscrolls value="false"/>
+                              <doubleBuffered value="false"/>
+                              <editable value="true"/>
+                              <focusable value="true"/>
+                              <horizontalAlignment value="0"/>
+                              <maximumSize width="2147483647" height="2147483647"/>
+                              <minimumSize width="49" height="30"/>
+                              <opaque value="true"/>
+                              <preferredSize width="49" height="30"/>
+                              <text resource-bundle="messages/ConsoleLoggerBundle" key="chapter-show"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <component id="12168" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <text resource-bundle="messages/ConsoleLoggerBundle" key="ChapterTitle"/>
-                        </properties>
-                      </component>
-                      <component id="62947" class="com.intellij.ui.components.JBTextField" binding="sectionTextField">
-                        <constraints>
-                          <grid row="1" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="800" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <selectedTextColor color="-1052171"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input"/>
-                        </properties>
-                      </component>
-                      <component id="a5d3b" class="com.intellij.ui.components.JBTextField" binding="sectionPatternNameTextField">
-                        <constraints>
-                          <grid row="1" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <preferred-size width="75" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <foreground color="-6645864"/>
-                          <selectedTextColor color="-5131338"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="section-input-name"/>
-                        </properties>
-                      </component>
-                      <component id="3153b" class="com.intellij.ui.components.JBTextField" binding="subsectionTextField">
-                        <constraints>
-                          <grid row="1" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="800" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <selectedTextColor color="-1052171"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input"/>
-                        </properties>
-                      </component>
-                      <component id="7fd53" class="com.intellij.ui.components.JBTextField" binding="subsectionPatternNameTextField">
-                        <constraints>
-                          <grid row="1" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <preferred-size width="75" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <foreground color="-6645864"/>
-                          <selectedTextColor color="-5131338"/>
-                          <text resource-bundle="messages/ConsoleLoggerBundle" key="subsection-input-name"/>
                         </properties>
                       </component>
                     </children>
@@ -1135,11 +1246,6 @@
                       </component>
                     </children>
                   </scrollpane>
-                  <vspacer id="f9201">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
                 </children>
               </grid>
               <vspacer id="3ea7b">
