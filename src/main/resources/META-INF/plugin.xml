@@ -44,18 +44,18 @@
 
             <group id="com.github.bgomar.consolelogger.ConsoleLoggerMenuGroup"
                text="Console Logger"
-               description="Console Logger Actions"
+               description="Console logger actions"
                popup="true">
-            <action id="com.github.bgomar.consolelogger.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+            <action id="com.github.bgomar.consolelogger.menu.add1" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
                     text="0"
                     description="Generate a console.log() for that variable"/>
-            <action id="com.github.bgomar.consolelogger.add2" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+            <action id="com.github.bgomar.consolelogger.menu.add2" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
                     text="1"
                     description="Generate a console.log() for that variable"/>
-            <action id="com.github.bgomar.consolelogger.add3" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
+            <action id="com.github.bgomar.consolelogger.menu.add3" class="com.github.bgomar.consolelogger.ConsoleLoggerAction"
                     text="2"
                     description="Generate a console.log() for that variable"/>
-            <action id="com.github.bgomar.consolelogger.ConsoleLoggerRemove" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove"
+            <action id="com.github.bgomar.consolelogger.menu.ConsoleLoggerRemove" class="com.github.bgomar.consolelogger.ConsoleLoggerRemove"
                     text="0"
                     description="Remove console.log() generate by ConsoleLogger plugin"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
