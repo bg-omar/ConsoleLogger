@@ -3,12 +3,15 @@ package com.github.bgomar.bgconsolelogger.toolwindow;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
-import com.intellij.ui.components.JBRadioButton;
-import com.intellij.ui.components.JBTextField;
 import com.github.bgomar.bgconsolelogger.toolwindow.setup.*;
+import com.github.bgomar.bgconsolelogger.toolwindow.components.ChapterJBList;
+import com.intellij.ui.components.JBScrollPane;
 
 import javax.swing.*;
 import java.util.LinkedHashMap;
+
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 
 
 public class ConsoleLoggerToolWindow {
@@ -17,20 +20,19 @@ public class ConsoleLoggerToolWindow {
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
     private JLabel helpLabel;
 
-
     private JPanel chapterPanel;
-    private JPanel chapterLinesPanel;
-    private JList<String> chapterList;
+    private JPanel chapterLinesPanel; // retained (UI Designer field)
+    private JList<String> chapterList; // UI Designer injected
     private JTextField chapterTextField;
-    private JTextField  sectionTextField;
-    private JTextField  subsectionTextField;
-    private JTextField  chapterPatternNameTextField;
-    private JTextField  sectionPatternNameTextField;
-    private JTextField  subsectionPatternNameTextField;
-    private JButton chapterSettingsButton;
+    private JTextField sectionTextField;
+    private JTextField subsectionTextField;
+    private JTextField chapterPatternNameTextField;
+    private JTextField sectionPatternNameTextField;
+    private JTextField subsectionPatternNameTextField;
+    private JButton chapterSettingsButton; // UI Designer injected
 
 
-    // Properties of ConsoleLogger
+    // Properties of ConsoleLogger (UI Designer fields)
     private JPanel propertiesConsoleLoggerPanel;
     private JTextField propertiesConsoleLoggerTextField1;
     private JTextField propertiesConsoleLoggerTextField2;
@@ -56,22 +58,22 @@ public class ConsoleLoggerToolWindow {
     private JButton propertiesConsoleLoggerDefaultButton7;
     private JButton propertiesConsoleLoggerDefaultButton8;
     private JButton propertiesConsoleLoggerDefaultButton9;
-
+    private JScrollBar scrollBar1; // UI Designer field
 
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
-    private record PanelAndIcon(JPanel panel, String icon) {
-    }
+    private record PanelAndIcon(JPanel panel, String icon) { }
 
     public ConsoleLoggerToolWindow(Project project) {
-        DefaultListModel<String> chapterListModel = new DefaultListModel<>(); // ✅ Initialize list model
-        this.chapterList.setModel(chapterListModel); // ✅ Set the model here
+        DefaultListModel<String> chapterListModel = new DefaultListModel<>();
+
+        // Install custom list BEFORE listeners
+        installChapterCustomList(chapterListModel);
 
         String iconsPath = "icons/cats/";
-        toolPanelsByTitle.put("Chapters", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
         toolPanelsByTitle.put("Properties", new PanelAndIcon(propertiesConsoleLoggerPanel, iconsPath + "cryingcatt.svg"));
-
+        toolPanelsByTitle.put("Chapters", new PanelAndIcon(chapterPanel, iconsPath + "winecat.svg"));
 
         new PropertiesConsoleLoggerToolSetup(
             propertiesConsoleLoggerTextField1,
@@ -97,6 +99,7 @@ public class ConsoleLoggerToolWindow {
             propertiesConsoleLoggerDefaultButton7,
             propertiesConsoleLoggerDefaultButton8,
             propertiesConsoleLoggerDefaultButton9).setup();
+
         new ChapterToolSetup(
             project,
             chapterListModel,
@@ -109,8 +112,6 @@ public class ConsoleLoggerToolWindow {
             sectionPatternNameTextField,
             subsectionPatternNameTextField
         ).setup();
-
-
 
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
@@ -130,8 +131,7 @@ public class ConsoleLoggerToolWindow {
             switch (item.title()) {
                 case "Properties" -> {
                     helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Set the ConsoleLoggers</html>");
+                    helpLabel.setToolTipText("<html>Set the ConsoleLoggers</html>");
                 }
                 case "Chapters" -> {
                     helpLabel.setVisible(true);
@@ -147,7 +147,42 @@ public class ConsoleLoggerToolWindow {
         toolPanelsByTitle.get(toolPanelTitle).panel().setVisible(true);
     }
 
-    public JPanel getContent() {
-        return mainPanel;
+    // Replace the Designer JList with ChapterJBList wrapped in JBScrollPane
+    private void installChapterCustomList(DefaultListModel<String> model) {
+        if (chapterList instanceof ChapterJBList && SwingUtilities.getAncestorOfClass(JScrollPane.class, chapterList) != null) {
+            chapterList.setModel(model);
+            return;
+        }
+        if (chapterList == null) return;
+        java.awt.Container parent = chapterList.getParent();
+        if (parent == null) {
+            SwingUtilities.invokeLater(() -> installChapterCustomList(model));
+            return;
+        }
+        ChapterJBList replacement = new ChapterJBList();
+        replacement.setModel(model);
+        replacement.setSelectionMode(chapterList.getSelectionMode());
+        replacement.setLayoutOrientation(chapterList.getLayoutOrientation());
+        replacement.setVisibleRowCount(-1);
+
+        JBScrollPane scrollPane = new JBScrollPane(replacement, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+
+        int idx = -1;
+        for (int i = 0; i < parent.getComponentCount(); i++) {
+            if (parent.getComponent(i) == chapterList) { idx = i; break; }
+        }
+        if (idx >= 0) {
+            parent.remove(idx);
+            parent.add(scrollPane, idx);
+            parent.revalidate();
+            parent.repaint();
+            // Suppress inspection warning: we intentionally replace the UI-bound field with enhanced component
+            // noinspection AssignmentToStaticFieldFromInstanceMethod,AssignmentToNullField
+            chapterList = replacement;
+        }
     }
+
+    public JPanel getContent() { return mainPanel; }
 }

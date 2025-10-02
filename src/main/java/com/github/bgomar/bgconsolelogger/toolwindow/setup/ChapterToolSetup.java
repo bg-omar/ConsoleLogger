@@ -357,15 +357,34 @@ public class ChapterToolSetup  implements Disposable {
                                                       boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             String text = value.toString();
-            if (text.startsWith("Chapter")) {
-                label.setForeground(Color.BLUE);
-            } else if (text.startsWith("Section")) {
-                label.setForeground(Color.GREEN);
-            } else if (text.startsWith("Subsection")) {
-                label.setForeground(Color.ORANGE);
+
+            // High-contrast colors for dark backgrounds
+            Color chapterColor = new Color(102, 178, 255);    // Light blue
+            Color sectionColor = new Color(144, 238, 144);    // Light green
+            Color subsectionColor = new Color(255, 200, 100); // Light orange
+            Color defaultColor = new Color(220, 220, 220);    // Light gray
+
+            // Get current pattern names from the text fields
+            String chapterPattern = chapterPatternNameTextField.getText();
+            String sectionPattern = sectionPatternNameTextField.getText();
+            String subsectionPattern = subsectionPatternNameTextField.getText();
+
+            if (isSelected) {
+                label.setBackground(list.getSelectionBackground());
+                label.setForeground(list.getSelectionForeground());
             } else {
-                label.setForeground(Color.BLACK);
+                label.setBackground(list.getBackground());
+                if (!chapterPattern.isEmpty() && text.startsWith(chapterPattern)) {
+                    label.setForeground(chapterColor);
+                } else if (!sectionPattern.isEmpty() && text.startsWith(sectionPattern)) {
+                    label.setForeground(sectionColor);
+                } else if (!subsectionPattern.isEmpty() && text.startsWith(subsectionPattern)) {
+                    label.setForeground(subsectionColor);
+                } else {
+                    label.setForeground(defaultColor);
+                }
             }
+            label.setOpaque(true);
             return label;
         }
     }
